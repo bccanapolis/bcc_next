@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <DefaultLayout>
       <Component {...pageProps} />
-      <Script src='https://unpkg.com/flowbite@1.3.4/dist/flowbite.js' />
+      <Script src='https://unpkg.com/flowbite@1.3.4/dist/flowbite.js' strategy='beforeInteractive' />
     </DefaultLayout>
   );
 }

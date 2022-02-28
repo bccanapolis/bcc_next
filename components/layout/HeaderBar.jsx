@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image'
+import Image from 'next/image';
 
 export default function HeaderBar({}) {
   const navigation = [
@@ -25,11 +25,11 @@ export default function HeaderBar({}) {
             <div className='flex gap-4'>
               <Link href='/'>
                 <a className='flex'>
-                  <Image alt='' className='h-12' src='/img/bcc_logo.svg' />
+                  <Image alt='' className='h-12' src='/img/bcc_logo.svg' height='40px' width='200px'/>
                 </a>
               </Link>
               <a className='hidden lg:flex' href='https://ifg.edu.br' target='_blank' rel='noreferrer'>
-                <Image alt='' className='h-12' src='/img/ifg_logo.svg' />
+                <Image alt='' className='h-12' src='/img/ifg_logo.svg' layout='fixed' height='40px' width='200px'/>
               </a>
             </div>
             <button aria-controls='mobile-menu-2' aria-expanded='false'

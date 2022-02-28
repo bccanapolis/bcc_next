@@ -9,8 +9,8 @@ export default function FooterBar({}) {
           <div className='md:flex md:justify-between'>
             <div className='mb-6 md:mb-0'>
               <Link href='/'>
-                <a className='flex items-center'>
-                  <Image alt='Logo de Ciencia da Computação' className='mr-4 h-10' src='/img/bcc_logo.svg' />
+                <a className='flex items-center h-10'>
+                  <Image alt='Logo de Ciencia da Computação' className='mr-4 h-10' src='/img/bcc_logo.svg' layout='fixed' height='50px' width='200px'/>
                 </a>
               </Link>
             </div>
