@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.prose {
+  max-width: 100%;
+}
+
+.banner {
+  background: rgba(4, 9, 30, 0.8) url(/img/DxpOzX_WoAA9a1z.jpg);
+  background-blend-mode: multiply;
+  background-size: cover;
+}

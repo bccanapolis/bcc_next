@@ -1,0 +1,394 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Mutation {
+    create_vote_item(data: create_vote_input!): vote
+    create_vote_items(data: [create_vote_input!], filter: vote_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vote]
+}
+
+type Query {
+    discipline(filter: discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [discipline]
+    discipline_aggregated(filter: discipline_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [discipline_aggregated]
+    discipline_by_id(id: ID!): discipline
+    game(filter: game_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [game]
+    game_aggregated(filter: game_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [game_aggregated]
+    game_by_id(id: ID!): game
+    gecomp_page: gecomp_page
+    gecomp_page_professors(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
+    gecomp_page_professors_aggregated(filter: gecomp_page_professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_professors_aggregated]
+    gecomp_page_professors_by_id(id: ID!): gecomp_page_professors
+    professors(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors]
+    professors_aggregated(filter: professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professors_aggregated]
+    professors_by_id(id: ID!): professors
+    professors_discipline(filter: professors_discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors_discipline]
+    professors_discipline_aggregated(filter: professors_discipline_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professors_discipline_aggregated]
+    professors_discipline_by_id(id: ID!): professors_discipline
+    vote(filter: vote_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vote]
+    vote_aggregated(filter: vote_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [vote_aggregated]
+    vote_by_id(id: ID!): vote
+}
+
+type date_functions {
+    day: Int
+    month: Int
+    week: Int
+    weekday: Int
+    year: Int
+}
+
+type datetime_functions {
+    day: Int
+    hour: Int
+    minute: Int
+    month: Int
+    second: Int
+    week: Int
+    weekday: Int
+    year: Int
+}
+
+type discipline {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    description: String
+    id: ID
+    name: String
+    sort: Int
+}
+
+type discipline_aggregated {
+    avg: discipline_aggregated_fields
+    avgDistinct: discipline_aggregated_fields
+    count: discipline_aggregated_fields
+    countDistinct: discipline_aggregated_fields
+    group: JSON
+    max: discipline_aggregated_fields
+    min: discipline_aggregated_fields
+    sum: discipline_aggregated_fields
+    sumDistinct: discipline_aggregated_fields
+}
+
+type discipline_aggregated_fields {
+    id: Float
+    sort: Float
+}
+
+type game {
+    author: String
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    description: String
+    id: ID
+    sort: Int
+    title: String
+    user_created: String
+    user_updated: String
+    video_url: String
+    year: Date
+    year_func: date_functions
+}
+
+type game_aggregated {
+    avg: game_aggregated_fields
+    avgDistinct: game_aggregated_fields
+    count: game_aggregated_fields
+    countDistinct: game_aggregated_fields
+    group: JSON
+    max: game_aggregated_fields
+    min: game_aggregated_fields
+    sum: game_aggregated_fields
+    sumDistinct: game_aggregated_fields
+}
+
+type game_aggregated_fields {
+    id: Float
+    sort: Float
+}
+
+type gecomp_page {
+    areas: [String]
+    description: String
+    id: ID
+    members(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
+}
+
+type gecomp_page_professors {
+    gecomp_page_id(filter: gecomp_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): gecomp_page
+    id: ID
+    professors_id(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professors
+}
+
+type gecomp_page_professors_aggregated {
+    avg: gecomp_page_professors_aggregated_fields
+    avgDistinct: gecomp_page_professors_aggregated_fields
+    count: gecomp_page_professors_aggregated_fields
+    countDistinct: gecomp_page_professors_aggregated_fields
+    group: JSON
+    max: gecomp_page_professors_aggregated_fields
+    min: gecomp_page_professors_aggregated_fields
+    sum: gecomp_page_professors_aggregated_fields
+    sumDistinct: gecomp_page_professors_aggregated_fields
+}
+
+type gecomp_page_professors_aggregated_fields {
+    gecomp_page_id: Float
+    id: Float
+    professors_id: Float
+}
+
+type professors {
+    degree: String
+    disciplines(filter: professors_discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors_discipline]
+    id: ID
+    institution: String
+    lattes: String
+    name: String
+    status: String!
+}
+
+type professors_aggregated {
+    avg: professors_aggregated_fields
+    avgDistinct: professors_aggregated_fields
+    count: professors_aggregated_fields
+    countDistinct: professors_aggregated_fields
+    group: JSON
+    max: professors_aggregated_fields
+    min: professors_aggregated_fields
+    sum: professors_aggregated_fields
+    sumDistinct: professors_aggregated_fields
+}
+
+type professors_aggregated_fields {
+    id: Float
+}
+
+type professors_discipline {
+    discipline_id(filter: discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): discipline
+    id: ID
+    professors_id(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professors
+}
+
+type professors_discipline_aggregated {
+    avg: professors_discipline_aggregated_fields
+    avgDistinct: professors_discipline_aggregated_fields
+    count: professors_discipline_aggregated_fields
+    countDistinct: professors_discipline_aggregated_fields
+    group: JSON
+    max: professors_discipline_aggregated_fields
+    min: professors_discipline_aggregated_fields
+    sum: professors_discipline_aggregated_fields
+    sumDistinct: professors_discipline_aggregated_fields
+}
+
+type professors_discipline_aggregated_fields {
+    discipline_id: Float
+    id: Float
+    professors_id: Float
+}
+
+type vote {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    game(filter: game_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): game
+    id: ID
+    ip: String
+    sort: Int
+}
+
+type vote_aggregated {
+    avg: vote_aggregated_fields
+    avgDistinct: vote_aggregated_fields
+    count: vote_aggregated_fields
+    countDistinct: vote_aggregated_fields
+    group: JSON
+    max: vote_aggregated_fields
+    min: vote_aggregated_fields
+    sum: vote_aggregated_fields
+    sumDistinct: vote_aggregated_fields
+}
+
+type vote_aggregated_fields {
+    game: Float
+    id: Float
+    sort: Float
+}
+
+"ISO8601 Date values"
+scalar Date
+
+"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
+scalar JSON
+
+input create_vote_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    game: Int
+    id: ID
+    ip: String
+    sort: Int
+}
+
+input date_filter_operators {
+    _eq: String
+    _gt: String
+    _gte: String
+    _lt: String
+    _lte: String
+    _neq: String
+    _nnull: Boolean
+    _null: Boolean
+}
+
+input date_function_filter_operators {
+    day: number_filter_operators
+    month: number_filter_operators
+    week: number_filter_operators
+    weekday: number_filter_operators
+    year: number_filter_operators
+}
+
+input datetime_function_filter_operators {
+    day: number_filter_operators
+    hour: number_filter_operators
+    minute: number_filter_operators
+    month: number_filter_operators
+    second: number_filter_operators
+    week: number_filter_operators
+    weekday: number_filter_operators
+    year: number_filter_operators
+}
+
+input datetime_functionsInput {
+    day: Int
+    hour: Int
+    minute: Int
+    month: Int
+    second: Int
+    week: Int
+    weekday: Int
+    year: Int
+}
+
+input discipline_filter {
+    _and: [discipline_filter]
+    _or: [discipline_filter]
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    description: string_filter_operators
+    id: number_filter_operators
+    name: string_filter_operators
+    sort: number_filter_operators
+}
+
+input game_filter {
+    _and: [game_filter]
+    _or: [game_filter]
+    author: string_filter_operators
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    description: string_filter_operators
+    id: number_filter_operators
+    sort: number_filter_operators
+    title: string_filter_operators
+    user_created: string_filter_operators
+    user_updated: string_filter_operators
+    video_url: string_filter_operators
+    year: date_filter_operators
+    year_func: date_function_filter_operators
+}
+
+input gecomp_page_filter {
+    _and: [gecomp_page_filter]
+    _or: [gecomp_page_filter]
+    areas: string_filter_operators
+    description: string_filter_operators
+    id: number_filter_operators
+    members: gecomp_page_professors_filter
+}
+
+input gecomp_page_professors_filter {
+    _and: [gecomp_page_professors_filter]
+    _or: [gecomp_page_professors_filter]
+    gecomp_page_id: gecomp_page_filter
+    id: number_filter_operators
+    professors_id: professors_filter
+}
+
+input number_filter_operators {
+    _eq: Float
+    _gt: Float
+    _gte: Float
+    _in: [Float]
+    _lt: Float
+    _lte: Float
+    _neq: Float
+    _nin: [Float]
+    _nnull: Boolean
+    _null: Boolean
+}
+
+input professors_discipline_filter {
+    _and: [professors_discipline_filter]
+    _or: [professors_discipline_filter]
+    discipline_id: discipline_filter
+    id: number_filter_operators
+    professors_id: professors_filter
+}
+
+input professors_filter {
+    _and: [professors_filter]
+    _or: [professors_filter]
+    degree: string_filter_operators
+    disciplines: professors_discipline_filter
+    id: number_filter_operators
+    institution: string_filter_operators
+    lattes: string_filter_operators
+    name: string_filter_operators
+    status: string_filter_operators
+}
+
+input string_filter_operators {
+    _contains: String
+    _empty: Boolean
+    _ends_with: String
+    _eq: String
+    _in: [String]
+    _ncontains: String
+    _nempty: Boolean
+    _nends_with: String
+    _neq: String
+    _nin: [String]
+    _nnull: Boolean
+    _nstarts_with: String
+    _null: Boolean
+    _starts_with: String
+}
+
+input vote_filter {
+    _and: [vote_filter]
+    _or: [vote_filter]
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    game: game_filter
+    id: number_filter_operators
+    ip: string_filter_operators
+    sort: number_filter_operators
+}
