@@ -6,21 +6,11 @@ import Container from '@/components/layout/Container';
 import { HeartIcon } from '@heroicons/react/solid';
 
 export async function getServerSideProps({ query }) {
-  const qAno = gql`
-      query ano {
+  const gQuery = gql`
+      {
           game_aggregated(groupBy: "year") {
               group
           }
-      }
-  `;
-
-  const { game_aggregated } = (await client.query({ query: qAno })).data;
-
-  const years = game_aggregated.map(item => new Date(item.group.year).getFullYear());
-
-
-  const gQuery = gql`
-      {
           game(filter: {year_func: {year: {_eq: ${query.year}}}}){
               id
               title
@@ -32,7 +22,9 @@ export async function getServerSideProps({ query }) {
       }
   `;
 
-  const { game } = (await client.query({ query: gQuery })).data;
+  const { game, game_aggregated } = (await client.query({ query: gQuery })).data;
+
+  const years = game_aggregated.map(item => new Date(item.group.year).getFullYear());
 
   const games = game.map(item => {
     let url = item.video_url.split('/');
@@ -50,9 +42,8 @@ export async function getServerSideProps({ query }) {
 
 export default function GamesPage({ games, years }) {
   const router = useRouter();
-
-
   const { year } = router.query;
+
   const paths = [{ url: '/', label: 'home' }, { url: '/games', label: 'games' }, {
     url: `/games/${year}`,
     label: year,
@@ -85,7 +76,7 @@ export default function GamesPage({ games, years }) {
           {
             games.map((game, index) => (
               <div key={index}
-                   className='bg-white rounded-lg border border-gray-200 shadow-md'>
+                   className='bg-white border border-gray-200 shadow-md'>
                 <iframe src={`https://www.youtube.com/embed/${game.video_url}`}
                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen
@@ -103,7 +94,7 @@ export default function GamesPage({ games, years }) {
                   </div>
                   <div>
                     <button
-                      className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-lg group focus:ring-4 focus:ring-red-300 uppercase'
+                      className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 group focus:ring-4 focus:ring-red-300 uppercase'
                       href='#'>
                       <span>Votar</span>
                       <HeartIcon className='ml-2 w-6 h-6 text-red-400 group-hover:text-red-600' />

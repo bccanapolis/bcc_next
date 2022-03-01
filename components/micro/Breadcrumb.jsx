@@ -33,7 +33,7 @@ export default function breadcrumb({ paths }) {
                         <ChevronDownIcon className='ml-1 w-4 h-4' />
                       </button>
                       <div id={`dropdown-${link.label}`}
-                           className={`hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600`}>
+                           className={`hidden z-10 w-44 text-base list-none bg-white divide-y divide-gray-100 shadow`}>
                         <ul className='py-1'>
                           {
                             link.dropdown.map((item, index) => (
