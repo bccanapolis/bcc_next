@@ -53,15 +53,24 @@ export default function breadcrumb({ paths }) {
                       </div>
                     </>
                     :
-                    <>
-                      <Link href={link.url}>
-                        <a
-                          className='inline-flex items-center text-sm font-medium text-white hover:text-primary uppercase'
-                          data-dropdown-toggle={`dropdown-${link.label}`}>
+                    !link.disabled ?
+                      <>
+                        <Link href={link.url}>
+                          <a
+                            className='inline-flex items-center text-sm font-medium text-white hover:text-primary uppercase'
+                          >
+                            {link.label}
+                          </a>
+                        </Link>
+                      </>
+                      :
+                      <>
+                        <spawn
+                          className='inline-flex items-center text-sm font-medium text-gray-200 uppercase'
+                        >
                           {link.label}
-                        </a>
-                      </Link>
-                    </>
+                        </spawn>
+                      </>
                 }
               </li>
             ))

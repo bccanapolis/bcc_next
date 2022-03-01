@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function gecomp({ areas, description, members }) {
-  const paths = [{ url: '/', label: 'home' }, { url: '/gecomp', label: 'gecomp' }];
+  const paths = [{ url: '/', label: 'home' }, { url: '/gecomp', label: 'gecomp', disabled: true }];
   return (
     <>
       <BannerBreadcrumb paths={paths}>
@@ -62,7 +62,7 @@ export default function gecomp({ areas, description, members }) {
                   members.map((member, index) =>
                     <li key={member.name}
                         className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== members.length - 1 ? 'border-b border-gray-200' : ''}`}>
-                      <a href='member.lattes' target='_blank'>{member.degree}
+                      <a href='member.lattes' target='_blank'>{member.degree}{' '}
                         {member.name} ({member.institution})</a>
                     </li>
                   )
