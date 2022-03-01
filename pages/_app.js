@@ -1,8 +1,11 @@
 import '@/styles/tailwind.scss';
 import DefaultLayout from '@/layouts/DefaultLayout';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Script from 'next/script';
 
 function MyApp({ Component, pageProps }) {
+
   return (
     <DefaultLayout>
       <Component {...pageProps} />

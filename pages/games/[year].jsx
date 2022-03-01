@@ -6,6 +6,18 @@ import Container from '@/components/layout/Container';
 import { HeartIcon } from '@heroicons/react/solid';
 
 export async function getServerSideProps({ query }) {
+  const qAno = gql`
+      query ano {
+          game_aggregated(groupBy: "year") {
+              group
+          }
+      }
+  `;
+
+  const { game_aggregated } = (await client.query({ query: qAno })).data;
+
+  const years = game_aggregated.map(item => new Date(item.group.year).getFullYear());
+
 
   const gQuery = gql`
       {
@@ -32,16 +44,23 @@ export async function getServerSideProps({ query }) {
   });
 
   return {
-    props: { games }
+    props: { games, years }
   };
 }
 
-export default function GamesPage({ games }) {
+export default function GamesPage({ games, years }) {
   const router = useRouter();
+
+
   const { year } = router.query;
   const paths = [{ url: '/', label: 'home' }, { url: '/games', label: 'games' }, {
     url: `/games/${year}`,
-    label: year
+    label: year,
+    dropdown: years.map(item => ({
+      url: `/games/${item}`,
+      label: item,
+      reload: true
+    }))
   }];
 
   return (
