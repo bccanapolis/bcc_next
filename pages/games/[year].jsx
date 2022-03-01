@@ -44,14 +44,10 @@ export default function GamesPage({ games, years }) {
   const router = useRouter();
   const { year } = router.query;
 
-  const paths = [{ url: '/', label: 'home' }, { url: '/games', label: 'games' }, {
+  const paths = [{ url: '/', label: 'home' }, { url: '/games', label: 'games', disabled: true }, {
     url: `/games/${year}`,
     label: year,
-    dropdown: years.map(item => ({
-      url: `/games/${item}`,
-      label: item,
-      reload: true
-    }))
+    disabled: true
   }];
 
   return (

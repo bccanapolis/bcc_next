@@ -1,35 +1,67 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useContext, useEffect, useState } from 'react';
+import { GlobalContext } from '@/context/Global';
+import { ChevronDownIcon } from '@heroicons/react/outline';
+
 
 export default function HeaderBar({}) {
-  const navigation = [
-    {
+  const globalContext = useContext(GlobalContext);
+
+  const rawNav = {
+    home: {
       url: '/',
       label: 'Home'
     },
-    {
+    gecomp: {
       url: '/gecomp',
       label: 'gecomp'
     },
-    {
+    games: {
       url: '/games',
-      label: 'games'
+      label: 'games',
+      dropdown: []
     }
-  ];
+  };
+
+  const [navigation, setNavigation] = useState([...Object.values(rawNav)]);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    if (globalContext.years instanceof Array && globalContext.years.length) {
+
+      rawNav['games']['dropdown'] = globalContext.years.sort((a, b) => b - a).map(item => ({
+        url: `/games/${item}`,
+        label: item
+      }));
+      setNavigation([...Object.values(rawNav)]);
+    }
+  }, [globalContext.years]);
+
+  function activeBg() {
+    let scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    if (scrollTop >= 100) setScrolled(true);
+    else setScrolled(false);
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', activeBg);
+    activeBg();
+  }, []);
 
   return (
     <>
       <header className='fixed top-0 w-full'>
-        <nav className='px-2 bg-neutral/90 py-3 border-gray-200 '>
-          <div className='container flex flex-wrap justify-between items-center'>
+        <nav className={'px-2 transition-colors duration-300 ease-linear ' + (scrolled ? 'bg-neutral/90' : 'bg-neutral/10')}>
+          <div className='container py-3 flex flex-wrap justify-between items-center border-b border-gray-50/10'>
             <div className='flex gap-4'>
               <Link href='/'>
                 <a className='flex'>
-                  <Image alt='' className='h-12' src='/img/bcc_logo.svg' height='40px' width='200px'/>
+                  <Image alt='' className='h-12' src='/img/bcc_logo.svg' height='40px' width='200px' />
                 </a>
               </Link>
               <a className='hidden lg:flex' href='https://ifg.edu.br' target='_blank' rel='noreferrer'>
-                <Image alt='' className='h-12' src='/img/ifg_logo.svg' layout='fixed' height='40px' width='200px'/>
+                <Image alt='' className='h-12' src='/img/ifg_logo.svg' layout='fixed' height='40px' width='200px' />
               </a>
             </div>
             <button aria-controls='mobile-menu-2' aria-expanded='false'
@@ -54,49 +86,41 @@ export default function HeaderBar({}) {
                 {
                   navigation.map(link => (
                     <li key={link.label}>
-                      <Link href={link.url}>
-                        <a
-                          className='block py-2 pr-4 pl-3 text-white border-b border-gray-50/10 md:border-0 md:hover:text-primary md:p-0 transition-color duration-300 uppercase'>{link.label}</a>
-                      </Link>
+                      {
+                        !!link.dropdown ?
+                          <>
+                            <button
+                              className='flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-white md:border-0 md:hover:text-primary md:p-0 md:w-auto uppercase'
+                              data-dropdown-toggle={`dropdown-${link.label}`}>
+                              {link.label}
+                              <ChevronDownIcon className='ml-1 w-4 h-4' />
+                            </button>
+
+                            <div id={`dropdown-${link.label}`}
+                                 className='hidden z-10 w-44 text-base list-none bg-neutral/90 divide-y divide-gray-100 shadow'>
+                              <ul aria-labelledby={`dropdown-${link.label}-button`} className='py-1'>
+                                {
+                                  link.dropdown.map(item => (
+                                    <li key={`${link.label}-${item.label}`}>
+                                      <Link href={item.url}>
+                                        <a
+                                          className='block py-2 px-4 text-sm text-white hover:bg-neutral'>{item.label}</a>
+                                      </Link>
+                                    </li>
+                                  ))
+                                }
+                              </ul>
+                            </div>
+                          </>
+                          :
+                          <Link href={link.url}>
+                            <a
+                              className='block py-2 pr-4 pl-3 text-white border-b border-gray-50/10 md:border-0 md:hover:text-primary md:p-0 transition-color duration-300 uppercase'>{link.label}</a>
+                          </Link>
+                      }
                     </li>
                   ))
                 }
-                <li>
-                  <button id='dropdownNavbarLink'
-                          className='flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-white md:border-0 md:hover:text-primary md:p-0 md:w-auto uppercase'
-                          data-dropdown-toggle='dropdownNavbar'>
-                    Dropdown
-                    <svg className='ml-1 w-4 h-4' fill='currentColor' viewBox='0 0 20 20'
-                         xmlns='http://www.w3.org/2000/svg'>
-                      <path clipRule='evenodd'
-                            d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-                            fillRule='evenodd' />
-                    </svg>
-                  </button>
-
-                  <div id='dropdownNavbar'
-                       className='hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow '>
-                    <ul aria-labelledby='dropdownLargeButton' className='py-1'>
-                      <li>
-                        <a className='block py-2 px-4 text-sm text-neutral hover:bg-gray-100 '
-                           href='#'>Dashboard</a>
-                      </li>
-                      <li>
-                        <a className='block py-2 px-4 text-sm text-neutral hover:bg-gray-100 '
-                           href='#'>Settings</a>
-                      </li>
-                      <li>
-                        <a className='block py-2 px-4 text-sm text-neutral hover:bg-gray-100 '
-                           href='#'>Earnings</a>
-                      </li>
-                    </ul>
-                    <div className='py-1'>
-                      <a className='block py-2 px-4 text-sm text-neutral hover:bg-gray-100 '
-                         href='#'>Sign
-                        out</a>
-                    </div>
-                  </div>
-                </li>
               </ul>
             </div>
           </div>
