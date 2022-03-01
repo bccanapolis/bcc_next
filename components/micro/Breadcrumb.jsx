@@ -1,10 +1,7 @@
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 export default function breadcrumb({ paths }) {
-  const router = useRouter();
-
   function handleReloadPage(path) {
     if (path === window.location.href) return;
     window.location = path;
