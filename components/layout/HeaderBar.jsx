@@ -25,7 +25,6 @@ export default function HeaderBar({}) {
   };
 
   const [navigation, setNavigation] = useState([...Object.values(rawNav)]);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     if (globalContext.years instanceof Array && globalContext.years.length) {
@@ -38,21 +37,10 @@ export default function HeaderBar({}) {
     }
   }, [globalContext.years]);
 
-  function activeBg() {
-    let scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-    if (scrollTop >= 100) setScrolled(true);
-    else setScrolled(false);
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', activeBg);
-    activeBg();
-  }, []);
-
   return (
     <>
       <header className='fixed top-0 w-full'>
-        <nav className={'px-2 transition-colors duration-300 ease-linear ' + (scrolled ? 'bg-neutral/90' : 'bg-neutral/10')}>
+        <nav className={'px-2 transition-colors duration-300 ease-linear bg-neutral/90'}>
           <div className='container py-3 flex flex-wrap justify-between items-center border-b border-gray-50/10'>
             <div className='flex gap-4'>
               <Link href='/'>
