@@ -72,7 +72,7 @@ export default function GamesPage({ games, years }) {
         </div>
       </Container>
       <Container>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full'>
           {
             games.map((game, index) => (
               <div key={index}
@@ -89,7 +89,7 @@ export default function GamesPage({ games, years }) {
                     <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
                       {game.title}</h5>
                     <h6
-                      className='mb-2 text-xl font-bold tracking-tight text-gray-500 dark:text-white'>{game.author}</h6>
+                      className='mb-2 text-lg tracking-tight text-gray-500 dark:text-white'>{game.author}</h6>
                     <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>{game.description}</p>
                   </div>
                   <div>
