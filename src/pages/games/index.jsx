@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
-import { GlobalContext } from '@/src/context/Global';
+import { GlobalContext } from '@/context/Global';
 
 export default function GamesPage() {
   const router = useRouter();

@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
-import { GlobalContext } from '@/src/context/Global';
+import { GlobalContext } from '@/context/Global';
 import { ChevronDownIcon } from '@heroicons/react/outline';
-import HeaderNavTree from '@/src/components/HeaderNavTree';
+import HeaderNavTree from '@/components/HeaderNavTree';
+import slugify from 'slugify';
 
 
 export default function HeaderBar({}) {
@@ -55,25 +56,7 @@ export default function HeaderBar({}) {
     projetos: {
       url: '',
       label: 'projetos',
-      dropdown: [
-        {
-          url: '/ifgproduz',
-          label: 'IFG Produz'
-        },
-        {
-          url: '/citelab',
-          label: 'code tower'
-        },
-        {
-          url: '/embrapii',
-          label: 'cpa'
-        },
-        {
-          url: 'https://computacaoifg.com.br/gci',
-          label: 'gci',
-          external: true
-        }
-      ]
+      dropdown: []
     },
     games: {
       url: '/games',
@@ -86,21 +69,28 @@ export default function HeaderBar({}) {
 
   useEffect(() => {
     if (globalContext.years instanceof Array && globalContext.years.length) {
-
       rawNav['games']['dropdown'] = globalContext.years.sort((a, b) => b - a).map(item => ({
         url: `/games/${item}`,
         label: item
       }));
       setNavigation([...Object.values(rawNav)]);
     }
-  }, [globalContext.years]);
+
+    if (globalContext.projects instanceof Array && globalContext.projects.length) {
+      rawNav['projetos']['dropdown'] = globalContext.projects.map(item => ({
+        url: `/projects#${slugify(item.toLowerCase())}`,
+        label: item
+      }));
+      setNavigation([...Object.values(rawNav)]);
+    }
+  }, [globalContext.years, globalContext.projects]);
 
   return (
     <>
-      <header className='fixed top-0 w-full'>
+      <header className='absolute top-0 z-40 w-full'>
         <nav className={'px-2 transition-colors duration-300 ease-linear bg-neutral/90'}>
-          <div className='container py-3 flex flex-wrap justify-between items-center border-b border-gray-50/10'>
-            <div className='flex gap-4'>
+          <div className='container flex flex-wrap justify-between items-center'>
+            <div className='flex gap-4 py-3'>
               <Link href='/'>
                 <a className='flex'>
                   <Image alt='' className='h-12' src='/img/bcc_logo.svg' height='40px' width='200px' />

@@ -1,8 +1,8 @@
-import '@/src/styles/tailwind.scss';
-import DefaultLayout from '@/src/layouts/DefaultLayout';
+import '@/styles/tailwind.scss';
 import Script from 'next/script';
-import GlobalProvider from '@/src/context/Global';
 import Head from 'next/head';
+import GlobalProvider from '@/context/Global';
+import DefaultLayout from '@/layouts/DefaultLayout';
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -1,5 +1,5 @@
-import Banner from '@/src/components/layout/Banner';
-import Breadcrump from '@/src/components/micro/Breadcrumb';
+import Banner from '@/components/layout/Banner';
+import Breadcrump from '@/components/atoms/Breadcrumb';
 
 export default function BannerBreadcrumb({ paths, children }) {
   return (

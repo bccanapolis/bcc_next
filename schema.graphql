@@ -21,12 +21,30 @@ type Query {
     gecomp_page_professors(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
     gecomp_page_professors_aggregated(filter: gecomp_page_professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_professors_aggregated]
     gecomp_page_professors_by_id(id: ID!): gecomp_page_professors
+    link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [link]
+    link_aggregated(filter: link_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [link_aggregated]
+    link_by_id(id: ID!): link
     professors(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors]
     professors_aggregated(filter: professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professors_aggregated]
     professors_by_id(id: ID!): professors
     professors_discipline(filter: professors_discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors_discipline]
     professors_discipline_aggregated(filter: professors_discipline_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professors_discipline_aggregated]
     professors_discipline_by_id(id: ID!): professors_discipline
+    project(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project]
+    project_aggregated(filter: project_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_aggregated]
+    project_by_id(id: ID!): project
+    project_files(filter: project_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_files]
+    project_files_aggregated(filter: project_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_files_aggregated]
+    project_files_by_id(id: ID!): project_files
+    project_professors(filter: project_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_professors]
+    project_professors_aggregated(filter: project_professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_professors_aggregated]
+    project_professors_by_id(id: ID!): project_professors
+    project_student(filter: project_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_student]
+    project_student_aggregated(filter: project_student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_student_aggregated]
+    project_student_by_id(id: ID!): project_student
+    student(filter: student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [student]
+    student_aggregated(filter: student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [student_aggregated]
+    student_by_id(id: ID!): student
     vote(filter: vote_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vote]
     vote_aggregated(filter: vote_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [vote_aggregated]
     vote_by_id(id: ID!): vote
@@ -144,6 +162,28 @@ type gecomp_page_professors_aggregated_fields {
     professors_id: Float
 }
 
+type link {
+    id: ID
+    label: String
+    url: String
+}
+
+type link_aggregated {
+    avg: link_aggregated_fields
+    avgDistinct: link_aggregated_fields
+    count: link_aggregated_fields
+    countDistinct: link_aggregated_fields
+    group: JSON
+    max: link_aggregated_fields
+    min: link_aggregated_fields
+    sum: link_aggregated_fields
+    sumDistinct: link_aggregated_fields
+}
+
+type link_aggregated_fields {
+    id: Float
+}
+
 type professors {
     degree: String
     disciplines(filter: professors_discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors_discipline]
@@ -192,6 +232,136 @@ type professors_discipline_aggregated_fields {
     discipline_id: Float
     id: Float
     professors_id: Float
+}
+
+type project {
+    carousel(filter: project_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_files]
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    description: String
+    id: ID
+    professors(filter: project_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_professors]
+    slug: String
+    students(filter: project_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_student]
+    title: String
+    url(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): link
+    user_created: String
+    user_updated: String
+}
+
+type project_aggregated {
+    avg: project_aggregated_fields
+    avgDistinct: project_aggregated_fields
+    count: project_aggregated_fields
+    countDistinct: project_aggregated_fields
+    group: JSON
+    max: project_aggregated_fields
+    min: project_aggregated_fields
+    sum: project_aggregated_fields
+    sumDistinct: project_aggregated_fields
+}
+
+type project_aggregated_fields {
+    id: Float
+    url: Float
+}
+
+type project_files {
+    directus_files_id: String
+    id: ID
+    project_id(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): project
+}
+
+type project_files_aggregated {
+    avg: project_files_aggregated_fields
+    avgDistinct: project_files_aggregated_fields
+    count: project_files_aggregated_fields
+    countDistinct: project_files_aggregated_fields
+    group: JSON
+    max: project_files_aggregated_fields
+    min: project_files_aggregated_fields
+    sum: project_files_aggregated_fields
+    sumDistinct: project_files_aggregated_fields
+}
+
+type project_files_aggregated_fields {
+    id: Float
+    project_id: Float
+}
+
+type project_professors {
+    id: ID
+    professors_id(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professors
+    project_id(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): project
+}
+
+type project_professors_aggregated {
+    avg: project_professors_aggregated_fields
+    avgDistinct: project_professors_aggregated_fields
+    count: project_professors_aggregated_fields
+    countDistinct: project_professors_aggregated_fields
+    group: JSON
+    max: project_professors_aggregated_fields
+    min: project_professors_aggregated_fields
+    sum: project_professors_aggregated_fields
+    sumDistinct: project_professors_aggregated_fields
+}
+
+type project_professors_aggregated_fields {
+    id: Float
+    professors_id: Float
+    project_id: Float
+}
+
+type project_student {
+    id: ID
+    project_id(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): project
+    student_id(filter: student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): student
+}
+
+type project_student_aggregated {
+    avg: project_student_aggregated_fields
+    avgDistinct: project_student_aggregated_fields
+    count: project_student_aggregated_fields
+    countDistinct: project_student_aggregated_fields
+    group: JSON
+    max: project_student_aggregated_fields
+    min: project_student_aggregated_fields
+    sum: project_student_aggregated_fields
+    sumDistinct: project_student_aggregated_fields
+}
+
+type project_student_aggregated_fields {
+    id: Float
+    project_id: Float
+    student_id: Float
+}
+
+type student {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    id: ID
+    name: String
+}
+
+type student_aggregated {
+    avg: student_aggregated_fields
+    avgDistinct: student_aggregated_fields
+    count: student_aggregated_fields
+    countDistinct: student_aggregated_fields
+    group: JSON
+    max: student_aggregated_fields
+    min: student_aggregated_fields
+    sum: student_aggregated_fields
+    sumDistinct: student_aggregated_fields
+}
+
+type student_aggregated_fields {
+    id: Float
 }
 
 type vote {
@@ -330,6 +500,14 @@ input gecomp_page_professors_filter {
     professors_id: professors_filter
 }
 
+input link_filter {
+    _and: [link_filter]
+    _or: [link_filter]
+    id: number_filter_operators
+    label: string_filter_operators
+    url: string_filter_operators
+}
+
 input number_filter_operators {
     _eq: Float
     _gt: Float
@@ -363,6 +541,49 @@ input professors_filter {
     status: string_filter_operators
 }
 
+input project_files_filter {
+    _and: [project_files_filter]
+    _or: [project_files_filter]
+    directus_files_id: string_filter_operators
+    id: number_filter_operators
+    project_id: project_filter
+}
+
+input project_filter {
+    _and: [project_filter]
+    _or: [project_filter]
+    carousel: project_files_filter
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    description: string_filter_operators
+    id: number_filter_operators
+    professors: project_professors_filter
+    slug: string_filter_operators
+    students: project_student_filter
+    title: string_filter_operators
+    url: link_filter
+    user_created: string_filter_operators
+    user_updated: string_filter_operators
+}
+
+input project_professors_filter {
+    _and: [project_professors_filter]
+    _or: [project_professors_filter]
+    id: number_filter_operators
+    professors_id: professors_filter
+    project_id: project_filter
+}
+
+input project_student_filter {
+    _and: [project_student_filter]
+    _or: [project_student_filter]
+    id: number_filter_operators
+    project_id: project_filter
+    student_id: student_filter
+}
+
 input string_filter_operators {
     _contains: String
     _empty: Boolean
@@ -378,6 +599,17 @@ input string_filter_operators {
     _nstarts_with: String
     _null: Boolean
     _starts_with: String
+}
+
+input student_filter {
+    _and: [student_filter]
+    _or: [student_filter]
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    id: number_filter_operators
+    name: string_filter_operators
 }
 
 input vote_filter {

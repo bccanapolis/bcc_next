@@ -1,8 +1,8 @@
-import BannerBreadcrumb from '@/src/components/BannerBreadcrumb';
+import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import { useRouter } from 'next/router';
 import { gql } from '@apollo/client';
 import client from '@/apollo-client';
-import Container from '@/src/components/layout/Container';
+import Container from '@/components/layout/Container';
 import { HeartIcon } from '@heroicons/react/solid';
 
 export async function getServerSideProps({ query }) {
@@ -72,7 +72,7 @@ export default function GamesPage({ games, years }) {
           {
             games.map((game, index) => (
               <div key={index}
-                   className='bg-white border border-gray-200 shadow-md'>
+                   className='bg-white border border-gray-200'>
                 <iframe src={`https://www.youtube.com/embed/${game.video_url}`}
                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen

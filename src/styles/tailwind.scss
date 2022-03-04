@@ -11,3 +11,18 @@
   background-blend-mode: multiply;
   background-size: cover;
 }
+
+.dropdown {
+  li > ul {
+    transform: translatex(100%) scale(0);
+  }
+  li:hover > ul {
+    transform: translatex(101%) scale(1);
+  }
+  li > button svg {
+    transform: rotate(-90deg);
+  }
+  li:hover > button svg {
+    transform: rotate(-270deg);
+  }
+}
