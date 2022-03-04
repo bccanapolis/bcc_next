@@ -7,13 +7,14 @@ export default function ImageCarousel({ images, id, className, duration = 700 })
         {/*ImageCarousel Wrapper*/}
         <div className='overflow-hidden relative rounded-lg w-full h-full'>
           {
-            images.map(item => (
+            images.map((item, index) => (
               <div
-                className={`hidden duration-[${duration}] ease-in-out absolute inset-0 transition-all transform translate-x-0`}
+                key={item.url}
+                className={`hidden duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0`}
                 data-carousel-item='active'>
-                <img src={item.url}
-                     className='block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover h-full w-full'
-                     alt={item.alt} />
+                {/*<image src={item.url}*/}
+                {/*     className='block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover h-full w-full'*/}
+                {/*     alt={item.alt} />*/}
               </div>
             ))
           }
@@ -24,7 +25,8 @@ export default function ImageCarousel({ images, id, className, duration = 700 })
         <div className='flex absolute bottom-5 left-1/2 space-x-3 -translate-x-1/2'>
           {
             images.map((item, index) => (
-              <button type='button' className='w-3 h-3 rounded-full bg-white dark:bg-gray-800' aria-current={index == 0}
+              <button key={'button-'+item.url} type='button' className='w-3 h-3 rounded-full bg-white dark:bg-gray-800'
+                      aria-current={index == 0}
                       aria-label='Slide 1' data-carousel-slide-to={index} />
             ))
           }
