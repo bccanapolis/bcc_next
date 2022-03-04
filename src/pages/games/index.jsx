@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
-import { GlobalContext } from '@/context/Global';
+import { GlobalContext } from '@/src/context/Global';
 
 export default function GamesPage() {
   const router = useRouter();
@@ -11,7 +11,7 @@ export default function GamesPage() {
       const lastYear = Math.max(...globalContext.years);
       router.push(`/games/${lastYear}`);
     }
-  }, [globalContext.years]);
+  }, [globalContext.years, router]);
 
   return (
     <>

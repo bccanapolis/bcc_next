@@ -1,8 +1,8 @@
-import BannerBreadcrumb from '@/components/BannerBreadcrumb';
+import BannerBreadcrumb from '@/src/components/BannerBreadcrumb';
 import { useRouter } from 'next/router';
 import { gql } from '@apollo/client';
 import client from '@/apollo-client';
-import Container from '@/components/layout/Container';
+import Container from '@/src/components/layout/Container';
 import { HeartIcon } from '@heroicons/react/solid';
 
 export async function getServerSideProps({ query }) {

@@ -1,0 +1,29 @@
+version: '3'
+services:
+  nextjs:
+    container_name: bcc_front
+    build: ./
+    networks:
+      - front
+  nginx:
+    image: nginx:1.21.1
+    container_name: bcc_front_nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - nextjs
+    networks:
+      - front
+      - nginx-proxy
+    environment:
+      VIRTUAL_HOST: mrapeople.com.br,mrapeople.com,mrapeople.biz,mrapeople.info,mrapeople.net,mrapeople.org
+      VIRTUAL_PORT: 3000
+      LETSENCRYPT_HOST: mrapeople.com.br,mrapeople.com,mrapeople.biz,mrapeople.info,mrapeople.net,mrapeople.org
+
+networks:
+  front:
+    driver: bridge
+  nginx-proxy:
+    external: true
+

@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
-import { GlobalContext } from '@/context/Global';
+import { GlobalContext } from '@/src/context/Global';
 import { ChevronDownIcon } from '@heroicons/react/outline';
+import HeaderNavTree from '@/src/components/HeaderNavTree';
 
 
 export default function HeaderBar({}) {
@@ -13,9 +14,66 @@ export default function HeaderBar({}) {
       url: '/',
       label: 'Home'
     },
-    gecomp: {
-      url: '/gecomp',
-      label: 'gecomp'
+    pessoas: {
+      url: '',
+      label: 'pessoas',
+      dropdown: [
+        {
+          url: '/ex-alunos',
+          label: 'ex-alunos'
+        },
+        {
+          url: '/professores',
+          label: 'professores'
+        },
+        {
+          url: '/ca',
+          label: 'CA'
+        }
+      ]
+    },
+    pesquisa: {
+      url: '',
+      label: 'pesquisa',
+      dropdown: [
+        {
+          url: '/gecomp',
+          label: 'gecomp'
+        },
+        {
+          url: '/citelab',
+          label: 'citelab'
+        },
+        {
+          url: 'https://www.ifg.edu.br/embrapii',
+          label: 'embrapii',
+          external: true
+        }
+
+      ]
+    },
+    projetos: {
+      url: '',
+      label: 'projetos',
+      dropdown: [
+        {
+          url: '/ifgproduz',
+          label: 'IFG Produz'
+        },
+        {
+          url: '/citelab',
+          label: 'code tower'
+        },
+        {
+          url: '/embrapii',
+          label: 'cpa'
+        },
+        {
+          url: 'https://computacaoifg.com.br/gci',
+          label: 'gci',
+          external: true
+        }
+      ]
     },
     games: {
       url: '/games',
@@ -70,45 +128,8 @@ export default function HeaderBar({}) {
               </svg>
             </button>
             <div id='mobile-menu' className='w-full md:block md:w-auto hidden'>
-              <ul className='flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium'>
-                {
-                  navigation.map(link => (
-                    <li key={link.label}>
-                      {
-                        !!link.dropdown ?
-                          <>
-                            <button
-                              className='flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-white md:border-0 md:hover:text-primary md:p-0 md:w-auto uppercase'
-                              data-dropdown-toggle={`dropdown-${link.label}`}>
-                              {link.label}
-                              <ChevronDownIcon className='ml-1 w-4 h-4' />
-                            </button>
-
-                            <div id={`dropdown-${link.label}`}
-                                 className='hidden z-10 w-44 text-base list-none bg-neutral/90 divide-y divide-gray-100 shadow'>
-                              <ul aria-labelledby={`dropdown-${link.label}-button`} className='py-1'>
-                                {
-                                  link.dropdown.map(item => (
-                                    <li key={`${link.label}-${item.label}`}>
-                                      <Link href={item.url}>
-                                        <a
-                                          className='block py-2 px-4 text-sm text-white hover:bg-neutral'>{item.label}</a>
-                                      </Link>
-                                    </li>
-                                  ))
-                                }
-                              </ul>
-                            </div>
-                          </>
-                          :
-                          <Link href={link.url}>
-                            <a
-                              className='block py-2 pr-4 pl-3 text-white border-b border-gray-50/10 md:border-0 md:hover:text-primary md:p-0 transition-color duration-300 uppercase'>{link.label}</a>
-                          </Link>
-                      }
-                    </li>
-                  ))
-                }
+              <ul className='flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm'>
+                <HeaderNavTree links={navigation} />
               </ul>
             </div>
           </div>

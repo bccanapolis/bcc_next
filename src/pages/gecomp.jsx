@@ -1,5 +1,5 @@
-import BannerBreadcrumb from '@/components/BannerBreadcrumb';
-import Container from '@/components/layout/Container';
+import BannerBreadcrumb from '@/src/components/BannerBreadcrumb';
+import Container from '@/src/components/layout/Container';
 import { gql } from '@apollo/client';
 import client from '@/apollo-client';
 
