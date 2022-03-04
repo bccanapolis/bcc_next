@@ -17,9 +17,9 @@ services:
       - front
       - nginx-proxy
     environment:
-      VIRTUAL_HOST: mrapeople.com.br,mrapeople.com,mrapeople.biz,mrapeople.info,mrapeople.net,mrapeople.org
-      VIRTUAL_PORT: 3000
-      LETSENCRYPT_HOST: mrapeople.com.br,mrapeople.com,mrapeople.biz,mrapeople.info,mrapeople.net,mrapeople.org
+      VIRTUAL_HOST: bcc.anapolis.ifg.edu.br
+      VIRTUAL_PORT: 8102
+      LETSENCRYPT_HOST: bcc.anapolis.ifg.edu.br
 
 networks:
   front:
