@@ -5,12 +5,13 @@ import GlobalProvider from '@/context/Global';
 import DefaultLayout from '@/layouts/DefaultLayout';
 // Import Swiper styles
 import 'swiper/css';
+import web from '@/web';
 
 function MyApp({ Component, pageProps }) {
   return (
     <GlobalProvider>
       <Head>
-        <title>Ciência da Computação - IFG Anápolis</title>
+        <title>{web.title}</title>
       </Head>
 
       <DefaultLayout>
