@@ -3,7 +3,7 @@ import { Autoplay } from 'swiper';
 import Image from 'next/image';
 
 export default function Banner({ fullscreen, images, children }) {
-  const img = images || ['/img/EK9o3S2WoAArZMf.jpg'];
+  const img = images || [{ url: '/img/EK9o3S2WoAArZMf.jpg', alt: 'Coleta de Lixo Eletrônico 2019' }];
 
   return (
     <>
@@ -25,7 +25,8 @@ export default function Banner({ fullscreen, images, children }) {
                 {
                   img.map((item, index) => (
                     <SwiperSlide className='h-full' key={'slide-' + index}>
-                      <Image className='h-full object-cover object-center' src={item} layout='fill' />
+                      <Image className='h-full object-cover object-center' src={item.url} alt={item.alts}
+                             layout='fill' />
                     </SwiperSlide>
                   ))
                 }

@@ -3,7 +3,6 @@ import client from '@/apollo-client';
 import Container from '@/components/layout/Container';
 import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import slugify from 'slugify';
-import ImageCarousel from '@/components/atoms/ImageCarousel';
 
 export async function getServerSideProps() {
   const query = gql`
