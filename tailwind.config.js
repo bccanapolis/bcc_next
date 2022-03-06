@@ -10,7 +10,7 @@ module.exports = {
         neutral: '#333333'
       },
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif']
+        poppins: ['"Poppins"', 'sans-serif']
       }
     }
   },

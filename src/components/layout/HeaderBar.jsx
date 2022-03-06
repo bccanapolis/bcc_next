@@ -131,13 +131,13 @@ function NavLinks({ closeParent }) {
                       <div className='overflow-hidden'>
                         <div className='relative grid gap-6 bg-neutral px-5 py-6 sm:gap-8 sm:p-8'>
                           {link.dropdown.map((item, index) => (
-                            <Link key={item.label + index + item.url} href={item.url}>
+                            <Link key={item.label + index + item.url}
+                                  href={item.url}>
                               <a
                                 onClick={() => {
                                   close();
                                   closeParent();
                                 }}
-                                key={item.label}
                                 className='-m-3 p-3 flex items-start rounded-lg group'
                               >
                                 <div className='ml-4'>
@@ -156,12 +156,12 @@ function NavLinks({ closeParent }) {
             </Popover>
             :
             link.external ?
-              <a href={link.url} target='_blank' rel='noreferrer'
+              <a key={link.label} href={link.url} target='_blank' rel='noreferrer'
                  className='text-base font-medium text-white hover:text-primary uppercase'>
                 {link.label}
               </a>
               :
-              <Link href={link.url}>
+              <Link key={link.label} href={link.url}>
                 <a className='text-base font-medium text-white hover:text-primary uppercase'>
                   {link.label}
                 </a>
