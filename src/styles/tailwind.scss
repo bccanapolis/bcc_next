@@ -2,26 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply font-poppins;
+}
+
 .prose {
   max-width: 100%;
+  @apply text-gray-900;
 }
 
 .banner {
-  background: rgba(4, 9, 30, 0.8) url(/img/DxpOzX_WoAA9a1z.jpg);
+  //background: rgba(4, 9, 30, 0.6) url(/img/5.jpg);
   background-blend-mode: multiply;
-  background-size: cover;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.bg-overlay {
+  z-index: 1;
+  background: rgba(51,51,51,.6);
 }
 
 .dropdown {
   li > ul {
     transform: translatex(100%) scale(0);
   }
+
   li:hover > ul {
     transform: translatex(101%) scale(1);
   }
+
   li > button svg {
     transform: rotate(-90deg);
   }
+
   li:hover > button svg {
     transform: rotate(-270deg);
   }

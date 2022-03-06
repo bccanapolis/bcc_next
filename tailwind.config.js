@@ -11,7 +11,10 @@ module.exports = {
     extend: {
       colors: {
         primary: '#00A599',
-        neutral: '#02041e'
+        neutral: '#333333'
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif']
       }
     }
   },
@@ -26,19 +29,19 @@ module.exports = {
           padding: '1rem',
           margin: '0 auto',
           '@screen sm': {
-            maxWidth: '600px'
+            maxWidth: '540px'
           },
           '@screen md': {
-            maxWidth: '700px'
+            maxWidth: '720px'
           },
           '@screen lg': {
-            maxWidth: '800px'
+            maxWidth: '960px'
           },
           '@screen xl': {
-            maxWidth: '900px'
+            maxWidth: '1140px'
           },
           '@screen 2xl': {
-            maxWidth: '1280px'
+            maxWidth: '1320px'
           }
         }
       });

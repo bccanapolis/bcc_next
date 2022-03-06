@@ -23,7 +23,7 @@ export default function HeaderNavTree({ links, isChild }) {
                   {/*<div id={`dropdown-${link.label}`}*/}
                   {/*     className='hidden z-10 w-44 text-base list-none bg-neutral/90 divide-y divide-gray-100 shadow py-2'>*/}
                   <ul aria-labelledby={`dropdown-${link.label}-button`}
-                      className='px-0 sm:py-3 sm:px-3 space-y-2 scale-0 group-hover:scale-100 absolute left-right min-w-[11rem] left-0 top-12 z-10 bg-neutral lg:w-full'>
+                      className='-ml-4 px-0 sm:py-3 sm:px-3 space-y-2 scale-0 group-hover:scale-100 absolute left-right min-w-[11rem] left-0 top-12 z-10 bg-neutral lg:w-full'>
                     <HeaderNavTree links={link.dropdown} isChild={true} />
                     {/*<li key={`${link.label}-${item.label}`}>*/}
                     {/*  <Link href={item.url}>*/}

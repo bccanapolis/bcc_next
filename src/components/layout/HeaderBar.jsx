@@ -2,9 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '@/context/Global';
-import { ChevronDownIcon } from '@heroicons/react/outline';
 import HeaderNavTree from '@/components/HeaderNavTree';
-import slugify from 'slugify';
 
 
 export default function HeaderBar({}) {
@@ -20,16 +18,20 @@ export default function HeaderBar({}) {
       label: 'pessoas',
       dropdown: [
         {
-          url: '/ex-alunos',
-          label: 'ex-alunos'
+          url: '/pessoas/alunos',
+          label: 'Alunos'
         },
         {
-          url: '/professores',
+          url: '/pessoas/egressos',
+          label: 'egressos'
+        },
+        {
+          url: '/pessoas/professores',
           label: 'professores'
         },
         {
-          url: '/ca',
-          label: 'CA'
+          url: '/pessoas/centro-academico',
+          label: 'Centro Acadêmico'
         }
       ]
     },
@@ -42,8 +44,9 @@ export default function HeaderBar({}) {
           label: 'gecomp'
         },
         {
-          url: '/citelab',
-          label: 'citelab'
+          url: 'https://www.ifg.edu.br/citelab',
+          label: 'citelab',
+          external: true
         },
         {
           url: 'https://www.ifg.edu.br/embrapii',
@@ -53,54 +56,72 @@ export default function HeaderBar({}) {
 
       ]
     },
-    projetos: {
+    ensino: {
       url: '',
-      label: 'projetos',
-      dropdown: []
+      label: 'ensino',
+      dropdown: [
+        {
+          url: '/ensino/graduacao',
+          label: 'Graduação'
+        },
+        {
+          url: '/ensino/pos-graduacao',
+          label: 'Pós Graduação'
+        }
+      ]
     },
-    games: {
-      url: '/games',
-      label: 'games',
-      dropdown: []
+    extensao: {
+      url: '',
+      label: 'extensão',
+      dropdown: [
+        {
+          url: '/extensao/projetos',
+          label: 'Projetos'
+        },
+        {
+          url: '/extensao/empresa-junior',
+          label: 'Empresa Junior'
+        }
+      ]
     }
   };
 
   const [navigation, setNavigation] = useState([...Object.values(rawNav)]);
 
   useEffect(() => {
-    if (globalContext.years instanceof Array && globalContext.years.length) {
-      rawNav['games']['dropdown'] = globalContext.years.sort((a, b) => b - a).map(item => ({
-        url: `/games/${item}`,
-        label: item
-      }));
-      setNavigation([...Object.values(rawNav)]);
-    }
-
-    if (globalContext.projects instanceof Array && globalContext.projects.length) {
-      rawNav['projetos']['dropdown'] = globalContext.projects.map(item => ({
-        url: `/projects#${slugify(item.toLowerCase())}`,
-        label: item
-      }));
-      setNavigation([...Object.values(rawNav)]);
-    }
+    // if (globalContext.years instanceof Array && globalContext.years.length) {
+    //   rawNav['games']['dropdown'] = globalContext.years.sort((a, b) => b - a).map(item => ({
+    //     url: `/games/${item}`,
+    //     label: item
+    //   }));
+    //   setNavigation([...Object.values(rawNav)]);
+    // }
+    //
+    // if (globalContext.projetos instanceof Array && globalContext.projetos.length) {
+    //   rawNav['projetos']['dropdown'] = globalContext.projetos.map(item => ({
+    //     url: `/projetos#${slugify(item.toLowerCase())}`,
+    //     label: item
+    //   }));
+    //   setNavigation([...Object.values(rawNav)]);
+    // }
   }, [globalContext.years, globalContext.projects]);
 
   return (
     <>
       <header className='absolute top-0 z-40 w-full'>
-        <nav className={'px-2 transition-colors duration-300 ease-linear bg-neutral/90'}>
-          <div className='container flex flex-wrap justify-between items-center'>
-            <div className='flex gap-4 py-3'>
+        <nav className='px-2 transition-colors duration-300 ease-linear bg-neutral/90'>
+          <div className='container flex flex-wrap justify-between items-center gap-x-4'>
+            <div className='flex flex-1 md:justify-between lg:justify-start gap-4'>
               <Link href='/'>
-                <a className='flex'>
-                  <Image alt='' className='h-12' src='/img/bcc_logo.svg' height='40px' width='200px' />
+                <a className='inline-block'>
+                  <Image alt='' className='h-12' src='/img/bcc_logo.svg' layout='fixed' height='40px' width='200px' />
                 </a>
               </Link>
-              <a className='hidden lg:flex' href='https://ifg.edu.br' target='_blank' rel='noreferrer'>
-                <Image alt='' className='h-12' src='/img/ifg_logo.svg' layout='fixed' height='40px' width='200px' />
+              <a className='hidden md:inline-block' href='https://ifg.edu.br' target='_blank' rel='noreferrer'>
+                <Image alt='' className='h-12' src='/img/ifg_logo.svg' layout='fixed' height='40px' width='160px' />
               </a>
             </div>
-            <button aria-controls='mobile-menu-2' aria-expanded='false'
+            <button aria-controls='mobile-menu' aria-expanded='false'
                     className='inline-flex justify-center items-center ml-3 text-gray-400 rounded-lg md:hidden transition-colors duration-300 focus:outline-none hover:outline-none'
                     data-collapse-toggle='mobile-menu'
                     type='button'>
@@ -117,8 +138,8 @@ export default function HeaderBar({}) {
                       fillRule='evenodd' />
               </svg>
             </button>
-            <div id='mobile-menu' className='w-full md:block md:w-auto hidden'>
-              <ul className='flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm'>
+            <div id='mobile-menu' className='w-full md:flex md:w-full lg:w-auto hidden'>
+              <ul className='flex flex-1 justify-around flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm'>
                 <HeaderNavTree links={navigation} />
               </ul>
             </div>
