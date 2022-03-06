@@ -21,6 +21,7 @@ body {
 .bg-overlay {
   z-index: 1;
   background: rgba(51,51,51,.6);
+  //@apply backdrop-blur;
 }
 
 .dropdown {

@@ -2078,6 +2078,11 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   resolved "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
+pokeipsum@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/pokeipsum/-/pokeipsum-1.1.0.tgz#16e879ca0ac5a673895927164dd84582e42c2f6d"
+  integrity sha512-Q+/skrxJXyxLdevV1TxA92PNke9L5D2ZO1gJjS8ICBLvPAxyFVDiz7ea+5PqkWr1OQ3+oFJpQV+ADyl/NW8pvA==
+
 postcss-js@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/postcss-js/-/postcss-js-4.0.0.tgz"

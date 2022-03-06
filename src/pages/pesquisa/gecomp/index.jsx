@@ -42,8 +42,12 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function gecomp({ areas, description, members }) {
-  const paths = [{ url: '/', label: 'home' }, { url: '/gecomp', label: 'gecomp', disabled: true }];
+export default function index({ areas, description, members }) {
+  const paths = [{ url: '/', label: 'home' }, { url: '', label: 'pesquisa', disabled: true }, {
+    url: '',
+    label: 'index',
+    disabled: true
+  }];
   return (
     <>
       <BannerBreadcrumb paths={paths}>

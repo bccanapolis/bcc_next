@@ -3,6 +3,7 @@ import client from '@/apollo-client';
 import Container from '@/components/layout/Container';
 import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import slugify from 'slugify';
+import Link from 'next/link';
 
 export async function getServerSideProps() {
   const query = gql`
@@ -53,36 +54,53 @@ export async function getServerSideProps() {
 }
 
 export default function ProjectsPage({ projects }) {
-  const paths = [{ url: '/', label: 'home' },{ url: '/extensao', label: 'Extensão', disabled: true }, { url: '/ensino/projetos', label: 'Projetos', disabled: true }];
+  const paths = [{ url: '/', label: 'home' }, {
+    url: '/extensao',
+    label: 'Extensão',
+    disabled: true
+  }, { url: '/ensino/projetos', label: 'Projetos', disabled: true }];
+
+  const gamesPath = [
+    { url: '/games/2021', label: 'Jogos de 2021' },
+    { url: '/games/2019', label: 'Jogos de 2019' },
+    { url: '/games/2018', label: 'Jogos de 2018' }
+  ];
 
   return (<>
-    <BannerBreadcrumb paths={paths}>
-      <p className='text-5xl text-white text-center uppercase font-semibold'>Projetos</p>
-    </BannerBreadcrumb>
-    <Container className='space-y-8'>
-      {projects.map((item, index) => (
-        <div id={slugify(item.slug.toLowerCase())} key={index}>
-          <h4 className='text-xl font-semibold'>{item.title}</h4>
-          <div className='prose mt-2 mb-4' dangerouslySetInnerHTML={{ __html: item.description }} />
-          {
-            !!item.url &&
-            <span>
+      <BannerBreadcrumb paths={paths}>
+        <p className='text-5xl text-white text-center uppercase font-semibold'>Projetos</p>
+      </BannerBreadcrumb>
+      <Container className='space-y-4'>
+        <div>
+          <h4 className='text-xl font-semibold'>Games</h4>
+          <div className='prose'>
+            <ul>
+              {
+                gamesPath.map(item => (
+                  <li>
+                    <Link href={item.url}>
+                      <a>{item.label}</a>
+                    </Link>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+        {projects.map((item, index) => (
+          <div id={slugify(item.slug.toLowerCase())} key={index}>
+            <h4 className='text-xl font-semibold'>{item.title}</h4>
+            <div className='prose mt-2 mb-4' dangerouslySetInnerHTML={{ __html: item.description }} />
+            {
+              !!item.url &&
+              <span>
               Link: <a href={item.url.url} rel='noreferrer'
                        className='hover:text-primary hover:underline transition-colors duration-300'>{item.url.url}</a>
             </span>
 
-          }
-          {/*<ImageCarousel className='w-full h-32' id={index} images={[*/}
-          {/*  {*/}
-          {/*    url: '/img/hero.jpg',*/}
-          {/*    alt: ''*/}
-          {/*  },*/}
-          {/*  {*/}
-          {/*    url: '/img/hero2.jpg',*/}
-          {/*    alt: ''*/}
-          {/*  }*/}
-          {/*]} duration={5000} />*/}
-        </div>))}
-    </Container>
-  </>);
+            }
+          </div>))}
+      </Container>
+    </>
+  );
 }

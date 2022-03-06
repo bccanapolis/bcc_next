@@ -21,9 +21,12 @@ type Query {
     gecomp_page_professors(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
     gecomp_page_professors_aggregated(filter: gecomp_page_professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_professors_aggregated]
     gecomp_page_professors_by_id(id: ID!): gecomp_page_professors
+    graduation_page: graduation_page
+    junior_company_page: junior_company_page
     link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [link]
     link_aggregated(filter: link_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [link_aggregated]
     link_by_id(id: ID!): link
+    postgraduate_page: postgraduate_page
     professors(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors]
     professors_aggregated(filter: professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professors_aggregated]
     professors_by_id(id: ID!): professors
@@ -162,6 +165,24 @@ type gecomp_page_professors_aggregated_fields {
     professors_id: Float
 }
 
+type graduation_page {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    description: String
+    id: ID
+}
+
+type junior_company_page {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    description: String
+    id: ID
+}
+
 type link {
     id: ID
     label: String
@@ -182,6 +203,15 @@ type link_aggregated {
 
 type link_aggregated_fields {
     id: Float
+}
+
+type postgraduate_page {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    description: String
+    id: ID
 }
 
 type professors {

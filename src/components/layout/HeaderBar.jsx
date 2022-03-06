@@ -40,7 +40,7 @@ export default function HeaderBar({}) {
       label: 'pesquisa',
       dropdown: [
         {
-          url: '/gecomp',
+          url: '/pesquisa/gecomp',
           label: 'gecomp'
         },
         {
