@@ -77,7 +77,7 @@ export default function ProjectsPage({ projects }) {
             <ul>
               {
                 gamesPath.map(item => (
-                  <li>
+                  <li key={item.url}>
                     <Link href={item.url}>
                       <a>{item.label}</a>
                     </Link>
