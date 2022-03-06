@@ -3,7 +3,7 @@ import { Autoplay } from 'swiper';
 import Image from 'next/image';
 
 export default function Banner({ fullscreen, images = null, children }) {
-  const img = images || [{ url: '/img/EK9o3S2WoAArZMf.jpg', alt: 'Coleta de Lixo Eletrônico 2019' }];
+  const img = images || [{ url: '/img/EK9o3S2WoAArZMf.webp', alt: 'Coleta de Lixo Eletrônico 2019' }];
 
   return (
     <>

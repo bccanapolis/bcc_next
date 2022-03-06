@@ -1,8 +1,8 @@
 import Banner from '@/components/layout/Banner';
 
 export default function Home() {
-  const images = [{ url: '/img/5.jpg', alt: '' }, { url: '/img/hero3.jpg', alt: '' }, {
-    url: '/img/EK9o3S2WoAArZMf.jpg',
+  const images = [{ url: '/img/5.webp', alt: '' }, { url: '/img/hero3.webp', alt: '' }, {
+    url: '/img/EK9o3S2WoAArZMf.webp',
     alt: ''
   }];
 
