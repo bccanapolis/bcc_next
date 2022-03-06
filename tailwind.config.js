@@ -43,6 +43,6 @@ module.exports = {
         }
       });
     },
-    require('@tailwindcss/typography'), require('flowbite/plugin')
+    require('@tailwindcss/typography')
   ]
 };

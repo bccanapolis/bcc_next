@@ -25,14 +25,21 @@ export default function Banner({ fullscreen, images = null, children }) {
                 {
                   img.map((item, index) => (
                     <SwiperSlide className='h-full' key={'slide-' + index}>
-                      <Image className='h-full object-cover object-center' src={item.url} alt={item.alt}
-                             layout='fill' priority={true} loading='eager' />
+                      {
+                        item.url.includes(process.env.NEXT_PUBLIC_API_URL) ?
+                          <img className='h-full w-full object-cover object-center' src={item.url} alt={item.alt} /> :
+                          <Image className='h-full object-cover object-center' src={item.url} alt={item.alt}
+                                 layout='fill' priority={true} loading='eager' />
+                      }
+
                     </SwiperSlide>
                   ))
                 }
               </Swiper> :
-              <Image className='h-full object-cover object-center' src={img[0].url} layout='fill' priority={true}
-                     loading='eager' />
+              img[0].url.includes(process.env.NEXT_PUBLIC_API_URL) ?
+                <img className='h-full w-full object-cover object-center' src={img[0].url} alt={img[0].alt} /> :
+                <Image className='h-full object-cover object-center' src={img[0].url} layout='fill' priority={true}
+                       loading='eager' />
           }
 
           <div className='absolute top-0 h-full w-full bg-overlay -z-0' />

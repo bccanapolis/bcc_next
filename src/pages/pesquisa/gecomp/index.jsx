@@ -2,8 +2,10 @@ import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import Container from '@/components/layout/Container';
 import { gql } from '@apollo/client';
 import client from '@/apollo-client';
+import HeadSeo from '@/components/layout/HeadSeo';
+import { apiAsset } from '@/utils';
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ res }) {
   const query = gql`
       query GecompPage {
           gecomp_page {
@@ -16,6 +18,20 @@ export async function getServerSideProps(context) {
                       institution
                       degree
                   }
+              }
+              hero_image {
+                  id
+                  description
+                  title
+              }
+              hero_title
+              page_title
+              page_keywords
+              page_description
+              open_graph_image {
+                  title
+                  description
+                  id
               }
           }
       }
@@ -35,38 +51,47 @@ export async function getServerSideProps(context) {
     degree: item.professors_id.degree
   }));
 
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
+
   return {
     props: {
-      areas, description, members
+      page: {
+        ...gecomp_page,
+        areas, description, members
+      }
     } // will be passed to the page component as props
   };
 }
 
-export default function index({ areas, description, members }) {
+export default function index({ page }) {
   const paths = [{ url: '/', label: 'home' }, { url: '', label: 'pesquisa', disabled: true }, {
     url: '',
-    label: 'index',
+    label: 'gecomp',
     disabled: true
   }];
   return (
     <>
-      <BannerBreadcrumb paths={paths}>
-        <p className='text-5xl text-white text-center uppercase font-semibold'>Grupo de Estudo e Pesquisa em Ciência
-          da Computação</p>
+      <HeadSeo title={page.page_title} description={page.page_description} />
+      <BannerBreadcrumb paths={paths} images={!!page.hero_image && [{ url: apiAsset(page.hero_image.id), alt: '' }]}>
+        <p
+          className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'GRUPO DE ESTUDO E PESQUISA EM CIÊNCIA DA COMPUTAÇÃO'}</p>
       </BannerBreadcrumb>
       <Container>
         <div className='flex flex-wrap md:flex-nowrap gap-4'>
-          <div className='w-full md:w-8/12 prose prose' dangerouslySetInnerHTML={{ __html: description }} />
+          <div className='w-full md:w-8/12 prose prose' dangerouslySetInnerHTML={{ __html: page.description }} />
           <div className='w-full md:w-4/12 flex flex-col gap-4'>
             <div className='bg-gray-50 px-2 py-3 w-full'>
               <p className='text-lg font-semibold mx-4'>Professores Integrantes</p>
               <ul
                 className='w-full text-sm font-medium text-gray-900 rounded-lg list-none'>
                 {
-                  members.map((member, index) =>
+                  page.members.map((member, index) =>
                     <li key={member.name}
-                        className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== members.length - 1 ? 'border-b border-gray-200' : ''}`}>
-                      <a href='member.lattes' target='_blank'>{member.degree}{' '}
+                        className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== page.members.length - 1 ? 'border-b border-gray-200' : ''}`}>
+                      <a href={member.lattes} target='_blank'>{member.degree}{' '}
                         {member.name} ({member.institution})</a>
                     </li>
                   )
@@ -79,9 +104,9 @@ export default function index({ areas, description, members }) {
               <ul
                 className='w-full text-sm font-medium text-gray-900 rounded-lg list-none'>
                 {
-                  areas.map((area, index) => (
+                  page.areas.map((area, index) => (
                     <li key={index}
-                        className={`py-2 px-4 w-full ${index !== members.length - 1 ? 'border-b border-gray-200' : ''}`}>
+                        className={`py-2 px-4 w-full ${index !== page.areas.length - 1 ? 'border-b border-gray-200' : ''}`}>
                       {area}
                     </li>
                   ))

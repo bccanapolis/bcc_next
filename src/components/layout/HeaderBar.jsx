@@ -62,6 +62,10 @@ const navigation = [
     label: 'ensino',
     dropdown: [
       {
+        url: '/ensino/tecnico-integrado',
+        label: 'Técnico Integrado'
+      },
+      {
         url: '/ensino/graduacao',
         label: 'Graduação'
       },
@@ -126,8 +130,8 @@ function NavLinks({ closeParent }) {
                       className='absolute z-10 left-0 -ml-7 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2'>
                       <div className='overflow-hidden'>
                         <div className='relative grid gap-6 bg-neutral px-5 py-6 sm:gap-8 sm:p-8'>
-                          {link.dropdown.map((item) => (
-                            <Link key={item.label} href={item.url}>
+                          {link.dropdown.map((item, index) => (
+                            <Link key={item.label + index + item.url} href={item.url}>
                               <a
                                 onClick={() => {
                                   close();
@@ -176,7 +180,7 @@ export default function Example() {
 
   return (
     <Popover className='relative bg-neutral z-50'>
-      {({close}) =>
+      {({ close }) =>
         <>
           <div className='container'>
             <div
@@ -187,9 +191,9 @@ export default function Example() {
                     <span className='sr-only'>Ciência da Computação</span>
                     <Image
                       className='h-8 w-auto'
-                      src='/img/bcc_logo.svg'
+                      src='/img/bcc_anapolis_logo.svg'
                       width={200}
-                      height={40}
+                      height={45}
                       layout='fixed'
                     />
                   </a>
@@ -215,7 +219,7 @@ export default function Example() {
                 </Popover.Button>
               </div>
               <Popover.Group as='nav' className='hidden md:flex md:flex-1 space-x-10'>
-                <NavLinks />
+                <NavLinks closeParent={close} />
               </Popover.Group>
             </div>
           </div>
@@ -229,7 +233,8 @@ export default function Example() {
             leaveFrom='opacity-100 scale-100'
             leaveTo='opacity-0 scale-95'
           >
-            <Popover.Panel focus className='absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden'>
+            <Popover.Panel focus
+                           className='absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden'>
               <div className='shadow-lg ring-1 ring-black ring-opacity-5 bg-neutral divide-y-2 divide-gray-50'>
                 <div className='pt-5 pb-6 px-5'>
                   <div className='flex items-center justify-between'>

@@ -48,6 +48,7 @@ type Query {
     student(filter: student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [student]
     student_aggregated(filter: student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [student_aggregated]
     student_by_id(id: ID!): student
+    tecnico_integrado_page: tecnico_integrado_page
     vote(filter: vote_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vote]
     vote_aggregated(filter: vote_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [vote_aggregated]
     vote_by_id(id: ID!): vote
@@ -70,6 +71,32 @@ type datetime_functions {
     week: Int
     weekday: Int
     year: Int
+}
+
+type directus_files {
+    charset: String
+    description: String
+    duration: Int
+    embed: String
+    filename_disk: String
+    filename_download: String!
+    filesize: Int
+    folder: String
+    height: Int
+    id: ID
+    location: String
+    metadata: JSON
+    modified_by: String
+    modified_on: Date!
+    modified_on_func: datetime_functions
+    storage: String!
+    tags: JSON
+    title: String
+    type: String
+    uploaded_by: String
+    uploaded_on: Date!
+    uploaded_on_func: datetime_functions
+    width: Int
 }
 
 type discipline {
@@ -135,10 +162,20 @@ type game_aggregated_fields {
 }
 
 type gecomp_page {
-    areas: [String]
+    areas: JSON
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
     description: String
+    hero_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    hero_title: String
     id: ID
     members(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
+    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    page_description: String
+    page_keywords: JSON
+    page_title: String
 }
 
 type gecomp_page_professors {
@@ -172,6 +209,10 @@ type graduation_page {
     date_updated_func: datetime_functions
     description: String
     id: ID
+    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    page_description: String
+    page_keywords: JSON
+    page_title: String
 }
 
 type junior_company_page {
@@ -181,6 +222,10 @@ type junior_company_page {
     date_updated_func: datetime_functions
     description: String
     id: ID
+    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    page_description: String
+    page_keywords: JSON
+    page_title: String
 }
 
 type link {
@@ -212,6 +257,11 @@ type postgraduate_page {
     date_updated_func: datetime_functions
     description: String
     id: ID
+    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    page_description: String
+    page_keywords: JSON
+    page_title: String
+    title: String
 }
 
 type professors {
@@ -299,7 +349,7 @@ type project_aggregated_fields {
 }
 
 type project_files {
-    directus_files_id: String
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     id: ID
     project_id(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): project
 }
@@ -394,6 +444,21 @@ type student_aggregated_fields {
     id: Float
 }
 
+type tecnico_integrado_page {
+    banner_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    description: String
+    id: ID
+    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    page_description: String
+    page_keywords: JSON
+    page_title: String
+    title: String
+}
+
 type vote {
     date_created: Date
     date_created_func: datetime_functions
@@ -481,6 +546,34 @@ input datetime_functionsInput {
     year: Int
 }
 
+input directus_files_filter {
+    _and: [directus_files_filter]
+    _or: [directus_files_filter]
+    charset: string_filter_operators
+    description: string_filter_operators
+    duration: number_filter_operators
+    embed: string_filter_operators
+    filename_disk: string_filter_operators
+    filename_download: string_filter_operators
+    filesize: number_filter_operators
+    folder: string_filter_operators
+    height: number_filter_operators
+    id: string_filter_operators
+    location: string_filter_operators
+    metadata: string_filter_operators
+    modified_by: string_filter_operators
+    modified_on: date_filter_operators
+    modified_on_func: datetime_function_filter_operators
+    storage: string_filter_operators
+    tags: string_filter_operators
+    title: string_filter_operators
+    type: string_filter_operators
+    uploaded_by: string_filter_operators
+    uploaded_on: date_filter_operators
+    uploaded_on_func: datetime_function_filter_operators
+    width: number_filter_operators
+}
+
 input discipline_filter {
     _and: [discipline_filter]
     _or: [discipline_filter]
@@ -517,9 +610,19 @@ input gecomp_page_filter {
     _and: [gecomp_page_filter]
     _or: [gecomp_page_filter]
     areas: string_filter_operators
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
     description: string_filter_operators
+    hero_image: directus_files_filter
+    hero_title: string_filter_operators
     id: number_filter_operators
     members: gecomp_page_professors_filter
+    open_graph_image: directus_files_filter
+    page_description: string_filter_operators
+    page_keywords: string_filter_operators
+    page_title: string_filter_operators
 }
 
 input gecomp_page_professors_filter {
@@ -574,7 +677,7 @@ input professors_filter {
 input project_files_filter {
     _and: [project_files_filter]
     _or: [project_files_filter]
-    directus_files_id: string_filter_operators
+    directus_files_id: directus_files_filter
     id: number_filter_operators
     project_id: project_filter
 }

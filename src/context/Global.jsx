@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { gql } from '@apollo/client';
 import client from '@/apollo-client';
-import slugify from 'slugify';
 
 export const GlobalContext = createContext({});
 

@@ -1,15 +1,15 @@
 import Banner from '@/components/layout/Banner';
 import Breadcrump from '@/components/atoms/Breadcrumb';
 
-export default function BannerBreadcrumb({ paths, children }) {
+export default function BannerBreadcrumb({ paths, children, images }) {
   return (
     <>
-      <Banner>
+      <Banner images={images}>
         <div className='flex justify-center items-center flex-col container'>
           {children}
           <Breadcrump paths={paths} className='mt-8' />
         </div>
       </Banner>
     </>
-  )
+  );
 }
