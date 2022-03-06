@@ -4,10 +4,6 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    container: {
-      padding: '1rem',
-      center: true
-    },
     extend: {
       colors: {
         primary: '#00A599',
@@ -26,10 +22,11 @@ module.exports = {
       addComponents({
         '.container': {
           maxWidth: '100%',
-          padding: '1rem',
           margin: '0 auto',
+          padding: '0 1rem',
           '@screen sm': {
-            maxWidth: '540px'
+            maxWidth: '540px',
+            padding: 0
           },
           '@screen md': {
             maxWidth: '720px'
