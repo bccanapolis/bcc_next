@@ -91,7 +91,7 @@ export default function index({ page }) {
                   page.members.map((member, index) =>
                     <li key={member.name}
                         className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== page.members.length - 1 ? 'border-b border-gray-200' : ''}`}>
-                      <a href={member.lattes} target='_blank'>{member.degree}{' '}
+                      <a href={member.lattes} target='_blank' rel='noopener noreferrer'>{member.degree}{' '}
                         {member.name} ({member.institution})</a>
                     </li>
                   )
