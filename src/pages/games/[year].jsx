@@ -88,15 +88,14 @@ export default function GamesPage({ games, years }) {
                       className='mb-2 text-lg tracking-tight text-gray-500 dark:text-white'>{game.author}</h6>
                     <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>{game.description}</p>
                   </div>
-                  <div>
-                    <button
-                      className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 group focus:ring-4 focus:ring-red-300 uppercase'
-                      href='#'>
-                      <span>Votar</span>
-                      <HeartIcon className='ml-2 w-6 h-6 text-red-400 group-hover:text-red-600' />
-                    </button>
-                  </div>
-
+                  {/*<div>*/}
+                  {/*  <button*/}
+                  {/*    className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 group focus:ring-4 focus:ring-red-300 uppercase'*/}
+                  {/*    href='#'>*/}
+                  {/*    <span>Votar</span>*/}
+                  {/*    <HeartIcon className='ml-2 w-6 h-6 text-red-400 group-hover:text-red-600' />*/}
+                  {/*  </button>*/}
+                  {/*</div>*/}
                 </div>
               </div>
             ))
