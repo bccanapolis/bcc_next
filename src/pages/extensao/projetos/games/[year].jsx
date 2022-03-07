@@ -81,11 +81,11 @@ export default function GamesPage({ games, years }) {
                 </iframe>
                 <div className='p-5 flex flex-col justify-between'>
                   <div>
-                    <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
+                    <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900'>
                       {game.title}</h5>
                     <h6
-                      className='mb-2 text-lg tracking-tight text-gray-500 dark:text-white'>{game.author}</h6>
-                    <p className='mb-3 font-normal text-gray-700 dark:text-gray-400'>{game.description}</p>
+                      className='mb-2 text-lg tracking-tight text-gray-500'>{game.author}</h6>
+                    <p className='font-normal text-gray-700'>{game.description}</p>
                   </div>
                   {/*<div>*/}
                   {/*  <button*/}
