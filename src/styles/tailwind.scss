@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 body {
   font-family: 'Poppins', sans-serif;
 }
@@ -11,33 +13,7 @@ body {
   @apply text-gray-900;
 }
 
-.banner {
-  //background: rgba(4, 9, 30, 0.6) url(/img/5.jpg);
-  background-blend-mode: multiply;
-  background-size: cover !important;
-  background-position: center !important;
-}
-
 .bg-overlay {
   z-index: 1;
   background: rgba(51,51,51,.6);
-  //@apply backdrop-blur;
-}
-
-.dropdown {
-  li > ul {
-    transform: translatex(100%) scale(0);
-  }
-
-  li:hover > ul {
-    transform: translatex(101%) scale(1);
-  }
-
-  li > button svg {
-    transform: rotate(-90deg);
-  }
-
-  li:hover > button svg {
-    transform: rotate(-270deg);
-  }
 }
