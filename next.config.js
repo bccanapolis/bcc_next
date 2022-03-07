@@ -3,7 +3,11 @@ const nextConfig = {
   images: {
     domains: ['api.bcc.anapolis.ifg.edu.br', 'bcc.anapolis.ifg.edu.br']
   },
-  reactStrictMode: true
+  generateEtags: false,
+  reactStrictMode: true,
+  experimental: {
+    outputStandalone: true
+  }
 };
 
 module.exports = nextConfig;
