@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Script strategy='eager'
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
-      <Script strategy='eager'>
+      <Script id='google-analytics' strategy='eager'>
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
