@@ -3,14 +3,32 @@ import { useRouter } from 'next/router';
 import { gql } from '@apollo/client';
 import client from '@/apollo-client';
 import Container from '@/components/layout/Container';
+import { apiAsset, stringBind } from '@/utils';
+import HeadSeo from '@/components/layout/HeadSeo';
 
 export async function getServerSideProps({ query }) {
   const gQuery = gql`
-      {
-          game_aggregated(groupBy: "year") {
-              group
+      query GamePage($year: Float){
+          games_page_files {
+              directus_files_id {
+                  id
+                  description
+                  tags
+              }
           }
-          game(filter: {year_func: {year: {_eq: ${query.year}}}}){
+          games_page {
+              content
+              hero_title
+              seo_title
+              seo_keywords
+              seo_description
+              seo_image {
+                  title
+                  description
+                  id
+              }
+          }
+          game(filter: {year_func: {year: {_eq: $year}}}){
               id
               title
               video_url
@@ -21,9 +39,11 @@ export async function getServerSideProps({ query }) {
       }
   `;
 
-  const { game, game_aggregated } = (await client.query({ query: gQuery })).data;
-
-  const years = game_aggregated.map(item => new Date(item.group.year).getFullYear());
+  const { game, games_page, games_page_files } = (await client.query({
+    query: gQuery, variables: {
+      year: parseFloat(query.year)
+    }
+  })).data;
 
   const games = game.map(item => {
     let url = item.video_url.split('/');
@@ -34,12 +54,18 @@ export async function getServerSideProps({ query }) {
     };
   });
 
+  const carousel = games_page_files.map(item => ({
+    url: apiAsset(item.directus_files_id.id),
+    alt: item.directus_files_id.description,
+    tags: item.directus_files_id.tags
+  }));
+
   return {
-    props: { games, years }
+    props: { games, page: { ...games_page, carousel } }
   };
 }
 
-export default function GamesPage({ games, years }) {
+export default function GamesPage({ games, page }) {
   const router = useRouter();
   const { year } = router.query;
 
@@ -51,21 +77,18 @@ export default function GamesPage({ games, years }) {
 
   return (
     <>
-      <BannerBreadcrumb paths={paths}>
-        <p className='text-5xl text-white text-center uppercase font-semibold'>Games {year}</p>
+      <HeadSeo title={page.seo_title} description={page.seo_description} openGraph={page.seo_image}
+               keywords={page.seo_keywords} />
+      <BannerBreadcrumb paths={paths} images={page.carousel}>
+        <p
+          className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title ? stringBind(page.hero_title, 'year', year) : `Games ${year}`} </p>
       </BannerBreadcrumb>
       <Container>
-        <div className='prose'>
-          <p>
-            O curso Bacharelado em Ciência da Computação do IFG - Anápolis gentilmente vos convida para escolher os
-            melhores games de {year}. </p>
-          <p>
-            Os jogos foram desenvolvidos pelos nossos queridos calouros, durante as disciplinas de Construção de
-            Algoritmos e Laboratório de Programação. Os jogos servem como o propósito pedagógico para motivar os
-            alunos durante a execução e aprendizado de programação/algoritmo.
-          </p>
-        </div>
-      </Container>
+        <div className='prose'
+             dangerouslySetInnerHTML={{
+               __html: stringBind(page.content, 'year', year)
+             }} />
+      < /Container>
       <Container>
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full'>
           {

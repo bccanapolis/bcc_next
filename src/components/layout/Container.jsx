@@ -1,7 +1,7 @@
-export default function Container({ children, className }) {
+export default function Container({ children, id, className }) {
   return (
     <>
-      <section className={`container py-8 ${className}`}>{children}</section>
+      <section id={id} className={`container py-8 ${className}`}>{children}</section>
     </>
   );
 }

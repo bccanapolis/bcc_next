@@ -5,12 +5,19 @@ import client from '@/apollo-client';
 import HeadSeo from '@/components/layout/HeadSeo';
 import { apiAsset } from '@/utils';
 
-export async function getServerSideProps({ res }) {
+export async function getServerSideProps({}) {
   const query = gql`
-      query GecompPage {
+      {
+          gecomp_page_files {
+              directus_files_id {
+                  id,
+                  title
+                  description
+              }
+          }
           gecomp_page {
               areas
-              description
+              content
               members {
                   professors_id {
                       name
@@ -19,16 +26,11 @@ export async function getServerSideProps({ res }) {
                       degree
                   }
               }
-              hero_image {
-                  id
-                  description
-                  title
-              }
               hero_title
-              page_title
-              page_keywords
-              page_description
-              open_graph_image {
+              seo_title
+              seo_keywords
+              seo_description
+              seo_image {
                   title
                   description
                   id
@@ -43,7 +45,7 @@ export async function getServerSideProps({ res }) {
 
   const { gecomp_page } = data;
   const areas = gecomp_page.areas;
-  const description = gecomp_page.description;
+  const description = gecomp_page.content;
   const members = gecomp_page.members.map(item => ({
     name: item.professors_id.name,
     lattes: item.professors_id.lattes,
@@ -51,16 +53,16 @@ export async function getServerSideProps({ res }) {
     degree: item.professors_id.degree
   }));
 
-  res.setHeader(
-    'Cache-Control',
-    'no-store'
-  );
+  const carousel = data.gecomp_page_files.map(item => ({
+    url: apiAsset(item.directus_files_id.id),
+    alt: item.directus_files_id.description
+  }));
 
   return {
     props: {
       page: {
         ...gecomp_page,
-        areas, description, members
+        areas, description, members, carousel
       }
     } // will be passed to the page component as props
   };
@@ -74,8 +76,9 @@ export default function index({ page }) {
   }];
   return (
     <>
-      <HeadSeo title={page.page_title} description={page.page_description} />
-      <BannerBreadcrumb paths={paths} images={!!page.hero_image && [{ url: apiAsset(page.hero_image.id), alt: '' }]}>
+      <HeadSeo title={page.seo_title} description={page.seo_description} keywords={page.seo_keywords}
+               openGraph={page.seo_image} />
+      <BannerBreadcrumb paths={paths} images={page.carousel}>
         <p
           className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'GRUPO DE ESTUDO E PESQUISA EM CIÊNCIA DA COMPUTAÇÃO'}</p>
       </BannerBreadcrumb>

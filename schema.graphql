@@ -14,19 +14,39 @@ type Query {
     discipline(filter: discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [discipline]
     discipline_aggregated(filter: discipline_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [discipline_aggregated]
     discipline_by_id(id: ID!): discipline
+    empresa_junior_page: empresa_junior_page
+    empresa_junior_page_files(filter: empresa_junior_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files]
+    empresa_junior_page_files_aggregated(filter: empresa_junior_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [empresa_junior_page_files_aggregated]
+    empresa_junior_page_files_by_id(id: ID!): empresa_junior_page_files
     game(filter: game_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [game]
     game_aggregated(filter: game_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [game_aggregated]
     game_by_id(id: ID!): game
+    games_page: games_page
+    games_page_files(filter: games_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [games_page_files]
+    games_page_files_aggregated(filter: games_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [games_page_files_aggregated]
+    games_page_files_by_id(id: ID!): games_page_files
     gecomp_page: gecomp_page
+    gecomp_page_files(filter: gecomp_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_files]
+    gecomp_page_files_aggregated(filter: gecomp_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_files_aggregated]
+    gecomp_page_files_by_id(id: ID!): gecomp_page_files
     gecomp_page_professors(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
     gecomp_page_professors_aggregated(filter: gecomp_page_professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_professors_aggregated]
     gecomp_page_professors_by_id(id: ID!): gecomp_page_professors
-    graduation_page: graduation_page
-    junior_company_page: junior_company_page
+    graduacao_page: graduacao_page
+    graduacao_page_files(filter: graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [graduacao_page_files]
+    graduacao_page_files_aggregated(filter: graduacao_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [graduacao_page_files_aggregated]
+    graduacao_page_files_by_id(id: ID!): graduacao_page_files
+    home_page: home_page
+    home_page_files(filter: home_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [home_page_files]
+    home_page_files_aggregated(filter: home_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [home_page_files_aggregated]
+    home_page_files_by_id(id: ID!): home_page_files
     link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [link]
     link_aggregated(filter: link_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [link_aggregated]
     link_by_id(id: ID!): link
-    postgraduate_page: postgraduate_page
+    pos_graduacao_page: pos_graduacao_page
+    pos_graduacao_page_files(filter: pos_graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pos_graduacao_page_files]
+    pos_graduacao_page_files_aggregated(filter: pos_graduacao_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [pos_graduacao_page_files_aggregated]
+    pos_graduacao_page_files_by_id(id: ID!): pos_graduacao_page_files
     professors(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors]
     professors_aggregated(filter: professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professors_aggregated]
     professors_by_id(id: ID!): professors
@@ -45,10 +65,17 @@ type Query {
     project_student(filter: project_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_student]
     project_student_aggregated(filter: project_student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_student_aggregated]
     project_student_by_id(id: ID!): project_student
+    projetos_page: projetos_page
+    projetos_page_files(filter: projetos_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [projetos_page_files]
+    projetos_page_files_aggregated(filter: projetos_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [projetos_page_files_aggregated]
+    projetos_page_files_by_id(id: ID!): projetos_page_files
     student(filter: student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [student]
     student_aggregated(filter: student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [student_aggregated]
     student_by_id(id: ID!): student
     tecnico_integrado_page: tecnico_integrado_page
+    tecnico_integrado_page_files(filter: tecnico_integrado_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [tecnico_integrado_page_files]
+    tecnico_integrado_page_files_aggregated(filter: tecnico_integrado_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [tecnico_integrado_page_files_aggregated]
+    tecnico_integrado_page_files_by_id(id: ID!): tecnico_integrado_page_files
     vote(filter: vote_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vote]
     vote_aggregated(filter: vote_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [vote_aggregated]
     vote_by_id(id: ID!): vote
@@ -127,6 +154,44 @@ type discipline_aggregated_fields {
     sort: Float
 }
 
+type empresa_junior_page {
+    content: String
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    hero_carousel(filter: empresa_junior_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files]
+    hero_title: String
+    id: ID
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: JSON
+    seo_title: String
+}
+
+type empresa_junior_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    empresa_junior_page_id(filter: empresa_junior_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): empresa_junior_page
+    id: ID
+}
+
+type empresa_junior_page_files_aggregated {
+    avg: empresa_junior_page_files_aggregated_fields
+    avgDistinct: empresa_junior_page_files_aggregated_fields
+    count: empresa_junior_page_files_aggregated_fields
+    countDistinct: empresa_junior_page_files_aggregated_fields
+    group: JSON
+    max: empresa_junior_page_files_aggregated_fields
+    min: empresa_junior_page_files_aggregated_fields
+    sum: empresa_junior_page_files_aggregated_fields
+    sumDistinct: empresa_junior_page_files_aggregated_fields
+}
+
+type empresa_junior_page_files_aggregated_fields {
+    empresa_junior_page_id: Float
+    id: Float
+}
+
 type game {
     author: String
     date_created: Date
@@ -161,21 +226,84 @@ type game_aggregated_fields {
     sort: Float
 }
 
-type gecomp_page {
-    areas: JSON
+type games_page {
+    "Use {{ year }} para trocar pelo ano da pagina"
+    content: String
     date_created: Date
     date_created_func: datetime_functions
     date_updated: Date
     date_updated_func: datetime_functions
-    description: String
-    hero_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    hero_carousel(filter: games_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [games_page_files]
+    "Use {{ year }} para trocar pelo ano da pagina: Games {{ year }}"
+    hero_title: String
+    id: ID
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type games_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    games_page_id(filter: games_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): games_page
+    id: ID
+}
+
+type games_page_files_aggregated {
+    avg: games_page_files_aggregated_fields
+    avgDistinct: games_page_files_aggregated_fields
+    count: games_page_files_aggregated_fields
+    countDistinct: games_page_files_aggregated_fields
+    group: JSON
+    max: games_page_files_aggregated_fields
+    min: games_page_files_aggregated_fields
+    sum: games_page_files_aggregated_fields
+    sumDistinct: games_page_files_aggregated_fields
+}
+
+type games_page_files_aggregated_fields {
+    games_page_id: Float
+    id: Float
+}
+
+type gecomp_page {
+    areas: [String]
+    content: String
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    hero_carousel(filter: gecomp_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_files]
     hero_title: String
     id: ID
     members(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
-    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    page_description: String
-    page_keywords: JSON
-    page_title: String
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type gecomp_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    gecomp_page_id(filter: gecomp_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): gecomp_page
+    id: ID
+}
+
+type gecomp_page_files_aggregated {
+    avg: gecomp_page_files_aggregated_fields
+    avgDistinct: gecomp_page_files_aggregated_fields
+    count: gecomp_page_files_aggregated_fields
+    countDistinct: gecomp_page_files_aggregated_fields
+    group: JSON
+    max: gecomp_page_files_aggregated_fields
+    min: gecomp_page_files_aggregated_fields
+    sum: gecomp_page_files_aggregated_fields
+    sumDistinct: gecomp_page_files_aggregated_fields
+}
+
+type gecomp_page_files_aggregated_fields {
+    gecomp_page_id: Float
+    id: Float
 }
 
 type gecomp_page_professors {
@@ -202,30 +330,78 @@ type gecomp_page_professors_aggregated_fields {
     professors_id: Float
 }
 
-type graduation_page {
+type graduacao_page {
+    content: String
     date_created: Date
     date_created_func: datetime_functions
     date_updated: Date
     date_updated_func: datetime_functions
-    description: String
+    hero_carousel(filter: graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [graduacao_page_files]
+    hero_title: String
     id: ID
-    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    page_description: String
-    page_keywords: JSON
-    page_title: String
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
 }
 
-type junior_company_page {
+type graduacao_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    graduacao_page_id(filter: graduacao_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): graduacao_page
+    id: ID
+}
+
+type graduacao_page_files_aggregated {
+    avg: graduacao_page_files_aggregated_fields
+    avgDistinct: graduacao_page_files_aggregated_fields
+    count: graduacao_page_files_aggregated_fields
+    countDistinct: graduacao_page_files_aggregated_fields
+    group: JSON
+    max: graduacao_page_files_aggregated_fields
+    min: graduacao_page_files_aggregated_fields
+    sum: graduacao_page_files_aggregated_fields
+    sumDistinct: graduacao_page_files_aggregated_fields
+}
+
+type graduacao_page_files_aggregated_fields {
+    graduacao_page_id: Float
+    id: Float
+}
+
+type home_page {
     date_created: Date
     date_created_func: datetime_functions
     date_updated: Date
     date_updated_func: datetime_functions
-    description: String
+    hero_carousel(filter: home_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [home_page_files]
     id: ID
-    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    page_description: String
-    page_keywords: JSON
-    page_title: String
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: JSON
+    seo_title: String
+}
+
+type home_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    home_page_id(filter: home_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): home_page
+    id: ID
+}
+
+type home_page_files_aggregated {
+    avg: home_page_files_aggregated_fields
+    avgDistinct: home_page_files_aggregated_fields
+    count: home_page_files_aggregated_fields
+    countDistinct: home_page_files_aggregated_fields
+    group: JSON
+    max: home_page_files_aggregated_fields
+    min: home_page_files_aggregated_fields
+    sum: home_page_files_aggregated_fields
+    sumDistinct: home_page_files_aggregated_fields
+}
+
+type home_page_files_aggregated_fields {
+    home_page_id: Float
+    id: Float
 }
 
 type link {
@@ -250,18 +426,42 @@ type link_aggregated_fields {
     id: Float
 }
 
-type postgraduate_page {
+type pos_graduacao_page {
+    content: String
     date_created: Date
     date_created_func: datetime_functions
     date_updated: Date
     date_updated_func: datetime_functions
-    description: String
+    hero_carousel(filter: pos_graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pos_graduacao_page_files]
+    hero_title: String
     id: ID
-    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    page_description: String
-    page_keywords: JSON
-    page_title: String
-    title: String
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type pos_graduacao_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    id: ID
+    pos_graduacao_page_id(filter: pos_graduacao_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): pos_graduacao_page
+}
+
+type pos_graduacao_page_files_aggregated {
+    avg: pos_graduacao_page_files_aggregated_fields
+    avgDistinct: pos_graduacao_page_files_aggregated_fields
+    count: pos_graduacao_page_files_aggregated_fields
+    countDistinct: pos_graduacao_page_files_aggregated_fields
+    group: JSON
+    max: pos_graduacao_page_files_aggregated_fields
+    min: pos_graduacao_page_files_aggregated_fields
+    sum: pos_graduacao_page_files_aggregated_fields
+    sumDistinct: pos_graduacao_page_files_aggregated_fields
+}
+
+type pos_graduacao_page_files_aggregated_fields {
+    id: Float
+    pos_graduacao_page_id: Float
 }
 
 type professors {
@@ -419,6 +619,43 @@ type project_student_aggregated_fields {
     student_id: Float
 }
 
+type projetos_page {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    hero_carousel(filter: projetos_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [projetos_page_files]
+    hero_title: String
+    id: ID
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type projetos_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    id: ID
+    projetos_page_id(filter: projetos_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): projetos_page
+}
+
+type projetos_page_files_aggregated {
+    avg: projetos_page_files_aggregated_fields
+    avgDistinct: projetos_page_files_aggregated_fields
+    count: projetos_page_files_aggregated_fields
+    countDistinct: projetos_page_files_aggregated_fields
+    group: JSON
+    max: projetos_page_files_aggregated_fields
+    min: projetos_page_files_aggregated_fields
+    sum: projetos_page_files_aggregated_fields
+    sumDistinct: projetos_page_files_aggregated_fields
+}
+
+type projetos_page_files_aggregated_fields {
+    id: Float
+    projetos_page_id: Float
+}
+
 type student {
     date_created: Date
     date_created_func: datetime_functions
@@ -445,18 +682,41 @@ type student_aggregated_fields {
 }
 
 type tecnico_integrado_page {
-    banner_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    content: String
     date_created: Date
     date_created_func: datetime_functions
     date_updated: Date
     date_updated_func: datetime_functions
-    description: String
+    hero_carousel(filter: tecnico_integrado_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [tecnico_integrado_page_files]
+    hero_title: String
     id: ID
-    open_graph_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    page_description: String
-    page_keywords: JSON
-    page_title: String
-    title: String
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type tecnico_integrado_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    id: ID
+    tecnico_integrado_page_id(filter: tecnico_integrado_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): tecnico_integrado_page
+}
+
+type tecnico_integrado_page_files_aggregated {
+    avg: tecnico_integrado_page_files_aggregated_fields
+    avgDistinct: tecnico_integrado_page_files_aggregated_fields
+    count: tecnico_integrado_page_files_aggregated_fields
+    countDistinct: tecnico_integrado_page_files_aggregated_fields
+    group: JSON
+    max: tecnico_integrado_page_files_aggregated_fields
+    min: tecnico_integrado_page_files_aggregated_fields
+    sum: tecnico_integrado_page_files_aggregated_fields
+    sumDistinct: tecnico_integrado_page_files_aggregated_fields
+}
+
+type tecnico_integrado_page_files_aggregated_fields {
+    id: Float
+    tecnico_integrado_page_id: Float
 }
 
 type vote {
@@ -587,6 +847,31 @@ input discipline_filter {
     sort: number_filter_operators
 }
 
+input empresa_junior_page_files_filter {
+    _and: [empresa_junior_page_files_filter]
+    _or: [empresa_junior_page_files_filter]
+    directus_files_id: directus_files_filter
+    empresa_junior_page_id: empresa_junior_page_filter
+    id: number_filter_operators
+}
+
+input empresa_junior_page_filter {
+    _and: [empresa_junior_page_filter]
+    _or: [empresa_junior_page_filter]
+    content: string_filter_operators
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: empresa_junior_page_files_filter
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
+}
+
 input game_filter {
     _and: [game_filter]
     _or: [game_filter]
@@ -606,23 +891,56 @@ input game_filter {
     year_func: date_function_filter_operators
 }
 
-input gecomp_page_filter {
-    _and: [gecomp_page_filter]
-    _or: [gecomp_page_filter]
-    areas: string_filter_operators
+input games_page_files_filter {
+    _and: [games_page_files_filter]
+    _or: [games_page_files_filter]
+    directus_files_id: directus_files_filter
+    games_page_id: games_page_filter
+    id: number_filter_operators
+}
+
+input games_page_filter {
+    _and: [games_page_filter]
+    _or: [games_page_filter]
+    content: string_filter_operators
     date_created: date_filter_operators
     date_created_func: datetime_function_filter_operators
     date_updated: date_filter_operators
     date_updated_func: datetime_function_filter_operators
-    description: string_filter_operators
-    hero_image: directus_files_filter
+    hero_carousel: games_page_files_filter
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
+}
+
+input gecomp_page_files_filter {
+    _and: [gecomp_page_files_filter]
+    _or: [gecomp_page_files_filter]
+    directus_files_id: directus_files_filter
+    gecomp_page_id: gecomp_page_filter
+    id: number_filter_operators
+}
+
+input gecomp_page_filter {
+    _and: [gecomp_page_filter]
+    _or: [gecomp_page_filter]
+    areas: string_filter_operators
+    content: string_filter_operators
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: gecomp_page_files_filter
     hero_title: string_filter_operators
     id: number_filter_operators
     members: gecomp_page_professors_filter
-    open_graph_image: directus_files_filter
-    page_description: string_filter_operators
-    page_keywords: string_filter_operators
-    page_title: string_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
 }
 
 input gecomp_page_professors_filter {
@@ -631,6 +949,54 @@ input gecomp_page_professors_filter {
     gecomp_page_id: gecomp_page_filter
     id: number_filter_operators
     professors_id: professors_filter
+}
+
+input graduacao_page_files_filter {
+    _and: [graduacao_page_files_filter]
+    _or: [graduacao_page_files_filter]
+    directus_files_id: directus_files_filter
+    graduacao_page_id: graduacao_page_filter
+    id: number_filter_operators
+}
+
+input graduacao_page_filter {
+    _and: [graduacao_page_filter]
+    _or: [graduacao_page_filter]
+    content: string_filter_operators
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: graduacao_page_files_filter
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
+}
+
+input home_page_files_filter {
+    _and: [home_page_files_filter]
+    _or: [home_page_files_filter]
+    directus_files_id: directus_files_filter
+    home_page_id: home_page_filter
+    id: number_filter_operators
+}
+
+input home_page_filter {
+    _and: [home_page_filter]
+    _or: [home_page_filter]
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: home_page_files_filter
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
 }
 
 input link_filter {
@@ -652,6 +1018,31 @@ input number_filter_operators {
     _nin: [Float]
     _nnull: Boolean
     _null: Boolean
+}
+
+input pos_graduacao_page_files_filter {
+    _and: [pos_graduacao_page_files_filter]
+    _or: [pos_graduacao_page_files_filter]
+    directus_files_id: directus_files_filter
+    id: number_filter_operators
+    pos_graduacao_page_id: pos_graduacao_page_filter
+}
+
+input pos_graduacao_page_filter {
+    _and: [pos_graduacao_page_filter]
+    _or: [pos_graduacao_page_filter]
+    content: string_filter_operators
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: pos_graduacao_page_files_filter
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
 }
 
 input professors_discipline_filter {
@@ -717,6 +1108,30 @@ input project_student_filter {
     student_id: student_filter
 }
 
+input projetos_page_files_filter {
+    _and: [projetos_page_files_filter]
+    _or: [projetos_page_files_filter]
+    directus_files_id: directus_files_filter
+    id: number_filter_operators
+    projetos_page_id: projetos_page_filter
+}
+
+input projetos_page_filter {
+    _and: [projetos_page_filter]
+    _or: [projetos_page_filter]
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: projetos_page_files_filter
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
+}
+
 input string_filter_operators {
     _contains: String
     _empty: Boolean
@@ -743,6 +1158,31 @@ input student_filter {
     date_updated_func: datetime_function_filter_operators
     id: number_filter_operators
     name: string_filter_operators
+}
+
+input tecnico_integrado_page_files_filter {
+    _and: [tecnico_integrado_page_files_filter]
+    _or: [tecnico_integrado_page_files_filter]
+    directus_files_id: directus_files_filter
+    id: number_filter_operators
+    tecnico_integrado_page_id: tecnico_integrado_page_filter
+}
+
+input tecnico_integrado_page_filter {
+    _and: [tecnico_integrado_page_filter]
+    _or: [tecnico_integrado_page_filter]
+    content: string_filter_operators
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: tecnico_integrado_page_files_filter
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
 }
 
 input vote_filter {

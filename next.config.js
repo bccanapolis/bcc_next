@@ -7,6 +7,17 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     outputStandalone: true
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [{
+          key: 'Cache-Control',
+          value: 'no-cache, no-store, max-age=86400, must-revalidate'
+        }]
+      }
+    ];
   }
 };
 
