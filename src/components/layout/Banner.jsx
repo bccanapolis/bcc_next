@@ -1,14 +1,15 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper';
 import Image from 'next/image';
+import { classNames } from '@/utils';
 
 export default function Banner({ fullscreen, images = null, children }) {
   const img = images || [{ url: '/img/EK9o3S2WoAArZMf.webp', alt: 'Coleta de Lixo Eletrônico 2019' }];
 
   return (
     <>
-      <div style={{}} className={`${fullscreen ? 'h-[100vh]' : ''} relative z-0 w-full`}>
-        <div className='pb-20 pt-40 container'>
+      <div style={{}} className={classNames(fullscreen ? 'h-[100vh]' : '', 'relative z-0 w-full')}>
+        <div className='pb-20 pt-32 container'>
           {children}
         </div>
         <div className='absolute top-0 h-full w-full -z-10'>
@@ -27,9 +28,13 @@ export default function Banner({ fullscreen, images = null, children }) {
                     <SwiperSlide className='h-full' key={'slide-' + index}>
                       {
                         item.url.includes(process.env.NEXT_PUBLIC_API_URL) ?
-                          <img className='h-full w-full object-cover object-center' src={item.url} alt={item.alt} /> :
-                          <Image className='h-full object-cover object-center' src={item.url} alt={item.alt}
-                                 layout='fill' priority={true} loading='eager' />
+                          <img
+                            className={classNames('h-full w-full object-cover object-center', !!item.tags && item.tags.join(' '))}
+                            src={item.url} alt={item.alt} /> :
+                          <Image
+                            className={classNames('h-full w-full object-cover object-center', !!item.tags && item.tags.join(' '))}
+                            src={item.url} alt={item.alt}
+                            layout='fill' priority={true} loading='eager' />
                       }
 
                     </SwiperSlide>
@@ -37,14 +42,19 @@ export default function Banner({ fullscreen, images = null, children }) {
                 }
               </Swiper> :
               img[0].url.includes(process.env.NEXT_PUBLIC_API_URL) ?
-                <img className='h-full w-full object-cover object-center' src={img[0].url} alt={img[0].alt} /> :
-                <Image className='h-full object-cover object-center' src={img[0].url} layout='fill' priority={true}
-                       loading='eager' />
+                <img
+                  className={classNames('h-full w-full object-cover object-center', !!img[0].tags && img[0].tags.join(' '))}
+                  src={img[0].url}
+                  alt={img[0].alt} /> :
+                <Image
+                  className={classNames('h-full w-full object-cover object-center', !!img[0].tags && img[0].tags.join(' '))}
+                  src={img[0].url}
+                  alt={img[0].alt}
+                  layout='fill' priority={true}
+                  loading='eager' />
           }
-
           <div className='absolute top-0 h-full w-full bg-overlay -z-0' />
         </div>
-
       </div>
     </>
   );
