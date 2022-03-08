@@ -1,5 +1,6 @@
 import '@/styles/tailwind.scss';
 import Head from 'next/head';
+import Script from 'next/script';
 import GlobalProvider from '@/context/Global';
 import DefaultLayout from '@/layouts/DefaultLayout';
 import 'swiper/css';
@@ -11,7 +12,18 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>{web.title}</title>
       </Head>
-
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <Script strategy='lazyOnload'
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
+      <Script strategy='lazyOnload'>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+  
+          gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS});
+        `}
+      </Script>
       <DefaultLayout>
         <Component {...pageProps} />
       </DefaultLayout>
