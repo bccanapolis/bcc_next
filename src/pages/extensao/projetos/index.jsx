@@ -9,13 +9,6 @@ import HeadSeo from '@/components/layout/HeadSeo';
 export async function getServerSideProps({}) {
   const query = gql`
       {
-          projetos_page_files {
-              directus_files_id {
-                  id,
-                  title
-                  description
-              }
-          }
           projetos_page {
               hero_title
               seo_title
@@ -25,6 +18,13 @@ export async function getServerSideProps({}) {
                   title
                   description
                   id
+              }
+              hero_carousel {
+                  directus_files_id {
+                      id
+                      description
+                      tags
+                  }
               }
           }
           project(sort: "title") {
@@ -55,7 +55,7 @@ export async function getServerSideProps({}) {
       }
   `;
 
-  const { project, projetos_page, projetos_page_files } = (await client.query({ query })).data;
+  const { project, projetos_page } = (await client.query({ query })).data;
 
   const projects = project.map(item => ({
     ...item, professors: item.professors.map(prof => ({
@@ -65,7 +65,7 @@ export async function getServerSideProps({}) {
     }))
   }));
 
-  const carousel = projetos_page_files.map(item => ({
+  const carousel = projetos_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description
   }));

@@ -127,7 +127,7 @@ function NavLinks({ closeParent }) {
                     leaveTo='opacity-0 translate-y-1'
                   >
                     <Popover.Panel
-                      className='absolute z-10 left-0 -ml-7 mt-3 transform px-2 w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2'>
+                      className='absolute z-10 left-0 -ml-7 mt-3 transform px-2 w-screen max-w-md md:w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2'>
                       <div className='overflow-hidden'>
                         <div className='relative grid gap-6 bg-neutral px-5 py-6 sm:gap-8 sm:p-8'>
                           {link.dropdown.map((item, index) => (

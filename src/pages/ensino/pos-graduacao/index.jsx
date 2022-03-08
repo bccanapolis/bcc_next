@@ -9,13 +9,6 @@ import { apiAsset } from '@/utils';
 export async function getServerSideProps() {
   const query = gql`
       {
-          pos_graduacao_page_files {
-              directus_files_id {
-                  id,
-                  title
-                  description
-              }
-          }
           pos_graduacao_page {
               content
               hero_title
@@ -27,13 +20,20 @@ export async function getServerSideProps() {
                   description
                   id
               }
+              hero_carousel {
+                  directus_files_id {
+                      id
+                      tags
+                      description
+                  }
+              }
           }
       }
   `;
 
-  const { pos_graduacao_page, pos_graduacao_page_files } = (await client.query({ query })).data;
+  const { pos_graduacao_page } = (await client.query({ query })).data;
 
-  const carousel = pos_graduacao_page_files.map(item => ({
+  const carousel = pos_graduacao_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description
   }));

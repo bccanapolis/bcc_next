@@ -8,13 +8,6 @@ import { apiAsset } from '@/utils';
 export async function getServerSideProps({}) {
   const query = gql`
       {
-          gecomp_page_files {
-              directus_files_id {
-                  id,
-                  title
-                  description
-              }
-          }
           gecomp_page {
               areas
               content
@@ -24,6 +17,12 @@ export async function getServerSideProps({}) {
                       lattes
                       institution
                       degree
+                  }
+              }
+              hero_carousel {
+                  directus_files_id {
+                      id
+                      description
                   }
               }
               hero_title
@@ -39,11 +38,10 @@ export async function getServerSideProps({}) {
       }
   `;
 
-  const { data } = await client.query({
+  const { gecomp_page } = (await client.query({
     query: query
-  });
+  })).data;
 
-  const { gecomp_page } = data;
   const areas = gecomp_page.areas;
   const description = gecomp_page.content;
   const members = gecomp_page.members.map(item => ({
@@ -53,7 +51,7 @@ export async function getServerSideProps({}) {
     degree: item.professors_id.degree
   }));
 
-  const carousel = data.gecomp_page_files.map(item => ({
+  const carousel = gecomp_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description
   }));

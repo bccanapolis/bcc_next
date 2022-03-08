@@ -65,11 +65,11 @@ export default function breadcrumb({ paths }) {
                       </>
                       :
                       <>
-                        <spawn
+                        <span
                           className='inline-flex items-center text-sm font-medium text-gray-200 uppercase'
                         >
                           {link.label}
-                        </spawn>
+                        </span>
                       </>
                 }
               </li>

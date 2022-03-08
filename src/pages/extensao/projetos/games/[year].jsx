@@ -9,13 +9,6 @@ import HeadSeo from '@/components/layout/HeadSeo';
 export async function getServerSideProps({ query }) {
   const gQuery = gql`
       query GamePage($year: Float){
-          games_page_files {
-              directus_files_id {
-                  id
-                  description
-                  tags
-              }
-          }
           games_page {
               content
               hero_title
@@ -26,6 +19,13 @@ export async function getServerSideProps({ query }) {
                   title
                   description
                   id
+              }
+              hero_carousel {
+                  directus_files_id {
+                      id
+                      description
+                      tags
+                  }
               }
           }
           game(filter: {year_func: {year: {_eq: $year}}}){
@@ -39,7 +39,7 @@ export async function getServerSideProps({ query }) {
       }
   `;
 
-  const { game, games_page, games_page_files } = (await client.query({
+  const { game, games_page } = (await client.query({
     query: gQuery, variables: {
       year: parseFloat(query.year)
     }
@@ -54,7 +54,7 @@ export async function getServerSideProps({ query }) {
     };
   });
 
-  const carousel = games_page_files.map(item => ({
+  const carousel = games_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description,
     tags: item.directus_files_id.tags

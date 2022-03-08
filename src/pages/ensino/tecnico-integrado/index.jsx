@@ -9,13 +9,6 @@ import HeadSeo from '@/components/layout/HeadSeo';
 export async function getServerSideProps() {
   const query = gql`
       {
-          tecnico_integrado_page_files {
-              directus_files_id {
-                  id,
-                  title
-                  description
-              }
-          }
           tecnico_integrado_page {
               content
               hero_title
@@ -27,13 +20,20 @@ export async function getServerSideProps() {
                   description
                   id
               }
+              hero_carousel {
+                  directus_files_id {
+                      id
+                      description
+                      tags
+                  }
+              }
           }
       }
   `;
 
-  const { tecnico_integrado_page, tecnico_integrado_page_files } = (await client.query({ query })).data;
+  const { tecnico_integrado_page } = (await client.query({ query })).data;
 
-  const carousel = tecnico_integrado_page_files.map(item => ({
+  const carousel = tecnico_integrado_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description
   }));
