@@ -25,6 +25,22 @@ export default function Document() {
         <meta property='twitter:title' content={web.title} />
         <meta property='twitter:description' content={web.description} />
         <meta property='twitter:image' content={`${web.url}img/open_graph_full.png`} />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+          `,
+          }}
+        />
       </Head>
       <body>
       <Main />
