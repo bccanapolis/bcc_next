@@ -11,6 +11,9 @@ type Mutation {
 }
 
 type Query {
+    article(filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article]
+    article_aggregated(filter: article_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [article_aggregated]
+    article_by_id(id: ID!): article
     discipline(filter: discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [discipline]
     discipline_aggregated(filter: discipline_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [discipline_aggregated]
     discipline_by_id(id: ID!): discipline
@@ -79,6 +82,42 @@ type Query {
     vote(filter: vote_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vote]
     vote_aggregated(filter: vote_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [vote_aggregated]
     vote_by_id(id: ID!): vote
+}
+
+type article {
+    content: String
+    cover(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    description: String
+    id: ID
+    markdown: String
+    slug: String
+    sort: Int
+    status: String!
+    tags: [String]
+    title: String
+    user_created: String
+    user_updated: String
+}
+
+type article_aggregated {
+    avg: article_aggregated_fields
+    avgDistinct: article_aggregated_fields
+    count: article_aggregated_fields
+    countDistinct: article_aggregated_fields
+    group: JSON
+    max: article_aggregated_fields
+    min: article_aggregated_fields
+    sum: article_aggregated_fields
+    sumDistinct: article_aggregated_fields
+}
+
+type article_aggregated_fields {
+    id: Float
+    sort: Float
 }
 
 type date_functions {
@@ -753,6 +792,27 @@ scalar Date
 
 "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
 scalar JSON
+
+input article_filter {
+    _and: [article_filter]
+    _or: [article_filter]
+    content: string_filter_operators
+    cover: directus_files_filter
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    description: string_filter_operators
+    id: number_filter_operators
+    markdown: string_filter_operators
+    slug: string_filter_operators
+    sort: number_filter_operators
+    status: string_filter_operators
+    tags: string_filter_operators
+    title: string_filter_operators
+    user_created: string_filter_operators
+    user_updated: string_filter_operators
+}
 
 input create_vote_input {
     date_created: Date

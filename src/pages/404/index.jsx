@@ -24,7 +24,7 @@ export default function Page() {
           <Swiper
             slidesPerView={1}
             autoplay={{
-              delay: 5000
+              delay: 15000
             }}
             modules={[Autoplay]}
             className='h-full'

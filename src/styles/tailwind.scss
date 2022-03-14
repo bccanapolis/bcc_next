@@ -108,4 +108,11 @@ body {
   }
 }
 
+/* HIGHLIGHT.JS */
+.hljs {
+  background: transparent !important;
+}
 
+.comment.linenumber.react-syntax-highlighter-line-number {
+  @apply opacity-30;
+}

@@ -14,6 +14,8 @@ export async function getServerSideProps({}) {
               seo_description
               seo_image {
                   id
+                  width
+                  height
               }
           }
           home_page_files {

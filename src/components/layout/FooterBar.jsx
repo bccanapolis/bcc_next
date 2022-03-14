@@ -6,7 +6,7 @@ export default function FooterBar({}) {
     <>
 
       <footer className='bg-neutral'>
-        <div className='grid grid-cols-2 gap-8 py-8 px-6 md:grid-cols-4 container'>
+        <div className='grid grid-cols-2 gap-8 py-8 md:grid-cols-4 container'>
           <div className='space-y-8'>
             <Link href='/'>
               <a className='flex items-center h-10'>

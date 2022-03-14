@@ -6,6 +6,8 @@ export default function HeadSeo({ title, description, openGraph, keywords }) {
   const pageTitle = !!title ? `${web.title} | ${title}` : web.title;
   const pageDescription = !!description ? description : web.description;
   const pageOpenGraph = !!openGraph ? apiAsset(openGraph.id) : `${web.url}img/open_graph_full.png`;
+  const pageOpenGraphHeight = !!openGraph ? openGraph.height : '';
+  const pageOpenGraphWidth = !!openGraph ? openGraph.width : '';
   const pageKeywords = !!keywords ? (keywords instanceof Array ? keywords.join(',') : keywords) : web.keywords;
 
   return (
@@ -20,6 +22,8 @@ export default function HeadSeo({ title, description, openGraph, keywords }) {
       <meta property='og:title' content={pageTitle} />
       <meta property='og:description' content={pageDescription} />
       <meta property='og:image' content={pageOpenGraph} />
+      <meta property='og:image:height' content={pageOpenGraphHeight} />
+      <meta property='og:image:width' content={pageOpenGraphWidth} />
     </Head>
   );
 }

@@ -15,9 +15,9 @@ export async function getServerSideProps({}) {
               seo_keywords
               seo_description
               seo_image {
-                  title
-                  description
                   id
+                  width
+                  height
               }
               hero_carousel {
                   directus_files_id {
@@ -104,7 +104,7 @@ export default function ProjectsPage({ projects, page }) {
         {projects.map((item, index) => (
           <div id={slugify(item.slug.toLowerCase())} key={index}>
             <h4 className='text-xl font-semibold'>{item.title}</h4>
-            <div className='prose mt-2 mb-4' dangerouslySetInnerHTML={{ __html: item.description }} />
+            <div className='prose prose-neutral mt-2 mb-4' dangerouslySetInnerHTML={{ __html: item.description }} />
             {
               !!item.url &&
               <span>

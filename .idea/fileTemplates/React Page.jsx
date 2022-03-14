@@ -5,7 +5,7 @@ import client from '@/apollo-client';
 import HeadSeo from '@/components/layout/HeadSeo';
 import { apiAsset } from '@/utils';
 
-export async function getServerSideProps({ res }) {
+export async function getServerSideProps({}) {
   const query = gql``;
 
   const response = (await client.query({
@@ -27,8 +27,9 @@ export default function ${NAME}({ page }) {
   ];
   return (
     <>
-      <HeadSeo title={page.page_title} description={page.page_description} />
-      <BannerBreadcrumb paths={paths} images={!!page.hero_image && page.files.map(item => ({url: apiAsset(item.directus_files_id.id), alt:''}))}>
+      <HeadSeo title={page.seo_title} description={page.seo_description}
+               openGraph={page.seo_image} keywords={page.seo_keywords} />
+      <BannerBreadcrumb paths={paths} images={!!page.carousel.length ? page.carousel : null}>
         <p
           className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || ''}</p>
       </BannerBreadcrumb>

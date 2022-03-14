@@ -88,6 +88,10 @@ const navigation = [
         label: 'Empresa Junior'
       }
     ]
+  },
+  {
+    url: '/blog',
+    label: 'blog',
   }
 ];
 
@@ -104,7 +108,7 @@ function NavLinks({ closeParent }) {
                   <Popover.Button
                     className={classNames(
                       open ? 'text-primary' : 'text-white',
-                      'group bg-neutral rounded-md inline-flex items-center text-base font-medium hover:text-primary focus:outline-none uppercase'
+                      'group bg-neutral rounded-md inline-flex items-center text-sm font-medium hover:text-primary focus:outline-none uppercase'
                     )}
                   >
                     <span>{link.label}</span>
@@ -141,7 +145,7 @@ function NavLinks({ closeParent }) {
                                 className='-m-3 p-3 flex items-start rounded-lg group'
                               >
                                 <p
-                                  className='text-base font-medium text-white group-hover:text-primary uppercase'>{item.label}</p>
+                                  className='text-sm font-medium text-white group-hover:text-primary uppercase'>{item.label}</p>
                               </a>
                             </Link>
                           ))}
@@ -155,12 +159,12 @@ function NavLinks({ closeParent }) {
             :
             link.external ?
               <a key={link.label} href={link.url} target='_blank' rel='noreferrer'
-                 className='text-base font-medium text-white hover:text-primary uppercase'>
+                 className='text-sm font-medium text-white hover:text-primary uppercase'>
                 {link.label}
               </a>
               :
               <Link key={link.label} href={link.url}>
-                <a className='text-base font-medium text-white hover:text-primary uppercase'>
+                <a className='text-sm font-medium text-white hover:text-primary uppercase'>
                   {link.label}
                 </a>
               </Link>
@@ -182,7 +186,7 @@ export default function Example() {
         <>
           <div className='container'>
             <div
-              className='flex flex-row md:flex-col xl:flex-row justify-between items-center py-4 md:justify-start md:space-x-10'>
+              className='flex flex-row md:flex-col xl:flex-row justify-between items-center py-4 md:justify-start lg:space-x-10'>
               <div className='flex justify-start lg:flex-1 gap-x-4'>
                 <Link href='/'>
                   <a>
