@@ -1,4 +1,5 @@
 import '@/styles/tailwind.scss';
+import 'highlight.js/scss/monokai.scss';
 import Head from 'next/head';
 import GlobalProvider from '@/context/Global';
 import DefaultLayout from '@/layouts/DefaultLayout';
@@ -7,6 +8,7 @@ import web from '@/web';
 import * as ga from '@/lib/ga';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import 'highlight.js/scss/monokai.scss'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

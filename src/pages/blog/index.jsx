@@ -60,7 +60,7 @@ export default function index({ page, blog }) {
             {
               blog.map(post => (
                 <article key={`article-${post.id}`} className='flex flex-col w-full bg-white lg:flex-row group'>
-                  <div className='overflow-hidden w-full h-full min-h-[16rem] lg:w-72 relative'>
+                  <div className='overflow-hidden w-full h-64 lg:h-full lg:min-h-[16rem] lg:w-72 relative'>
                     <Image
                       className='object-cover'
                       src={apiAsset(post.cover.id)} alt=''
