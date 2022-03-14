@@ -1,8 +1,7 @@
 import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import Container from '@/components/layout/Container';
 import Image from 'next/image';
-import { format } from 'date-fns';
-import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import client from '@/apollo-client';
 import { apiAsset, classNames } from '@/utils';
 import Link from 'next/link';
@@ -55,49 +54,70 @@ export default function index({ page, blog }) {
           className='text-5xl text-white text-center uppercase font-semibold'>{'Blog da Computação'}</p>
       </BannerBreadcrumb>
       <Container className='flex flex-col-reverse flex-col lg:flex-row gap-x-4 divide-x-2 divide-gray-50'>
-        <div className='w-full lg:w-8/12 xl:w-9/12'>
+        <div className='w-full lg:w-9/12'>
           <div className='gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 '>
             {
               blog.map(post => (
-                <article key={`article-${post.id}`} className='flex flex-col w-full bg-white lg:flex-row group'>
-                  <div className='overflow-hidden w-full h-64 lg:h-full lg:min-h-[16rem] lg:w-72 relative'>
-                    <Image
-                      className='object-cover'
-                      src={apiAsset(post.cover.id)} alt=''
-                      layout='fill'
-                    />
-                  </div>
-
-                  <div className='flex flex-1 flex-col justify-between p-4 lg:p-0 lg:pl-4 leading-normal'>
-                    <div>
-                      <div className='space-x-2 text-xs mb-1'>
-                        <span>{format(new Date(), 'dd/MMM/yyyy')}</span>
+                <article key={`article-${post.id}`}
+                         className='flex flex-col w-full bg-white lg:flex-row group'>
+                  <Link href={`/blog/${post.slug}@${post.id}`}>
+                    <a>
+                      <div className='overflow-hidden w-full h-64 lg:h-full lg:min-h-[18rem] lg:w-96 relative'>
+                        <Image
+                          className='object-cover hover:opacity-80 transition-opacity duration-300'
+                          src={apiAsset(post.cover.id)} alt=''
+                          layout='fill'
+                        />
                       </div>
-                      <h5 className='mb-2 text-xl font-bold tracking-tight'>{post.title}</h5>
-                      <p className='mb-3 font-normal text-gray-700'>{post.description}</p>
-                    </div>
-
-                    <div className='flex justify-between items-center'>
-                      <ul className='inline-flex gap-x-1 items-baseline'>
-                        {
-                          !!post.tags &&
-                          post.tags.map(item => (
-                            <li key={`tag-post-${post.slug}-${item}`}>
-                              <Link
-                                href={`/blog?page=${page.page}&limit=${page.limit}&tags=${item}`}>
-                                <a className='text-xs text-gray-500 hover:text-primary'>{item}</a>
-                              </Link>
-                            </li>
-                          ))
-                        }
-                      </ul>
+                    </a>
+                  </Link>
+                  <div className='flex flex-1 flex-col justify-between p-4 leading-normal'>
+                    <div>
                       <Link href={`/blog/${post.slug}@${post.id}`}>
-                        <a
-                          className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-primary/80 hover:bg-primary'>
-                          Read more
-                          <ArrowRightIcon className='ml-2 -mr-1 w-4 h-4' />
+                        <a>
+                          <h5 className='mb-2 text-xl font-bold tracking-tight'>{post.title}</h5>
                         </a>
                       </Link>
+                      <p className='mb-3 font-normal text-gray-700'>{post.description}</p>
+                    </div>
+                    <div>
+                      <hr className='my-2' />
+                      <div className='flex justify-between items-center'>
+                        <div className='inline-flex items-center space-x-2'>
+                          <div className='relative w-10 h-10 inline-block rounded-full'>
+                            <Image
+                              src={apiAsset(post.user_created.avatar.id)} className='object-cover rounded-full'
+                              layout='fill' />
+                          </div>
+                          <div className='inline-block'>
+                            <p
+                              className='text-sm font-medium'>{`${post.user_created.first_name} ${post.user_created.last_name}`}</p>
+                            <p className='text-xs'>{post.user_created.title}</p>
+                          </div>
+                        </div>
+
+                        <ul className='inline-flex gap-x-1 items-baseline'>
+                          {
+                            !!post.tags &&
+                            post.tags.map(item => (
+                              <li key={`tag-post-${post.slug}-${item}`}>
+                                <Link
+                                  href={`/blog?page=${page.page}&limit=${page.limit}&tags=${item}`}>
+                                  <a
+                                    className='text-xs text-gray-500 bg-primary/20 px-1 py-0.5 hover:text-primary  hover:bg-primary/30 transition-colors duration-300'>{item}</a>
+                                </Link>
+                              </li>
+                            ))
+                          }
+                        </ul>
+                        {/*<Link href={`/blog/${post.slug}@${post.id}`}>*/}
+                        {/*  <a*/}
+                        {/*    className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-primary/80 hover:bg-primary'>*/}
+                        {/*    Read more*/}
+                        {/*    <ArrowRightIcon className='ml-2 -mr-1 w-4 h-4' />*/}
+                        {/*  </a>*/}
+                        {/*</Link>*/}
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -140,7 +160,7 @@ export default function index({ page, blog }) {
           </nav>
         </div>
 
-        <aside className='lg:float-right w-full lg:w-4/12 xl:w-3/12' aria-label='Sidebar'>
+        <aside className='lg:float-right w-full lg:w-3/12' aria-label='Sidebar'>
           <div className='overflow-y-auto px-3 rounded'>
             <ul className='space-y-2'>
               <li>

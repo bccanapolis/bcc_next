@@ -11,6 +11,10 @@ body {
 .prose {
   max-width: 100%;
   @apply text-gray-900;
+
+  table {
+    @apply block overflow-x-auto;
+  }
 }
 
 .bg-overlay {
@@ -109,10 +113,11 @@ body {
 }
 
 /* HIGHLIGHT.JS */
-.hljs {
-  background: transparent !important;
-}
-
-.comment.linenumber.react-syntax-highlighter-line-number {
-  @apply opacity-30;
+pre {
+  code.hljs {
+    background: transparent !important;
+    padding: 0 !important;
+    display: block;
+    overflow: initial !important;
+  }
 }

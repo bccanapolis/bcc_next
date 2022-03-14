@@ -93,14 +93,13 @@ type article {
     date_updated_func: datetime_functions
     description: String
     id: ID
-    markdown: String
     slug: String
     sort: Int
     status: String!
     tags: [String]
     title: String
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type article_aggregated {
@@ -152,17 +151,27 @@ type directus_files {
     id: ID
     location: String
     metadata: JSON
-    modified_by: String
+    modified_by(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     modified_on: Date!
     modified_on_func: datetime_functions
     storage: String!
     tags: JSON
     title: String
     type: String
-    uploaded_by: String
+    uploaded_by(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     uploaded_on: Date!
     uploaded_on_func: datetime_functions
     width: Int
+}
+
+type directus_users {
+    avatar(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    description: String
+    email: String
+    first_name: String
+    id: ID
+    last_name: String
+    title: String
 }
 
 type discipline {
@@ -241,8 +250,8 @@ type game {
     id: ID
     sort: Int
     title: String
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     video_url: String
     year: Date
     year_func: date_functions
@@ -566,8 +575,8 @@ type project {
     students(filter: project_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_student]
     title: String
     url(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): link
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type project_aggregated {
@@ -804,14 +813,13 @@ input article_filter {
     date_updated_func: datetime_function_filter_operators
     description: string_filter_operators
     id: number_filter_operators
-    markdown: string_filter_operators
     slug: string_filter_operators
     sort: number_filter_operators
     status: string_filter_operators
     tags: string_filter_operators
     title: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input create_vote_input {
@@ -881,17 +889,29 @@ input directus_files_filter {
     id: string_filter_operators
     location: string_filter_operators
     metadata: string_filter_operators
-    modified_by: string_filter_operators
+    modified_by: directus_users_filter
     modified_on: date_filter_operators
     modified_on_func: datetime_function_filter_operators
     storage: string_filter_operators
     tags: string_filter_operators
     title: string_filter_operators
     type: string_filter_operators
-    uploaded_by: string_filter_operators
+    uploaded_by: directus_users_filter
     uploaded_on: date_filter_operators
     uploaded_on_func: datetime_function_filter_operators
     width: number_filter_operators
+}
+
+input directus_users_filter {
+    _and: [directus_users_filter]
+    _or: [directus_users_filter]
+    avatar: directus_files_filter
+    description: string_filter_operators
+    email: string_filter_operators
+    first_name: string_filter_operators
+    id: string_filter_operators
+    last_name: string_filter_operators
+    title: string_filter_operators
 }
 
 input discipline_filter {
@@ -944,8 +964,8 @@ input game_filter {
     id: number_filter_operators
     sort: number_filter_operators
     title: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
     video_url: string_filter_operators
     year: date_filter_operators
     year_func: date_function_filter_operators
@@ -1148,8 +1168,8 @@ input project_filter {
     students: project_student_filter
     title: string_filter_operators
     url: link_filter
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input project_professors_filter {
