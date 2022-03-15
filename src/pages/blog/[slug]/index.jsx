@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
+import HeadSeo from '@/components/layout/HeadSeo';
 
 export async function getServerSideProps(context) {
   const [slug, , id] = context.params.slug.split(/(@)(?!.*@)/);
@@ -54,9 +55,19 @@ export default function Index({ article, page }) {
     });
   }
 
+  const keywords = [
+    'computação ifg',
+    'artigo publicado',
+    'aluno da computacao',
+    ...article.tags
+  ];
+
+  article.user_created.full_name = `${article.user_created.first_name} ${article.user_created.last_name}`
+
   return (
     <>
-
+      <HeadSeo title={`${article.title} - ${article.user_created.full_name}`} description={article.description}
+               openGraph={cover[0]} keywords={keywords.join(', ')} />
       <Banner images={cover} className='h-96' overlay={false} />
       <Container className='max-w-screen-lg'>
 
@@ -71,7 +82,7 @@ export default function Index({ article, page }) {
             </div>
             <div className='inline-block text-left'>
               <p
-                className='font-medium'>{`${article.user_created.first_name} ${article.user_created.last_name}`}</p>
+                className='font-medium'>{article.user_created.full_name }</p>
               <p className='text-sm'>Postado em {format(new Date(article.date_created), 'dd MMM yyyy')}</p>
             </div>
           </button>

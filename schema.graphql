@@ -14,6 +14,10 @@ type Query {
     article(filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article]
     article_aggregated(filter: article_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [article_aggregated]
     article_by_id(id: ID!): article
+    blog_page: blog_page
+    blog_page_files(filter: blog_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [blog_page_files]
+    blog_page_files_aggregated(filter: blog_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [blog_page_files_aggregated]
+    blog_page_files_by_id(id: ID!): blog_page_files
     discipline(filter: discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [discipline]
     discipline_aggregated(filter: discipline_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [discipline_aggregated]
     discipline_by_id(id: ID!): discipline
@@ -119,6 +123,43 @@ type article_aggregated_fields {
     sort: Float
 }
 
+type blog_page {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    hero_carousel(filter: blog_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [blog_page_files]
+    hero_title: String
+    id: ID
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type blog_page_files {
+    blog_page_id(filter: blog_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): blog_page
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    id: ID
+}
+
+type blog_page_files_aggregated {
+    avg: blog_page_files_aggregated_fields
+    avgDistinct: blog_page_files_aggregated_fields
+    count: blog_page_files_aggregated_fields
+    countDistinct: blog_page_files_aggregated_fields
+    group: JSON
+    max: blog_page_files_aggregated_fields
+    min: blog_page_files_aggregated_fields
+    sum: blog_page_files_aggregated_fields
+    sumDistinct: blog_page_files_aggregated_fields
+}
+
+type blog_page_files_aggregated_fields {
+    blog_page_id: Float
+    id: Float
+}
+
 type date_functions {
     day: Int
     month: Int
@@ -164,6 +205,13 @@ type directus_files {
     width: Int
 }
 
+type directus_roles {
+    description: String
+    id: ID
+    name: String!
+    users(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [directus_users]
+}
+
 type directus_users {
     avatar(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     description: String
@@ -171,6 +219,7 @@ type directus_users {
     first_name: String
     id: ID
     last_name: String
+    role(filter: directus_roles_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_roles
     title: String
 }
 
@@ -822,6 +871,30 @@ input article_filter {
     user_updated: directus_users_filter
 }
 
+input blog_page_files_filter {
+    _and: [blog_page_files_filter]
+    _or: [blog_page_files_filter]
+    blog_page_id: blog_page_filter
+    directus_files_id: directus_files_filter
+    id: number_filter_operators
+}
+
+input blog_page_filter {
+    _and: [blog_page_filter]
+    _or: [blog_page_filter]
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: blog_page_files_filter
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
+}
+
 input create_vote_input {
     date_created: Date
     date_created_func: datetime_functionsInput
@@ -902,6 +975,15 @@ input directus_files_filter {
     width: number_filter_operators
 }
 
+input directus_roles_filter {
+    _and: [directus_roles_filter]
+    _or: [directus_roles_filter]
+    description: string_filter_operators
+    id: string_filter_operators
+    name: string_filter_operators
+    users: directus_users_filter
+}
+
 input directus_users_filter {
     _and: [directus_users_filter]
     _or: [directus_users_filter]
@@ -911,6 +993,7 @@ input directus_users_filter {
     first_name: string_filter_operators
     id: string_filter_operators
     last_name: string_filter_operators
+    role: directus_roles_filter
     title: string_filter_operators
 }
 

@@ -2,11 +2,12 @@ import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import Container from '@/components/layout/Container';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import client from '@/apollo-client';
-import { classNames, clearObject } from '@/utils';
+import { apiAsset, classNames, clearObject } from '@/utils';
 import { dynamicBlog } from '@/graphql/query/blog';
 import { gql } from '@apollo/client';
 import { useRouter } from 'next/router';
 import BlogCard from '@/components/blog/BlogCard';
+import HeadSeo from '@/components/layout/HeadSeo';
 
 export async function getServerSideProps(context) {
   const search = context.query.search || '';
@@ -19,11 +20,17 @@ export async function getServerSideProps(context) {
     page, tags, author, search, limit
   };
 
-  const query = gql(dynamicBlog(page, limit, tags, author, search));
+  const query = gql(dynamicBlog(page, limit, tags, author, search, true));
 
-  const { article, article_aggregated, article_tags } = (await client.query({
+  const { article, article_aggregated, article_tags, blog_page } = (await client.query({
     query, variables
   })).data;
+
+  const carousel = blog_page.hero_carousel.map(item => ({
+    url: apiAsset(item.directus_files_id.id),
+    alt: item.directus_files_id.description,
+    tags: item.directus_files_id.tags
+  }));
 
   const currentPage = page;
   const maxPages = Math.ceil(article_aggregated[0].count.id / limit);
@@ -40,7 +47,8 @@ export async function getServerSideProps(context) {
   return {
     props: {
       blog: article, available_tags, page: {
-        page, limit, tags, author, search, currentPage, maxPages
+        ...blog_page,
+        carousel, page, limit, tags, author, search, currentPage, maxPages
       }
     }
   };
@@ -70,47 +78,48 @@ export default function Index({ page, blog }) {
   }
 
   return (<>
-      {/*<HeadSeo title={page.page_title} description={page.page_description} />*/}
-      <BannerBreadcrumb paths={paths}>
-        <p
-          className='text-5xl text-white text-center uppercase font-semibold'>{'Blog dos Alunos'}</p>
-      </BannerBreadcrumb>
-      <main>
-        <Container>
-          <div className='w-full space-y-16'>
-            {levelPosts[0].map(post => <BlogCard key={`article-${post.id}`} post={post} horizontal={true} />)}
-            {!!levelPosts[1].length && <div className='gap-x-8 gap-y-16 grid grid-cols-1 md:grid-cols-2'>
-              {levelPosts[1].map(post => (<BlogCard key={`article-${post.id}`} post={post} />))}
-            </div>}
-            {!!levelPosts[2].length && <div className='gap-x-8 gap-y-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 '>
-              {levelPosts[2].map(post => (<BlogCard key={`article-${post.id}`} post={post} />))}
-            </div>}
+    <HeadSeo title={page.seo_title} description={page.seo_description}
+             openGraph={page.seo_image} keywords={page.seo_keywords} />
+    <BannerBreadcrumb paths={paths} images={page.carousel}>
+      <p
+        className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Blog dos Alunos'}</p>
+    </BannerBreadcrumb>
+    <main>
+      <Container>
+        <div className='w-full space-y-16'>
+          {levelPosts[0].map(post => <BlogCard key={`article-${post.id}`} post={post} horizontal={true} />)}
+          {!!levelPosts[1].length && <div className='gap-x-8 gap-y-16 grid grid-cols-1 md:grid-cols-2'>
+            {levelPosts[1].map(post => (<BlogCard key={`article-${post.id}`} post={post} />))}
+          </div>}
+          {!!levelPosts[2].length && <div className='gap-x-8 gap-y-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 '>
+            {levelPosts[2].map(post => (<BlogCard key={`article-${post.id}`} post={post} />))}
+          </div>}
 
-            <hr className='my-4 mx-auto px-12' />
-            <nav aria-label='Navegação da Página' className='flex items-center justify-center w-full'>
-              <ul className='inline-flex items-center -space-x-px'>
-                <li className={classNames(page.page <= 1 && 'invisible')}>
-                  <button onClick={() => searchPosts({ nextPage: page.currentPage + 1 })}
-                          className={'block py-2.5 px-2 ml-0 leading-tight text-neutral-500 hover:text-white hover:bg-primary'}>
-                    <span className='sr-only'>Previous</span>
-                    <ChevronLeftIcon className='w-5 h-5' />
-                  </button>
-                </li>
-                {[...Array(page.maxPages).keys()].map((item, index) => (<li key={'pages-' + index}>
-                    <button onClick={() => searchPosts({ nextPage: index + 1 })}
-                            className={classNames('py-2 px-3 leading-tight hover:text-white hover:bg-primary ', index + 1 == page.currentPage ? 'text-white bg-primary' : 'text-neutral-500')}>{index + 1}</button>
-                  </li>))}
-                <li className={classNames(page.page == page.maxPages && 'invisible')}>
-                  <button onClick={() => searchPosts({ nextPage: page.currentPage - 1 })}
-                          className='block py-2.5 px-2 leading-tight text-neutral-500 hover:text-white hover:bg-primary'>
-                    <span className='sr-only'>Next</span>
-                    <ChevronRightIcon className='w-5 h-5' />
-                  </button>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </Container>
-      </main>
-    </>);
+          <hr className='my-4 mx-auto px-12' />
+          <nav aria-label='Navegação da Página' className='flex items-center justify-center w-full'>
+            <ul className='inline-flex items-center -space-x-px'>
+              <li className={classNames(page.page <= 1 && 'invisible')}>
+                <button onClick={() => searchPosts({ nextPage: page.currentPage + 1 })}
+                        className={'block py-2.5 px-2 ml-0 leading-tight text-neutral-500 hover:text-white hover:bg-primary'}>
+                  <span className='sr-only'>Previous</span>
+                  <ChevronLeftIcon className='w-5 h-5' />
+                </button>
+              </li>
+              {[...Array(page.maxPages).keys()].map((item, index) => (<li key={'pages-' + index}>
+                <button onClick={() => searchPosts({ nextPage: index + 1 })}
+                        className={classNames('py-2 px-3 leading-tight hover:text-white hover:bg-primary ', index + 1 == page.currentPage ? 'text-white bg-primary' : 'text-neutral-500')}>{index + 1}</button>
+              </li>))}
+              <li className={classNames(page.page == page.maxPages && 'invisible')}>
+                <button onClick={() => searchPosts({ nextPage: page.currentPage - 1 })}
+                        className='block py-2.5 px-2 leading-tight text-neutral-500 hover:text-white hover:bg-primary'>
+                  <span className='sr-only'>Next</span>
+                  <ChevronRightIcon className='w-5 h-5' />
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </Container>
+    </main>
+  </>);
 }

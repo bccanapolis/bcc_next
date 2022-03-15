@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import { jsonToGraphQLQuery } from 'json-to-graphql-query';
 
-export const dynamicBlog = (page, limit, tags = '', author = '', search = '') => {
+export const dynamicBlog = (page, limit, tags = '', author = '', search = '', info = false) => {
   const query = {
     query: {
       article: {
@@ -74,6 +74,27 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '') =>
     query.query.article_aggregated.__args.filter.user_created = {
       id: {
         _eq: author
+      }
+    };
+  }
+
+  if (info) {
+    query.query.blog_page = {
+      hero_title: true,
+      hero_carousel: {
+        directus_files_id: {
+          id: true,
+          description: true,
+          tags: true
+        }
+      },
+      seo_keywords: true,
+      seo_title: true,
+      seo_description: true,
+      seo_image: {
+        id: true,
+        width: true,
+        height: true
       }
     };
   }
