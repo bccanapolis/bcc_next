@@ -2,7 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { apiAsset, classNames } from '@/utils';
 
-export default function BlogCard({ post, horizontal = false }) {
+export default function BlogCard({ post, searchPosts, horizontal = false }) {
+
   return (
     <article
       className={classNames('flex flex-col w-full h-full bg-white group', horizontal && 'md:flex-row')}>
