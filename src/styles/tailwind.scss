@@ -10,7 +10,7 @@ body {
 
 .prose {
   max-width: 100%;
-  @apply text-gray-900;
+  @apply text-neutral-900;
 
   table {
     @apply block overflow-x-auto;
@@ -27,7 +27,7 @@ body {
   @apply flex flex-col justify-center items-center;
 
   main {
-    @apply relative inline-block overflow-hidden bg-gray-50;
+    @apply relative inline-block overflow-hidden bg-neutral-50;
   }
 
   canvas {

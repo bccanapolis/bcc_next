@@ -11,7 +11,7 @@ export default function breadcrumb({ paths }) {
     <>
       <nav
         aria-label='breadcrumb'
-        className='flex py-3 px-5 text-gray-700'>
+        className='flex py-3 px-5 text-neutral-700'>
         <ol className='inline-flex items-center space-x-1 md:space-x-3'>
           {
             paths.map((link, index) => (
@@ -30,7 +30,7 @@ export default function breadcrumb({ paths }) {
                         <ChevronDownIcon className='ml-1 w-4 h-4' />
                       </button>
                       <div id={`dropdown-${link.label}`}
-                           className={`hidden z-10 w-44 text-base list-none bg-white divide-y divide-gray-100 shadow`}>
+                           className={`hidden z-10 w-44 text-base list-none bg-white divide-y divide-neutral-100 shadow`}>
                         <ul className='py-1'>
                           {
                             link.dropdown.map((item, index) => (
@@ -38,11 +38,11 @@ export default function breadcrumb({ paths }) {
                                 {
                                   item.reload ?
                                     <span onClick={() => handleReloadPage(`${window.location.origin}${item.url}`)}
-                                          className='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer'>{item.label}</span>
+                                          className='block py-2 px-4 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white cursor-pointer'>{item.label}</span>
                                     :
                                     <Link href={item.url}>
                                       <a
-                                        className='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer'>{item.label}</a>
+                                        className='block py-2 px-4 text-sm text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600 dark:text-neutral-200 dark:hover:text-white cursor-pointer'>{item.label}</a>
                                     </Link>
                                 }
 
@@ -66,7 +66,7 @@ export default function breadcrumb({ paths }) {
                       :
                       <>
                         <span
-                          className='inline-flex items-center text-sm font-medium text-gray-200 uppercase'
+                          className='inline-flex items-center text-sm font-medium text-neutral-200 uppercase'
                         >
                           {link.label}
                         </span>

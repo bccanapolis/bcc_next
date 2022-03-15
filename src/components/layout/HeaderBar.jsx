@@ -91,7 +91,7 @@ const navigation = [
   },
   {
     url: '/blog',
-    label: 'blog',
+    label: 'blog'
   }
 ];
 
@@ -108,14 +108,14 @@ function NavLinks({ closeParent }) {
                   <Popover.Button
                     className={classNames(
                       open ? 'text-primary' : 'text-white',
-                      'group bg-neutral rounded-md inline-flex items-center text-sm font-medium hover:text-primary focus:outline-none uppercase'
+                      'group bg-neutral-700 rounded-md inline-flex items-center text-sm font-medium hover:text-primary focus:outline-none uppercase'
                     )}
                   >
                     <span>{link.label}</span>
                     <ChevronDownIcon
                       className={classNames(
-                        open ? 'text-gray-600' : 'text-gray-400',
-                        'ml-2 h-5 w-5 group-hover:text-gray-500'
+                        open ? 'text-neutral-600' : 'text-neutral-400',
+                        'ml-2 h-5 w-5 group-hover:text-neutral-500'
                       )}
                       aria-hidden='true'
                     />
@@ -133,7 +133,7 @@ function NavLinks({ closeParent }) {
                     <Popover.Panel
                       className='absolute z-10 left-0 -ml-7 mt-3 transform px-2 w-screen max-w-md md:w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2'>
                       <div className='overflow-hidden'>
-                        <div className='relative grid gap-6 bg-neutral px-5 py-6 sm:gap-8 sm:p-8'>
+                        <div className='relative grid gap-6 bg-neutral-700 px-5 py-6 sm:gap-8 sm:p-8'>
                           {link.dropdown.map((item, index) => (
                             <Link key={item.label + index + item.url}
                                   href={item.url}>
@@ -159,12 +159,12 @@ function NavLinks({ closeParent }) {
             :
             link.external ?
               <a key={link.label} href={link.url} target='_blank' rel='noreferrer'
-                 className='text-sm font-medium text-white hover:text-primary uppercase'>
+                 className='text-white inline-flex items-center text-sm font-medium hover:text-primary focus:outline-none uppercase'>
                 {link.label}
               </a>
               :
               <Link key={link.label} href={link.url}>
-                <a className='text-sm font-medium text-white hover:text-primary uppercase'>
+                <a onClick={closeParent} className='text-white inline-flex items-center text-sm font-medium hover:text-primary focus:outline-none uppercase'>
                   {link.label}
                 </a>
               </Link>
@@ -181,7 +181,7 @@ export default function Example() {
   }, [router.asPath]);
 
   return (
-    <Popover className='relative bg-neutral z-50'>
+    <Popover className='relative bg-neutral-700 z-50'>
       {({ close }) =>
         <>
           <div className='container'>
@@ -215,7 +215,7 @@ export default function Example() {
               </div>
               <div className='-mr-2 -my-2 md:hidden'>
                 <Popover.Button
-                  className='bg-neutral rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none'>
+                  className='bg-neutral-700 rounded-md p-2 inline-flex items-center justify-center text-neutral-400 hover:text-neutral-500 hover:bg-neutral-100 focus:outline-none'>
                   <span className='sr-only'>Open menu</span>
                   <MenuIcon className='h-6 w-6' aria-hidden='true' />
                 </Popover.Button>
@@ -237,7 +237,7 @@ export default function Example() {
           >
             <Popover.Panel focus
                            className='absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden'>
-              <div className='shadow-lg ring-1 ring-black ring-opacity-5 bg-neutral divide-y-2 divide-gray-50'>
+              <div className='shadow-lg ring-1 ring-black ring-opacity-5 bg-neutral-700 divide-y-2 divide-neutral-50'>
                 <div className='pt-5 pb-6 px-5'>
                   <div className='flex items-center justify-between'>
                     <div>
@@ -251,7 +251,7 @@ export default function Example() {
                     </div>
                     <div className='-mr-2'>
                       <Popover.Button
-                        className='bg-neutral rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none'>
+                        className='bg-neutral-700 rounded-md p-2 inline-flex items-center justify-center text-neutral-400 hover:text-neutral-500 hover:bg-neutral-100 focus:outline-none'>
                         <span className='sr-only'>Close menu</span>
                         <XIcon className='h-6 w-6' aria-hidden='true' />
                       </Popover.Button>

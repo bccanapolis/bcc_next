@@ -84,14 +84,14 @@ export default function index({ page }) {
         <div className='flex flex-wrap md:flex-nowrap gap-4'>
           <div className='w-full md:w-8/12 prose prose-neutral' dangerouslySetInnerHTML={{ __html: page.description }} />
           <div className='w-full md:w-4/12 flex flex-col gap-4'>
-            <div className='bg-gray-50 px-2 py-3 w-full'>
+            <div className='bg-neutral-50 px-2 py-3 w-full'>
               <p className='text-lg font-semibold mx-4'>Professores Integrantes</p>
               <ul
-                className='w-full text-sm font-medium text-gray-900 rounded-lg list-none'>
+                className='w-full text-sm font-medium text-neutral-900 rounded-lg list-none'>
                 {
                   page.members.map((member, index) =>
                     <li key={member.name}
-                        className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== page.members.length - 1 ? 'border-b border-gray-200' : ''}`}>
+                        className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== page.members.length - 1 ? 'border-b border-neutral-200' : ''}`}>
                       <a href={member.lattes} target='_blank' rel='noopener noreferrer'>{member.degree}{' '}
                         {member.name} ({member.institution})</a>
                     </li>
@@ -100,14 +100,14 @@ export default function index({ page }) {
               </ul>
             </div>
 
-            <div className='bg-gray-50 px-2 py-3 w-full'>
+            <div className='bg-neutral-50 px-2 py-3 w-full'>
               <p className='text-lg font-semibold mx-4'>Linhas de Pesquisa</p>
               <ul
-                className='w-full text-sm font-medium text-gray-900 rounded-lg list-none'>
+                className='w-full text-sm font-medium text-neutral-900 rounded-lg list-none'>
                 {
                   page.areas.map((area, index) => (
                     <li key={index}
-                        className={`py-2 px-4 w-full ${index !== page.areas.length - 1 ? 'border-b border-gray-200' : ''}`}>
+                        className={`py-2 px-4 w-full ${index !== page.areas.length - 1 ? 'border-b border-neutral-200' : ''}`}>
                       {area}
                     </li>
                   ))

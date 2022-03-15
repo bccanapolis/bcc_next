@@ -7,8 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#00A599',
-        neutral: '#333333'
+        primary: '#00A599'
       },
       fontFamily: {
         poppins: ['"Poppins"', 'sans-serif']
@@ -44,6 +43,7 @@ module.exports = {
         }
       });
     },
-    require('@tailwindcss/typography')
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
   ]
 };

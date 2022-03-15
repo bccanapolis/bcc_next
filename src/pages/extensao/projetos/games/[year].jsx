@@ -94,7 +94,7 @@ export default function GamesPage({ games, page }) {
           {
             games.map((game, index) => (
               <div key={index}
-                   className='bg-white border border-gray-200'>
+                   className='bg-white border border-neutral-200'>
                 <iframe src={`https://www.youtube.com/embed/${game.video_url}`}
                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen
@@ -104,15 +104,15 @@ export default function GamesPage({ games, page }) {
                 </iframe>
                 <div className='p-5 flex flex-col justify-between'>
                   <div>
-                    <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900'>
+                    <h5 className='mb-2 text-2xl font-bold tracking-tight text-neutral-900'>
                       {game.title}</h5>
                     <h6
-                      className='mb-2 text-lg tracking-tight text-gray-500'>{game.author}</h6>
-                    <p className='font-normal text-gray-700'>{game.description}</p>
+                      className='mb-2 text-lg tracking-tight text-neutral-500'>{game.author}</h6>
+                    <p className='font-normal text-neutral-700'>{game.description}</p>
                   </div>
                   {/*<div>*/}
                   {/*  <button*/}
-                  {/*    className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-900 bg-gray-100 group focus:ring-4 focus:ring-red-300 uppercase'*/}
+                  {/*    className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-neutral-900 bg-neutral-100 group focus:ring-4 focus:ring-red-300 uppercase'*/}
                   {/*    href='#'>*/}
                   {/*    <span>Votar</span>*/}
                   {/*    <HeartIcon className='ml-2 w-6 h-6 text-red-400 group-hover:text-red-600' />*/}

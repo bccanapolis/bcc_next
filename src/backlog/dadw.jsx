@@ -1,13 +1,14 @@
 import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import Container from '@/components/layout/Container';
 import Image from 'next/image';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import { ChevronLeftIcon, ChevronRightIcon, SearchIcon } from '@heroicons/react/outline';
 import client from '@/apollo-client';
 import { apiAsset, classNames, clearObject } from '@/utils';
 import Link from 'next/link';
 import { dynamicBlog } from '@/graphql/query/blog';
 import { gql } from '@apollo/client';
 import { useRouter } from 'next/router';
+import { useEffect, useRef, useState } from 'react';
 
 export async function getServerSideProps(context) {
   const search = context.query.search || '';
@@ -56,8 +57,16 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Index({ page, blog }) {
+export default function index({ page, blog, available_tags }) {
   const router = useRouter();
+  const formRef = useRef();
+
+  const [querySearch, setQuerySearch] = useState(page.search);
+  const [queryTag, setQueryTag] = useState(page.tags);
+  const [queryLimit, setQueryLimit] = useState(page.limit);
+
+  const available_limits = [1, 2, 3, 6, 12, 16, 20, 24, 30];
+
   const paths = [
     { url: '/', label: 'home' },
     { url: 'blog', label: 'blog', disabled: true }
@@ -92,6 +101,25 @@ export default function Index({ page, blog }) {
       query: clearObject(query)
     });
   }
+
+  function submitForm() {
+    formRef.current.dispatchEvent(
+      new Event('submit', { cancelable: true, bubbles: true })
+    );
+  }
+
+  function _handleKeyDown(e) {
+    if (e.key === 'Enter') submitForm();
+  }
+
+  useEffect(() => {
+    if (!!queryTag) {
+      submitForm();
+    }
+    if (!!queryLimit) {
+      submitForm();
+    }
+  }, [queryTag, queryLimit]);
 
   return (
     <>
@@ -160,6 +188,59 @@ export default function Index({ page, blog }) {
             </article>
           </Container>
         }
+        <Container>
+          <form ref={formRef} onSubmit={(e) => {
+            e.preventDefault();
+            searchPosts({
+              search: querySearch,
+              tags: queryTag,
+              limit: queryLimit
+            });
+          }}>
+            <div className='relative w-64'>
+              <label htmlFor='query-search'
+                     className='flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none'>
+                <SearchIcon className='w-5 h-5 text-neutral-500' />
+              </label>
+              <input type='search' id='query-search'
+                     className='bg-neutral-50 text-neutral-900 border-0 focus:outline-none placeholder:text-neutral-300 block w-full pl-10 p-2.5'
+                     placeholder='postgres'
+                     value={querySearch}
+                     onKeyDown={_handleKeyDown}
+                     onInput={(el) => setQuerySearch(el.currentTarget.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor='query-tags' className='mb-2 text-sm font-medium text-neutral-900'>Tags</label>
+              <select id='query-tags'
+                      className='bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 pr-6 uppercase'
+                      value={queryTag}
+                      onChange={(el) => {
+                        setQueryTag(el.currentTarget.value);
+                      }}>
+                <option className='uppercase' value={''}>nenhum</option>
+                {
+                  available_tags.map(item => <option className='uppercase' key={item}>{item}</option>)
+                }
+              </select>
+            </div>
+            <div>
+              <label htmlFor='query-limit' className='mb-2 text-sm font-medium text-neutral-900'>Tags</label>
+              <select id='query-limit'
+                      className='bg-neutral-50 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 pr-6'
+                      value={queryLimit}
+                      onChange={(el) => {
+                        setQueryLimit(el.currentTarget.value);
+                      }}>
+
+                {
+                  available_limits.map(item => <option key={item}>{item}</option>)
+                }
+              </select>
+            </div>
+          </form>
+        </Container>
+
         {
           !!articles.length &&
           <Container className='flex flex-col-reverse flex-col lg:flex-row gap-x-4 divide-x-2 divide-neutral-50'>
@@ -217,6 +298,13 @@ export default function Index({ page, blog }) {
                                 ))
                               }
                             </ul>
+                            {/*<Link href={`/blog/${post.slug}@${post.id}`}>*/}
+                            {/*  <a*/}
+                            {/*    className='inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-primary/80 hover:bg-primary'>*/}
+                            {/*    Read more*/}
+                            {/*    <ArrowRightIcon className='ml-2 -mr-1 w-4 h-4' />*/}
+                            {/*  </a>*/}
+                            {/*</Link>*/}
                           </div>
                         </div>
                       </div>
@@ -253,9 +341,91 @@ export default function Index({ page, blog }) {
                 </ul>
               </nav>
             </div>
+
+            {/*<aside className='lg:float-right w-full lg:w-3/12' aria-label='Sidebar'>*/}
+            {/*  <div className='overflow-y-auto px-3 rounded'>*/}
+            {/*    <ul className='space-y-2'>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700'>*/}
+            {/*          <span className='ml-3'>Dashboard</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700'>*/}
+            {/*          <span className='flex-1 ml-3 whitespace-nowrap'>Kanban</span>*/}
+            {/*          <span*/}
+            {/*            className='inline-flex justify-center items-center px-2 ml-3 text-sm font-medium text-neutral-800 bg-neutral-200 rounded-full dark:bg-neutral-700 dark:text-neutral-300'>Pro</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700'>*/}
+            {/*          <span className='flex-1 ml-3 whitespace-nowrap'>Inbox</span>*/}
+            {/*          <span*/}
+            {/*            className='inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200'>3</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700'>*/}
+            {/*          <span className='flex-1 ml-3 whitespace-nowrap'>Users</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700'>*/}
+            {/*          <span className='flex-1 ml-3 whitespace-nowrap'>Products</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700'>*/}
+            {/*          <span className='flex-1 ml-3 whitespace-nowrap'>Sign In</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-700'>*/}
+            {/*          <span className='flex-1 ml-3 whitespace-nowrap'>Sign Up</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*    </ul>*/}
+            {/*    <ul className='pt-4 mt-4 space-y-2 border-t border-neutral-200 dark:border-neutral-700'>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-white group'>*/}
+            {/*          <span className='ml-4'>Upgrade to Pro</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-white group'>*/}
+            {/*          <span className='ml-3'>Documentation</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-white group'>*/}
+            {/*          <span className='ml-3'>Components</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*      <li>*/}
+            {/*        <a href='#'*/}
+            {/*           className='flex items-center p-2 text-base font-normal text-neutral-900 rounded-lg transition duration-75 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:text-white group'>*/}
+
+            {/*          <span className='ml-3'>Help</span>*/}
+            {/*        </a>*/}
+            {/*      </li>*/}
+            {/*    </ul>*/}
+            {/*  </div>*/}
+            {/*</aside>*/}
           </Container>
         }
       </main>
+
+
     </>
   );
 }

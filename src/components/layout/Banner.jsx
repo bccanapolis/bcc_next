@@ -3,12 +3,12 @@ import { Autoplay } from 'swiper';
 import Image from 'next/image';
 import { classNames } from '@/utils';
 
-export default function Banner({ fullscreen, images = null, children }) {
+export default function Banner({ fullscreen, images = null, overlay = true, children, className }) {
   const img = images || [{ url: '/img/EK9o3S2WoAArZMf.webp', alt: 'Coleta de Lixo Eletrônico 2019' }];
 
   return (
     <>
-      <div style={{}} className={classNames(fullscreen ? 'h-[100vh]' : '', 'relative z-0 w-full')}>
+      <div className={classNames(fullscreen ? 'h-[100vh]' : '', className, 'relative z-0 w-full')}>
         <div className='pb-20 pt-32 container'>
           {children}
         </div>
@@ -53,7 +53,9 @@ export default function Banner({ fullscreen, images = null, children }) {
                   layout='fill' priority={true}
                   loading='eager' />
           }
-          <div className='absolute top-0 h-full w-full bg-overlay -z-0' />
+          {
+            overlay && <div className='absolute top-0 h-full w-full bg-overlay -z-0' />
+          }
         </div>
       </div>
     </>

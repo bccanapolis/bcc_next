@@ -97,7 +97,7 @@ export default function ProjectsPage({ projects, page }) {
       {
         !!page.content &&
         <Container>
-          <div className='prose' dangerouslySetInnerHTML={{ __html: page.content }} />
+          <div className='prose prose-neutral' dangerouslySetInnerHTML={{ __html: page.content }} />
         </Container>
       }
       <Container className='space-y-4'>
