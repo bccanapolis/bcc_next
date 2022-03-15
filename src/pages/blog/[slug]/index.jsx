@@ -62,12 +62,12 @@ export default function Index({ article, page }) {
     ...article.tags
   ];
 
-  article.user_created.full_name = `${article.user_created.first_name} ${article.user_created.last_name}`
+  article.user_created.full_name = `${article.user_created.first_name} ${article.user_created.last_name}`;
 
   return (
     <>
       <HeadSeo title={`${article.title} - ${article.user_created.full_name}`} description={article.description}
-               openGraph={cover[0]} keywords={keywords.join(', ')} />
+               openGraph={article.cover} keywords={keywords.join(', ')} />
       <Banner images={cover} className='h-96' overlay={false} />
       <Container className='max-w-screen-lg'>
 
@@ -82,7 +82,7 @@ export default function Index({ article, page }) {
             </div>
             <div className='inline-block text-left'>
               <p
-                className='font-medium'>{article.user_created.full_name }</p>
+                className='font-medium'>{article.user_created.full_name}</p>
               <p className='text-sm'>Postado em {format(new Date(article.date_created), 'dd MMM yyyy')}</p>
             </div>
           </button>

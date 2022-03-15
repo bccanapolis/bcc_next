@@ -24,6 +24,16 @@ export default function HeadSeo({ title, description, openGraph, keywords }) {
       <meta property='og:image' content={pageOpenGraph} />
       <meta property='og:image:height' content={pageOpenGraphHeight} />
       <meta property='og:image:width' content={pageOpenGraphWidth} />
+
+      <meta property='og:image' content={`${web.url}img/open_graph_squared.png`} />
+      <meta property='og:image:height' content='512' />
+      <meta property='og:image:width' content='512' />
+
+      <meta property='twitter:card' content='summary_large_image' />
+      <meta property='twitter:url' content={web.url} />
+      <meta property='twitter:title' content={pageTitle} />
+      <meta property='twitter:description' content={pageDescription} />
+      <meta property='twitter:image' content={pageOpenGraph} />
     </Head>
   );
 }
