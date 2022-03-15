@@ -22,8 +22,14 @@ export default function HeadSeo({ title, description, openGraph, keywords }) {
       <meta property='og:title' content={pageTitle} />
       <meta property='og:description' content={pageDescription} />
       <meta property='og:image' content={pageOpenGraph} />
-      <meta property='og:image:height' content={pageOpenGraphHeight} />
-      <meta property='og:image:width' content={pageOpenGraphWidth} />
+      {
+        !!pageOpenGraphHeight &&
+        <meta property='og:image:height' content={pageOpenGraphHeight} />
+      }
+      {
+        !!pageOpenGraphWidth &&
+        <meta property='og:image:width' content={pageOpenGraphWidth} />
+      }
 
       <meta property='og:image' content={`${web.url}img/open_graph_squared.png`} />
       <meta property='og:image:height' content='512' />
