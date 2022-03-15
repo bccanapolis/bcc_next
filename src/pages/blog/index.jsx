@@ -79,10 +79,10 @@ export default function Index({ page, blog }) {
         <Container>
           <div className='w-full space-y-16'>
             {levelPosts[0].map(post => <BlogCard key={`article-${post.id}`} post={post} horizontal={true} />)}
-            {!!levelPosts[1].length && <div className='gap-8 grid grid-cols-1 md:grid-cols-2'>
+            {!!levelPosts[1].length && <div className='gap-x-8 gap-y-16 grid grid-cols-1 md:grid-cols-2'>
               {levelPosts[1].map(post => (<BlogCard key={`article-${post.id}`} post={post} />))}
             </div>}
-            {!!levelPosts[2].length && <div className='gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 '>
+            {!!levelPosts[2].length && <div className='gap-x-8 gap-y-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 '>
               {levelPosts[2].map(post => (<BlogCard key={`article-${post.id}`} post={post} />))}
             </div>}
 
