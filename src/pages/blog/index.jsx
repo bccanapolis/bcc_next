@@ -58,7 +58,10 @@ export default function Index({ page, blog }) {
   const router = useRouter();
   const paths = [{ url: '/', label: 'home' }, { url: 'blog', label: 'blog', disabled: true }];
 
-  const levelPosts = [blog.slice(0, 1), blog.slice(1, 3), blog.slice(3)];
+  let levelPosts = [[], [], blog];
+  if (page.page == 1) {
+    levelPosts = [blog.slice(0, 1), blog.slice(1, 3), blog.slice(3)];
+  }
 
   function searchPosts({
                          tags = page.tags,
@@ -87,7 +90,8 @@ export default function Index({ page, blog }) {
     <main>
       <Container>
         <div className='w-full space-y-16'>
-          {levelPosts[0].map(post => <BlogCard key={`article-${post.id}`} post={post} horizontal={true} />)}
+          {!!levelPosts[0].length && levelPosts[0].map(post => <BlogCard key={`article-${post.id}`} post={post}
+                                                                         horizontal={true} />)}
           {!!levelPosts[1].length && <div className='gap-x-8 gap-y-16 grid grid-cols-1 md:grid-cols-2'>
             {levelPosts[1].map(post => (<BlogCard key={`article-${post.id}`} post={post} />))}
           </div>}
