@@ -2,6 +2,7 @@ import { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 import { classNames } from '@/utils';
+import HeadSeo from '@/components/layout/HeadSeo';
 
 export default function Page() {
   const images = [
@@ -13,6 +14,7 @@ export default function Page() {
 
   return (
     <>
+      <HeadSeo title={'Página não encontrada'}/>
       <main className='flex flex-wrap h-full md:min-h-screen items-center'>
         <div className='px-12 py-20 w-full md:w-1/2'>
           <span className='text-primary'>ERRO 404</span>
