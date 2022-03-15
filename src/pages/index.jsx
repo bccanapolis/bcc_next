@@ -57,7 +57,8 @@ export default function Home({ page }) {
         <div className='container'>
           <Image
             src='/img/bcc_anapolis_logo.svg'
-            width={600}
+            className='-mt-12'
+            width={540}
             height={120}
           />
         </div>
