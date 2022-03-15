@@ -5,7 +5,7 @@ import { apiAsset } from '@/utils';
 export default function HeadSeo({ title, description, openGraph, keywords }) {
   const pageTitle = !!title ? `${web.title} | ${title}` : web.title;
   const pageDescription = !!description ? description : web.description;
-  const pageOpenGraph = !!openGraph ? apiAsset(openGraph.id) : `${web.url}img/open_graph_full.png`;
+  const pageOpenGraph = !!openGraph ? apiAsset(openGraph.id) + '.png' : `${web.url}img/open_graph_full.png`;
   const pageOpenGraphHeight = !!openGraph ? openGraph.height : '';
   const pageOpenGraphWidth = !!openGraph ? openGraph.width : '';
   const pageKeywords = !!keywords ? (keywords instanceof Array ? keywords.join(',') : keywords) : web.keywords;
