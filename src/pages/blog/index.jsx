@@ -101,7 +101,7 @@ export default function Index({
       <p
         className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Blog dos Alunos'}</p>
     </BannerBreadcrumb>
-    <Container className='flex flex-col lg:flex-row w-full gap-16 lg:gap-x-8'>
+    <Container className='flex flex-col-reverse lg:flex-row w-full gap-16 lg:gap-x-8'>
       <main className='w-full lg:w-9/12 space-y-16'>
         {/*{!!levelPosts[0].length && levelPosts[0].map(post => <BlogCard key={`article-${post.id}`} post={post}*/}
         {/*                                                               horizontal={true} searchPosts={searchPosts} />)}*/}
