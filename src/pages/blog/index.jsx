@@ -108,7 +108,7 @@ export default function Index({
         {/*{!!levelPosts[1].length && <div className='gap-x-8 gap-y-16 grid grid-cols-1 md:grid-cols-2'>*/}
         {/*  {levelPosts[1].map(post => (<BlogCard key={`article-${post.id}`} post={post} searchPosts={searchPosts}/>))}*/}
         {/*</div>}*/}
-        {!!levelPosts[2].length ? <div className='gap-x-8 gap-y-8 grid grid-cols-1'>
+        {!!levelPosts[2].length ? <div className='gap-8 grid grid-cols-1'>
             {levelPosts[2].map(post => (
               <BlogCard key={`article-${post.id}`} horizontal={true} post={post} searchPosts={searchPosts} />))}
           </div> :

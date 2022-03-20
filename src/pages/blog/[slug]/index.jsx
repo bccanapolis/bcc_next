@@ -75,7 +75,7 @@ export default function Index({ article, page, available_tags: tags, recent_arti
       <HeadSeo title={`${article.title} - ${article.user_created.full_name}`} description={article.description}
                openGraph={article.cover} keywords={keywords.join(', ')} />
       <Banner images={cover} className='h-96' overlay={false} />
-      <Container className='flex flex-col lg:flex-row w-full gap-16 lg:gap-4'>
+      <Container className='flex flex-col lg:flex-row w-full gap-16 lg:gap-x-8'>
         <main className='w-full lg:w-9/12'>
           <h5 className='font-bold text-2xl mb-4'>{article.title}</h5>
           <div className='flex flex-col md:flex-row justify-between md:items-end gap-4'>

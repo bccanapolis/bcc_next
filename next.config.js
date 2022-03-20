@@ -5,6 +5,7 @@ const nextConfig = {
   },
   generateEtags: false,
   reactStrictMode: true,
+  optimizeFonts: false,
   experimental: {
     outputStandalone: true
   }
