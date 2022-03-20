@@ -16,5 +16,9 @@ export function clearObject(obj) {
       delete obj[propName];
     }
   }
-  return obj
+  return obj;
+}
+
+export function onlyUniqueObject(arr, field) {
+  return [...new Map(arr.map((item) => [item[field], item])).values()];
 }

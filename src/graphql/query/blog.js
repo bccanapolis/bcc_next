@@ -4,6 +4,35 @@ import { jsonToGraphQLQuery } from 'json-to-graphql-query';
 export const dynamicBlog = (page, limit, tags = '', author = '', search = '', info = false) => {
   const query = {
     query: {
+      recent_article: {
+        __aliasFor: 'article',
+        __args: {
+          limit: 5,
+          page: 1,
+          sort: '-date_created',
+          filter: {
+            status: { _eq: 'published' }
+          }
+        },
+        user_created: {
+          avatar: {
+            id: true
+          },
+          id: true,
+          first_name: true,
+          last_name: true,
+          title: true,
+          description: true
+        },
+        id: true,
+        title: true,
+        cover: {
+          id: true
+        },
+        slug: true,
+        date_created: true
+      },
+
       article: {
         __args: {
           limit,
@@ -30,7 +59,11 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
         cover: {
           id: true
         },
-        tags: true,
+        tags: {
+          blog_tag_id: {
+            name: true
+          }
+        },
         slug: true,
         date_created: true
       },
@@ -46,22 +79,18 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
           id: true
         }
       },
-      article_tags: {
-        __aliasFor: 'article_aggregated',
-        __args: {
-          groupBy: 'tags'
-        },
-        group: true
+      blog_tag: {
+        name: true
       }
     }
   };
 
   if (!!tags) {
     query.query.article.__args.filter.tags = {
-      _contains: tags
+      blog_tag_id: { name: { _eq: tags } }
     };
     query.query.article_aggregated.__args.filter.tags = {
-      _contains: tags
+      blog_tag_id: { name: { _eq: tags } }
     };
   }
 
@@ -104,6 +133,28 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
 
 export const queryArticleByID = gql`
     query BlogArticle($id: ID!) {
+        recent_article: article (limit: 5, page: 1, sort: "-date_created", filter: {status: {_eq: "published"}}) {
+            user_created {
+                avatar {
+                    id
+                }
+                id
+                first_name
+                last_name
+                title
+                description
+            }
+            id
+            title
+            cover {
+                id
+            }
+            slug
+            date_created
+        }
+        blog_tag{
+            name
+        }
         article_by_id(id: $id) {
             content
             cover {
@@ -126,7 +177,11 @@ export const queryArticleByID = gql`
             id
             slug
             title
-            tags
+            tags {
+                blog_tag_id {
+                    name
+                }
+            },
         }
     }
 `;

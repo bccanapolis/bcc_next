@@ -1,9 +1,11 @@
+import 'swiper/css';
+import 'swiper/css/pagination';
 import '@/styles/tailwind.scss';
 import 'highlight.js/scss/monokai.scss';
 import Head from 'next/head';
 import GlobalProvider from '@/context/Global';
 import DefaultLayout from '@/layouts/DefaultLayout';
-import 'swiper/css';
+
 import web from '@/web';
 import * as ga from '@/lib/ga';
 import { useEffect } from 'react';
