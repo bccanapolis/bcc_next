@@ -19,7 +19,7 @@ export default function BlogCard({ post, searchPosts, horizontal = false }) {
             <p className='flex lg:text-right text-sm font-light lg:justify-end items-center w-full gap-x-2'>{format(new Date(post.date_created), 'dd MMM, yyyy')}<CalendarIcon className='w-4 h-4 inline'/></p>
           </div>
 
-          <ul className='flex flex-row lg:flex-col justify-end max-w-[calc(100%/12*8)] lg:max-w-full items-end gap-x-1 flex-wrap'>
+          <ul className='flex flex-row lg:flex-col justify-end w-full items-end gap-x-1 flex-wrap'>
             {
               !!post.tags &&
               post.tags.map(({ blog_tag_id: item }) => (
