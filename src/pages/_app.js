@@ -3,7 +3,6 @@ import 'swiper/css/pagination';
 import '@/styles/tailwind.scss';
 import 'highlight.js/scss/monokai.scss';
 import Head from 'next/head';
-import GlobalProvider from '@/context/Global';
 import DefaultLayout from '@/layouts/DefaultLayout';
 
 import web from '@/web';
@@ -30,14 +29,14 @@ function MyApp({ Component, pageProps }) {
   }, [router.events]);
 
   return (
-    <GlobalProvider>
+    <>
       <Head>
         <title>{web.title}</title>
       </Head>
       <DefaultLayout>
         <Component {...pageProps} />
       </DefaultLayout>
-    </GlobalProvider>
+    </>
   );
 }
 

@@ -13,13 +13,13 @@ export default function BlogCard({ post, searchPosts, horizontal = false }) {
     <article
       className={classNames('flex flex-col w-full h-full group ')}>
       <div className='flex flex-col lg:flex-row '>
-        <div className='flex flex-col-reverse lg:w-3/12 justify-between items-start lg:items-end p-4 gap-2'>
-          <div className='flex lg:flex-col justify-between gap-4 w-full'>
-            <button onClick={() => searchPosts({ author: post.user_created.id })} className='flex lg:text-right text-sm font-light lg:justify-end items-center w-full gap-x-2 hover:text-primary'>{`${post.user_created.first_name} ${post.user_created.last_name}`}<UserIcon className='w-4 h-4 inline'/></button>
-            <p className='flex lg:text-right text-sm font-light lg:justify-end items-center w-full gap-x-2'>{format(new Date(post.date_created), 'dd MMM, yyyy')}<CalendarIcon className='w-4 h-4 inline'/></p>
+        <div className='flex flex-col-reverse lg:w-3/12 justify-between items-start lg:items-end py-4 lg:p-4 gap-2'>
+          <div className='flex lg:flex-col justify-between w-full'>
+            <p className='flex lg:text-right text-sm font-light justify-end  flex-row-reverse lg:flex-row items-center gap-x-2'>{`${post.user_created.first_name} ${post.user_created.last_name}`}<UserIcon className='w-4 h-4 inline'/></p>
+            <p className='flex lg:text-right text-sm font-light lg:justify-end flex-row-reverse lg:flex-row items-center gap-x-2'>{format(new Date(post.date_created), 'dd MMM, yyyy')}<CalendarIcon className='w-4 h-4 inline'/></p>
           </div>
 
-          <ul className='flex flex-row lg:flex-col justify-end w-full items-end gap-x-1 flex-wrap'>
+          <ul className='flex flex-row lg:flex-col lg:justify-end w-full items-end gap-x-1 flex-wrap'>
             {
               !!post.tags &&
               post.tags.map(({ blog_tag_id: item }) => (

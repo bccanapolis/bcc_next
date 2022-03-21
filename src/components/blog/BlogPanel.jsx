@@ -77,8 +77,7 @@ function BlogPanelChild({ pageAuthors, recentPosts, tags, searchPosts, close }) 
 
                   <div className='flex justify-between flex-col py-2'>
                     <Link href={`/blog/${post.slug}@${post.id}`}>
-                      <a>
-                        <h5 className='text-sm font-medium'>{post.title}</h5>
+                      <a className='text-sm font-medium hover:text-primary transition-colors duration-300'>{post.title}
                       </a>
                     </Link>
                     <p

@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import HeadSeo from '@/components/layout/HeadSeo';
 import BlogPanel from '@/components/blog/BlogPanel';
+import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
 
 export async function getServerSideProps(context) {
   const [slug, , id] = context.params.slug.split(/(@)(?!.*@)/);
@@ -77,26 +78,28 @@ export default function Index({ article, page, available_tags: tags, recent_arti
         <main className='w-full lg:w-9/12'>
           <h5 className='font-bold text-2xl mb-4'>{article.title}</h5>
           <div className='flex flex-col md:flex-row justify-between md:items-end gap-4'>
-            <button onClick={() => searchPosts({ author: article.user_created.id })}
-                    className='inline-flex items-center space-x-2'>
-              <div className='relative w-12 h-12 inline-block rounded-full'>
-                <Image
-                  src={apiAsset(article.user_created.avatar.id)} className='object-cover rounded-full'
-                  layout='fill' />
-              </div>
+            <div
+              className='inline-flex items-center space-x-2'>
+              {/*<div className='relative w-12 h-12 inline-block rounded-full'>*/}
+              {/*  <Image*/}
+              {/*    src={apiAsset(article.user_created.avatar.id)} className='object-cover rounded-full'*/}
+              {/*    layout='fill' />*/}
+              {/*</div>*/}
               <div className='inline-block text-left'>
-                <p
-                  className='font-medium'>{article.user_created.full_name}</p>
-                <p className='text-sm'>Postado em {format(new Date(article.date_created), 'dd MMM yyyy')}</p>
+                <p className='flex font-medium items-center gap-x-2'><UserIcon
+                  className='w-4 h-4 inline' /> {article.user_created.full_name}</p>
+                <p className='flex font-light items-center gap-x-2 text-sm'><CalendarIcon
+                  className='w-4 h-4 inline' /> Postado
+                  em {format(new Date(article.date_created), 'dd MMM, yyyy')}</p>
               </div>
-            </button>
+            </div>
             <ul className='inline-flex gap-x-1'>
               {
                 !!article.tags &&
                 article.tags.map(({ blog_tag_id: item }) => (
-                  <li key={`tag-post-${article.slug}-${item.name}`}>
-                    <button onClick={() => searchPosts({ tags: item.name })}
-                            className='text-sm text-neutral-500 border-[1px] border-neutral-100 px-1 py-0.5 hover:text-white hover:bg-primary/80 transition-colors duration-300'>{item.name}</button>
+                  <li key={`tag-post-${article.slug}-${item.name}`}
+                      className='text-sm text-neutral-500 px-1 py-0.5'>
+                    {item.name}
                   </li>
                 ))
               }

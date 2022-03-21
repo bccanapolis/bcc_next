@@ -29,10 +29,10 @@ export default function Banner({ fullscreen, images = null, overlay = true, chil
                       {
                         item.url.includes(process.env.NEXT_PUBLIC_API_URL) ?
                           <img
-                            className={classNames('h-full w-full object-cover object-center', !!item.tags && item.tags.join(' '))}
+                            className={classNames('h-full w-full object-cover object-center')}
                             src={item.url} alt={item.alt} /> :
                           <Image
-                            className={classNames('h-full w-full object-cover object-center', !!item.tags && item.tags.join(' '))}
+                            className={classNames('h-full w-full object-cover object-center')}
                             src={item.url} alt={item.alt}
                             layout='fill' priority={true} loading='eager' />
                       }
@@ -43,11 +43,11 @@ export default function Banner({ fullscreen, images = null, overlay = true, chil
               </Swiper> :
               img[0].url.includes(process.env.NEXT_PUBLIC_API_URL) ?
                 <img
-                  className={classNames('h-full w-full object-cover object-center', !!img[0].tags && img[0].tags.join(' '))}
+                  className={classNames('h-full w-full object-cover object-center')}
                   src={img[0].url}
                   alt={img[0].alt} /> :
                 <Image
-                  className={classNames('h-full w-full object-cover object-center', !!img[0].tags && img[0].tags.join(' '))}
+                  className={classNames('h-full w-full object-cover object-center')}
                   src={img[0].url}
                   alt={img[0].alt}
                   layout='fill' priority={true}
