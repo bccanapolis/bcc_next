@@ -1,8 +1,7 @@
 import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import Container from '@/components/layout/Container';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import client from '@/apollo-client';
-import { apiAsset, classNames, clearObject, onlyUnique, onlyUniqueObject } from '@/utils';
+import { apiAsset, clearObject, onlyUniqueObject } from '@/utils';
 import { dynamicBlog } from '@/graphql/query/blog';
 import { gql } from '@apollo/client';
 import { useRouter } from 'next/router';
@@ -101,13 +100,8 @@ export default function Index({
       <p
         className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Blog dos Alunos'}</p>
     </BannerBreadcrumb>
-    <Container className='flex flex-col-reverse lg:flex-row w-full gap-16 lg:gap-x-8'>
-      <main className='w-full lg:w-9/12 space-y-16'>
-        {/*{!!levelPosts[0].length && levelPosts[0].map(post => <BlogCard key={`article-${post.id}`} post={post}*/}
-        {/*                                                               horizontal={true} searchPosts={searchPosts} />)}*/}
-        {/*{!!levelPosts[1].length && <div className='gap-x-8 gap-y-16 grid grid-cols-1 md:grid-cols-2'>*/}
-        {/*  {levelPosts[1].map(post => (<BlogCard key={`article-${post.id}`} post={post} searchPosts={searchPosts}/>))}*/}
-        {/*</div>}*/}
+    <Container className='flex flex-col-reverse lg:flex-row w-full gap-4 lg:gap-x-8'>
+      <main className='w-full lg:w-9/12 space-y-8'>
         {!!levelPosts[2].length ? <div className='gap-8 grid grid-cols-1'>
             {levelPosts[2].map(post => (
               <BlogCard key={`article-${post.id}`} horizontal={true} post={post} searchPosts={searchPosts} />))}

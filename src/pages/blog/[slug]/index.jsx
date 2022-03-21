@@ -1,11 +1,9 @@
-import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import Container from '@/components/layout/Container';
 import { queryArticleByID } from '@/graphql/query/blog';
 import client from '@/apollo-client';
 import Markdown from '@/components/Markdown';
 import Banner from '@/components/layout/Banner';
 import { apiAsset, clearObject } from '@/utils';
-import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';

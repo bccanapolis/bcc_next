@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { apiAsset, classNames } from '@/utils';
 import { useRouter } from 'next/router';
+import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
+import { format } from 'date-fns';
 
 export default function BlogCard({ post, searchPosts, horizontal = false }) {
   const router = useRouter();
@@ -9,57 +11,50 @@ export default function BlogCard({ post, searchPosts, horizontal = false }) {
 
   return (
     <article
-      className={classNames('flex flex-col w-full h-full group', horizontal && 'md:flex-row')}>
-      <Link href={`/blog/${post.slug}@${post.id}`}>
-        <a
-          className={classNames('w-full h-64 md:h-auto', horizontal && 'h-64 md:h-auto min-h-[18rem] md:w-5/12 lg:w-6/12')}>
-          <div className='w-full h-full relative'>
-            <Image
-              className='object-cover hover:opacity-80 transition-opacity duration-300'
-              src={apiAsset(post.cover.id)} alt=''
-              layout='fill'
-            />
+      className={classNames('flex flex-col w-full h-full group ')}>
+      <div className='flex flex-col lg:flex-row '>
+        <div className='flex flex-col-reverse lg:w-3/12 justify-between items-start lg:items-end p-4 gap-2'>
+          <div className='flex lg:flex-col justify-between gap-4 w-full'>
+            <button onClick={() => searchPosts({ author: post.user_created.id })} className='flex lg:text-right text-sm font-light lg:justify-end items-center w-full gap-x-2 hover:text-primary'>{`${post.user_created.first_name} ${post.user_created.last_name}`}<UserIcon className='w-4 h-4 inline'/></button>
+            <p className='flex lg:text-right text-sm font-light lg:justify-end items-center w-full gap-x-2'>{format(new Date(post.date_created), 'dd MMM, yyyy')}<CalendarIcon className='w-4 h-4 inline'/></p>
           </div>
-        </a>
-      </Link>
-      <div
-        className={classNames('flex flex-col flex-1 justify-between p-4 leading-normal', horizontal && 'md:w-7/12 lg:w-6/12')}>
-        <div>
-          <Link href={`/blog/${post.slug}@${post.id}`}>
-            <a>
-              <h5 className='mb-2 text-xl font-bold tracking-tight'>{post.title}</h5>
-            </a>
-          </Link>
-          <p className='mb-3 text-sm text-neutral-700 font-light'>{post.description}</p>
-        </div>
-        <div>
-          <hr className='my-2' />
-          <div className='flex justify-between items-center'>
-            <button onClick={() => searchPosts({ author: post.user_created.id })}
-                    className='inline-flex items-center space-x-2 w-auto max-w-[calc(100%/12*8)]'>
-              <div className='relative w-10 h-10 inline-block rounded-full'>
-                <Image
-                  src={apiAsset(post.user_created.avatar.id)} className='object-cover rounded-full'
-                  layout='fill' />
-              </div>
-              <div className='inline-block text-left'>
-                <p
-                  className='text-sm truncate overflow-hidden'>{`${post.user_created.first_name} ${post.user_created.last_name}`}</p>
-                <p className='text-xs font-light'>{post.user_created.title}</p>
-              </div>
-            </button>
 
-            <ul className='inline-flex justify-end gap-x-1 items-baseline w-max max-w-[calc(100%/12*6)] flex-wrap'>
-              {
-                !!post.tags &&
-                post.tags.map(({ blog_tag_id: item }) => (
-                  <li key={`tag-post-${post.slug}-${item.name}`}>
-                    <button onClick={() => searchPosts({ tags: item.name })}
-                            className={classNames('text-xs border-[1px] border-neutral-100 bg-white px-1 py-0.5 hover:text-white hover:bg-primary/80 transition-colors duration-300', queryTag === item.name ? 'bg-primary/80 text-white' : 'text-neutral-500 ')}>{item.name}</button>
-                  </li>
-                ))
-              }
-            </ul>
+          <ul className='flex flex-row lg:flex-col justify-end max-w-[calc(100%/12*8)] lg:max-w-full items-end gap-x-1 flex-wrap'>
+            {
+              !!post.tags &&
+              post.tags.map(({ blog_tag_id: item }) => (
+                <li key={`tag-post-${post.slug}-${item.name}`}>
+                  <button onClick={() => searchPosts({ tags: item.name })}
+                          className={classNames('text-xs bg-white px-1 py-0.5 hover:text-white hover:bg-primary/80 transition-colors duration-300', queryTag === item.name ? 'bg-primary/80 text-white' : 'text-neutral-500 ')}>{item.name}</button>
+                </li>
+              ))
+            }
+          </ul>
+
+        </div>
+        <Link href={`/blog/${post.slug}@${post.id}`}>
+          <a
+            className={classNames('w-full h-64 lg:h-auto min-h-[18rem] lg:w-9/12')}>
+            <div className='w-full h-full relative'>
+              <Image
+                className='object-cover hover:opacity-80 transition-opacity duration-300'
+                src={apiAsset(post.cover.id)} alt=''
+                layout='fill'
+              />
+            </div>
+          </a>
+        </Link>
+      </div>
+      <div className='flex justify-end'>
+        <div
+          className={classNames('flex flex-col justify-between p-4 leading-normal w-full lg:w-9/12')}>
+          <div>
+            <Link href={`/blog/${post.slug}@${post.id}`}>
+              <a>
+                <h5 className='mb-2 text-xl font-bold tracking-tight hover:text-primary transition-colors duration-300'>{post.title}</h5>
+              </a>
+            </Link>
+            <p className='mb-3 text-sm text-neutral-700 font-light'>{post.description}</p>
           </div>
         </div>
       </div>

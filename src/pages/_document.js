@@ -1,5 +1,4 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-import web from '@/web';
 
 export default function Document() {
 

@@ -103,7 +103,7 @@ function BlogPanelChild({ pageAuthors, recentPosts, tags, searchPosts, close }) 
                       close();
                       searchPosts({ tags: item });
                     }}
-                    className={classNames('text-xs border-[1px] border-neutral-100 bg-white px-2 py-1 hover:text-white hover:bg-primary/80 transition-colors duration-300', queryTag === item ? 'bg-primary/80 text-white' : 'text-neutral-500 ')}
+                    className={classNames('text-xs bg-white px-2 py-1 hover:text-white hover:bg-primary/80 transition-colors duration-300', queryTag === item ? 'bg-primary/80 text-white' : 'text-neutral-500 ')}
                   >
                     {item}
                   </button>
