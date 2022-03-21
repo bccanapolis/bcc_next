@@ -153,7 +153,7 @@ export default function BlogPanel({ recentPosts, pageAuthors, tags, searchPosts,
                      }}
                      value={searchString}
                      onKeyDown={_handleKeyDown}
-                     className='bg-primary border-2 border-primary text-white placeholder:text-white rounded-full focus:outline-none outline-none border-none block w-full pr-10 px-4 py-3'
+                     className='bg-primary border-2 border-primary text-white placeholder:text-white focus:outline-none outline-none border-none block w-full pr-10 px-4 py-3'
                      placeholder='Search' />
               <div className='flex absolute inset-y-0 right-0 items-center pr-5'>
                 {
@@ -170,7 +170,7 @@ export default function BlogPanel({ recentPosts, pageAuthors, tags, searchPosts,
           </div>
           <div className='-mr-2 -my-2 lg:hidden'>
             <Popover.Button
-              className='bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary'>
+              className='bg-white p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary'>
               <span className='sr-only'>Open menu</span>
               <MenuIcon className='h-6 w-6' aria-hidden='true' />
             </Popover.Button>
@@ -193,7 +193,7 @@ export default function BlogPanel({ recentPosts, pageAuthors, tags, searchPosts,
                          className='absolute z-10 top-0 inset-x-0 transition transform origin-top-right lg:hidden'>
             {({ close }) => (
               <div
-                className='rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50 p-4'>
+                className='shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50 p-4'>
                 <BlogPanelChild pageAuthors={pageAuthors} recentPosts={recentPosts} tags={tags}
                                 searchPosts={searchPosts} close={close} />
               </div>
