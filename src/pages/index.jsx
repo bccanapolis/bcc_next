@@ -21,6 +21,7 @@ export async function getServerSideProps({}) {
               avatar {
                   id
               }
+              id
           }
           recent_article: article (limit: 5, page: 1, sort: "-date_created", filter: {status: {_eq: "published"}}) {
               user_created {

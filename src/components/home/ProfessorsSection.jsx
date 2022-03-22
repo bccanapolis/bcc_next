@@ -4,8 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 
 export default function ProfessorsSection({ professors = [], className }) {
-  console.log(professors);
-
   return (
     <div className={classNames('container', className)}>
       <div className='space-y-2 mb-16'>
