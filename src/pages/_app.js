@@ -1,5 +1,6 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import '@/styles/tailwind.scss';
 import 'highlight.js/scss/monokai.scss';
 import Head from 'next/head';

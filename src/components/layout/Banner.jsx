@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper';
+import { Autoplay, Navigation } from 'swiper';
 import Image from 'next/image';
 import { classNames } from '@/utils';
 
@@ -9,7 +9,8 @@ export default function Banner({
                                  images = null,
                                  overlay = true,
                                  children,
-                                 className
+                                 className,
+                                 navigation = false
                                }) {
   const img = images || [{ url: '/img/EK9o3S2WoAArZMf.webp', alt: 'Coleta de Lixo Eletrônico 2019' }];
 
@@ -27,7 +28,8 @@ export default function Banner({
                 autoplay={{
                   delay: 5000
                 }}
-                modules={[Autoplay]}
+                navigation={navigation}
+                modules={[Autoplay, Navigation]}
                 className='h-full'
               >
                 {
@@ -36,10 +38,10 @@ export default function Banner({
                       {
                         item.url.includes(process.env.NEXT_PUBLIC_API_URL) ?
                           <img
-                            className={classNames('h-full w-full object-cover object-center')}
+                            className={classNames('h-full w-full object-cover object-center brightness-50')}
                             src={item.url} alt={item.alt} /> :
                           <Image
-                            className={classNames('h-full w-full object-cover object-center')}
+                            className={classNames('h-full w-full object-cover object-center brightness-50')}
                             src={item.url} alt={item.alt}
                             layout='fill' priority={true} loading='eager' />
                       }
@@ -50,18 +52,15 @@ export default function Banner({
               </Swiper> :
               img[0].url.includes(process.env.NEXT_PUBLIC_API_URL) ?
                 <img
-                  className={classNames('h-full w-full object-cover object-center')}
+                  className={classNames('h-full w-full object-cover object-center brightness-50')}
                   src={img[0].url}
                   alt={img[0].alt} /> :
                 <Image
-                  className={classNames('h-full w-full object-cover object-center')}
+                  className={classNames('h-full w-full object-cover object-center brightness-50')}
                   src={img[0].url}
                   alt={img[0].alt}
                   layout='fill' priority={true}
                   loading='eager' />
-          }
-          {
-            overlay && <div className='absolute top-0 h-full w-full bg-overlay -z-0' />
           }
         </div>
       </div>

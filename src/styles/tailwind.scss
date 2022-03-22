@@ -57,6 +57,12 @@ pre {
   }
 }
 
+.swiper {
+  .swiper-button-prev, .swiper-button-next {
+    @apply text-primary;
+  }
+}
+
 #BR-GO{
   @apply text-primary;
 }
