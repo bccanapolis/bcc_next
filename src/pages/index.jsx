@@ -100,14 +100,16 @@ export default function Home({ page, recent_article: recentPosts, professors }) 
     <>
       <HeadSeo title={page.seo_title || 'IFG Câmpus Anápolis'} description={page.seo_description}
                openGraph={page.seo_image} keywords={page.seo_keywords} />
-      <Banner fullscreen={true} images={!!page.carousel.length ? page.carousel : null}>
+      <Banner fullscreen={true} navigation={true} images={!!page.carousel.length ? page.carousel : null}>
         <div className='container'>
-          <Image
-            src='/img/bcc_anapolis_logo.svg'
-            className='-mt-12'
-            width={540}
-            height={120}
-          />
+          <div className='sm:-mt-20 sm:-ml-4 relative h-48 w-full sm:w-[360px]'
+          >
+            <Image
+              src='/img/bcc_anapolis_logo.svg'
+              layout='fill'
+            />
+          </div>
+
         </div>
       </Banner>
       {

@@ -78,7 +78,7 @@ export default function index({ page }) {
                openGraph={page.seo_image} />
       <BannerBreadcrumb paths={paths} images={page.carousel}>
         <p
-          className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'GRUPO DE ESTUDO E PESQUISA EM CIÊNCIA DA COMPUTAÇÃO'}</p>
+          className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
       </BannerBreadcrumb>
       <Container>
         <div className='flex flex-wrap md:flex-nowrap gap-4'>

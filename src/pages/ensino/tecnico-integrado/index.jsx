@@ -61,7 +61,7 @@ export default function index({ page }) {
                openGraph={page.seo_image} />
       <BannerBreadcrumb paths={paths} images={page.carousel}>
         <p
-          className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Curso Técnico Integrado'}</p>
+          className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
       </BannerBreadcrumb>
       <Container className='space-y-4'>
         <div className='prose prose-neutral' dangerouslySetInnerHTML={{ __html: poke.paragraphs(8) }} />

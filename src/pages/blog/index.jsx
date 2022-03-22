@@ -98,7 +98,7 @@ export default function Index({
              openGraph={page.seo_image} keywords={page.seo_keywords} />
     <BannerBreadcrumb paths={paths} images={page.carousel}>
       <p
-        className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Blog dos Alunos'}</p>
+        className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
     </BannerBreadcrumb>
     <Container className='flex flex-col-reverse lg:flex-row w-full gap-4 lg:gap-x-8'>
       <main className='w-full lg:w-9/12 space-y-8'>
