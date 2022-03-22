@@ -521,11 +521,24 @@ type home_page {
     date_created_func: datetime_functions
     date_updated: Date
     date_updated_func: datetime_functions
-    display_secao_feature: Boolean
-    display_secao_posts: Boolean
-    display_secao_professores: Boolean
     hero_carousel(filter: home_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [home_page_files]
     id: ID
+    secao_feature_1_description: String
+    secao_feature_1_link: String
+    secao_feature_1_title: String
+    secao_feature_2_description: String
+    secao_feature_2_link: String
+    secao_feature_2_title: String
+    secao_feature_3_description: String
+    secao_feature_3_link: String
+    secao_feature_3_title: String
+    secao_feature_display: Boolean
+    secao_posts_display: Boolean
+    secao_posts_subtitle: String
+    secao_posts_title: String
+    secao_professores_display: Boolean
+    secao_professores_subtitle: String
+    secao_professores_title: String
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     seo_keywords: JSON
@@ -1231,11 +1244,24 @@ input home_page_filter {
     date_created_func: datetime_function_filter_operators
     date_updated: date_filter_operators
     date_updated_func: datetime_function_filter_operators
-    display_secao_feature: boolean_filter_operators
-    display_secao_posts: boolean_filter_operators
-    display_secao_professores: boolean_filter_operators
     hero_carousel: home_page_files_filter
     id: number_filter_operators
+    secao_feature_1_description: string_filter_operators
+    secao_feature_1_link: string_filter_operators
+    secao_feature_1_title: string_filter_operators
+    secao_feature_2_description: string_filter_operators
+    secao_feature_2_link: string_filter_operators
+    secao_feature_2_title: string_filter_operators
+    secao_feature_3_description: string_filter_operators
+    secao_feature_3_link: string_filter_operators
+    secao_feature_3_title: string_filter_operators
+    secao_feature_display: boolean_filter_operators
+    secao_posts_display: boolean_filter_operators
+    secao_posts_subtitle: string_filter_operators
+    secao_posts_title: string_filter_operators
+    secao_professores_display: boolean_filter_operators
+    secao_professores_subtitle: string_filter_operators
+    secao_professores_title: string_filter_operators
     seo_description: string_filter_operators
     seo_image: directus_files_filter
     seo_keywords: string_filter_operators

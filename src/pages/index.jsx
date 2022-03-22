@@ -46,9 +46,22 @@ export async function getServerSideProps({}) {
                   width
                   height
               }
-              display_secao_feature
-              display_secao_professores
-              display_secao_posts
+              secao_feature_display
+              secao_professores_display
+              secao_professores_title
+              secao_professores_subtitle
+              secao_posts_display
+              secao_posts_title
+              secao_posts_subtitle
+              secao_feature_1_description
+              secao_feature_1_link
+              secao_feature_1_title
+              secao_feature_2_description
+              secao_feature_2_link
+              secao_feature_2_title
+              secao_feature_3_description
+              secao_feature_3_link
+              secao_feature_3_title
               hero_carousel {
                   directus_files_id {
                       id
@@ -98,14 +111,42 @@ export default function Home({ page, recent_article: recentPosts, professors }) 
         </div>
       </Banner>
       {
-        page.display_secao_feature && <FeatureSection className='mb-20' />
+        page.secao_feature_display && <FeatureSection
+          features={[
+            {
+              title: page.secao_feature_1_title,
+              description: page.secao_feature_1_description,
+              link: page.secao_feature_1_link
+            },
+            {
+              title: page.secao_feature_2_title,
+              description: page.secao_feature_2_description,
+              link: page.secao_feature_2_link
+            },
+            {
+              title: page.secao_feature_3_title,
+              description: page.secao_feature_3_description,
+              link: page.secao_feature_3_link
+            }
+          ]}
+          className='mb-20' />
       }
       {
-        page.display_secao_professores && <ProfessorsSection className='mb-20 mt-20' professors={professors} />
+        page.secao_professores_display && <ProfessorsSection
+          section={{
+            title: page.secao_professores_title,
+            subtitle: page.secao_professores_subtitle
+          }}
+          className='mb-20 mt-20' professors={professors} />
       }
       <CourseSection className='mb-20' />
       {
-        page.display_secao_posts && <RecentPostsSection className='mb-20' posts={recentPosts} />
+        page.secao_posts_display && <RecentPostsSection
+          section={{
+            title: page.secao_posts_title,
+            subtitle: page.secao_posts_subtitle
+          }}
+          className='mb-20' posts={recentPosts} />
       }
 
       <div className='bg-primary'>

@@ -3,12 +3,12 @@ import { Autoplay, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 
-export default function ProfessorsSection({ professors = [], className }) {
+export default function ProfessorsSection({ section, professors = [], className }) {
   return (
     <div className={classNames('container', className)}>
       <div className='space-y-2 mb-16'>
-        <h5 className='text-4xl font-bold text-center'>Nossos docentes</h5>
-        <p className='font-light text-center'>In the history of modern astronomy there is.</p>
+        <h5 className='text-4xl font-bold text-center'>{section.title || 'Section Title'}</h5>
+        <p className='font-light text-center'>{section.subtitle || 'Section subtitle.'}</p>
       </div>
 
       <Swiper
