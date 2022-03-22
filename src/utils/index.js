@@ -11,7 +11,7 @@ export function stringBind(text = '', targetWord, replacingWord) {
 }
 
 export function clearObject(obj) {
-  for (var propName in obj) {
+  for (let propName in obj) {
     if (!obj[propName] || obj[propName] === null || obj[propName] === undefined) {
       delete obj[propName];
     }

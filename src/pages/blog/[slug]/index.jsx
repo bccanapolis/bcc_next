@@ -4,7 +4,6 @@ import client from '@/apollo-client';
 import Markdown from '@/components/Markdown';
 import Banner from '@/components/layout/Banner';
 import { apiAsset, clearObject } from '@/utils';
-import Image from 'next/image';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import HeadSeo from '@/components/layout/HeadSeo';
@@ -38,15 +37,10 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function Index({ article, page, available_tags: tags, recent_article: recentPosts }) {
+export default function Index({ article, available_tags: tags, recent_article: recentPosts }) {
   const cover = !!article.cover ? [{ url: apiAsset(article.cover.id), alt: article.cover.title }] : null;
   const router = useRouter();
 
-  // const paths = [
-  //   { url: '/', label: 'home' },
-  //   { url: '/blog', label: 'blog' },
-  //   { url: '', label: 'artigo', disabled: true }
-  // ];
   function searchPosts({ tags = '', author = '', search = '' }) {
     const query = {
       tags,

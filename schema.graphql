@@ -613,6 +613,7 @@ type pos_graduacao_page_files_aggregated_fields {
 }
 
 type professors {
+    avatar(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     degree: String
     disciplines(filter: professors_discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors_discipline]
     id: ID
@@ -1285,6 +1286,7 @@ input professors_discipline_filter {
 input professors_filter {
     _and: [professors_filter]
     _or: [professors_filter]
+    avatar: directus_files_filter
     degree: string_filter_operators
     disciplines: professors_discipline_filter
     id: number_filter_operators

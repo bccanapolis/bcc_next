@@ -115,7 +115,6 @@ export default function Index({
         {
           !!levelPosts[2].length &&
           <>
-            <hr className='my-4 mx-auto px-12' />
             <BlogPagination searchPosts={searchPosts} page={page} />
           </>
         }

@@ -1,0 +1,41 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import { apiAsset, classNames } from '@/utils';
+import { format } from 'date-fns';
+
+export default function BlogCardHome({ post }) {
+  return (
+    <article
+      className={classNames('flex flex-col w-full h-full group ')}>
+      <Link href={`/blog/${post.slug}@${post.id}`}>
+        <a
+          className={classNames('w-full h-48')}>
+          <div className='w-full h-full relative'>
+            <Image
+              className='object-cover hover:opacity-80 transition-opacity duration-300'
+              src={apiAsset(post.cover.id)} alt=''
+              layout='fill'
+            />
+          </div>
+        </a>
+      </Link>
+      <div className='p-2 mt-2 space-y-2'>
+        <div className='divide flex justify-between'>
+          <p className='text-sm'>{`${post.user_created.first_name} ${post.user_created.last_name}`}</p>
+          <p className='text-sm'>{format(new Date(post.date_created), 'dd MMM, yyyy')}</p>
+        </div>
+        <div>
+          <Link href={`/blog/${post.slug}@${post.id}`}>
+            <a>
+              <h5
+                className='font-bold tracking-tight hover:text-primary transition-colors duration-300'>{post.title}</h5>
+            </a>
+          </Link>
+          <hr className='my-2' />
+          <p className='text-sm text-neutral-700 font-light'>{post.description}</p>
+        </div>
+      </div>
+
+    </article>
+  );
+}

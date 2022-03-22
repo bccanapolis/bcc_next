@@ -38,8 +38,8 @@ pre {
   }
 }
 
-#swiper-blog-panel {
-  .swiper {
+.swiper-overflow {
+  &.swiper, .swiper {
     overflow: initial;
     overflow-x: hidden;
     @apply flex flex-col-reverse;

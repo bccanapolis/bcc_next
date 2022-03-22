@@ -25,7 +25,7 @@ function BlogPanelChild({ pageAuthors, recentPosts, tags, searchPosts, close }) 
         {
           !!pageAuthors.length &&
           <>
-            <div id='swiper-blog-panel'>
+            <div className='swiper-overflow'>
               <Swiper
                 slidesPerView={1}
                 autoplay={{
