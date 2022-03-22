@@ -521,6 +521,9 @@ type home_page {
     date_created_func: datetime_functions
     date_updated: Date
     date_updated_func: datetime_functions
+    display_secao_feature: Boolean
+    display_secao_posts: Boolean
+    display_secao_professores: Boolean
     hero_carousel(filter: home_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [home_page_files]
     id: ID
     seo_description: String
@@ -962,6 +965,13 @@ input blog_tag_filter {
     name: string_filter_operators
 }
 
+input boolean_filter_operators {
+    _eq: Boolean
+    _neq: Boolean
+    _nnull: Boolean
+    _null: Boolean
+}
+
 input create_vote_input {
     date_created: Date
     date_created_func: datetime_functionsInput
@@ -1221,6 +1231,9 @@ input home_page_filter {
     date_created_func: datetime_function_filter_operators
     date_updated: date_filter_operators
     date_updated_func: datetime_function_filter_operators
+    display_secao_feature: boolean_filter_operators
+    display_secao_posts: boolean_filter_operators
+    display_secao_professores: boolean_filter_operators
     hero_carousel: home_page_files_filter
     id: number_filter_operators
     seo_description: string_filter_operators

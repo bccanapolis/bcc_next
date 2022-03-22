@@ -46,6 +46,9 @@ export async function getServerSideProps({}) {
                   width
                   height
               }
+              display_secao_feature
+              display_secao_professores
+              display_secao_posts
               hero_carousel {
                   directus_files_id {
                       id
@@ -94,10 +97,16 @@ export default function Home({ page, recent_article: recentPosts, professors }) 
           />
         </div>
       </Banner>
-      <FeatureSection className='mb-20' />
-      <ProfessorsSection className='mb-20' professors={professors} />
+      {
+        page.display_secao_feature && <FeatureSection className='mb-20' />
+      }
+      {
+        page.display_secao_professores && <ProfessorsSection className='mb-20 mt-20' professors={professors} />
+      }
       <CourseSection className='mb-20' />
-      <RecentPostsSection className='mb-20' posts={recentPosts} />
+      {
+        page.display_secao_posts && <RecentPostsSection className='mb-20' posts={recentPosts} />
+      }
 
       <div className='bg-primary'>
         <div className='container flex py-20'>

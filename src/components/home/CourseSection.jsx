@@ -36,7 +36,7 @@ export default function CourseSection({ className }) {
             </div>
           </div>
         </div>
-        <div className='w-full lg:w-6/12 bg-neutral-700/40 flex items-center justify-center py-20 px-10'>
+        <div className='w-full lg:w-6/12 bg-white/10 flex items-center justify-center py-20 px-10'>
           <div className='flex w-full h-full'>
             <BrazilSVG className='text-white/80'/>
           </div>
