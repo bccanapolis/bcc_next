@@ -1,5 +1,5 @@
 import { classNames } from '@/utils';
-import BlogCardHome from '@/components/blog/BlogCardHome';
+import ArticleCardHome from '@/components/article/ArticleCardHome';
 
 export default function RecentPostsSection({ section, posts = [], className }) {
   return (
@@ -13,7 +13,7 @@ export default function RecentPostsSection({ section, posts = [], className }) {
         {
           !!posts.length &&
           posts.map(post => (
-            <BlogCardHome key={`recent-post-${post.id}`} post={post} />
+            <ArticleCardHome key={`recent-post-${post.id}`} post={post} />
           ))
         }
       </div>

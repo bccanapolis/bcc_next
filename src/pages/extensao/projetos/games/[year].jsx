@@ -54,11 +54,11 @@ export async function getServerSideProps({ query }) {
     };
   });
 
-  const carousel = games_page.hero_carousel.map(item => ({
+  const carousel = games_page.hero_carousel ? games_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description,
     tags: item.directus_files_id.tags
-  }));
+  })) : null;
 
   return {
     props: { games, page: { ...games_page, carousel } }

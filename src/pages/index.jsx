@@ -77,11 +77,11 @@ export async function getServerSideProps({}) {
     query: query
   })).data;
 
-  const carousel = home_page.hero_carousel.map(item => ({
+  const carousel = home_page.hero_carousel ? home_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description,
     tags: item.directus_files_id.tags
-  }));
+  })) : null;
 
   return {
     props: {

@@ -7,7 +7,7 @@ import { apiAsset, clearObject } from '@/utils';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import HeadSeo from '@/components/layout/HeadSeo';
-import BlogPanel from '@/components/blog/BlogPanel';
+import ArticlePanel from '@/components/article/ArticlePanel';
 import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
 
 export async function getServerSideProps(context) {
@@ -69,7 +69,7 @@ export default function Index({ article, available_tags: tags, recent_article: r
                openGraph={article.cover} keywords={keywords.join(', ')} />
       <Banner images={cover} className='h-96' overlay={false} />
       <Container className='flex flex-col-reverse lg:flex-row w-full gap-16 lg:gap-x-8'>
-        <main className='w-full lg:w-9/12'>
+        <main className='w-full lg:w-8/12 2xl:w-9/12 '>
           <h5 className='font-bold text-2xl mb-4'>{article.title}</h5>
           <div className='flex flex-col md:flex-row justify-between md:items-end gap-4'>
             <div
@@ -103,8 +103,8 @@ export default function Index({ article, available_tags: tags, recent_article: r
           <hr className='my-4' />
           <Markdown className='prose prose-neutral'>{article.content}</Markdown>
         </main>
-        <BlogPanel searchPosts={searchPosts} pageAuthors={[article.user_created]} recentPosts={recentPosts} tags={tags}
-                   className='w-full lg:w-3/12' />
+        <ArticlePanel searchPosts={searchPosts} pageAuthors={[article.user_created]} recentPosts={recentPosts} tags={tags}
+                      className='w-full lg:w-4/12 2xl:w-3/12 ' />
       </Container>
     </>
   );

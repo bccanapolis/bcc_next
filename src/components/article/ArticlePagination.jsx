@@ -1,7 +1,7 @@
 import { classNames } from '@/utils';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
-export default function BlogPagination({ searchPosts, page }) {
+export default function ArticlePagination({ searchPosts, page }) {
   return (
     <div className='flex flex-col items-end'>
 

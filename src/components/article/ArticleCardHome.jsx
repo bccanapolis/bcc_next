@@ -2,12 +2,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { apiAsset, classNames } from '@/utils';
 import { format } from 'date-fns';
+import slugify from 'slugify';
 
-export default function BlogCardHome({ post }) {
+export default function ArticleCardHome({ post, isNews }) {
+  const route = isNews ? '/noticias' : '/blog'
+
   return (
     <article
       className={classNames('flex flex-col w-full h-full group ')}>
-      <Link href={`/blog/${post.slug}@${post.id}`}>
+      <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}@${post.id}`}>
         <a
           className={classNames('w-full h-48')}>
           <div className='w-full h-full relative'>
@@ -21,11 +24,14 @@ export default function BlogCardHome({ post }) {
       </Link>
       <div className='p-2 mt-2 space-y-2'>
         <div className='divide flex justify-between'>
-          <p className='text-sm'>{`${post.user_created.first_name} ${post.user_created.last_name}`}</p>
+          {
+            !isNews &&
+            <p className='text-sm'>{`${post.user_created.first_name} ${post.user_created.last_name}`}</p>
+          }
           <p className='text-sm'>{format(new Date(post.date_created), 'dd MMM, yyyy')}</p>
         </div>
         <div>
-          <Link href={`/blog/${post.slug}@${post.id}`}>
+          <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}@${post.id}`}>
             <a>
               <h5
                 className='font-bold tracking-tight hover:text-primary transition-colors duration-300'>{post.title}</h5>

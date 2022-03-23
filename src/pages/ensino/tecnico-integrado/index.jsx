@@ -33,10 +33,10 @@ export async function getServerSideProps() {
 
   const { tecnico_integrado_page } = (await client.query({ query })).data;
 
-  const carousel = tecnico_integrado_page.hero_carousel.map(item => ({
+  const carousel = tecnico_integrado_page.hero_carousel ? tecnico_integrado_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description
-  }));
+  })) : null;
 
   return {
     props: {

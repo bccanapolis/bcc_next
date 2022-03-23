@@ -90,6 +90,10 @@ const navigation = [
     ]
   },
   {
+    url: '/noticias',
+    label: 'noticias'
+  },
+  {
     url: '/blog',
     label: 'blog'
   }
@@ -115,7 +119,7 @@ function NavLinks({ closeParent }) {
                     <ChevronDownIcon
                       className={classNames(
                         open ? 'text-neutral-600' : 'text-neutral-400',
-                        'ml-2 h-5 w-5 group-hover:text-neutral-500'
+                        'ml-1 h-5 w-5 group-hover:text-neutral-500'
                       )}
                       aria-hidden='true'
                     />
@@ -220,7 +224,7 @@ export default function Example() {
                   <MenuIcon className='h-6 w-6' aria-hidden='true' />
                 </Popover.Button>
               </div>
-              <Popover.Group as='nav' className='hidden md:flex md:flex-1 space-x-10'>
+              <Popover.Group as='nav' className='hidden md:flex md:flex-1 space-x-8'>
                 <NavLinks closeParent={close} />
               </Popover.Group>
             </div>

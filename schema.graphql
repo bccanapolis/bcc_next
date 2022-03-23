@@ -56,6 +56,9 @@ type Query {
     link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [link]
     link_aggregated(filter: link_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [link_aggregated]
     link_by_id(id: ID!): link
+    news(filter: news_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [news]
+    news_aggregated(filter: news_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [news_aggregated]
+    news_by_id(id: ID!): news
     pos_graduacao_page: pos_graduacao_page
     pos_graduacao_page_files(filter: pos_graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pos_graduacao_page_files]
     pos_graduacao_page_files_aggregated(filter: pos_graduacao_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [pos_graduacao_page_files_aggregated]
@@ -588,6 +591,39 @@ type link_aggregated {
 
 type link_aggregated_fields {
     id: Float
+}
+
+type news {
+    content: String
+    cover(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    description: String
+    id: ID
+    sort: Int
+    status: String!
+    title: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+}
+
+type news_aggregated {
+    avg: news_aggregated_fields
+    avgDistinct: news_aggregated_fields
+    count: news_aggregated_fields
+    countDistinct: news_aggregated_fields
+    group: JSON
+    max: news_aggregated_fields
+    min: news_aggregated_fields
+    sum: news_aggregated_fields
+    sumDistinct: news_aggregated_fields
+}
+
+type news_aggregated_fields {
+    id: Float
+    sort: Float
 }
 
 type pos_graduacao_page {
@@ -1274,6 +1310,24 @@ input link_filter {
     id: number_filter_operators
     label: string_filter_operators
     url: string_filter_operators
+}
+
+input news_filter {
+    _and: [news_filter]
+    _or: [news_filter]
+    content: string_filter_operators
+    cover: directus_files_filter
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    description: string_filter_operators
+    id: number_filter_operators
+    sort: number_filter_operators
+    status: string_filter_operators
+    title: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input number_filter_operators {

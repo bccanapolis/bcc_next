@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
 import { format } from 'date-fns';
 
-export default function BlogCard({ post, searchPosts }) {
+export default function ArticleCard({ post, searchPosts }) {
   const router = useRouter();
   const queryTag = router.query.tags;
 

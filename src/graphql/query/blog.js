@@ -128,7 +128,7 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
     };
   }
 
-  return jsonToGraphQLQuery(query, { pretty: true });
+  return jsonToGraphQLQuery(query);
 };
 
 export const queryArticleByID = gql`

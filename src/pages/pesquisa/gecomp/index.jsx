@@ -51,10 +51,10 @@ export async function getServerSideProps({}) {
     degree: item.professors_id.degree
   }));
 
-  const carousel = gecomp_page.hero_carousel.map(item => ({
+  const carousel = gecomp_page.hero_carousel ? gecomp_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description
-  }));
+  })) : null;
 
   return {
     props: {
@@ -82,7 +82,8 @@ export default function index({ page }) {
       </BannerBreadcrumb>
       <Container>
         <div className='flex flex-wrap md:flex-nowrap gap-4'>
-          <div className='w-full md:w-8/12 prose prose-neutral' dangerouslySetInnerHTML={{ __html: page.description }} />
+          <div className='w-full md:w-8/12 prose prose-neutral'
+               dangerouslySetInnerHTML={{ __html: page.description }} />
           <div className='w-full md:w-4/12 flex flex-col gap-4'>
             <div className='bg-neutral-50 px-2 w-full'>
               <p className='text-lg font-semibold mx-4'>Professores Integrantes</p>
