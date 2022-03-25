@@ -2,6 +2,7 @@ version: '3'
 services:
   nextjs:
     container_name: bcc_front
+    restart: unless-stopped
     build: ./
     networks:
       - front
@@ -26,4 +27,3 @@ networks:
     driver: bridge
   nginx-proxy:
     external: true
-

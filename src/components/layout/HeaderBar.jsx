@@ -90,10 +90,6 @@ const navigation = [
     ]
   },
   {
-    url: '/noticias',
-    label: 'noticias'
-  },
-  {
     url: '/blog',
     label: 'blog'
   }

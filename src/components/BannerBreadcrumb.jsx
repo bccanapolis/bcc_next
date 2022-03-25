@@ -7,7 +7,7 @@ export default function BannerBreadcrumb({ paths, children, images = [] }) {
       <Banner images={!!images.length ? images : null}>
         <div className='flex justify-center items-center flex-col container'>
           {children}
-          <Breadcrump paths={paths} className='mt-8' />
+          <Breadcrump paths={paths} className='mt-8' imageLoading='eager' />
         </div>
       </Banner>
     </>
