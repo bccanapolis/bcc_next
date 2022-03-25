@@ -168,7 +168,7 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
           <div className='w-full lg:w-4/12'>
             <Menu as='div' className='relative lg:float-right'>
               <Menu.Button
-                className='bg-white py-2 px-4 uppercase  font-medium font-sm w-full lg:w-max'>Acessar</Menu.Button>
+                className='bg-white py-2 px-4 uppercase  font-medium font-sm w-full lg:w-max hover:bg-primary hover:text-white transition-colors duration-300'>Acessar</Menu.Button>
               <Transition
                 as={Fragment}
                 enter='transition ease-out duration-100'
@@ -180,14 +180,14 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
               >
                 <Menu.Items
                   className='absolute left-0 w-full max-h-64 overflow-hidden overflow-y-auto origin-top-right bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                  <ul className='py-2 px-4 space-y-2'>
+                  <ul>
                     {
                       games.map(item =>
                         <Menu.Item key={`game-section-${item}`}>
                           <li>
                             <Link href={`/extensao/projetos/games/${item}`}>
                               <a
-                                className='hover:text-primary transition-colors duration-300 inline-flex w-full'>{item}</a>
+                                className='py-2 px-4 hover:bg-primary hover:text-white transition-colors duration-300 inline-flex justify-center w-full'>{item}</a>
                             </Link>
                           </li>
                         </Menu.Item>
