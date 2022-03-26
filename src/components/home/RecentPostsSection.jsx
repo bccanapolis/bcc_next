@@ -6,12 +6,12 @@ import { ArrowRightIcon } from '@heroicons/react/outline';
 export default function RecentPostsSection({ section, posts = [], className }) {
   return (
     <div className='container'>
-      <div className='space-y-2 mb-16'>
+      <div className='space-y-2 mb-12'>
         <h5 className='text-4xl font-bold text-center'>{section.title || 'Section Title'}</h5>
         <p className='font-light text-center'>{section.subtitle || 'Section subtitle.'}</p>
       </div>
       <Link href='/blog'>
-        <a className='text-sm hover:text-primary float-right mb-4'>Veja mais <ArrowRightIcon
+        <a className='text-sm hover:text-primary float-right mb-8'>Veja mais <ArrowRightIcon
           className='w-4 h-4 inline-block' /></a>
       </Link>
       <div

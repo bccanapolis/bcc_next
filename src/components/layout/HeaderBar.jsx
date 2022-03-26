@@ -66,12 +66,14 @@ const navigation = [
         label: 'Técnico Integrado'
       },
       {
-        url: '/ensino/graduacao',
-        label: 'Graduação'
+        url: 'http://cursos.ifg.edu.br/info/bach/bach-ciencia-da-computacao/CP-ANAPOLI',
+        label: 'Graduação',
+        external: true,
       },
       {
-        url: '/ensino/pos-graduacao',
-        label: 'Pós Graduação'
+        url: 'http://cursos.ifg.edu.br/info/esp/e-iap/CP-ANAPOLI',
+        label: 'Pós Graduação',
+        external: true,
       }
     ]
   },
@@ -135,6 +137,20 @@ function NavLinks({ closeParent }) {
                       <div className='overflow-hidden'>
                         <div className='relative grid gap-6 bg-neutral-700 px-4 py-6 sm:gap-8 sm:p-8'>
                           {link.dropdown.map((item, index) => (
+                            item.external ?
+                              <a
+                                target='_blank' rel='noreferrer'
+                                // onClick={() => {
+                                //   close();
+                                //   closeParent();
+                                // }}
+                                href={item.url}
+                                className='-m-2 p-2 flex items-start rounded-lg group'
+                              >
+                                <p
+                                  className='text-sm font-medium text-neutral-100 group-hover:text-primary uppercase'>{item.label}</p>
+                              </a>
+                              :
                             <Link key={item.label + index + item.url}
                                   href={item.url}>
                               <a
@@ -142,7 +158,7 @@ function NavLinks({ closeParent }) {
                                   close();
                                   closeParent();
                                 }}
-                                className='-m-3 p-3 flex items-start rounded-lg group'
+                                className='-m-2 p-2 flex items-start rounded-lg group'
                               >
                                 <p
                                   className='text-sm font-medium text-neutral-100 group-hover:text-primary uppercase'>{item.label}</p>

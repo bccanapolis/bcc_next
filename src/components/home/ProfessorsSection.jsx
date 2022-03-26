@@ -8,12 +8,12 @@ import { ArrowRightIcon } from '@heroicons/react/outline';
 export default function ProfessorsSection({ section, professors = [], className }) {
   return (
     <div className={classNames('container', className)}>
-      <div className='space-y-2 mb-16'>
+      <div className='space-y-2 mb-12'>
         <h5 className='text-4xl font-bold text-center'>{section.title || 'Section Title'}</h5>
         <p className='font-light text-center'>{section.subtitle || 'Section subtitle.'}</p>
       </div>
       <Link href='/pessoas/professores'>
-        <a className='text-sm hover:text-primary float-right mb-4'>Saiba mais <ArrowRightIcon
+        <a className='text-sm hover:text-primary float-right mb-8'>Saiba mais <ArrowRightIcon
           className='w-4 h-4 inline-block' /></a>
       </Link>
       <Swiper
