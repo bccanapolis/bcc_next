@@ -92,7 +92,7 @@ export default function ProjectsPage({ projects, page }) {
       <HeadSeo title={page.seo_title} description={page.seo_description} openGraph={page.seo_image}
                keywords={page.seo_keywords} />
       <BannerBreadcrumb paths={paths} images={page.carousel}>
-        <p className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
+        <p className='text-5xl text-neutral-100 text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
       </BannerBreadcrumb>
       {
         !!page.content &&

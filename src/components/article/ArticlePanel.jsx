@@ -62,7 +62,7 @@ function BlogPanelChild({ pageAuthors, recentPosts, tags, searchPosts, close, is
         }
         <div className='space-y-4'>
         <span
-          className='inline-flex justify-center px-4 py-4 w-full bg-primary text-white font-bold'>Posts Recentes</span>
+          className='inline-flex justify-center px-4 py-4 w-full bg-primary text-neutral-100 font-bold'>Posts Recentes</span>
           <div className='flex flex-col gap-y-4'>
             {
               recentPosts.map((post) => (
@@ -104,7 +104,7 @@ function BlogPanelChild({ pageAuthors, recentPosts, tags, searchPosts, close, is
             <hr className='mx-8' />
             <div className='space-y-4'>
         <span
-          className='inline-flex justify-center px-4 py-4 w-full bg-primary text-white font-bold'>Nuvem de Tags</span>
+          className='inline-flex justify-center px-4 py-4 w-full bg-primary text-neutral-100 font-bold'>Nuvem de Tags</span>
               <ul className='inline-flex gap-x-4 gap-y-2 items-baseline flex-wrap'>
                 {
                   tags.map((item) => (
@@ -114,7 +114,7 @@ function BlogPanelChild({ pageAuthors, recentPosts, tags, searchPosts, close, is
                           close();
                           searchPosts({ tags: item });
                         }}
-                        className={classNames('text-xs bg-white px-2 py-1 hover:text-white hover:bg-primary/80 transition-colors duration-300', queryTag === item ? 'bg-primary/80 text-white' : 'text-neutral-500 ')}
+                        className={classNames('text-xs bg-neutral-100 px-2 py-1 hover:text-neutral-100 hover:bg-primary/80 transition-colors duration-300', queryTag === item ? 'bg-primary/80 text-neutral-100' : 'text-neutral-700 ')}
                       >
                         {item}
                       </button>
@@ -160,7 +160,7 @@ export default function ArticlePanel({
 
   return (
     <aside className={classNames(className)}>
-      <Popover className='relative bg-white'>
+      <Popover className='relative bg-neutral-100'>
         <div
           className='flex justify-between items-center gap-x-4 lg:gap-0'>
           <div className='w-full'>
@@ -172,7 +172,7 @@ export default function ArticlePanel({
                      }}
                      value={searchString}
                      onKeyDown={_handleKeyDown}
-                     className='bg-primary border-2 border-primary text-white placeholder:text-white focus:outline-none outline-none border-none block w-full pr-10 px-4 py-3'
+                     className='bg-primary border-2 border-primary text-neutral-100 placeholder:text-neutral-100 focus:outline-none outline-none border-none block w-full pr-10 px-4 py-3'
                      placeholder='Search' />
               <div className='flex absolute inset-y-0 right-0 items-center pr-5'>
                 {
@@ -180,16 +180,16 @@ export default function ArticlePanel({
                     <XIcon onClick={() => {
                       setSearchString('');
                       handleSearch('', 0);
-                    }} className='w-6 h-6 text-white pointer-cursor' />
+                    }} className='w-6 h-6 text-neutral-100 pointer-cursor' />
                     :
-                    <SearchIcon className='w-6 h-6 text-white' />
+                    <SearchIcon className='w-6 h-6 text-neutral-100' />
                 }
               </div>
             </div>
           </div>
           <div className='-mr-2 -my-2 lg:hidden'>
             <Popover.Button
-              className='bg-white p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary'>
+              className='bg-neutral-100 p-2 inline-flex items-center justify-center text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary'>
               <span className='sr-only'>Open menu</span>
               <MenuIcon className='h-6 w-6' aria-hidden='true' />
             </Popover.Button>
@@ -209,7 +209,7 @@ export default function ArticlePanel({
                          className='absolute z-10 top-0 inset-x-0 transition transform origin-top-right lg:hidden'>
             {({ close }) => (
               <div
-                className='shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50 p-4'>
+                className='shadow-lg ring-1 ring-black ring-opacity-5 bg-neutral-100 divide-y-2 divide-neutral-50 p-4'>
                 <BlogPanelChild
                   pageAuthors={pageAuthors}
                   recentPosts={recentPosts}

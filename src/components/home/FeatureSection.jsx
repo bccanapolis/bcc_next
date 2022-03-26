@@ -9,8 +9,8 @@ export default function FeatureSection({ features = [], className }) {
           <Link href={feat.link ?? ''} key={`feature-${index}`} >
             <a className='z-10 group cursor-pointer shadow'>
               <div
-                className='h-16 bg-primary lg:bg-white/20 flex items-center justify-center lg:group-hover:bg-primary transition-colors duration-300'>
-                <p className='text-white font-medium uppercase'>{feat.title || `Feature ${index + 1} Title`}</p>
+                className='h-16 bg-primary lg:bg-neutral-100/20 flex items-center justify-center lg:group-hover:bg-primary transition-colors duration-300'>
+                <p className='text-neutral-100 font-medium uppercase'>{feat.title || `Feature ${index + 1} Title`}</p>
               </div>
               <div className='p-4'>
                 <p className='text-center'>

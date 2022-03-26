@@ -39,10 +39,10 @@ export default function Banner({
                       {
                         item.url.includes(process.env.NEXT_PUBLIC_API_URL) ?
                           <img
-                            className={classNames('h-full w-full object-cover object-center brightness-50')}
+                            className={classNames('h-full w-full object-cover object-center', overlay && 'brightness-50')}
                             src={item.url} alt={item.alt} loading={imageLoading} /> :
                           <Image
-                            className={classNames('h-full w-full object-cover object-center brightness-50')}
+                            className={classNames('h-full w-full object-cover object-center', overlay && 'brightness-50')}
                             src={item.url} alt={item.alt}
                             layout='fill' loading={imageLoading} />
                       }
@@ -53,11 +53,11 @@ export default function Banner({
               </Swiper> :
               img[0].url.includes(process.env.NEXT_PUBLIC_API_URL) ?
                 <img
-                  className={classNames('h-full w-full object-cover object-center brightness-50')}
+                  className={classNames('h-full w-full object-cover object-center', overlay && 'brightness-50')}
                   src={img[0].url}
                   alt={img[0].alt} loading={imageLoading} /> :
                 <Image
-                  className={classNames('h-full w-full object-cover object-center brightness-50')}
+                  className={classNames('h-full w-full object-cover object-center', overlay && 'brightness-50')}
                   src={img[0].url}
                   alt={img[0].alt}
                   layout='fill' loading={imageLoading} />

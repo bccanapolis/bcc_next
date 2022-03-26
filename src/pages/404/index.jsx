@@ -19,7 +19,7 @@ export default function Page() {
         <div className='px-12 py-20 w-full md:w-1/2'>
           <span className='text-primary'>ERRO 404</span>
           <h1 className='text-3xl font-bold'>Esta página não existe.</h1>
-          <p className='text-neutral-600'>A página que você está procurando pôde ser encontrada.</p>
+          <p className='text-neutral-700'>A página que você está procurando pôde ser encontrada.</p>
           <hr className='border border-neutral-100 my-4' />
         </div>
         <div className='h-72 md:h-screen w-full md:w-1/2'>

@@ -67,7 +67,7 @@ export default function Index({ article, available_tags: tags, recent_article: r
     <>
       <HeadSeo title={`${article.title} - ${article.user_created.full_name}`} description={article.description}
                openGraph={article.cover} keywords={keywords.join(', ')} />
-      <Banner images={cover} className='h-96' overlay={false} />
+      <Banner images={cover} className='h-96' overlay={false}/>
       <Container className='flex flex-col-reverse lg:flex-row w-full gap-16 lg:gap-x-8'>
         <main className='w-full lg:w-8/12 2xl:w-9/12 '>
           <h5 className='font-bold text-2xl mb-4'>{article.title}</h5>
@@ -92,7 +92,7 @@ export default function Index({ article, available_tags: tags, recent_article: r
                 !!article.tags &&
                 article.tags.map(({ blog_tag_id: item }) => (
                   <li key={`tag-post-${article.slug}-${item.name}`}
-                      className='text-sm text-neutral-500 px-1 py-0.5'>
+                      className='text-sm text-neutral-700 px-1 py-0.5'>
                     {item.name}
                   </li>
                 ))

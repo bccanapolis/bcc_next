@@ -2,6 +2,8 @@ import { apiAsset, classNames } from '@/utils';
 import { Autoplay, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRightIcon } from '@heroicons/react/outline';
 
 export default function ProfessorsSection({ section, professors = [], className }) {
   return (
@@ -10,9 +12,12 @@ export default function ProfessorsSection({ section, professors = [], className 
         <h5 className='text-4xl font-bold text-center'>{section.title || 'Section Title'}</h5>
         <p className='font-light text-center'>{section.subtitle || 'Section subtitle.'}</p>
       </div>
-
+      <Link href='/pessoas/professores'>
+        <a className='text-sm hover:text-primary float-right mb-4'>Saiba mais <ArrowRightIcon
+          className='w-4 h-4 inline-block' /></a>
+      </Link>
       <Swiper
-        className='swiper-overflow'
+        className='swiper-overflow clear-both'
         spaceBetween={20}
         breakpoints={{
           0: { slidesPerView: 1 },

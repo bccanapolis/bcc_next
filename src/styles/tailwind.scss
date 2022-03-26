@@ -21,11 +21,10 @@ hr {
   table {
     @apply block overflow-x-auto;
   }
-}
 
-.bg-overlay {
-  z-index: 1;
-  background: rgba(51, 51, 51, .6);
+  pre {
+    @apply rounded-none;
+  }
 }
 
 /* HIGHLIGHT.JS */

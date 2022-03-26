@@ -98,7 +98,7 @@ export default function Index({
              openGraph={page.seo_image} keywords={page.seo_keywords} />
     <BannerBreadcrumb paths={paths} images={page.carousel}>
       <p
-        className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
+        className='text-5xl text-neutral-100 text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
     </BannerBreadcrumb>
     <Container className='flex flex-col-reverse lg:flex-row w-full gap-4 lg:gap-x-8'>
       <main className='w-full lg:w-8/12 2xl:w-9/12  space-y-8'>
@@ -109,7 +109,7 @@ export default function Index({
           <div className='text-center'>
             <span className='text-primary'>OOPS</span>
             <h1 className='text-3xl font-bold'>Sem resultados.</h1>
-            <p className='text-neutral-600 mt-4'>Não foi possível encontrar nenhum resultado que confere com a sua
+            <p className='text-neutral-700 mt-4'>Não foi possível encontrar nenhum resultado que confere com a sua
               pesquisa.</p>
           </div>}
         {

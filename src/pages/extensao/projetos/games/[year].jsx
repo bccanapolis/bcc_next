@@ -5,6 +5,7 @@ import client from '@/apollo-client';
 import Container from '@/components/layout/Container';
 import { apiAsset, stringBind } from '@/utils';
 import HeadSeo from '@/components/layout/HeadSeo';
+import GameSection from '@/components/home/GameSection';
 
 export async function getServerSideProps({ query }) {
   const gQuery = gql`
@@ -28,6 +29,9 @@ export async function getServerSideProps({ query }) {
                   }
               }
           }
+          game_aggregated(groupBy: "year"){
+              group
+          }
           game(filter: {year_func: {year: {_eq: $year}}}){
               id
               title
@@ -39,7 +43,7 @@ export async function getServerSideProps({ query }) {
       }
   `;
 
-  const { game, games_page } = (await client.query({
+  const { game, games_page, game_aggregated } = (await client.query({
     query: gQuery, variables: {
       year: parseFloat(query.year)
     }
@@ -54,6 +58,8 @@ export async function getServerSideProps({ query }) {
     };
   });
 
+  const years = game_aggregated.map(item => new Date(item.group.year).getFullYear()).filter(item => item !== parseFloat(query.year)).sort().reverse();
+
   const carousel = games_page.hero_carousel ? games_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description,
@@ -61,11 +67,11 @@ export async function getServerSideProps({ query }) {
   })) : null;
 
   return {
-    props: { games, page: { ...games_page, carousel } }
+    props: { games,years, page: { ...games_page, carousel } }
   };
 }
 
-export default function GamesPage({ games, page }) {
+export default function GamesPage({ games, page, years }) {
   const router = useRouter();
   const { year } = router.query;
 
@@ -81,7 +87,7 @@ export default function GamesPage({ games, page }) {
                keywords={page.seo_keywords} />
       <BannerBreadcrumb paths={paths} images={page.carousel}>
         <p
-          className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title ? stringBind(page.hero_title, 'year', year) : `Games ${year}`} </p>
+          className='text-5xl text-neutral-100 text-center uppercase font-semibold'>{page.hero_title ? stringBind(page.hero_title, 'year', year) : `Games ${year}`} </p>
       </BannerBreadcrumb>
       <Container>
         <div className='prose prose-neutral'
@@ -90,11 +96,11 @@ export default function GamesPage({ games, page }) {
              }} />
       < /Container>
       <Container>
-        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full'>
           {
             games.map((game, index) => (
               <div key={index}
-                   className='bg-white border border-neutral-200'>
+                   className='border border-text-neutral-300'>
                 <iframe src={`https://www.youtube.com/embed/${game.video_url}`}
                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen
@@ -102,12 +108,12 @@ export default function GamesPage({ games, page }) {
                         title='YouTube video player'
                         width='100%'>
                 </iframe>
-                <div className='p-5 flex flex-col justify-between'>
+                <div className='p-4 flex flex-col justify-between'>
                   <div>
                     <h5 className='mb-2 text-2xl font-bold tracking-tight text-neutral-900'>
                       {game.title}</h5>
                     <h6
-                      className='mb-2 text-lg tracking-tight text-neutral-500'>{game.author}</h6>
+                      className='mb-2 tracking-tight text-neutral-500'>{game.author}</h6>
                     <p className='font-normal text-neutral-700'>{game.description}</p>
                   </div>
                   {/*<div>*/}
@@ -124,6 +130,7 @@ export default function GamesPage({ games, page }) {
           }
         </div>
       </Container>
+      <GameSection section={{title:'Veja também os jogos dos outros anos.'}} games={years}/>
     </>
   );
 }

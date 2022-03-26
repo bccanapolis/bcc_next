@@ -59,6 +59,10 @@ type Query {
     news(filter: news_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [news]
     news_aggregated(filter: news_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [news_aggregated]
     news_by_id(id: ID!): news
+    noticias_page: noticias_page
+    noticias_page_files(filter: noticias_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [noticias_page_files]
+    noticias_page_files_aggregated(filter: noticias_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [noticias_page_files_aggregated]
+    noticias_page_files_by_id(id: ID!): noticias_page_files
     pos_graduacao_page: pos_graduacao_page
     pos_graduacao_page_files(filter: pos_graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pos_graduacao_page_files]
     pos_graduacao_page_files_aggregated(filter: pos_graduacao_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [pos_graduacao_page_files_aggregated]
@@ -536,6 +540,8 @@ type home_page {
     secao_feature_3_link: String
     secao_feature_3_title: String
     secao_feature_display: Boolean
+    secao_games_display: Boolean
+    secao_games_title: String
     secao_posts_display: Boolean
     secao_posts_subtitle: String
     secao_posts_title: String
@@ -624,6 +630,43 @@ type news_aggregated {
 type news_aggregated_fields {
     id: Float
     sort: Float
+}
+
+type noticias_page {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    hero_carousel(filter: noticias_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [noticias_page_files]
+    hero_title: String
+    id: ID
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type noticias_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    id: ID
+    noticias_page_id(filter: noticias_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): noticias_page
+}
+
+type noticias_page_files_aggregated {
+    avg: noticias_page_files_aggregated_fields
+    avgDistinct: noticias_page_files_aggregated_fields
+    count: noticias_page_files_aggregated_fields
+    countDistinct: noticias_page_files_aggregated_fields
+    group: JSON
+    max: noticias_page_files_aggregated_fields
+    min: noticias_page_files_aggregated_fields
+    sum: noticias_page_files_aggregated_fields
+    sumDistinct: noticias_page_files_aggregated_fields
+}
+
+type noticias_page_files_aggregated_fields {
+    id: Float
+    noticias_page_id: Float
 }
 
 type pos_graduacao_page {
@@ -1292,6 +1335,8 @@ input home_page_filter {
     secao_feature_3_link: string_filter_operators
     secao_feature_3_title: string_filter_operators
     secao_feature_display: boolean_filter_operators
+    secao_games_display: boolean_filter_operators
+    secao_games_title: string_filter_operators
     secao_posts_display: boolean_filter_operators
     secao_posts_subtitle: string_filter_operators
     secao_posts_title: string_filter_operators
@@ -1328,6 +1373,30 @@ input news_filter {
     title: string_filter_operators
     user_created: directus_users_filter
     user_updated: directus_users_filter
+}
+
+input noticias_page_files_filter {
+    _and: [noticias_page_files_filter]
+    _or: [noticias_page_files_filter]
+    directus_files_id: directus_files_filter
+    id: number_filter_operators
+    noticias_page_id: noticias_page_filter
+}
+
+input noticias_page_filter {
+    _and: [noticias_page_filter]
+    _or: [noticias_page_filter]
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: noticias_page_files_filter
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
 }
 
 input number_filter_operators {

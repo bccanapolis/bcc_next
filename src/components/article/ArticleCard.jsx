@@ -25,7 +25,7 @@ export default function ArticleCard({ post, searchPosts }) {
               post.tags.map(({ blog_tag_id: item }) => (
                 <li key={`tag-post-${post.slug}-${item.name}`}>
                   <button onClick={() => searchPosts({ tags: item.name })}
-                          className={classNames('text-xs bg-white px-1 py-0.5 hover:text-white hover:bg-primary/80 transition-colors duration-300', queryTag === item.name ? 'bg-primary/80 text-white' : 'text-neutral-500 ')}>{item.name}</button>
+                          className={classNames('text-xs bg-neutral-100 px-1 py-0.5 hover:text-neutral-100 hover:bg-primary/80 transition-colors duration-300', queryTag === item.name ? 'bg-primary/80 text-neutral-100' : 'text-neutral-700 ')}>{item.name}</button>
                 </li>
               ))
             }

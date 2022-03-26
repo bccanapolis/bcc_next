@@ -78,7 +78,7 @@ export default function index({ page }) {
                openGraph={page.seo_image} />
       <BannerBreadcrumb paths={paths} images={page.carousel}>
         <p
-          className='text-5xl text-white text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
+          className='text-5xl text-neutral-100 text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
       </BannerBreadcrumb>
       <Container>
         <div className='flex flex-wrap md:flex-nowrap gap-4'>
@@ -92,7 +92,7 @@ export default function index({ page }) {
                 {
                   page.members.map((member, index) =>
                     <li key={member.name}
-                        className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== page.members.length - 1 ? 'border-b border-neutral-200' : ''}`}>
+                        className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== page.members.length - 1 ? 'border-b border-text-neutral-300' : ''}`}>
                       <a href={member.lattes} target='_blank' rel='noopener noreferrer'>{member.degree}{' '}
                         {member.name} ({member.institution})</a>
                     </li>
@@ -108,7 +108,7 @@ export default function index({ page }) {
                 {
                   page.areas.map((area, index) => (
                     <li key={index}
-                        className={`py-2 px-4 w-full ${index !== page.areas.length - 1 ? 'border-b border-neutral-200' : ''}`}>
+                        className={`py-2 px-4 w-full ${index !== page.areas.length - 1 ? 'border-b border-text-neutral-300' : ''}`}>
                       {area}
                     </li>
                   ))
