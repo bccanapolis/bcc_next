@@ -139,11 +139,8 @@ function NavLinks({ closeParent }) {
                           {link.dropdown.map((item, index) => (
                             item.external ?
                               <a
+                                key={item.label + index + item.url}
                                 target='_blank' rel='noreferrer'
-                                // onClick={() => {
-                                //   close();
-                                //   closeParent();
-                                // }}
                                 href={item.url}
                                 className='-m-2 p-2 flex items-start rounded-lg group'
                               >

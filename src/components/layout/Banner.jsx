@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation } from 'swiper';
+import { Autoplay } from 'swiper';
 import Image from 'next/image';
 import { classNames } from '@/utils';
 
@@ -29,8 +29,7 @@ export default function Banner({
                 autoplay={{
                   delay: 5000
                 }}
-                navigation={navigation}
-                modules={[Autoplay, Navigation]}
+                modules={[Autoplay]}
                 className='h-full'
               >
                 {

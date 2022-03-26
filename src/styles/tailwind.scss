@@ -39,8 +39,7 @@ pre {
 
 .swiper-overflow {
   &.swiper, .swiper {
-    overflow: initial;
-    overflow-x: hidden;
+    overflow: hidden;
     @apply flex flex-col-reverse;
   }
 

@@ -67,7 +67,7 @@ export async function getServerSideProps({ query }) {
   })) : null;
 
   return {
-    props: { games,years, page: { ...games_page, carousel } }
+    props: { games, years, page: { ...games_page, carousel } }
   };
 }
 
@@ -100,7 +100,7 @@ export default function GamesPage({ games, page, years }) {
           {
             games.map((game, index) => (
               <div key={index}
-                   className='border border-text-neutral-300'>
+                             className='border border-text-neutral-300'>
                 <iframe src={`https://www.youtube.com/embed/${game.video_url}`}
                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen
@@ -130,7 +130,7 @@ export default function GamesPage({ games, page, years }) {
           }
         </div>
       </Container>
-      <GameSection section={{title:'Veja também os jogos dos outros anos.'}} games={years}/>
+      <GameSection section={{ title: 'Veja também os jogos dos outros anos.' }} games={years} />
     </>
   );
 }

@@ -9,7 +9,8 @@ import rehypeSlug from 'rehype-slug';
 export default function Markdown({ children, className }) {
   return (
     <ReactMarkdown className={className}
-                   remarkPlugins={[remarkGfm, remarkEmoji, remarkHighlight]} rehypePlugins={[rehypeRaw, rehypeSlug, rehypeAutolinkHeadings]}>
+                   remarkPlugins={[remarkGfm, remarkEmoji, remarkHighlight]}
+                   rehypePlugins={[rehypeRaw, rehypeSlug, rehypeAutolinkHeadings]}>
       {children}
     </ReactMarkdown>
   );

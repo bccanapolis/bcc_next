@@ -38,7 +38,7 @@ export async function getServerSideProps(context) {
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description,
     tags: item.directus_files_id.tags
-  })) : null
+  })) : null;
 
   const currentPage = page;
   const maxPages = Math.ceil(article_aggregated[0].count.id / limit);
@@ -86,7 +86,7 @@ export default function Index({
       page: nextPage != page.currentPage ? nextPage : null,
       tags: tags == router.query.tags ? null : tags,
       search, author
-    }
+    };
 
     router.push({
       pathname: '/blog', query: clearObject(query)
@@ -104,7 +104,8 @@ export default function Index({
       <main className='w-full lg:w-8/12 2xl:w-9/12  space-y-8'>
         {!!levelPosts[2].length ? <div className='gap-8 grid grid-cols-1'>
             {levelPosts[2].map(post => (
-              <ArticleCard key={`article-${post.id}`} horizontal={true} post={post} searchPosts={searchPosts} />))}
+                <ArticleCard key={`article-${post.id}`} horizontal={true} post={post} searchPosts={searchPosts} />
+            ))}
           </div> :
           <div className='text-center'>
             <span className='text-primary'>OOPS</span>
