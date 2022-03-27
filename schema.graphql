@@ -67,6 +67,10 @@ type Query {
     pos_graduacao_page_files(filter: pos_graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pos_graduacao_page_files]
     pos_graduacao_page_files_aggregated(filter: pos_graduacao_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [pos_graduacao_page_files_aggregated]
     pos_graduacao_page_files_by_id(id: ID!): pos_graduacao_page_files
+    professores_page: professores_page
+    professores_page_files(filter: professores_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professores_page_files]
+    professores_page_files_aggregated(filter: professores_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professores_page_files_aggregated]
+    professores_page_files_by_id(id: ID!): professores_page_files
     professors(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors]
     professors_aggregated(filter: professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professors_aggregated]
     professors_by_id(id: ID!): professors
@@ -170,7 +174,7 @@ type blog_page {
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: [String]
+    seo_keywords: String
     seo_title: String
 }
 
@@ -277,6 +281,7 @@ type directus_users {
     first_name: String
     id: ID
     last_name: String
+    lattes: String
     role(filter: directus_roles_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_roles
     title: String
 }
@@ -394,7 +399,7 @@ type games_page {
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: [String]
+    seo_keywords: String
     seo_title: String
 }
 
@@ -434,7 +439,7 @@ type gecomp_page {
     members(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: [String]
+    seo_keywords: String
     seo_title: String
 }
 
@@ -496,7 +501,7 @@ type graduacao_page {
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: [String]
+    seo_keywords: String
     seo_title: String
 }
 
@@ -642,7 +647,7 @@ type noticias_page {
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: [String]
+    seo_keywords: String
     seo_title: String
 }
 
@@ -680,7 +685,7 @@ type pos_graduacao_page {
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: [String]
+    seo_keywords: String
     seo_title: String
 }
 
@@ -707,15 +712,51 @@ type pos_graduacao_page_files_aggregated_fields {
     pos_graduacao_page_id: Float
 }
 
+type professores_page {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    hero_carousel(filter: professores_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professores_page_files]
+    hero_title: String
+    id: ID
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type professores_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    id: ID
+    professores_page_id(filter: professores_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professores_page
+}
+
+type professores_page_files_aggregated {
+    avg: professores_page_files_aggregated_fields
+    avgDistinct: professores_page_files_aggregated_fields
+    count: professores_page_files_aggregated_fields
+    countDistinct: professores_page_files_aggregated_fields
+    group: JSON
+    max: professores_page_files_aggregated_fields
+    min: professores_page_files_aggregated_fields
+    sum: professores_page_files_aggregated_fields
+    sumDistinct: professores_page_files_aggregated_fields
+}
+
+type professores_page_files_aggregated_fields {
+    id: Float
+    professores_page_id: Float
+}
+
 type professors {
-    avatar(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     degree: String
     disciplines(filter: professors_discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors_discipline]
+    gecomp: Boolean
     id: ID
     institution: String
-    lattes: String
-    name: String
     status: String!
+    user(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type professors_aggregated {
@@ -873,7 +914,7 @@ type projetos_page {
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: [String]
+    seo_keywords: String
     seo_title: String
 }
 
@@ -936,7 +977,7 @@ type tecnico_integrado_page {
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: [String]
+    seo_keywords: String
     seo_title: String
 }
 
@@ -1162,6 +1203,7 @@ input directus_users_filter {
     first_name: string_filter_operators
     id: string_filter_operators
     last_name: string_filter_operators
+    lattes: string_filter_operators
     role: directus_roles_filter
     title: string_filter_operators
 }
@@ -1437,6 +1479,30 @@ input pos_graduacao_page_filter {
     seo_title: string_filter_operators
 }
 
+input professores_page_files_filter {
+    _and: [professores_page_files_filter]
+    _or: [professores_page_files_filter]
+    directus_files_id: directus_files_filter
+    id: number_filter_operators
+    professores_page_id: professores_page_filter
+}
+
+input professores_page_filter {
+    _and: [professores_page_filter]
+    _or: [professores_page_filter]
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    hero_carousel: professores_page_files_filter
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
+}
+
 input professors_discipline_filter {
     _and: [professors_discipline_filter]
     _or: [professors_discipline_filter]
@@ -1448,14 +1514,13 @@ input professors_discipline_filter {
 input professors_filter {
     _and: [professors_filter]
     _or: [professors_filter]
-    avatar: directus_files_filter
     degree: string_filter_operators
     disciplines: professors_discipline_filter
+    gecomp: boolean_filter_operators
     id: number_filter_operators
     institution: string_filter_operators
-    lattes: string_filter_operators
-    name: string_filter_operators
     status: string_filter_operators
+    user: directus_users_filter
 }
 
 input project_files_filter {

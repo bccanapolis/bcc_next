@@ -38,7 +38,7 @@ export async function getServerSideProps(context) {
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description,
     tags: item.directus_files_id.tags
-  })) : null;
+  })) : [];
 
   const currentPage = page;
   const maxPages = Math.ceil(article_aggregated[0].count.id / limit);

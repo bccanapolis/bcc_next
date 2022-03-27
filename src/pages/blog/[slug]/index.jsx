@@ -3,39 +3,13 @@ import { queryArticleByID } from '@/graphql/query/blog';
 import client from '@/apollo-client';
 import Markdown from '@/components/Markdown';
 import Banner from '@/components/layout/Banner';
-import { apiAsset, clearObject } from '@/utils';
+import { apiAsset, clearObject, urlSlugID } from '@/utils';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import HeadSeo from '@/components/layout/HeadSeo';
 import ArticlePanel from '@/components/article/ArticlePanel';
 import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
 
-export async function getServerSideProps(context) {
-  const [slug, , id] = context.params.slug.split(/(@)(?!.*@)/);
-
-  const variables = {
-    id
-  };
-
-  const query = queryArticleByID;
-
-  const { article_by_id, recent_article, blog_tag } = (await client.query({
-    query, variables
-  })).data;
-
-  let available_tags = blog_tag.map(({ name }) => name);
-
-  return {
-    props: {
-      article: article_by_id,
-      recent_article,
-      available_tags,
-      page: {
-        id, slug
-      }
-    }
-  };
-}
 
 export default function Index({ article, available_tags: tags, recent_article: recentPosts }) {
   const cover = !!article.cover ? [{ url: apiAsset(article.cover.id), alt: article.cover.title }] : null;
@@ -109,4 +83,31 @@ export default function Index({ article, available_tags: tags, recent_article: r
       </Container>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const [slug, , id] = urlSlugID(context.params.slug);
+
+  const variables = {
+    id
+  };
+
+  const query = queryArticleByID;
+
+  const { article_by_id, recent_article, blog_tag } = (await client.query({
+    query, variables
+  })).data;
+
+  let available_tags = blog_tag.map(({ name }) => name);
+
+  return {
+    props: {
+      article: article_by_id,
+      recent_article,
+      available_tags,
+      page: {
+        id, slug
+      }
+    }
+  };
 }

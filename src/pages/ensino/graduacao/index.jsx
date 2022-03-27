@@ -35,7 +35,7 @@ export async function getServerSideProps() {
   const carousel = graduacao_page.hero_carousel ? graduacao_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description
-  })) : null;
+  })) : []
 
   return {
     props: {

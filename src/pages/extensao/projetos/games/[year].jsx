@@ -64,7 +64,7 @@ export async function getServerSideProps({ query }) {
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description,
     tags: item.directus_files_id.tags
-  })) : null;
+  })) : [];
 
   return {
     props: { games, years, page: { ...games_page, carousel } }

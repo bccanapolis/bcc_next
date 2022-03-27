@@ -19,6 +19,23 @@ export function clearObject(obj) {
   return obj;
 }
 
+export function urlSlugID(url){
+  return url.split(/(@)(?!.*@)/);
+}
+
+export function sortByField(arr, field, reverse) {
+  const factor = reverse ? -1 : 1;
+  return arr.sort((a, b) => {
+    if (a[field] < b[field]) {
+      return -1 * factor;
+    }
+    if (a[field] > b[field]) {
+      return 1 * factor;
+    }
+    return 0;
+  });
+}
+
 export function onlyUniqueObject(arr, field) {
   return [...new Map(arr.map((item) => [item[field], item])).values()];
 }

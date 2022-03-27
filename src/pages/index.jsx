@@ -9,6 +9,7 @@ import CourseSection from '@/components/home/CourseSection';
 import RecentPostsSection from '@/components/home/RecentPostsSection';
 import ProfessorsSection from '@/components/home/ProfessorsSection';
 import GameSection from '@/components/home/GameSection';
+import { sortByFullName } from '@/utils/user';
 
 export async function getServerSideProps({}) {
   const query = gql`
@@ -16,15 +17,21 @@ export async function getServerSideProps({}) {
           game_aggregated(groupBy: "year"){
               group
           }
-          professors(filter: {institution: {_eq: "IFG"}, status: {_eq: "published"}}) {
-              degree
-              institution
-              lattes
-              name
-              avatar {
-                  id
-              }
+          professors(filter: { institution: {_eq: "IFG"}, status: {_eq: "published"}}) {
               id
+              institution
+              degree
+              user {
+                  email
+                  first_name
+                  last_name
+                  lattes
+                  avatar {
+                      height
+                      id
+                      width
+                  }
+              }
           }
           recent_article: article (limit: 5, page: 1, sort: "-date_created", filter: {status: {_eq: "published"}}) {
               user_created {
@@ -88,12 +95,12 @@ export async function getServerSideProps({}) {
     url: apiAsset(item.directus_files_id.id),
     alt: item.directus_files_id.description,
     tags: item.directus_files_id.tags
-  })) : null;
+  })) : [];
 
   return {
     props: {
       recent_article,
-      professors,
+      professors: sortByFullName(professors),
       games: years,
       page: {
         ...home_page,
