@@ -210,6 +210,7 @@ export default function Example() {
                       width={200}
                       height={45}
                       layout='fixed'
+                      loading='eager'
                     />
                   </a>
                 </Link>
@@ -222,6 +223,7 @@ export default function Example() {
                     width={160}
                     height={40}
                     layout='fixed'
+                    loading='eager'
                   />
                 </a>
 
@@ -260,6 +262,7 @@ export default function Example() {
                         width='200px'
                         height='40px'
                         layout='fixed'
+                        loading='eager'
                       />
                     </div>
                     <div className='-mr-2'>
@@ -286,6 +289,7 @@ export default function Example() {
                         width={160}
                         height={40}
                         layout='fixed'
+                        loading='eager'
                       />
                     </a>
                   </div>
