@@ -1,16 +1,12 @@
 import chrome from 'chrome-aws-lambda';
 import { createHash } from 'crypto';
 import fs from 'fs';
-import web from '@/web';
 
 const isDev = process.env.NODE_ENV === 'development';
 const exePath = process.env.CHROME_BIN || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 
-async function getOgImage(path, baseUrl = web.url) {
-  if (isDev) {
-    baseUrl = 'http://localhost:3000';
-    // return 'og image will be generated in production';
-  }
+async function getOgImage(path) {
+  const baseUrl = 'http://localhost:3000';
 
   const width = 1200;
   const height = 630;

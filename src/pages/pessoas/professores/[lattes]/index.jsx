@@ -251,7 +251,7 @@ export async function getStaticProps(context) {
         }
       }
     },
-    revalidate: 300
+    revalidate: 60 * 60 * 24
   };
 }
 
