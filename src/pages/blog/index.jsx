@@ -10,7 +10,7 @@ import HeadSeo from '@/components/layout/HeadSeo';
 import ArticlePanel from '@/components/article/ArticlePanel';
 import ArticlePagination from '@/components/article/ArticlePagination';
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const search = context.query.search || '';
   const limit = parseInt(context.query.limit) || 6;
   const page = parseInt(context.query.page) || 1;
@@ -57,7 +57,8 @@ export async function getServerSideProps(context) {
         ...blog_page,
         carousel, page, limit, tags, author, search, currentPage, maxPages
       }
-    }
+    },
+    revalidate: 60 * 60
   };
 }
 

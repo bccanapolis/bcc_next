@@ -106,7 +106,8 @@ export async function getStaticProps({}) {
         ...home_page,
         carousel
       }
-    }
+    },
+    revalidate: 60 * 60
   };
 }
 

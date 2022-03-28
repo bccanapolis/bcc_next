@@ -70,7 +70,7 @@ export default function index({ page }) {
   );
 }
 
-export async function getServerSideProps({}) {
+export async function getStaticProps({}) {
   const query = gql`
       {
           gecomp_page {
@@ -127,6 +127,7 @@ export async function getServerSideProps({}) {
         ...gecomp_page,
         areas, description, members: sortByFullName(members), carousel
       }
-    }// will be passed to the page component as props
+    },
+    revalidate: 60 * 60
   };
 }

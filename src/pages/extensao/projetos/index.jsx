@@ -6,7 +6,7 @@ import slugify from 'slugify';
 import { apiAsset } from '@/utils';
 import HeadSeo from '@/components/layout/HeadSeo';
 
-export async function getServerSideProps({}) {
+export async function getStaticProps({}) {
   const query = gql`
       {
           projetos_page {
@@ -80,7 +80,8 @@ export async function getServerSideProps({}) {
         ...projetos_page,
         carousel
       }
-    }
+    },
+    revalidate: 60 * 60
   };
 }
 
