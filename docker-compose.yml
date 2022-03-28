@@ -3,6 +3,8 @@ services:
   nextjs:
     container_name: bcc_front
     restart: unless-stopped
+    env_file:
+      - .env
     build: .
     networks:
       - front
