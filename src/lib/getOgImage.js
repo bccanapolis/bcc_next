@@ -6,10 +6,12 @@ const isDev = process.env.NODE_ENV === 'development';
 const exePath = process.env.CHROME_BIN || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 
 async function getOgImage(path) {
-  const baseUrl = 'http://localhost:3000';
-
   const width = 1200;
   const height = 630;
+
+  if (isDev) return { path: '/img/open_graph_full.png', width, height };
+
+  const baseUrl = 'http://localhost:3000';
 
   const url = `${baseUrl}${path}`;
   const hash = createHash('md5').update(url).digest('hex');

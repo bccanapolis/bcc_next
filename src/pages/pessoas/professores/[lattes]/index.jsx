@@ -1,4 +1,4 @@
-import { apiAsset, querySerialize, urlSlugID } from '@/utils';
+import { apiAsset, querySerialize, sortByField, urlSlugID } from '@/utils';
 import { gql } from '@apollo/client';
 import { fullName, urlLattes } from '@/utils/user';
 import BannerBreadcrumb from '@/components/BannerBreadcrumb';
@@ -63,7 +63,7 @@ export default function IndexPage({ professor, page }) {
       </BannerBreadcrumb>
       <Container className='flex w-full flex-wrap lg:flex-nowrap gap-8'>
         <div
-          className='lg:sticky flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-center items-center sm:items-start lg:items-center w-full sm:w-max lg:w-96 h-full top-8 gap-4 '>
+          className='lg:sticky flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-center items-center sm:items-start lg:items-center w-full sm:w-max lg:w-96 h-full top-16 gap-4 '>
           <div className='relative overflow-hidden rounded-full w-48 h-48 mx-auto'>
             <Image
               src={professor.user.avatar ? apiAsset(professor.user.avatar.id) : '/img/open_graph_squared.png'}
@@ -220,7 +220,7 @@ export async function getStaticProps(context) {
     trabalho_evento: 'Trabalho em Evento'
   };
 
-  ifgproduz['Sobre'].map(item => {
+  for (let item of ifgproduz['Sobre']) {
     if (Object.values(producao_keywords).includes(item['natureza_da_producao'])) {
       let key = Object.keys(producao_keywords).find(key => producao_keywords[key] === item['natureza_da_producao']);
       if (!(key in professor)) {
@@ -231,12 +231,30 @@ export async function getStaticProps(context) {
       }
       professor[key].push(item);
     }
-  });
+  }
 
-  // Object.keys(producao_keywords).map(item => {
-  //   if (item !== producao_keywords.formacao && item in professor)
-  //     professor[item] = sortByField(professor[item], 'ano_producao', true);
-  // });
+  for (let item of Object.keys(producao_keywords)) {
+    if (item === 'formacao')
+      continue;
+    if (item === 'banca' && !!professor[item])
+      professor[item] = sortByField(professor[item], 'ano', true);
+    if (item === 'artigos' && !!professor[item])
+      professor[item] = sortByField(professor[item], 'ano_producao', true);
+    if (item === 'capitulo_livro' && !!professor[item])
+      professor[item] = sortByField(professor[item], 'ano_producao', true);
+    if (item === 'orientacao' && !!professor[item])
+      professor[item] = sortByField(professor[item], 'ano_orientacao', true);
+    if (item === 'producacao_tecnica' && !!professor[item])
+      professor[item] = sortByField(professor[item], 'ano_producao_tecnica', true);
+    if (item === 'projeto_pesquisa' && !!professor[item])
+      professor[item] = sortByField(professor[item], 'data_inicio', true);
+    if (item === 'resumo_trabalhos' && !!professor[item])
+      professor[item] = sortByField(professor[item], 'ano_producao', true);
+    if (item === 'software' && !!professor[item])
+      professor[item] = sortByField(professor[item], 'data_registro', true);
+    if (item === 'trabalho_evento' && !!professor[item])
+      professor[item] = sortByField(professor[item], 'ano_producao', true);
+  }
 
   // fs.writeFileSync(`./${slugify(professor.user.first_name.toLowerCase())}.json`, JSON.stringify(ifgproduz));
 

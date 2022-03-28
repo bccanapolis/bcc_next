@@ -15,7 +15,7 @@ export default function HeadSeo({ title, description, openGraph, keywords }) {
   const pageOpenGraphHeight = !!openGraph ? openGraph.height : '1200';
   const pageOpenGraphWidth = !!openGraph ? openGraph.width : '628';
   const pageKeywords = !!keywords ? (keywords instanceof Array ? keywords.join(',') : keywords) : web.keywords;
-  const pagePathName = `${web.url}${router.pathname}`;
+  const pagePathName = `${web.url}${router.asPath}`;
 
   return (
     <Head>

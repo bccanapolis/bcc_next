@@ -6,6 +6,10 @@ import { ChevronUpIcon } from '@heroicons/react/solid';
 export default function ProfessorProducaoTimeline({ id, title, producao, icon, defaultOpen = false }) {
   if (!producao) return <></>;
 
+  function prependSpace(match, capture) {
+    return match.split('').join(' ');
+  }
+
   return (
     <Disclosure defaultOpen={defaultOpen} as='div'>
       {
@@ -32,7 +36,7 @@ export default function ProfessorProducaoTimeline({ id, title, producao, icon, d
               <Disclosure.Panel as='ol' className='relative border-l border-neutral-200 ml-4 mt-8 px-4'>
                 {
                   producao.map((item, index) =>
-                    <li key={`${id}-${index}`} className='mb-4 ml-6'>
+                    <li key={`${id}-${index}`} className='mb-6 ml-6'>
                       <span
                         className='flex absolute -left-3 justify-center items-center w-6 h-6 bg-neutral-200 rounded-full ring-8 ring-white'>
                         {
@@ -49,21 +53,22 @@ export default function ProfessorProducaoTimeline({ id, title, producao, icon, d
                       {
                         (item.tipo && item.producao) &&
                         <h3
-                          className='flex items-center mb-1 text-lg font-medium text-neutral-900 capitalize'>{item.tipo}
+                          className='mb-1 text-lg font-medium text-neutral-900 capitalize'>
+                          {item.tipo}
                           <span
-                            className='text-neutral-200 mx-1'>-</span> {item.producao}
+                            className='text-neutral-200 mx-1 inline-block'>-</span>{item.producao.replace(/((\w)\()/, prependSpace)}
                         </h3>
                       }
                       {
                         (!item.tipo && item.producao) &&
                         <h3
-                          className='flex items-center mb-1 text-lg font-medium text-neutral-900 capitalize'>{item.producao}
+                          className='mb-1 text-lg font-medium text-neutral-900 capitalize'>{item.producao.replace(/((\w)\()/, prependSpace)}
                         </h3>
                       }
                       {
                         item.titulo &&
                         <h3
-                          className='flex items-center mb-1 text-lg font-medium text-neutral-900 capitalize'>{item.titulo}
+                          className='mb-1 text-lg font-medium text-neutral-900 capitalize'>{item.titulo}
                         </h3>
                       }
                       {
@@ -113,31 +118,31 @@ export default function ProfessorProducaoTimeline({ id, title, producao, icon, d
                       }
                       {
                         item.revista_publicado &&
-                        <p className='mb-4 text-base font-normal text-neutral-700'>
+                        <p className='text-base font-normal text-neutral-700'>
                           {item.revista_publicado}
                         </p>
                       }
                       {
                         item.natureza &&
-                        <p className='mb-4 text-base font-normal text-neutral-700'>
+                        <p className='text-base font-normal text-neutral-700'>
                           {item.natureza}
                         </p>
                       }
                       {
                         item.orgao_do_projeto &&
-                        <p className='mb-4 text-base font-normal text-neutral-700'>
+                        <p className='text-base font-normal text-neutral-700'>
                           {item.orgao_do_projeto}
                         </p>
                       }
                       {
                         item.tipo_orientacao &&
-                        <p className='mb-4 text-base font-normal text-neutral-700'>
+                        <p className='text-base font-normal text-neutral-700'>
                           {item.tipo_orientacao}
                         </p>
                       }
                       {
                         item.nome_instituicao &&
-                        <p className='mb-4 text-base font-normal text-neutral-700'>
+                        <p className='text-base font-normal text-neutral-700'>
                           {item.nome_instituicao}
                         </p>
                       }
