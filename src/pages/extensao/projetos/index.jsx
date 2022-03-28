@@ -37,8 +37,11 @@ export async function getServerSideProps({}) {
               professors {
                   professors_id {
                       id
-                      lattes
-                      name
+                      user {
+                          first_name
+                          last_name
+                          lattes
+                      }
                       degree
                   }
               }
