@@ -3,7 +3,7 @@ services:
   nextjs:
     container_name: bcc_front
     restart: unless-stopped
-    build: ./
+    build: .
     networks:
       - front
   nginx:

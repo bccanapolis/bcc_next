@@ -26,8 +26,6 @@ export default function index({ page }) {
         <div className='flex flex-wrap md:flex-nowrap gap-4'>
           <div className='w-full md:w-8/12 prose prose-neutral'
                dangerouslySetInnerHTML={{ __html: page.description }} />
-
-
           <div className='w-full md:w-4/12 flex flex-col gap-4'>
             {
               !!page.members &&

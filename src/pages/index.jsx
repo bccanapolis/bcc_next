@@ -11,7 +11,7 @@ import ProfessorsSection from '@/components/home/ProfessorsSection';
 import GameSection from '@/components/home/GameSection';
 import { sortByFullName } from '@/utils/user';
 
-export async function getServerSideProps({}) {
+export async function getStaticProps({}) {
   const query = gql`
       {
           game_aggregated(groupBy: "year"){

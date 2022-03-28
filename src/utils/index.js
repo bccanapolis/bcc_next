@@ -19,8 +19,18 @@ export function clearObject(obj) {
   return obj;
 }
 
-export function urlSlugID(url){
+export function urlSlugID(url) {
   return url.split(/(@)(?!.*@)/);
+}
+
+export function querySerialize(obj) {
+  var str = [];
+  obj = clearObject(obj);
+  for (var p in obj)
+    if (obj.hasOwnProperty(p)) {
+      str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+    }
+  return str.join('&');
 }
 
 export function sortByField(arr, field, reverse) {

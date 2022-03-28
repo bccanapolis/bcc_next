@@ -7,7 +7,11 @@ export default function HeadSeo({ title, description, openGraph, keywords }) {
   const router = useRouter();
   const pageTitle = !!title ? `${web.title} | ${title}` : web.title;
   const pageDescription = !!description ? description : web.description;
-  const pageOpenGraph = !!openGraph ? apiAsset(openGraph.id) + '.png' : `${web.url}/img/open_graph_full.png`;
+  const pageOpenGraph = !!openGraph ?
+    openGraph.id ?
+      apiAsset(openGraph.id) + '.png' :
+      `${web.url}${openGraph.url}` :
+    `${web.url}/img/open_graph_full.png`;
   const pageOpenGraphHeight = !!openGraph ? openGraph.height : '1200';
   const pageOpenGraphWidth = !!openGraph ? openGraph.width : '628';
   const pageKeywords = !!keywords ? (keywords instanceof Array ? keywords.join(',') : keywords) : web.keywords;
@@ -28,9 +32,9 @@ export default function HeadSeo({ title, description, openGraph, keywords }) {
       <meta property='og:image:height' content={pageOpenGraphHeight} />
       <meta property='og:image:width' content={pageOpenGraphWidth} />
 
-      <meta property='og:image' content={`${web.url}/img/open_graph_squared.png`} />
-      <meta property='og:image:height' content='512' />
-      <meta property='og:image:width' content='512' />
+      {/*<meta property='og:image' content={`${web.url}/img/open_graph_squared.png`} />*/}
+      {/*<meta property='og:image:height' content='512' />*/}
+      {/*<meta property='og:image:width' content='512' />*/}
 
       <meta property='twitter:card' content='summary_large_image' />
       <meta property='twitter:url' content={pagePathName} />

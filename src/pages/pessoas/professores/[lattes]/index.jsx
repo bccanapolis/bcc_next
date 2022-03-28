@@ -1,4 +1,4 @@
-import { apiAsset, sortByField, urlSlugID } from '@/utils';
+import { apiAsset, querySerialize, urlSlugID } from '@/utils';
 import { gql } from '@apollo/client';
 import { fullName, urlLattes } from '@/utils/user';
 import BannerBreadcrumb from '@/components/BannerBreadcrumb';
@@ -12,8 +12,9 @@ import HeadSeo from '@/components/layout/HeadSeo';
 import Image from 'next/image';
 import { fetchProfessor } from '@/lib/lattes';
 import { defaultToast } from '@/hooks/toast';
+import getOgImage from '@/lib/getOgImage';
 
-export default function IndexPage({ professor }) {
+export default function IndexPage({ professor, page }) {
   // const producao_keywords = {
   //   formacao: 'Formação Acadêmica',
   //   artigos: 'Artigos Periódicos',
@@ -55,7 +56,7 @@ export default function IndexPage({ professor }) {
 
   return (
     <>
-      <HeadSeo title={`${professor.degree} ${fullName(professor.user)}`} description={''} />
+      <HeadSeo title={`${professor.degree} ${fullName(professor.user)}`} description={''} openGraph={page.seo_image} />
       <BannerBreadcrumb paths={paths}>
         <p
           className='text-5xl text-neutral-100 text-center uppercase font-semibold'>{professor.degree}{' '}{fullName(professor.user) || 'Hero Title'}</p>
@@ -69,7 +70,8 @@ export default function IndexPage({ professor }) {
               className='object-cover lg:rounded-full group-hover:scale-[105%] transition-transform duration-300'
               layout='fill' />
           </div>
-          <div className='flex flex-col justify-between items-center sm:items-start lg:items-center h-full gap-2 sm:py-4 lg-p-0'>
+          <div
+            className='flex flex-col justify-between items-center sm:items-start lg:items-center h-full gap-2 sm:py-4 lg-p-0'>
             <p
               className='lg:text-center sm:text-lg font-medium group-hover:text-primary transition-colors duration-300'>{fullName(professor.user)}</p>
             <ul
@@ -149,7 +151,8 @@ export default function IndexPage({ professor }) {
       </Container>
       <Container>
         <p className='text-center text-sm text-neutral-500'>Dados colhidos da platorma{' '}
-          <a className='underline hover:text-primary transition-colors duration-300' href='https://ifgproduz.ifg.edu.br/' target='_blank' rel="noreferrer">IFG Produz</a>
+          <a className='underline hover:text-primary transition-colors duration-300'
+             href='https://ifgproduz.ifg.edu.br/' target='_blank' rel='noreferrer'>IFG Produz</a>
         </p>
       </Container>
     </>
@@ -189,6 +192,19 @@ export async function getStaticProps(context) {
 
   let professor = professors[0];
 
+  const {
+    path,
+    height,
+    width
+  } = await getOgImage(
+    `/opengraph/professor?${querySerialize({
+      name: fullName(professor.user),
+      lattes: professor.user.lattes,
+      email: professor.user.email,
+      avatar: professor.user.avatar ? professor.user.avatar.id : null
+    })}`
+  );
+
   const ifgproduz = await fetchProfessor(professor.user.lattes);
 
   const producao_keywords = {
@@ -217,17 +233,23 @@ export async function getStaticProps(context) {
     }
   });
 
-  Object.keys(producao_keywords).map(item => {
-    if (item !== producao_keywords.formacao && item in professor)
-      professor[item] = sortByField(professor[item], 'ano_producao', true);
-  });
+  // Object.keys(producao_keywords).map(item => {
+  //   if (item !== producao_keywords.formacao && item in professor)
+  //     professor[item] = sortByField(professor[item], 'ano_producao', true);
+  // });
 
   // fs.writeFileSync(`./${slugify(professor.user.first_name.toLowerCase())}.json`, JSON.stringify(ifgproduz));
 
   return {
     props: {
       professor,
-      producao_keywords
+      producao_keywords,
+      page: {
+        seo_image: {
+          url: path,
+          width, height
+        }
+      }
     },
     revalidate: 300
   };

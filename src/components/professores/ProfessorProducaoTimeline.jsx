@@ -3,7 +3,7 @@ import { cloneElement } from 'react';
 import { Disclosure, Transition } from '@headlessui/react';
 import { ChevronUpIcon } from '@heroicons/react/solid';
 
-export default function ProfessorProducaoTimeline({ id, title, producao, icon, defaultOpen=false }) {
+export default function ProfessorProducaoTimeline({ id, title, producao, icon, defaultOpen = false }) {
   if (!producao) return <></>;
 
   return (
@@ -13,8 +13,7 @@ export default function ProfessorProducaoTimeline({ id, title, producao, icon, d
           <>
             <Disclosure.Button as='div'
                                className='flex justify-between items-center w-full px-4 py-2 text-sm font-medium text-left bg-neutral-50 rounded-lg hover:bg-neutral-100 hover:cursor-pointer'>
-              <h6 className='text-xl font-semibold'>{title}{''}<span
-                className='bg-primary/20 inline-flex items-center justify-center text-sm rounded-full w-6 h-6 ml-4'>{producao.length}</span>
+              <h6 className='text-xl font-semibold'>{title}
               </h6>
               <ChevronUpIcon
                 className={`${
