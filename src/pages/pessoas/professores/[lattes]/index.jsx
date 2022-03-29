@@ -15,18 +15,19 @@ import { defaultToast } from '@/hooks/toast';
 import getOgImage from '@/lib/getOgImage';
 
 export default function IndexPage({ professor, page }) {
-  // const producao_keywords = {
-  //   formacao: 'Formação Acadêmica',
-  //   artigos: 'Artigos Periódicos',
-  //   resumo_trabalhos: 'Artigos de Conferência',
-  //   capitulo_livro: 'Capítulo de livro',
-  //   trabalho_evento: 'Trabalhos em Eventos',
-  //   producacao_tecnica: 'Producões Técnicas',
-  //   orientacao: 'Orientações',
-  //   projeto_pesquisa: 'Projetos de Pesquisa',
-  //   software: 'Softwares',
-  //   banca: 'Bancas'
-  // };
+  const producao_keywords = {
+    resumo: 'Resumo Currículo',
+    formacao: 'Formação Acadêmica',
+    artigos: 'Artigos Periódicos',
+    resumo_trabalhos: 'Artigos de Conferência',
+    capitulo_livro: 'Capítulo de livro',
+    trabalho_evento: 'Trabalhos em Eventos',
+    producacao_tecnica: 'Producões Técnicas',
+    orientacao: 'Orientações',
+    projeto_pesquisa: 'Projetos de Pesquisa',
+    software: 'Softwares',
+    banca: 'Bancas'
+  };
 
   const paths = [{ url: '/', label: 'home' }, { url: '', label: 'pessoas', disabled: true }, {
     url: `/pessoas/professores`,
@@ -102,51 +103,17 @@ export default function IndexPage({ professor, page }) {
           </div>
         </div>
         <div className='space-y-8 w-full'>
-          <ProfessorProducaoTimeline
-            defaultOpen
-            id='formacao'
-            title={'Formação Acadêmica'}
-            producao={professor.formacao}
-            icon={<AcademicCapIcon />}
-          />
-          <ProfessorProducaoTimeline
-            id='artigos'
-            title={'Artigos Periódicos'}
-            producao={professor.artigos} />
-          <ProfessorProducaoTimeline
-            id='resumo_trabalhos'
-            title={'Artigos de Conferência'}
-            producao={professor.resumo_trabalhos} />
-          <ProfessorProducaoTimeline
-            id='capitulo_livro'
-            title={'Capítulos de Livro'}
-            producao={professor.capitulo_livro}
-            icon={<BookOpenIcon />}
-          />
-          <ProfessorProducaoTimeline
-            id='trabalho_evento'
-            title={'Trabalhos em Eventos'}
-            producao={professor.trabalho_evento} />
-          <ProfessorProducaoTimeline
-            id='producacao_tecnica'
-            title={'Produções Técnicas'}
-            producao={professor.producacao_tecnica} />
-          <ProfessorProducaoTimeline
-            id='orientacao'
-            title={'Orientações'}
-            producao={professor.orientacao} />
-          <ProfessorProducaoTimeline
-            id='projeto_pesquisa'
-            title={'Projetos de Pesquisa'}
-            producao={professor.projeto_pesquisa} />
-          <ProfessorProducaoTimeline
-            id='software'
-            title={'Softwares'}
-            producao={professor.software} />
-          <ProfessorProducaoTimeline
-            id='banca'
-            title={'Bancas'}
-            producao={professor.banca} />
+          {
+            Object.keys(producao_keywords).map((key, index) =>
+              <ProfessorProducaoTimeline
+                key={`professor-producao-${key}`}
+                defaultOpen={index === 0}
+                id={key}
+                title={producao_keywords[key]}
+                producao={professor[key]}
+              />
+            )
+          }
         </div>
       </Container>
       <Container>
@@ -256,12 +223,14 @@ export async function getStaticProps(context) {
       professor[item] = sortByField(professor[item], 'ano_producao', true);
   }
 
+  professor['resumo'] = ifgproduz['resumo_curriculo'];
+
   // fs.writeFileSync(`./${slugify(professor.user.first_name.toLowerCase())}.json`, JSON.stringify(ifgproduz));
+
 
   return {
     props: {
       professor,
-      producao_keywords,
       page: {
         seo_image: {
           url: path,
