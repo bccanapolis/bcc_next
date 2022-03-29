@@ -12,8 +12,8 @@ export default function HeadSeo({ title, description, openGraph, keywords }) {
       apiAsset(openGraph.id) + '.png' :
       `${web.url}${openGraph.url}` :
     `${web.url}/img/open_graph_full.png`;
-  const pageOpenGraphHeight = !!openGraph ? openGraph.height : '1200';
-  const pageOpenGraphWidth = !!openGraph ? openGraph.width : '628';
+  const pageOpenGraphHeight = !!openGraph ? openGraph.height : '628';
+  const pageOpenGraphWidth = !!openGraph ? openGraph.width : '1200';
   const pageKeywords = !!keywords ? (keywords instanceof Array ? keywords.join(',') : keywords) : web.keywords;
   const pagePathName = `${web.url}${router.asPath}`;
 
