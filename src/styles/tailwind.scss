@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-poppins;
+  @apply font-poppins text-neutral-900;
 }
 
 hr {
@@ -61,6 +61,6 @@ pre {
   }
 }
 
-#BR-GO{
+#BR-GO {
   @apply text-primary;
 }
