@@ -29,7 +29,7 @@ export default function GameSection({ section={}, games, className })
           games.map(game =>(
             <SwiperSlide key={`game-section-${game}`}  className='flex flex-col items-center group'>{
               <Link href={`/extensao/projetos/games/${game}`}>
-                <a className="text-3xl font-bold text-neutral-600 group-hover:text-primary ">
+                <a className="text-3xl font-bold text-neutral-700 group-hover:text-primary ">
                     {game}
                  </a>
               </Link>
