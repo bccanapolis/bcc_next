@@ -8,19 +8,15 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
 
-    env:
-      NEXT_PUBLIC_API_URL: https://api.bcc.anapolis.ifg.edu.br
-      NEXT_PUBLIC_GOOGLE_ANALYTICS: G-PL02CDC1XM
-      NEXT_PUBLIC_API_IFGPRODUZ: https://api.lattes.bcc.anapolis.ifg.edu.br
-      NEXT_PUBLIC_BASE_URL: http://localhost:3000
-    
     steps:
-    - name: Check Variables
-      run: echo "$NEXT_PUBLIC_API_URL"
-
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag devbaraus/bcc_next:$(git rev-parse --short HEAD)
+      env:
+        NEXT_PUBLIC_API_URL: https://api.bcc.anapolis.ifg.edu.br
+        NEXT_PUBLIC_GOOGLE_ANALYTICS: G-PL02CDC1XM
+        NEXT_PUBLIC_API_IFGPRODUZ: https://api.lattes.bcc.anapolis.ifg.edu.br
+        NEXT_PUBLIC_BASE_URL: http://localhost:3000
 
     - name: Deploy Front Website
       uses: appleboy/ssh-action@master
