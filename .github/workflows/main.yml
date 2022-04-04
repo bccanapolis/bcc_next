@@ -5,6 +5,13 @@ on:
     branches: [ main ]
 
 jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag devbaraus/bcc_next:$(git rev-parse --short HEAD)
+
   deploy:
     runs-on: ubuntu-18.04
     steps:
