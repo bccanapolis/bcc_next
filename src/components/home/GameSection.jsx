@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function GameSection({ section={}, games, className })
 {
+  
   return(
     <div className="container">
       <div className="space-y-2 mb-12">
@@ -13,6 +14,7 @@ export default function GameSection({ section={}, games, className })
       <div>
         <Swiper className='swiper-overflow'
           spaceBetween={20}
+          centerInsufficientSlides = {true}
           breakpoints={{
             0: { slidesPerView: 1 },
             640: { slidesPerView: 2 },
@@ -29,7 +31,7 @@ export default function GameSection({ section={}, games, className })
           games.map(game =>(
             <SwiperSlide key={`game-section-${game}`}  className='flex flex-col items-center group'>{
               <Link href={`/extensao/projetos/games/${game}`}>
-                <a className="text-3xl font-bold text-neutral-600 group-hover:text-primary ">
+                <a className="text-3xl font-bold text-neutral-700 group-hover:text-primary ">
                     {game}
                  </a>
               </Link>
