@@ -7,8 +7,13 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-18.04
-    environment: deploy
 
+    env:
+      NEXT_PUBLIC_API_URL: https://api.bcc.anapolis.ifg.edu.br
+      NEXT_PUBLIC_GOOGLE_ANALYTICS: G-PL02CDC1XM
+      NEXT_PUBLIC_API_IFGPRODUZ: https://api.lattes.bcc.anapolis.ifg.edu.br
+      NEXT_PUBLIC_BASE_URL: http://localhost:3000
+    
     steps:
     - name: Check Variables
       run: echo "$NEXT_PUBLIC_API_URL"
