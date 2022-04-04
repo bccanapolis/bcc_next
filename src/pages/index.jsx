@@ -170,7 +170,7 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
 
       {
         page.secao_games_display &&
-        <GameSection section={{ title: page.secao_games_title }} games={games} className='z-20' />
+        <GameSection section={{ title: page.secao_games_title, subtitle: "Jogos desenvolvidos pelos nossos queridos calouros, durante as disciplinas de Construção de Algoritmos e Laboratório de Programação" }} games={games} className='z-20' />
       }
     </>
   );

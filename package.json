@@ -37,9 +37,9 @@
     "swiper": "^8.0.7"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "@tailwindcss/typography": "^0.5.2",
     "autoprefixer": "^10.4.2",
+    "cross-env": "^7.0.3",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "husky": "^7.0.0",
