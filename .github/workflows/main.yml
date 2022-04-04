@@ -6,6 +6,12 @@ on:
 
 jobs:
   deploy:
+    env:
+      NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+      NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS }}
+      NEXT_PUBLIC_API_IFGPRODUZ: ${{ secrets.NEXT_PUBLIC_API_IFGPRODUZ }}
+      NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+
     runs-on: ubuntu-18.04
     
     steps:
