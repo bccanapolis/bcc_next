@@ -42,7 +42,7 @@ function BlogPanelChild({ pageAuthors, recentPosts, tags, searchPosts, close, is
                                  className='flex flex-col items-center justify-center'>
                       <div className='relative w-48 h-48 inline-block rounded-full mb-4'>
                         <Image
-                          src={apiAsset(item.avatar.id)} className='object-cover rounded-full'
+                          src={item.avatar ? apiAsset(item.avatar.id) : '/img/open_graph_squared.png'} className='object-cover rounded-full'
                           layout='fill' />
                       </div>
                       <div className='inline-block text-center'>
