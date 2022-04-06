@@ -64,3 +64,9 @@ pre {
 #BR-GO{
   @apply text-primary;
 }
+
+.game-image {
+  &:hover {
+    background-size: 105%;
+  }
+}

@@ -94,7 +94,7 @@ export default function GamesPage({ games, page, years }) {
              dangerouslySetInnerHTML={{
                __html: stringBind(page.content, 'year', year)
              }} />
-      < /Container>
+      </Container>
       <Container>
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full'>
           {
@@ -130,7 +130,7 @@ export default function GamesPage({ games, page, years }) {
           }
         </div>
       </Container>
-      <GameSection section={{ title: 'Veja também os jogos dos outros anos.' }} games={years} />
+      <GameSection section={{ title: 'Veja também os jogos dos outros anos:' }} games={years} className='mb-20 mt-20' classTitle='text-4xl font-bold'/>
     </>
   );
 }
