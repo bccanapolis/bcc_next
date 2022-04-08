@@ -7,8 +7,7 @@ const nextConfig = {
   optimizeFonts: false,
   experimental: {
     outputStandalone: true
-  },
-  distDir: process.env.NODE_ENV !== 'production' ? '.nextdev' : '.next'
+  }
 };
 
 module.exports = nextConfig;

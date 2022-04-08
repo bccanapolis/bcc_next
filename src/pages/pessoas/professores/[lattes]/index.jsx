@@ -1,20 +1,19 @@
-import { apiAsset, querySerialize, sortByField, urlSlugID } from '@/utils';
+import { apiAsset, sortByField, urlSlugID } from '@/utils';
 import { gql } from '@apollo/client';
 import { fullName, urlLattes } from '@/utils/user';
 import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import apolloClient from '@/apollo-client';
 import slugify from 'slugify';
 import ProfessorProducaoTimeline from '@/components/professores/ProfessorProducaoTimeline';
-import { AcademicCapIcon, AtSymbolIcon, BookOpenIcon, ClipboardCopyIcon } from '@heroicons/react/solid';
+import { AtSymbolIcon, ClipboardCopyIcon } from '@heroicons/react/solid';
 import LattesSVG from '@/components/atoms/LattesSVG';
 import Container from '@/components/layout/Container';
 import HeadSeo from '@/components/layout/HeadSeo';
 import Image from 'next/image';
 import { fetchProfessor } from '@/lib/lattes';
 import { defaultToast } from '@/hooks/toast';
-import getOgImage from '@/lib/getOgImage';
 
-export default function IndexPage({ professor, page }) {
+export default function IndexPage({ professor }) {
   const producao_keywords = {
     resumo: 'Resumo Currículo',
     formacao: 'Formação Acadêmica',
@@ -57,7 +56,7 @@ export default function IndexPage({ professor, page }) {
 
   return (
     <>
-      <HeadSeo title={`${professor.degree} ${fullName(professor.user)}`} description={''} openGraph={page.seo_image} />
+      <HeadSeo title={`${professor.degree} ${fullName(professor.user)}`} description={professor.resumo} />
       <BannerBreadcrumb paths={paths}>
         <p
           className='text-5xl text-neutral-100 text-center uppercase font-semibold'>{professor.degree}{' '}{fullName(professor.user) || 'Hero Title'}</p>
@@ -159,18 +158,18 @@ export async function getStaticProps(context) {
 
   let professor = professors[0];
 
-  const {
-    path,
-    height,
-    width
-  } = await getOgImage(
-    `/opengraph/professor?${querySerialize({
-      name: fullName(professor.user),
-      lattes: professor.user.lattes,
-      email: professor.user.email,
-      avatar: professor.user.avatar ? professor.user.avatar.id : null
-    })}`
-  );
+  // const {
+  //   path,
+  //   height,
+  //   width
+  // } = await getOgImage(
+  //   `/opengraph/professor?${querySerialize({
+  //     name: fullName(professor.user),
+  //     lattes: professor.user.lattes,
+  //     email: professor.user.email,
+  //     avatar: professor.user.avatar ? professor.user.avatar.id : null
+  //   })}`
+  // );
 
   const ifgproduz = await fetchProfessor(professor.user.lattes);
 
@@ -230,13 +229,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      professor,
-      page: {
-        seo_image: {
-          url: path,
-          width, height
-        }
-      }
+      professor
     },
     revalidate: 60 * 60 * 24
   };

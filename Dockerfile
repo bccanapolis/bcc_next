@@ -12,7 +12,8 @@ RUN yarn install --frozen-lockfile
 # RUN npm ci
 
 # Rebuild the source code only when needed
-FROM zenika/alpine-chrome:with-puppeteer AS builder
+#FROM zenika/alpine-chrome:with-puppeteer AS builder
+FROM node:lts-alpine AS builder
 WORKDIR /app
 
 USER root
@@ -26,13 +27,14 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
-RUN yarn dev </dev/null &>/dev/null & yarn build
+# RUN yarn dev </dev/null &>/dev/null & yarn build
+RUN yarn build
 
 # If using npm comment out above and use below instead
 # RUN npm run build
 
 # Production image, copy all the files and run next
-FROM zenika/alpine-chrome:with-puppeteer AS runner
+FROM node:lts-alpine AS runner
 
 WORKDIR /app
 
@@ -46,9 +48,6 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 RUN apk add --no-cache npm
-
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV PUPPETEER_EXECUTABLE_PATH "/usr/bin/chromium-browser"
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 # COPY --from=builder /app/next.config.js ./
