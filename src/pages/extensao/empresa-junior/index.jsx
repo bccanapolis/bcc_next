@@ -4,6 +4,7 @@ import { gql } from '@apollo/client';
 import client from '@/apollo-client';
 import { apiAsset } from '@/utils';
 import HeadSeo from '@/components/layout/HeadSeo';
+import WhoWeAre from '@/components/empresa-junior/WhoWeAre';
 
 export async function getServerSideProps() {
   const query = gql`
@@ -58,6 +59,8 @@ export default function index({ page }) {
       <Container className='space-y-4'>
         <div className='prose prose-neutral' dangerouslySetInnerHTML={{ __html: page.content }} />
       </Container>
+
+      <WhoWeAre className={"mb-20"}/>
     </>
   );
 }
