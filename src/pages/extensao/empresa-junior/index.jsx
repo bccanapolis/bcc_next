@@ -5,6 +5,7 @@ import client from '@/apollo-client';
 import { apiAsset } from '@/utils';
 import HeadSeo from '@/components/layout/HeadSeo';
 import WhoWeAre from '@/components/empresa-junior/WhoWeAre';
+import Service from '@/components/empresa-junior/Service';
 
 export async function getServerSideProps() {
   const query = gql`
@@ -48,6 +49,10 @@ export default function index({ page }) {
     label: 'empresa junior',
     disabled: true
   }];
+  const services = [{ title: 'Websites', description: 'Manutenção e construção de novos sites e sistemas otimizados para o crescimento do seu negócio.', photo: '/img/WebsitesPhoto.png'},
+    { title: 'Aplicativos', description: 'Construção de aplicativos otimizados para serem usados pelos diferentes modelos de celular que seu público-alvo possa ter.', photo: '/img/AplicativosPhoto.png'},
+    { title: 'Sistema Web', description: 'Desenvolvimento de aplicações sobre demandas, tanto para cadastro de usuários até para gestão de estoque do seu empreendimento.', photo: '/img/WebPhoto.png'}]
+
 
   return (
     <>
@@ -60,7 +65,8 @@ export default function index({ page }) {
         <div className='prose prose-neutral' dangerouslySetInnerHTML={{ __html: page.content }} />
       </Container>
 
-      <WhoWeAre className={"mb-20"}/>
+      <WhoWeAre/>
+      <Service services={services}/>
     </>
   );
 }

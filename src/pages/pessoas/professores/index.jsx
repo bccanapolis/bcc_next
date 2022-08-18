@@ -17,6 +17,7 @@ export default function index({ page, professors }) {
     disabled: true
   }];
 
+
   return (
     <>
       <HeadSeo title={page.seo_title} description={page.seo_description} openGraph={page.seo_image}
