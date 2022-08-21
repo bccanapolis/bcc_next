@@ -16,7 +16,7 @@ export default function WhoWeAre({ className })
             </div>
           </div>
           <div className='flex'>
-            <Img src={'/img/CodeTowerLogo1.png'} className='self-center'/>
+            <Img src={'/img/Code_Tower_logo1.png'} className='self-center'/>
           </div>
         </div>
 
