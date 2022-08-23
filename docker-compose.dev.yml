@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  nextjs:
+    image: node:lts-alpine
+    working_dir: /app
+    container_name: bcc_front
+    command: sh -c "yarn install && yarn dev"
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
