@@ -158,7 +158,7 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
           }}
           className='mb-20 mt-20' professors={professors} />
       }
-      <CourseSection className='mb-20' />
+      {/* <CourseSection className='mb-20' /> */}
       {
         page.secao_posts_display && <RecentPostsSection
           section={{
