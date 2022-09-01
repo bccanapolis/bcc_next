@@ -92,7 +92,7 @@ export default function FooterBar({}) {
           </div>
         </div>
         <div className='pb-6 container'>
-          <p className='text-sm text-neutral-100 sm:text-center' >Desenvolvido com <a className='underline hover:text-primary transition-colors duration-300' href='https://tailwindcss.com/' target='_blank' rel="noreferrer">TailwindCSS</a> e <a className='underline hover:text-primary transition-colors duration-300' href='https://nextjs.org/' target='_blank' rel="noreferrer">NextJS</a> por <a className='underline hover:text-primary transition-colors duration-300' href='https://baraus.dev' target='_blank' rel="noreferrer">baraus.dev</a></p>
+          <p className='text-sm text-neutral-100 sm:text-center' >Desenvolvido com <a className='underline hover:text-primary transition-colors duration-300' href='https://tailwindcss.com/' target='_blank' rel="noreferrer">TailwindCSS</a> e <a className='underline hover:text-primary transition-colors duration-300' href='https://nextjs.org/' target='_blank' rel="noreferrer">NextJS</a> por <a className='underline hover:text-primary transition-colors duration-300' href='https://baraus.dev' target='_blank' rel="noreferrer">baraus.dev</a> e <a className='underline hover:text-primary transition-colors duration-300' href='https://codetower.com.br' target='_blank' rel="noreferrer">Code Tower</a></p>
         </div>
       </footer>
     </>

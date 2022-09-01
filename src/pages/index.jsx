@@ -33,7 +33,7 @@ export async function getStaticProps({}) {
                   }
               }
           }
-          recent_article: article (limit: 5, page: 1, sort: "-date_created", filter: {status: {_eq: "published"}}) {
+          recent_article: article (limit: 4, page: 1, sort: "-date_created", filter: {status: {_eq: "published"}}) {
               user_created {
                   first_name
                   last_name
@@ -151,15 +151,6 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
           className='mb-20' />
       }
       {
-        page.secao_professores_display && <ProfessorsSection
-          section={{
-            title: page.secao_professores_title,
-            subtitle: page.secao_professores_subtitle
-          }}
-          className='mb-20 mt-20' professors={professors} />
-      }
-      {/* <CourseSection className='mb-20' /> */}
-      {
         page.secao_posts_display && <RecentPostsSection
           section={{
             title: page.secao_posts_title,
@@ -167,6 +158,16 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
           }}
           className='mb-20' posts={recentPosts} />
       }
+      {/*{*/}
+      {/*  page.secao_professores_display && <ProfessorsSection*/}
+      {/*    section={{*/}
+      {/*      title: page.secao_professores_title,*/}
+      {/*      subtitle: page.secao_professores_subtitle*/}
+      {/*    }}*/}
+      {/*    className='mb-20 mt-20' professors={professors} />*/}
+      {/*}*/}
+      {/* <CourseSection className='mb-20' /> */}
+
 
       {
         page.secao_games_display &&

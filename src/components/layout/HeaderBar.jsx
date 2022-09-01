@@ -33,6 +33,9 @@ const navigation = [
       {
         url: '/pessoas/centro-academico',
         label: 'Centro Acadêmico'
+      },      {
+        url: '/pessoas/atletica',
+        label: 'Atlética'
       }
     ]
   },
