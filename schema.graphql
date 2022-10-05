@@ -2,107 +2,68 @@
 
 schema {
     query: Query
-    mutation: Mutation
-}
-
-type Mutation {
-    create_vote_item(data: create_vote_input!): vote
-    create_vote_items(data: [create_vote_input!], filter: vote_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vote]
 }
 
 type Query {
-    article(filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article]
-    article_aggregated(filter: article_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [article_aggregated]
-    article_blog_tag(filter: article_blog_tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_blog_tag]
-    article_blog_tag_aggregated(filter: article_blog_tag_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [article_blog_tag_aggregated]
-    article_blog_tag_by_id(id: ID!): article_blog_tag
+    article(filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article!]!
+    article_aggregated(filter: article_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [article_aggregated!]!
+    article_article_tags(filter: article_article_tags_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_article_tags!]!
+    article_article_tags_aggregated(filter: article_article_tags_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [article_article_tags_aggregated!]!
+    article_article_tags_by_id(id: ID!): article_article_tags
     article_by_id(id: ID!): article
-    blog_page: blog_page
-    blog_page_files(filter: blog_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [blog_page_files]
-    blog_page_files_aggregated(filter: blog_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [blog_page_files_aggregated]
-    blog_page_files_by_id(id: ID!): blog_page_files
-    blog_tag(filter: blog_tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [blog_tag]
-    blog_tag_aggregated(filter: blog_tag_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [blog_tag_aggregated]
-    blog_tag_by_id(id: ID!): blog_tag
-    discipline(filter: discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [discipline]
-    discipline_aggregated(filter: discipline_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [discipline_aggregated]
-    discipline_by_id(id: ID!): discipline
+    article_tags(filter: article_tags_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_tags!]!
+    article_tags_aggregated(filter: article_tags_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [article_tags_aggregated!]!
+    article_tags_by_id(id: ID!): article_tags
     empresa_junior_page: empresa_junior_page
-    empresa_junior_page_files(filter: empresa_junior_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files]
-    empresa_junior_page_files_aggregated(filter: empresa_junior_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [empresa_junior_page_files_aggregated]
+    empresa_junior_page_files(filter: empresa_junior_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files!]!
+    empresa_junior_page_files_1(filter: empresa_junior_page_files_1_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files_1!]!
+    empresa_junior_page_files_1_aggregated(filter: empresa_junior_page_files_1_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [empresa_junior_page_files_1_aggregated!]!
+    empresa_junior_page_files_1_by_id(id: ID!): empresa_junior_page_files_1
+    empresa_junior_page_files_aggregated(filter: empresa_junior_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [empresa_junior_page_files_aggregated!]!
     empresa_junior_page_files_by_id(id: ID!): empresa_junior_page_files
-    game(filter: game_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [game]
-    game_aggregated(filter: game_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [game_aggregated]
+    game(filter: game_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [game!]!
+    game_aggregated(filter: game_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [game_aggregated!]!
     game_by_id(id: ID!): game
     games_page: games_page
-    games_page_files(filter: games_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [games_page_files]
-    games_page_files_aggregated(filter: games_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [games_page_files_aggregated]
+    games_page_files(filter: games_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [games_page_files!]!
+    games_page_files_aggregated(filter: games_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [games_page_files_aggregated!]!
     games_page_files_by_id(id: ID!): games_page_files
     gecomp_page: gecomp_page
-    gecomp_page_files(filter: gecomp_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_files]
-    gecomp_page_files_aggregated(filter: gecomp_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_files_aggregated]
+    gecomp_page_files(filter: gecomp_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_files!]!
+    gecomp_page_files_aggregated(filter: gecomp_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_files_aggregated!]!
     gecomp_page_files_by_id(id: ID!): gecomp_page_files
-    gecomp_page_professors(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
-    gecomp_page_professors_aggregated(filter: gecomp_page_professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_professors_aggregated]
-    gecomp_page_professors_by_id(id: ID!): gecomp_page_professors
-    graduacao_page: graduacao_page
-    graduacao_page_files(filter: graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [graduacao_page_files]
-    graduacao_page_files_aggregated(filter: graduacao_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [graduacao_page_files_aggregated]
-    graduacao_page_files_by_id(id: ID!): graduacao_page_files
-    home_page: home_page
-    home_page_files(filter: home_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [home_page_files]
-    home_page_files_aggregated(filter: home_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [home_page_files_aggregated]
-    home_page_files_by_id(id: ID!): home_page_files
-    link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [link]
-    link_aggregated(filter: link_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [link_aggregated]
+    gecomp_page_professor(filter: gecomp_page_professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professor!]!
+    gecomp_page_professor_aggregated(filter: gecomp_page_professor_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_professor_aggregated!]!
+    gecomp_page_professor_by_id(id: ID!): gecomp_page_professor
+    link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [link!]!
+    link_aggregated(filter: link_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [link_aggregated!]!
     link_by_id(id: ID!): link
-    news(filter: news_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [news]
-    news_aggregated(filter: news_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [news_aggregated]
-    news_by_id(id: ID!): news
-    noticias_page: noticias_page
-    noticias_page_files(filter: noticias_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [noticias_page_files]
-    noticias_page_files_aggregated(filter: noticias_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [noticias_page_files_aggregated]
-    noticias_page_files_by_id(id: ID!): noticias_page_files
-    pos_graduacao_page: pos_graduacao_page
-    pos_graduacao_page_files(filter: pos_graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pos_graduacao_page_files]
-    pos_graduacao_page_files_aggregated(filter: pos_graduacao_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [pos_graduacao_page_files_aggregated]
-    pos_graduacao_page_files_by_id(id: ID!): pos_graduacao_page_files
-    professores_page: professores_page
-    professores_page_files(filter: professores_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professores_page_files]
-    professores_page_files_aggregated(filter: professores_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professores_page_files_aggregated]
-    professores_page_files_by_id(id: ID!): professores_page_files
-    professors(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors]
-    professors_aggregated(filter: professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professors_aggregated]
-    professors_by_id(id: ID!): professors
-    professors_discipline(filter: professors_discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors_discipline]
-    professors_discipline_aggregated(filter: professors_discipline_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professors_discipline_aggregated]
-    professors_discipline_by_id(id: ID!): professors_discipline
-    project(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project]
-    project_aggregated(filter: project_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_aggregated]
+    professor(filter: professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professor!]!
+    professor_aggregated(filter: professor_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professor_aggregated!]!
+    professor_by_id(id: ID!): professor
+    project(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project!]!
+    project_aggregated(filter: project_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_aggregated!]!
     project_by_id(id: ID!): project
-    project_files(filter: project_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_files]
-    project_files_aggregated(filter: project_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_files_aggregated]
-    project_files_by_id(id: ID!): project_files
-    project_professors(filter: project_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_professors]
-    project_professors_aggregated(filter: project_professors_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_professors_aggregated]
-    project_professors_by_id(id: ID!): project_professors
-    project_student(filter: project_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_student]
-    project_student_aggregated(filter: project_student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_student_aggregated]
+    project_professor(filter: project_professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_professor!]!
+    project_professor_aggregated(filter: project_professor_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_professor_aggregated!]!
+    project_professor_by_id(id: ID!): project_professor
+    project_student(filter: project_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_student!]!
+    project_student_aggregated(filter: project_student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_student_aggregated!]!
     project_student_by_id(id: ID!): project_student
     projetos_page: projetos_page
-    projetos_page_files(filter: projetos_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [projetos_page_files]
-    projetos_page_files_aggregated(filter: projetos_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [projetos_page_files_aggregated]
+    projetos_page_files(filter: projetos_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [projetos_page_files!]!
+    projetos_page_files_aggregated(filter: projetos_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [projetos_page_files_aggregated!]!
     projetos_page_files_by_id(id: ID!): projetos_page_files
-    student(filter: student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [student]
-    student_aggregated(filter: student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [student_aggregated]
+    student(filter: student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [student!]!
+    student_aggregated(filter: student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [student_aggregated!]!
     student_by_id(id: ID!): student
+    student_directus_users(filter: student_directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [student_directus_users!]!
+    student_directus_users_aggregated(filter: student_directus_users_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [student_directus_users_aggregated!]!
+    student_directus_users_by_id(id: ID!): student_directus_users
     tecnico_integrado_page: tecnico_integrado_page
-    tecnico_integrado_page_files(filter: tecnico_integrado_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [tecnico_integrado_page_files]
-    tecnico_integrado_page_files_aggregated(filter: tecnico_integrado_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [tecnico_integrado_page_files_aggregated]
+    tecnico_integrado_page_files(filter: tecnico_integrado_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [tecnico_integrado_page_files!]!
+    tecnico_integrado_page_files_aggregated(filter: tecnico_integrado_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [tecnico_integrado_page_files_aggregated!]!
     tecnico_integrado_page_files_by_id(id: ID!): tecnico_integrado_page_files
-    vote(filter: vote_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [vote]
-    vote_aggregated(filter: vote_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [vote_aggregated]
-    vote_by_id(id: ID!): vote
 }
 
 type article {
@@ -114,10 +75,10 @@ type article {
     date_updated_func: datetime_functions
     description: String
     id: ID
-    slug: String
     sort: Int
     status: String!
-    tags(filter: article_blog_tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_blog_tag]
+    tags(filter: article_article_tags_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_article_tags]
+    tags_func: count_functions
     title: String
     user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
@@ -126,8 +87,9 @@ type article {
 type article_aggregated {
     avg: article_aggregated_fields
     avgDistinct: article_aggregated_fields
-    count: article_aggregated_fields
-    countDistinct: article_aggregated_fields
+    count: article_aggregated_count
+    countAll: Int
+    countDistinct: article_aggregated_count
     group: JSON
     max: article_aggregated_fields
     min: article_aggregated_fields
@@ -135,99 +97,86 @@ type article_aggregated {
     sumDistinct: article_aggregated_fields
 }
 
+type article_aggregated_count {
+    content: Int
+    cover: Int
+    date_created: Int
+    date_updated: Int
+    description: Int
+    id: Int
+    sort: Int
+    status: Int
+    tags: Int
+    title: Int
+    user_created: Int
+    user_updated: Int
+}
+
 type article_aggregated_fields {
     id: Float
     sort: Float
 }
 
-type article_blog_tag {
+type article_article_tags {
     article_id(filter: article_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): article
-    blog_tag_id(filter: blog_tag_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): blog_tag
+    article_tags_id(filter: article_tags_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): article_tags
     id: ID
 }
 
-type article_blog_tag_aggregated {
-    avg: article_blog_tag_aggregated_fields
-    avgDistinct: article_blog_tag_aggregated_fields
-    count: article_blog_tag_aggregated_fields
-    countDistinct: article_blog_tag_aggregated_fields
+type article_article_tags_aggregated {
+    avg: article_article_tags_aggregated_fields
+    avgDistinct: article_article_tags_aggregated_fields
+    count: article_article_tags_aggregated_count
+    countAll: Int
+    countDistinct: article_article_tags_aggregated_count
     group: JSON
-    max: article_blog_tag_aggregated_fields
-    min: article_blog_tag_aggregated_fields
-    sum: article_blog_tag_aggregated_fields
-    sumDistinct: article_blog_tag_aggregated_fields
+    max: article_article_tags_aggregated_fields
+    min: article_article_tags_aggregated_fields
+    sum: article_article_tags_aggregated_fields
+    sumDistinct: article_article_tags_aggregated_fields
 }
 
-type article_blog_tag_aggregated_fields {
+type article_article_tags_aggregated_count {
+    article_id: Int
+    article_tags_id: Int
+    id: Int
+}
+
+type article_article_tags_aggregated_fields {
     article_id: Float
-    blog_tag_id: Float
+    article_tags_id: Float
     id: Float
 }
 
-type blog_page {
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    hero_carousel(filter: blog_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [blog_page_files]
-    hero_title: String
-    id: ID
-    seo_description: String
-    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: String
-    seo_title: String
-}
-
-type blog_page_files {
-    blog_page_id(filter: blog_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): blog_page
-    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    id: ID
-}
-
-type blog_page_files_aggregated {
-    avg: blog_page_files_aggregated_fields
-    avgDistinct: blog_page_files_aggregated_fields
-    count: blog_page_files_aggregated_fields
-    countDistinct: blog_page_files_aggregated_fields
-    group: JSON
-    max: blog_page_files_aggregated_fields
-    min: blog_page_files_aggregated_fields
-    sum: blog_page_files_aggregated_fields
-    sumDistinct: blog_page_files_aggregated_fields
-}
-
-type blog_page_files_aggregated_fields {
-    blog_page_id: Float
-    id: Float
-}
-
-type blog_tag {
+type article_tags {
     id: ID
     name: String
 }
 
-type blog_tag_aggregated {
-    avg: blog_tag_aggregated_fields
-    avgDistinct: blog_tag_aggregated_fields
-    count: blog_tag_aggregated_fields
-    countDistinct: blog_tag_aggregated_fields
+type article_tags_aggregated {
+    avg: article_tags_aggregated_fields
+    avgDistinct: article_tags_aggregated_fields
+    count: article_tags_aggregated_count
+    countAll: Int
+    countDistinct: article_tags_aggregated_count
     group: JSON
-    max: blog_tag_aggregated_fields
-    min: blog_tag_aggregated_fields
-    sum: blog_tag_aggregated_fields
-    sumDistinct: blog_tag_aggregated_fields
+    max: article_tags_aggregated_fields
+    min: article_tags_aggregated_fields
+    sum: article_tags_aggregated_fields
+    sumDistinct: article_tags_aggregated_fields
 }
 
-type blog_tag_aggregated_fields {
+type article_tags_aggregated_count {
+    id: Int
+    name: Int
+}
+
+type article_tags_aggregated_fields {
     id: Float
 }
 
-type date_functions {
-    day: Int
-    month: Int
-    week: Int
-    weekday: Int
-    year: Int
+type count_functions {
+    count: Int
 }
 
 type datetime_functions {
@@ -248,17 +197,19 @@ type directus_files {
     embed: String
     filename_disk: String
     filename_download: String!
-    filesize: Int
-    folder: String
+    filesize: String
+    folder(filter: directus_folders_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_folders
     height: Int
     id: ID
     location: String
     metadata: JSON
+    metadata_func: count_functions
     modified_by(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     modified_on: Date!
     modified_on_func: datetime_functions
     storage: String!
     tags: JSON
+    tags_func: count_functions
     title: String
     type: String
     uploaded_by(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
@@ -267,65 +218,49 @@ type directus_files {
     width: Int
 }
 
-type directus_roles {
-    description: String
+type directus_folders {
     id: ID
     name: String!
-    users(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [directus_users]
+    parent(filter: directus_folders_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_folders
 }
 
 type directus_users {
+    auth_data: JSON
+    auth_data_func: count_functions
     avatar(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     description: String
     email: String
+    email_notifications: Boolean
+    external_identifier: String
     first_name: String
     id: ID
+    language: String
+    last_access: Date
+    last_access_func: datetime_functions
     last_name: String
+    last_page: String
     lattes: String
-    role(filter: directus_roles_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_roles
+    location: String
+    password: Hash
+    provider: String!
+    role: String
+    status: String!
+    tags: JSON
+    tags_func: count_functions
+    tfa_secret: Hash
+    theme: String
     title: String
-}
-
-type discipline {
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    description: String
-    id: ID
-    name: String
-    sort: Int
-}
-
-type discipline_aggregated {
-    avg: discipline_aggregated_fields
-    avgDistinct: discipline_aggregated_fields
-    count: discipline_aggregated_fields
-    countDistinct: discipline_aggregated_fields
-    group: JSON
-    max: discipline_aggregated_fields
-    min: discipline_aggregated_fields
-    sum: discipline_aggregated_fields
-    sumDistinct: discipline_aggregated_fields
-}
-
-type discipline_aggregated_fields {
-    id: Float
-    sort: Float
+    token: Hash
 }
 
 type empresa_junior_page {
-    content: String
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    hero_carousel(filter: empresa_junior_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files]
+    hero_carousel(filter: empresa_junior_page_files_1_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files_1]
+    hero_carousel_func: count_functions
     hero_title: String
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: JSON
+    seo_keywords: [String]
     seo_title: String
 }
 
@@ -335,16 +270,53 @@ type empresa_junior_page_files {
     id: ID
 }
 
+type empresa_junior_page_files_1 {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    empresa_junior_page_id(filter: empresa_junior_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): empresa_junior_page
+    id: ID
+}
+
+type empresa_junior_page_files_1_aggregated {
+    avg: empresa_junior_page_files_1_aggregated_fields
+    avgDistinct: empresa_junior_page_files_1_aggregated_fields
+    count: empresa_junior_page_files_1_aggregated_count
+    countAll: Int
+    countDistinct: empresa_junior_page_files_1_aggregated_count
+    group: JSON
+    max: empresa_junior_page_files_1_aggregated_fields
+    min: empresa_junior_page_files_1_aggregated_fields
+    sum: empresa_junior_page_files_1_aggregated_fields
+    sumDistinct: empresa_junior_page_files_1_aggregated_fields
+}
+
+type empresa_junior_page_files_1_aggregated_count {
+    directus_files_id: Int
+    empresa_junior_page_id: Int
+    id: Int
+}
+
+type empresa_junior_page_files_1_aggregated_fields {
+    empresa_junior_page_id: Float
+    id: Float
+}
+
 type empresa_junior_page_files_aggregated {
     avg: empresa_junior_page_files_aggregated_fields
     avgDistinct: empresa_junior_page_files_aggregated_fields
-    count: empresa_junior_page_files_aggregated_fields
-    countDistinct: empresa_junior_page_files_aggregated_fields
+    count: empresa_junior_page_files_aggregated_count
+    countAll: Int
+    countDistinct: empresa_junior_page_files_aggregated_count
     group: JSON
     max: empresa_junior_page_files_aggregated_fields
     min: empresa_junior_page_files_aggregated_fields
     sum: empresa_junior_page_files_aggregated_fields
     sumDistinct: empresa_junior_page_files_aggregated_fields
+}
+
+type empresa_junior_page_files_aggregated_count {
+    directus_files_id: Int
+    empresa_junior_page_id: Int
+    id: Int
 }
 
 type empresa_junior_page_files_aggregated_fields {
@@ -353,27 +325,21 @@ type empresa_junior_page_files_aggregated_fields {
 }
 
 type game {
-    author: String
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
+    authors: [String]
     description: String
     id: ID
-    sort: Int
+    status: String!
     title: String
-    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
-    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     video_url: String
-    year: Date
-    year_func: date_functions
+    year: Int
 }
 
 type game_aggregated {
     avg: game_aggregated_fields
     avgDistinct: game_aggregated_fields
-    count: game_aggregated_fields
-    countDistinct: game_aggregated_fields
+    count: game_aggregated_count
+    countAll: Int
+    countDistinct: game_aggregated_count
     group: JSON
     max: game_aggregated_fields
     min: game_aggregated_fields
@@ -381,25 +347,30 @@ type game_aggregated {
     sumDistinct: game_aggregated_fields
 }
 
+type game_aggregated_count {
+    authors: Int
+    description: Int
+    id: Int
+    status: Int
+    title: Int
+    video_url: Int
+    year: Int
+}
+
 type game_aggregated_fields {
     id: Float
-    sort: Float
+    year: Float
 }
 
 type games_page {
-    "Use {{ year }} para trocar pelo ano da pagina"
     content: String
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
     hero_carousel(filter: games_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [games_page_files]
-    "Use {{ year }} para trocar pelo ano da pagina: Games {{ year }}"
+    hero_carousel_func: count_functions
     hero_title: String
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: String
+    seo_keywords: [String]
     seo_title: String
 }
 
@@ -412,13 +383,20 @@ type games_page_files {
 type games_page_files_aggregated {
     avg: games_page_files_aggregated_fields
     avgDistinct: games_page_files_aggregated_fields
-    count: games_page_files_aggregated_fields
-    countDistinct: games_page_files_aggregated_fields
+    count: games_page_files_aggregated_count
+    countAll: Int
+    countDistinct: games_page_files_aggregated_count
     group: JSON
     max: games_page_files_aggregated_fields
     min: games_page_files_aggregated_fields
     sum: games_page_files_aggregated_fields
     sumDistinct: games_page_files_aggregated_fields
+}
+
+type games_page_files_aggregated_count {
+    directus_files_id: Int
+    games_page_id: Int
+    id: Int
 }
 
 type games_page_files_aggregated_fields {
@@ -429,17 +407,15 @@ type games_page_files_aggregated_fields {
 type gecomp_page {
     areas: [String]
     content: String
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
     hero_carousel(filter: gecomp_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_files]
+    hero_carousel_func: count_functions
     hero_title: String
     id: ID
-    members(filter: gecomp_page_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professors]
+    members(filter: gecomp_page_professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professor]
+    members_func: count_functions
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: String
+    seo_keywords: [String]
     seo_title: String
 }
 
@@ -452,8 +428,9 @@ type gecomp_page_files {
 type gecomp_page_files_aggregated {
     avg: gecomp_page_files_aggregated_fields
     avgDistinct: gecomp_page_files_aggregated_fields
-    count: gecomp_page_files_aggregated_fields
-    countDistinct: gecomp_page_files_aggregated_fields
+    count: gecomp_page_files_aggregated_count
+    countAll: Int
+    countDistinct: gecomp_page_files_aggregated_count
     group: JSON
     max: gecomp_page_files_aggregated_fields
     min: gecomp_page_files_aggregated_fields
@@ -461,125 +438,46 @@ type gecomp_page_files_aggregated {
     sumDistinct: gecomp_page_files_aggregated_fields
 }
 
+type gecomp_page_files_aggregated_count {
+    directus_files_id: Int
+    gecomp_page_id: Int
+    id: Int
+}
+
 type gecomp_page_files_aggregated_fields {
     gecomp_page_id: Float
     id: Float
 }
 
-type gecomp_page_professors {
+type gecomp_page_professor {
     gecomp_page_id(filter: gecomp_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): gecomp_page
     id: ID
-    professors_id(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professors
+    professor_id(filter: professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professor
 }
 
-type gecomp_page_professors_aggregated {
-    avg: gecomp_page_professors_aggregated_fields
-    avgDistinct: gecomp_page_professors_aggregated_fields
-    count: gecomp_page_professors_aggregated_fields
-    countDistinct: gecomp_page_professors_aggregated_fields
+type gecomp_page_professor_aggregated {
+    avg: gecomp_page_professor_aggregated_fields
+    avgDistinct: gecomp_page_professor_aggregated_fields
+    count: gecomp_page_professor_aggregated_count
+    countAll: Int
+    countDistinct: gecomp_page_professor_aggregated_count
     group: JSON
-    max: gecomp_page_professors_aggregated_fields
-    min: gecomp_page_professors_aggregated_fields
-    sum: gecomp_page_professors_aggregated_fields
-    sumDistinct: gecomp_page_professors_aggregated_fields
+    max: gecomp_page_professor_aggregated_fields
+    min: gecomp_page_professor_aggregated_fields
+    sum: gecomp_page_professor_aggregated_fields
+    sumDistinct: gecomp_page_professor_aggregated_fields
 }
 
-type gecomp_page_professors_aggregated_fields {
+type gecomp_page_professor_aggregated_count {
+    gecomp_page_id: Int
+    id: Int
+    professor_id: Int
+}
+
+type gecomp_page_professor_aggregated_fields {
     gecomp_page_id: Float
     id: Float
-    professors_id: Float
-}
-
-type graduacao_page {
-    content: String
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    hero_carousel(filter: graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [graduacao_page_files]
-    hero_title: String
-    id: ID
-    seo_description: String
-    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: String
-    seo_title: String
-}
-
-type graduacao_page_files {
-    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    graduacao_page_id(filter: graduacao_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): graduacao_page
-    id: ID
-}
-
-type graduacao_page_files_aggregated {
-    avg: graduacao_page_files_aggregated_fields
-    avgDistinct: graduacao_page_files_aggregated_fields
-    count: graduacao_page_files_aggregated_fields
-    countDistinct: graduacao_page_files_aggregated_fields
-    group: JSON
-    max: graduacao_page_files_aggregated_fields
-    min: graduacao_page_files_aggregated_fields
-    sum: graduacao_page_files_aggregated_fields
-    sumDistinct: graduacao_page_files_aggregated_fields
-}
-
-type graduacao_page_files_aggregated_fields {
-    graduacao_page_id: Float
-    id: Float
-}
-
-type home_page {
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    hero_carousel(filter: home_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [home_page_files]
-    id: ID
-    secao_feature_1_description: String
-    secao_feature_1_link: String
-    secao_feature_1_title: String
-    secao_feature_2_description: String
-    secao_feature_2_link: String
-    secao_feature_2_title: String
-    secao_feature_3_description: String
-    secao_feature_3_link: String
-    secao_feature_3_title: String
-    secao_feature_display: Boolean
-    secao_games_display: Boolean
-    secao_games_title: String
-    secao_posts_display: Boolean
-    secao_posts_subtitle: String
-    secao_posts_title: String
-    secao_professores_display: Boolean
-    secao_professores_subtitle: String
-    secao_professores_title: String
-    seo_description: String
-    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: JSON
-    seo_title: String
-}
-
-type home_page_files {
-    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    home_page_id(filter: home_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): home_page
-    id: ID
-}
-
-type home_page_files_aggregated {
-    avg: home_page_files_aggregated_fields
-    avgDistinct: home_page_files_aggregated_fields
-    count: home_page_files_aggregated_fields
-    countDistinct: home_page_files_aggregated_fields
-    group: JSON
-    max: home_page_files_aggregated_fields
-    min: home_page_files_aggregated_fields
-    sum: home_page_files_aggregated_fields
-    sumDistinct: home_page_files_aggregated_fields
-}
-
-type home_page_files_aggregated_fields {
-    home_page_id: Float
-    id: Float
+    professor_id: Float
 }
 
 type link {
@@ -591,8 +489,9 @@ type link {
 type link_aggregated {
     avg: link_aggregated_fields
     avgDistinct: link_aggregated_fields
-    count: link_aggregated_fields
-    countDistinct: link_aggregated_fields
+    count: link_aggregated_count
+    countAll: Int
+    countDistinct: link_aggregated_count
     group: JSON
     max: link_aggregated_fields
     min: link_aggregated_fields
@@ -600,227 +499,69 @@ type link_aggregated {
     sumDistinct: link_aggregated_fields
 }
 
+type link_aggregated_count {
+    id: Int
+    label: Int
+    url: Int
+}
+
 type link_aggregated_fields {
     id: Float
 }
 
-type news {
-    content: String
-    cover(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    description: String
-    id: ID
-    sort: Int
-    status: String!
-    title: String
-    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
-    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
-}
-
-type news_aggregated {
-    avg: news_aggregated_fields
-    avgDistinct: news_aggregated_fields
-    count: news_aggregated_fields
-    countDistinct: news_aggregated_fields
-    group: JSON
-    max: news_aggregated_fields
-    min: news_aggregated_fields
-    sum: news_aggregated_fields
-    sumDistinct: news_aggregated_fields
-}
-
-type news_aggregated_fields {
-    id: Float
-    sort: Float
-}
-
-type noticias_page {
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    hero_carousel(filter: noticias_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [noticias_page_files]
-    hero_title: String
-    id: ID
-    seo_description: String
-    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: String
-    seo_title: String
-}
-
-type noticias_page_files {
-    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    id: ID
-    noticias_page_id(filter: noticias_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): noticias_page
-}
-
-type noticias_page_files_aggregated {
-    avg: noticias_page_files_aggregated_fields
-    avgDistinct: noticias_page_files_aggregated_fields
-    count: noticias_page_files_aggregated_fields
-    countDistinct: noticias_page_files_aggregated_fields
-    group: JSON
-    max: noticias_page_files_aggregated_fields
-    min: noticias_page_files_aggregated_fields
-    sum: noticias_page_files_aggregated_fields
-    sumDistinct: noticias_page_files_aggregated_fields
-}
-
-type noticias_page_files_aggregated_fields {
-    id: Float
-    noticias_page_id: Float
-}
-
-type pos_graduacao_page {
-    content: String
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    hero_carousel(filter: pos_graduacao_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pos_graduacao_page_files]
-    hero_title: String
-    id: ID
-    seo_description: String
-    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: String
-    seo_title: String
-}
-
-type pos_graduacao_page_files {
-    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    id: ID
-    pos_graduacao_page_id(filter: pos_graduacao_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): pos_graduacao_page
-}
-
-type pos_graduacao_page_files_aggregated {
-    avg: pos_graduacao_page_files_aggregated_fields
-    avgDistinct: pos_graduacao_page_files_aggregated_fields
-    count: pos_graduacao_page_files_aggregated_fields
-    countDistinct: pos_graduacao_page_files_aggregated_fields
-    group: JSON
-    max: pos_graduacao_page_files_aggregated_fields
-    min: pos_graduacao_page_files_aggregated_fields
-    sum: pos_graduacao_page_files_aggregated_fields
-    sumDistinct: pos_graduacao_page_files_aggregated_fields
-}
-
-type pos_graduacao_page_files_aggregated_fields {
-    id: Float
-    pos_graduacao_page_id: Float
-}
-
-type professores_page {
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    hero_carousel(filter: professores_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professores_page_files]
-    hero_title: String
-    id: ID
-    seo_description: String
-    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: [String]
-    seo_title: String
-}
-
-type professores_page_files {
-    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    id: ID
-    professores_page_id(filter: professores_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professores_page
-}
-
-type professores_page_files_aggregated {
-    avg: professores_page_files_aggregated_fields
-    avgDistinct: professores_page_files_aggregated_fields
-    count: professores_page_files_aggregated_fields
-    countDistinct: professores_page_files_aggregated_fields
-    group: JSON
-    max: professores_page_files_aggregated_fields
-    min: professores_page_files_aggregated_fields
-    sum: professores_page_files_aggregated_fields
-    sumDistinct: professores_page_files_aggregated_fields
-}
-
-type professores_page_files_aggregated_fields {
-    id: Float
-    professores_page_id: Float
-}
-
-type professors {
+type professor {
     degree: String
-    disciplines(filter: professors_discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professors_discipline]
     gecomp: Boolean
     id: ID
     institution: String
-    status: String!
+    lattes: String
     user(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
-type professors_aggregated {
-    avg: professors_aggregated_fields
-    avgDistinct: professors_aggregated_fields
-    count: professors_aggregated_fields
-    countDistinct: professors_aggregated_fields
+type professor_aggregated {
+    avg: professor_aggregated_fields
+    avgDistinct: professor_aggregated_fields
+    count: professor_aggregated_count
+    countAll: Int
+    countDistinct: professor_aggregated_count
     group: JSON
-    max: professors_aggregated_fields
-    min: professors_aggregated_fields
-    sum: professors_aggregated_fields
-    sumDistinct: professors_aggregated_fields
+    max: professor_aggregated_fields
+    min: professor_aggregated_fields
+    sum: professor_aggregated_fields
+    sumDistinct: professor_aggregated_fields
 }
 
-type professors_aggregated_fields {
+type professor_aggregated_count {
+    degree: Int
+    gecomp: Int
+    id: Int
+    institution: Int
+    lattes: Int
+    user: Int
+}
+
+type professor_aggregated_fields {
     id: Float
-}
-
-type professors_discipline {
-    discipline_id(filter: discipline_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): discipline
-    id: ID
-    professors_id(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professors
-}
-
-type professors_discipline_aggregated {
-    avg: professors_discipline_aggregated_fields
-    avgDistinct: professors_discipline_aggregated_fields
-    count: professors_discipline_aggregated_fields
-    countDistinct: professors_discipline_aggregated_fields
-    group: JSON
-    max: professors_discipline_aggregated_fields
-    min: professors_discipline_aggregated_fields
-    sum: professors_discipline_aggregated_fields
-    sumDistinct: professors_discipline_aggregated_fields
-}
-
-type professors_discipline_aggregated_fields {
-    discipline_id: Float
-    id: Float
-    professors_id: Float
 }
 
 type project {
-    carousel(filter: project_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_files]
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
     description: String
     id: ID
-    professors(filter: project_professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_professors]
-    slug: String
+    link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): link
+    professors(filter: project_professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_professor]
+    professors_func: count_functions
+    status: String!
     students(filter: project_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_student]
+    students_func: count_functions
     title: String
-    url(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): link
-    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
-    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type project_aggregated {
     avg: project_aggregated_fields
     avgDistinct: project_aggregated_fields
-    count: project_aggregated_fields
-    countDistinct: project_aggregated_fields
+    count: project_aggregated_count
+    countAll: Int
+    countDistinct: project_aggregated_count
     group: JSON
     max: project_aggregated_fields
     min: project_aggregated_fields
@@ -828,55 +569,49 @@ type project_aggregated {
     sumDistinct: project_aggregated_fields
 }
 
+type project_aggregated_count {
+    description: Int
+    id: Int
+    link: Int
+    professors: Int
+    status: Int
+    students: Int
+    title: Int
+}
+
 type project_aggregated_fields {
     id: Float
-    url: Float
+    link: Float
 }
 
-type project_files {
-    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+type project_professor {
     id: ID
+    professor_id(filter: professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professor
     project_id(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): project
 }
 
-type project_files_aggregated {
-    avg: project_files_aggregated_fields
-    avgDistinct: project_files_aggregated_fields
-    count: project_files_aggregated_fields
-    countDistinct: project_files_aggregated_fields
+type project_professor_aggregated {
+    avg: project_professor_aggregated_fields
+    avgDistinct: project_professor_aggregated_fields
+    count: project_professor_aggregated_count
+    countAll: Int
+    countDistinct: project_professor_aggregated_count
     group: JSON
-    max: project_files_aggregated_fields
-    min: project_files_aggregated_fields
-    sum: project_files_aggregated_fields
-    sumDistinct: project_files_aggregated_fields
+    max: project_professor_aggregated_fields
+    min: project_professor_aggregated_fields
+    sum: project_professor_aggregated_fields
+    sumDistinct: project_professor_aggregated_fields
 }
 
-type project_files_aggregated_fields {
+type project_professor_aggregated_count {
+    id: Int
+    professor_id: Int
+    project_id: Int
+}
+
+type project_professor_aggregated_fields {
     id: Float
-    project_id: Float
-}
-
-type project_professors {
-    id: ID
-    professors_id(filter: professors_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professors
-    project_id(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): project
-}
-
-type project_professors_aggregated {
-    avg: project_professors_aggregated_fields
-    avgDistinct: project_professors_aggregated_fields
-    count: project_professors_aggregated_fields
-    countDistinct: project_professors_aggregated_fields
-    group: JSON
-    max: project_professors_aggregated_fields
-    min: project_professors_aggregated_fields
-    sum: project_professors_aggregated_fields
-    sumDistinct: project_professors_aggregated_fields
-}
-
-type project_professors_aggregated_fields {
-    id: Float
-    professors_id: Float
+    professor_id: Float
     project_id: Float
 }
 
@@ -889,13 +624,20 @@ type project_student {
 type project_student_aggregated {
     avg: project_student_aggregated_fields
     avgDistinct: project_student_aggregated_fields
-    count: project_student_aggregated_fields
-    countDistinct: project_student_aggregated_fields
+    count: project_student_aggregated_count
+    countAll: Int
+    countDistinct: project_student_aggregated_count
     group: JSON
     max: project_student_aggregated_fields
     min: project_student_aggregated_fields
     sum: project_student_aggregated_fields
     sumDistinct: project_student_aggregated_fields
+}
+
+type project_student_aggregated_count {
+    id: Int
+    project_id: Int
+    student_id: Int
 }
 
 type project_student_aggregated_fields {
@@ -910,12 +652,16 @@ type projetos_page {
     date_updated: Date
     date_updated_func: datetime_functions
     hero_carousel(filter: projetos_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [projetos_page_files]
+    hero_carousel_func: count_functions
     hero_title: String
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: String
+    seo_keywords: [String]
     seo_title: String
+    status: String!
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type projetos_page_files {
@@ -927,13 +673,20 @@ type projetos_page_files {
 type projetos_page_files_aggregated {
     avg: projetos_page_files_aggregated_fields
     avgDistinct: projetos_page_files_aggregated_fields
-    count: projetos_page_files_aggregated_fields
-    countDistinct: projetos_page_files_aggregated_fields
+    count: projetos_page_files_aggregated_count
+    countAll: Int
+    countDistinct: projetos_page_files_aggregated_count
     group: JSON
     max: projetos_page_files_aggregated_fields
     min: projetos_page_files_aggregated_fields
     sum: projetos_page_files_aggregated_fields
     sumDistinct: projetos_page_files_aggregated_fields
+}
+
+type projetos_page_files_aggregated_count {
+    directus_files_id: Int
+    id: Int
+    projetos_page_id: Int
 }
 
 type projetos_page_files_aggregated_fields {
@@ -942,19 +695,16 @@ type projetos_page_files_aggregated_fields {
 }
 
 type student {
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
     id: ID
-    name: String
+    user(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type student_aggregated {
     avg: student_aggregated_fields
     avgDistinct: student_aggregated_fields
-    count: student_aggregated_fields
-    countDistinct: student_aggregated_fields
+    count: student_aggregated_count
+    countAll: Int
+    countDistinct: student_aggregated_count
     group: JSON
     max: student_aggregated_fields
     min: student_aggregated_fields
@@ -962,22 +712,54 @@ type student_aggregated {
     sumDistinct: student_aggregated_fields
 }
 
+type student_aggregated_count {
+    id: Int
+    user: Int
+}
+
 type student_aggregated_fields {
     id: Float
 }
 
+type student_directus_users {
+    directus_users_id(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    id: ID
+    student_id(filter: student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): student
+}
+
+type student_directus_users_aggregated {
+    avg: student_directus_users_aggregated_fields
+    avgDistinct: student_directus_users_aggregated_fields
+    count: student_directus_users_aggregated_count
+    countAll: Int
+    countDistinct: student_directus_users_aggregated_count
+    group: JSON
+    max: student_directus_users_aggregated_fields
+    min: student_directus_users_aggregated_fields
+    sum: student_directus_users_aggregated_fields
+    sumDistinct: student_directus_users_aggregated_fields
+}
+
+type student_directus_users_aggregated_count {
+    directus_users_id: Int
+    id: Int
+    student_id: Int
+}
+
+type student_directus_users_aggregated_fields {
+    id: Float
+    student_id: Float
+}
+
 type tecnico_integrado_page {
     content: String
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
     hero_carousel(filter: tecnico_integrado_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [tecnico_integrado_page_files]
+    hero_carousel_func: count_functions
     hero_title: String
     id: ID
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    seo_keywords: String
+    seo_keywords: [String]
     seo_title: String
 }
 
@@ -990,8 +772,9 @@ type tecnico_integrado_page_files {
 type tecnico_integrado_page_files_aggregated {
     avg: tecnico_integrado_page_files_aggregated_fields
     avgDistinct: tecnico_integrado_page_files_aggregated_fields
-    count: tecnico_integrado_page_files_aggregated_fields
-    countDistinct: tecnico_integrado_page_files_aggregated_fields
+    count: tecnico_integrado_page_files_aggregated_count
+    countAll: Int
+    countDistinct: tecnico_integrado_page_files_aggregated_count
     group: JSON
     max: tecnico_integrado_page_files_aggregated_fields
     min: tecnico_integrado_page_files_aggregated_fields
@@ -999,51 +782,34 @@ type tecnico_integrado_page_files_aggregated {
     sumDistinct: tecnico_integrado_page_files_aggregated_fields
 }
 
+type tecnico_integrado_page_files_aggregated_count {
+    directus_files_id: Int
+    id: Int
+    tecnico_integrado_page_id: Int
+}
+
 type tecnico_integrado_page_files_aggregated_fields {
     id: Float
     tecnico_integrado_page_id: Float
 }
 
-type vote {
-    date_created: Date
-    date_created_func: datetime_functions
-    date_updated: Date
-    date_updated_func: datetime_functions
-    game(filter: game_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): game
-    id: ID
-    ip: String
-    sort: Int
-}
-
-type vote_aggregated {
-    avg: vote_aggregated_fields
-    avgDistinct: vote_aggregated_fields
-    count: vote_aggregated_fields
-    countDistinct: vote_aggregated_fields
-    group: JSON
-    max: vote_aggregated_fields
-    min: vote_aggregated_fields
-    sum: vote_aggregated_fields
-    sumDistinct: vote_aggregated_fields
-}
-
-type vote_aggregated_fields {
-    game: Float
-    id: Float
-    sort: Float
-}
-
 "ISO8601 Date values"
 scalar Date
+
+"A Float or a String"
+scalar GraphQLStringOrFloat
+
+"Hashed string values"
+scalar Hash
 
 "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
 scalar JSON
 
-input article_blog_tag_filter {
-    _and: [article_blog_tag_filter]
-    _or: [article_blog_tag_filter]
+input article_article_tags_filter {
+    _and: [article_article_tags_filter]
+    _or: [article_article_tags_filter]
     article_id: article_filter
-    blog_tag_id: blog_tag_filter
+    article_tags_id: article_tags_filter
     id: number_filter_operators
 }
 
@@ -1058,42 +824,18 @@ input article_filter {
     date_updated_func: datetime_function_filter_operators
     description: string_filter_operators
     id: number_filter_operators
-    slug: string_filter_operators
     sort: number_filter_operators
     status: string_filter_operators
-    tags: article_blog_tag_filter
+    tags: article_article_tags_filter
+    tags_func: count_function_filter_operators
     title: string_filter_operators
     user_created: directus_users_filter
     user_updated: directus_users_filter
 }
 
-input blog_page_files_filter {
-    _and: [blog_page_files_filter]
-    _or: [blog_page_files_filter]
-    blog_page_id: blog_page_filter
-    directus_files_id: directus_files_filter
-    id: number_filter_operators
-}
-
-input blog_page_filter {
-    _and: [blog_page_filter]
-    _or: [blog_page_filter]
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    hero_carousel: blog_page_files_filter
-    hero_title: string_filter_operators
-    id: number_filter_operators
-    seo_description: string_filter_operators
-    seo_image: directus_files_filter
-    seo_keywords: string_filter_operators
-    seo_title: string_filter_operators
-}
-
-input blog_tag_filter {
-    _and: [blog_tag_filter]
-    _or: [blog_tag_filter]
+input article_tags_filter {
+    _and: [article_tags_filter]
+    _or: [article_tags_filter]
     id: number_filter_operators
     name: string_filter_operators
 }
@@ -1105,34 +847,21 @@ input boolean_filter_operators {
     _null: Boolean
 }
 
-input create_vote_input {
-    date_created: Date
-    date_created_func: datetime_functionsInput
-    date_updated: Date
-    date_updated_func: datetime_functionsInput
-    game: Int
-    id: ID
-    ip: String
-    sort: Int
+input count_function_filter_operators {
+    count: number_filter_operators
 }
 
 input date_filter_operators {
+    _between: [GraphQLStringOrFloat]
     _eq: String
     _gt: String
     _gte: String
     _lt: String
     _lte: String
+    _nbetween: [GraphQLStringOrFloat]
     _neq: String
     _nnull: Boolean
     _null: Boolean
-}
-
-input date_function_filter_operators {
-    day: number_filter_operators
-    month: number_filter_operators
-    week: number_filter_operators
-    weekday: number_filter_operators
-    year: number_filter_operators
 }
 
 input datetime_function_filter_operators {
@@ -1146,17 +875,6 @@ input datetime_function_filter_operators {
     year: number_filter_operators
 }
 
-input datetime_functionsInput {
-    day: Int
-    hour: Int
-    minute: Int
-    month: Int
-    second: Int
-    week: Int
-    weekday: Int
-    year: Int
-}
-
 input directus_files_filter {
     _and: [directus_files_filter]
     _or: [directus_files_filter]
@@ -1166,17 +884,19 @@ input directus_files_filter {
     embed: string_filter_operators
     filename_disk: string_filter_operators
     filename_download: string_filter_operators
-    filesize: number_filter_operators
-    folder: string_filter_operators
+    filesize: string_filter_operators
+    folder: directus_folders_filter
     height: number_filter_operators
     id: string_filter_operators
     location: string_filter_operators
     metadata: string_filter_operators
+    metadata_func: count_function_filter_operators
     modified_by: directus_users_filter
     modified_on: date_filter_operators
     modified_on_func: datetime_function_filter_operators
     storage: string_filter_operators
     tags: string_filter_operators
+    tags_func: count_function_filter_operators
     title: string_filter_operators
     type: string_filter_operators
     uploaded_by: directus_users_filter
@@ -1185,40 +905,51 @@ input directus_files_filter {
     width: number_filter_operators
 }
 
-input directus_roles_filter {
-    _and: [directus_roles_filter]
-    _or: [directus_roles_filter]
-    description: string_filter_operators
+input directus_folders_filter {
+    _and: [directus_folders_filter]
+    _or: [directus_folders_filter]
     id: string_filter_operators
     name: string_filter_operators
-    users: directus_users_filter
+    parent: directus_folders_filter
 }
 
 input directus_users_filter {
     _and: [directus_users_filter]
     _or: [directus_users_filter]
+    auth_data: string_filter_operators
+    auth_data_func: count_function_filter_operators
     avatar: directus_files_filter
     description: string_filter_operators
     email: string_filter_operators
+    email_notifications: boolean_filter_operators
+    external_identifier: string_filter_operators
     first_name: string_filter_operators
     id: string_filter_operators
+    language: string_filter_operators
+    last_access: date_filter_operators
+    last_access_func: datetime_function_filter_operators
     last_name: string_filter_operators
+    last_page: string_filter_operators
     lattes: string_filter_operators
-    role: directus_roles_filter
+    location: string_filter_operators
+    password: hash_filter_operators
+    provider: string_filter_operators
+    role: string_filter_operators
+    status: string_filter_operators
+    tags: string_filter_operators
+    tags_func: count_function_filter_operators
+    tfa_secret: hash_filter_operators
+    theme: string_filter_operators
     title: string_filter_operators
+    token: hash_filter_operators
 }
 
-input discipline_filter {
-    _and: [discipline_filter]
-    _or: [discipline_filter]
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    description: string_filter_operators
+input empresa_junior_page_files_1_filter {
+    _and: [empresa_junior_page_files_1_filter]
+    _or: [empresa_junior_page_files_1_filter]
+    directus_files_id: directus_files_filter
+    empresa_junior_page_id: empresa_junior_page_filter
     id: number_filter_operators
-    name: string_filter_operators
-    sort: number_filter_operators
 }
 
 input empresa_junior_page_files_filter {
@@ -1232,12 +963,8 @@ input empresa_junior_page_files_filter {
 input empresa_junior_page_filter {
     _and: [empresa_junior_page_filter]
     _or: [empresa_junior_page_filter]
-    content: string_filter_operators
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    hero_carousel: empresa_junior_page_files_filter
+    hero_carousel: empresa_junior_page_files_1_filter
+    hero_carousel_func: count_function_filter_operators
     hero_title: string_filter_operators
     id: number_filter_operators
     seo_description: string_filter_operators
@@ -1249,20 +976,13 @@ input empresa_junior_page_filter {
 input game_filter {
     _and: [game_filter]
     _or: [game_filter]
-    author: string_filter_operators
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
+    authors: string_filter_operators
     description: string_filter_operators
     id: number_filter_operators
-    sort: number_filter_operators
+    status: string_filter_operators
     title: string_filter_operators
-    user_created: directus_users_filter
-    user_updated: directus_users_filter
     video_url: string_filter_operators
-    year: date_filter_operators
-    year_func: date_function_filter_operators
+    year: number_filter_operators
 }
 
 input games_page_files_filter {
@@ -1277,11 +997,8 @@ input games_page_filter {
     _and: [games_page_filter]
     _or: [games_page_filter]
     content: string_filter_operators
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
     hero_carousel: games_page_files_filter
+    hero_carousel_func: count_function_filter_operators
     hero_title: string_filter_operators
     id: number_filter_operators
     seo_description: string_filter_operators
@@ -1303,92 +1020,31 @@ input gecomp_page_filter {
     _or: [gecomp_page_filter]
     areas: string_filter_operators
     content: string_filter_operators
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
     hero_carousel: gecomp_page_files_filter
+    hero_carousel_func: count_function_filter_operators
     hero_title: string_filter_operators
     id: number_filter_operators
-    members: gecomp_page_professors_filter
+    members: gecomp_page_professor_filter
+    members_func: count_function_filter_operators
     seo_description: string_filter_operators
     seo_image: directus_files_filter
     seo_keywords: string_filter_operators
     seo_title: string_filter_operators
 }
 
-input gecomp_page_professors_filter {
-    _and: [gecomp_page_professors_filter]
-    _or: [gecomp_page_professors_filter]
+input gecomp_page_professor_filter {
+    _and: [gecomp_page_professor_filter]
+    _or: [gecomp_page_professor_filter]
     gecomp_page_id: gecomp_page_filter
     id: number_filter_operators
-    professors_id: professors_filter
+    professor_id: professor_filter
 }
 
-input graduacao_page_files_filter {
-    _and: [graduacao_page_files_filter]
-    _or: [graduacao_page_files_filter]
-    directus_files_id: directus_files_filter
-    graduacao_page_id: graduacao_page_filter
-    id: number_filter_operators
-}
-
-input graduacao_page_filter {
-    _and: [graduacao_page_filter]
-    _or: [graduacao_page_filter]
-    content: string_filter_operators
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    hero_carousel: graduacao_page_files_filter
-    hero_title: string_filter_operators
-    id: number_filter_operators
-    seo_description: string_filter_operators
-    seo_image: directus_files_filter
-    seo_keywords: string_filter_operators
-    seo_title: string_filter_operators
-}
-
-input home_page_files_filter {
-    _and: [home_page_files_filter]
-    _or: [home_page_files_filter]
-    directus_files_id: directus_files_filter
-    home_page_id: home_page_filter
-    id: number_filter_operators
-}
-
-input home_page_filter {
-    _and: [home_page_filter]
-    _or: [home_page_filter]
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    hero_carousel: home_page_files_filter
-    id: number_filter_operators
-    secao_feature_1_description: string_filter_operators
-    secao_feature_1_link: string_filter_operators
-    secao_feature_1_title: string_filter_operators
-    secao_feature_2_description: string_filter_operators
-    secao_feature_2_link: string_filter_operators
-    secao_feature_2_title: string_filter_operators
-    secao_feature_3_description: string_filter_operators
-    secao_feature_3_link: string_filter_operators
-    secao_feature_3_title: string_filter_operators
-    secao_feature_display: boolean_filter_operators
-    secao_games_display: boolean_filter_operators
-    secao_games_title: string_filter_operators
-    secao_posts_display: boolean_filter_operators
-    secao_posts_subtitle: string_filter_operators
-    secao_posts_title: string_filter_operators
-    secao_professores_display: boolean_filter_operators
-    secao_professores_subtitle: string_filter_operators
-    secao_professores_title: string_filter_operators
-    seo_description: string_filter_operators
-    seo_image: directus_files_filter
-    seo_keywords: string_filter_operators
-    seo_title: string_filter_operators
+input hash_filter_operators {
+    _empty: Boolean
+    _nempty: Boolean
+    _nnull: Boolean
+    _null: Boolean
 }
 
 input link_filter {
@@ -1399,162 +1055,51 @@ input link_filter {
     url: string_filter_operators
 }
 
-input news_filter {
-    _and: [news_filter]
-    _or: [news_filter]
-    content: string_filter_operators
-    cover: directus_files_filter
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    description: string_filter_operators
-    id: number_filter_operators
-    sort: number_filter_operators
-    status: string_filter_operators
-    title: string_filter_operators
-    user_created: directus_users_filter
-    user_updated: directus_users_filter
-}
-
-input noticias_page_files_filter {
-    _and: [noticias_page_files_filter]
-    _or: [noticias_page_files_filter]
-    directus_files_id: directus_files_filter
-    id: number_filter_operators
-    noticias_page_id: noticias_page_filter
-}
-
-input noticias_page_filter {
-    _and: [noticias_page_filter]
-    _or: [noticias_page_filter]
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    hero_carousel: noticias_page_files_filter
-    hero_title: string_filter_operators
-    id: number_filter_operators
-    seo_description: string_filter_operators
-    seo_image: directus_files_filter
-    seo_keywords: string_filter_operators
-    seo_title: string_filter_operators
-}
-
 input number_filter_operators {
-    _eq: Float
-    _gt: Float
-    _gte: Float
-    _in: [Float]
-    _lt: Float
-    _lte: Float
-    _neq: Float
-    _nin: [Float]
+    _between: [GraphQLStringOrFloat]
+    _eq: GraphQLStringOrFloat
+    _gt: GraphQLStringOrFloat
+    _gte: GraphQLStringOrFloat
+    _in: [GraphQLStringOrFloat]
+    _lt: GraphQLStringOrFloat
+    _lte: GraphQLStringOrFloat
+    _nbetween: [GraphQLStringOrFloat]
+    _neq: GraphQLStringOrFloat
+    _nin: [GraphQLStringOrFloat]
     _nnull: Boolean
     _null: Boolean
 }
 
-input pos_graduacao_page_files_filter {
-    _and: [pos_graduacao_page_files_filter]
-    _or: [pos_graduacao_page_files_filter]
-    directus_files_id: directus_files_filter
-    id: number_filter_operators
-    pos_graduacao_page_id: pos_graduacao_page_filter
-}
-
-input pos_graduacao_page_filter {
-    _and: [pos_graduacao_page_filter]
-    _or: [pos_graduacao_page_filter]
-    content: string_filter_operators
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    hero_carousel: pos_graduacao_page_files_filter
-    hero_title: string_filter_operators
-    id: number_filter_operators
-    seo_description: string_filter_operators
-    seo_image: directus_files_filter
-    seo_keywords: string_filter_operators
-    seo_title: string_filter_operators
-}
-
-input professores_page_files_filter {
-    _and: [professores_page_files_filter]
-    _or: [professores_page_files_filter]
-    directus_files_id: directus_files_filter
-    id: number_filter_operators
-    professores_page_id: professores_page_filter
-}
-
-input professores_page_filter {
-    _and: [professores_page_filter]
-    _or: [professores_page_filter]
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    hero_carousel: professores_page_files_filter
-    hero_title: string_filter_operators
-    id: number_filter_operators
-    seo_description: string_filter_operators
-    seo_image: directus_files_filter
-    seo_keywords: string_filter_operators
-    seo_title: string_filter_operators
-}
-
-input professors_discipline_filter {
-    _and: [professors_discipline_filter]
-    _or: [professors_discipline_filter]
-    discipline_id: discipline_filter
-    id: number_filter_operators
-    professors_id: professors_filter
-}
-
-input professors_filter {
-    _and: [professors_filter]
-    _or: [professors_filter]
+input professor_filter {
+    _and: [professor_filter]
+    _or: [professor_filter]
     degree: string_filter_operators
-    disciplines: professors_discipline_filter
     gecomp: boolean_filter_operators
     id: number_filter_operators
     institution: string_filter_operators
-    status: string_filter_operators
+    lattes: string_filter_operators
     user: directus_users_filter
-}
-
-input project_files_filter {
-    _and: [project_files_filter]
-    _or: [project_files_filter]
-    directus_files_id: directus_files_filter
-    id: number_filter_operators
-    project_id: project_filter
 }
 
 input project_filter {
     _and: [project_filter]
     _or: [project_filter]
-    carousel: project_files_filter
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
     description: string_filter_operators
     id: number_filter_operators
-    professors: project_professors_filter
-    slug: string_filter_operators
+    link: link_filter
+    professors: project_professor_filter
+    professors_func: count_function_filter_operators
+    status: string_filter_operators
     students: project_student_filter
+    students_func: count_function_filter_operators
     title: string_filter_operators
-    url: link_filter
-    user_created: directus_users_filter
-    user_updated: directus_users_filter
 }
 
-input project_professors_filter {
-    _and: [project_professors_filter]
-    _or: [project_professors_filter]
+input project_professor_filter {
+    _and: [project_professor_filter]
+    _or: [project_professor_filter]
     id: number_filter_operators
-    professors_id: professors_filter
+    professor_id: professor_filter
     project_id: project_filter
 }
 
@@ -1582,12 +1127,16 @@ input projetos_page_filter {
     date_updated: date_filter_operators
     date_updated_func: datetime_function_filter_operators
     hero_carousel: projetos_page_files_filter
+    hero_carousel_func: count_function_filter_operators
     hero_title: string_filter_operators
     id: number_filter_operators
     seo_description: string_filter_operators
     seo_image: directus_files_filter
     seo_keywords: string_filter_operators
     seo_title: string_filter_operators
+    status: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input string_filter_operators {
@@ -1607,15 +1156,19 @@ input string_filter_operators {
     _starts_with: String
 }
 
+input student_directus_users_filter {
+    _and: [student_directus_users_filter]
+    _or: [student_directus_users_filter]
+    directus_users_id: directus_users_filter
+    id: number_filter_operators
+    student_id: student_filter
+}
+
 input student_filter {
     _and: [student_filter]
     _or: [student_filter]
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
     id: number_filter_operators
-    name: string_filter_operators
+    user: directus_users_filter
 }
 
 input tecnico_integrado_page_files_filter {
@@ -1630,28 +1183,12 @@ input tecnico_integrado_page_filter {
     _and: [tecnico_integrado_page_filter]
     _or: [tecnico_integrado_page_filter]
     content: string_filter_operators
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
     hero_carousel: tecnico_integrado_page_files_filter
+    hero_carousel_func: count_function_filter_operators
     hero_title: string_filter_operators
     id: number_filter_operators
     seo_description: string_filter_operators
     seo_image: directus_files_filter
     seo_keywords: string_filter_operators
     seo_title: string_filter_operators
-}
-
-input vote_filter {
-    _and: [vote_filter]
-    _or: [vote_filter]
-    date_created: date_filter_operators
-    date_created_func: datetime_function_filter_operators
-    date_updated: date_filter_operators
-    date_updated_func: datetime_function_filter_operators
-    game: game_filter
-    id: number_filter_operators
-    ip: string_filter_operators
-    sort: number_filter_operators
 }

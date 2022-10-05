@@ -18,14 +18,14 @@ const navigation = [
     url: '',
     label: 'pessoas',
     dropdown: [
-      {
-        url: '/pessoas/alunos',
-        label: 'Alunos'
-      },
-      {
-        url: '/pessoas/egressos',
-        label: 'egressos'
-      },
+      // {
+      //   url: '/pessoas/alunos',
+      //   label: 'Alunos'
+      // },
+      // {
+      //   url: '/pessoas/egressos',
+      //   label: 'egressos'
+      // },
       {
         url: '/pessoas/professores',
         label: 'professores'

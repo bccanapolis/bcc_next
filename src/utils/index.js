@@ -20,7 +20,7 @@ export function clearObject(obj) {
 }
 
 export function urlSlugID(url) {
-  return url.split(/(@)(?!.*@)/);
+  return url.split(/(\.)(?!.*\.)/);
 }
 
 export function querySerialize(obj) {

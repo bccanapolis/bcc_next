@@ -133,7 +133,12 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
 
 export const queryArticleByID = gql`
     query BlogArticle($id: ID!) {
-        recent_article: article (limit: 5, page: 1, sort: "-date_created", filter: {status: {_eq: "published"}}) {
+        recent_article: article(
+            limit: 5
+            page: 1
+            sort: "-date_created"
+            filter: {status: {_eq: "published"}}
+        ) {
             user_created {
                 avatar {
                     id
@@ -149,10 +154,9 @@ export const queryArticleByID = gql`
             cover {
                 id
             }
-            slug
             date_created
         }
-        blog_tag{
+        article_tags {
             name
         }
         article_by_id(id: $id) {
@@ -175,13 +179,13 @@ export const queryArticleByID = gql`
             date_updated
             description
             id
-            slug
             title
             tags {
-                blog_tag_id {
+                article_tags_id {
                     name
                 }
-            },
+            }
         }
     }
+
 `;
