@@ -29,8 +29,8 @@ export default function index({ page, professors }) {
       <Container className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 '>
         {
           professors.map((item, index) =>
-            <Link key={`professores-${item.user.lattes}`}
-                  href={`/pessoas/professores/${slugify(fullName(item.user).toLowerCase())}@${item.user.lattes}`}>
+            <Link key={`professores-${item.lattes}`}
+                  href={`/pessoas/professores/${slugify(fullName(item.user).toLowerCase())}.${item.lattes}`}>
               <a className='flex flex-col items-center group'>
                 <div className='relative overflow-hidden w-48 rounded-full h-48 mb-4'>
                   <Image
@@ -39,7 +39,7 @@ export default function index({ page, professors }) {
                     layout='fill' />
                 </div>
                 <p
-                  className='text-center group-hover:text-primary transition-colors duration-300'>{item.degree}{' '}{fullName(item.user)}</p>
+                  className='text-center group-hover:text-primary transition-colors duration-300'><span className='capitalize'>{item?.degree}.</span>{' '}{fullName(item.user)}</p>
               </a>
             </Link>
           )
@@ -71,15 +71,15 @@ export async function getStaticProps() {
                   }
               }
           }
-          professors(filter: {institution: {_eq: "IFG"}, status: {_eq: "published"}}) {
+          professor(filter: {institution: {_eq: "ifg"}}) {
               id
               institution
               degree
+              lattes
               user {
                   email
                   first_name
                   last_name
-                  lattes
                   avatar {
                       height
                       id
@@ -92,7 +92,7 @@ export async function getStaticProps() {
 
   const res = (await apolloClient.query({ query })).data;
 
-  const { professors, professores_page } = res;
+  const { professor, professores_page } = res;
 
   const carousel = professores_page.hero_carousel ? professores_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
@@ -101,7 +101,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      professors: sortByFullName(professors),
+      professors: sortByFullName(professor),
       page: {
         ...professores_page,
         carousel

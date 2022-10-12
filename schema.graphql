@@ -49,6 +49,10 @@ type Query {
     professor(filter: professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professor!]!
     professor_aggregated(filter: professor_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professor_aggregated!]!
     professor_by_id(id: ID!): professor
+    professores_page: professores_page
+    professores_page_files(filter: professores_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professores_page_files!]!
+    professores_page_files_aggregated(filter: professores_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professores_page_files_aggregated!]!
+    professores_page_files_by_id(id: ID!): professores_page_files
     project(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project!]!
     project_aggregated(filter: project_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [project_aggregated!]!
     project_by_id(id: ID!): project
@@ -656,6 +660,47 @@ type professor_aggregated_fields {
     id: Float
 }
 
+type professores_page {
+    hero_carousel(filter: professores_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professores_page_files]
+    hero_carousel_func: count_functions
+    hero_title: String
+    id: ID
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type professores_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    id: ID
+    professores_page_id(filter: professores_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): professores_page
+}
+
+type professores_page_files_aggregated {
+    avg: professores_page_files_aggregated_fields
+    avgDistinct: professores_page_files_aggregated_fields
+    count: professores_page_files_aggregated_count
+    countAll: Int
+    countDistinct: professores_page_files_aggregated_count
+    group: JSON
+    max: professores_page_files_aggregated_fields
+    min: professores_page_files_aggregated_fields
+    sum: professores_page_files_aggregated_fields
+    sumDistinct: professores_page_files_aggregated_fields
+}
+
+type professores_page_files_aggregated_count {
+    directus_files_id: Int
+    id: Int
+    professores_page_id: Int
+}
+
+type professores_page_files_aggregated_fields {
+    id: Float
+    professores_page_id: Float
+}
+
 type project {
     description: String
     id: ID
@@ -1253,6 +1298,27 @@ input professor_filter {
     institution: string_filter_operators
     lattes: string_filter_operators
     user: directus_users_filter
+}
+
+input professores_page_files_filter {
+    _and: [professores_page_files_filter]
+    _or: [professores_page_files_filter]
+    directus_files_id: directus_files_filter
+    id: number_filter_operators
+    professores_page_id: professores_page_filter
+}
+
+input professores_page_filter {
+    _and: [professores_page_filter]
+    _or: [professores_page_filter]
+    hero_carousel: professores_page_files_filter
+    hero_carousel_func: count_function_filter_operators
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
 }
 
 input project_filter {
