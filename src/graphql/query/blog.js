@@ -29,7 +29,6 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
         cover: {
           id: true
         },
-        slug: true,
         date_created: true
       },
 
@@ -60,11 +59,10 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
           id: true
         },
         tags: {
-          blog_tag_id: {
+          article_tags_id: {
             name: true
           }
         },
-        slug: true,
         date_created: true
       },
       article_aggregated: {
@@ -79,7 +77,7 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
           id: true
         }
       },
-      blog_tag: {
+      article_tags: {
         name: true
       }
     }
@@ -87,10 +85,10 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
 
   if (!!tags) {
     query.query.article.__args.filter.tags = {
-      blog_tag_id: { name: { _eq: tags } }
+      article_tags_id: { name: { _eq: tags } }
     };
     query.query.article_aggregated.__args.filter.tags = {
-      blog_tag_id: { name: { _eq: tags } }
+      article_tags_id: { name: { _eq: tags } }
     };
   }
 
@@ -127,6 +125,8 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
       }
     };
   }
+
+  console.log(jsonToGraphQLQuery(query))
 
   return jsonToGraphQLQuery(query);
 };

@@ -14,16 +14,20 @@ type Query {
     article_tags(filter: article_tags_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [article_tags!]!
     article_tags_aggregated(filter: article_tags_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [article_tags_aggregated!]!
     article_tags_by_id(id: ID!): article_tags
+    blog_page: blog_page
+    blog_page_files(filter: blog_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [blog_page_files!]!
+    blog_page_files_aggregated(filter: blog_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [blog_page_files_aggregated!]!
+    blog_page_files_by_id(id: ID!): blog_page_files
     empresa_junior_page: empresa_junior_page
     empresa_junior_page_files(filter: empresa_junior_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files!]!
-    empresa_junior_page_files_1(filter: empresa_junior_page_files_1_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files_1!]!
-    empresa_junior_page_files_1_aggregated(filter: empresa_junior_page_files_1_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [empresa_junior_page_files_1_aggregated!]!
-    empresa_junior_page_files_1_by_id(id: ID!): empresa_junior_page_files_1
     empresa_junior_page_files_aggregated(filter: empresa_junior_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [empresa_junior_page_files_aggregated!]!
     empresa_junior_page_files_by_id(id: ID!): empresa_junior_page_files
     game(filter: game_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [game!]!
     game_aggregated(filter: game_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [game_aggregated!]!
     game_by_id(id: ID!): game
+    game_student(filter: game_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [game_student!]!
+    game_student_aggregated(filter: game_student_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [game_student_aggregated!]!
+    game_student_by_id(id: ID!): game_student
     games_page: games_page
     games_page_files(filter: games_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [games_page_files!]!
     games_page_files_aggregated(filter: games_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [games_page_files_aggregated!]!
@@ -35,6 +39,10 @@ type Query {
     gecomp_page_professor(filter: gecomp_page_professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professor!]!
     gecomp_page_professor_aggregated(filter: gecomp_page_professor_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [gecomp_page_professor_aggregated!]!
     gecomp_page_professor_by_id(id: ID!): gecomp_page_professor
+    home_page: home_page
+    home_page_files(filter: home_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [home_page_files!]!
+    home_page_files_aggregated(filter: home_page_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [home_page_files_aggregated!]!
+    home_page_files_by_id(id: ID!): home_page_files
     link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [link!]!
     link_aggregated(filter: link_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [link_aggregated!]!
     link_by_id(id: ID!): link
@@ -175,6 +183,47 @@ type article_tags_aggregated_fields {
     id: Float
 }
 
+type blog_page {
+    hero_carousel(filter: blog_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [blog_page_files]
+    hero_carousel_func: count_functions
+    hero_title: String
+    id: ID
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type blog_page_files {
+    blog_page_id(filter: blog_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): blog_page
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    id: ID
+}
+
+type blog_page_files_aggregated {
+    avg: blog_page_files_aggregated_fields
+    avgDistinct: blog_page_files_aggregated_fields
+    count: blog_page_files_aggregated_count
+    countAll: Int
+    countDistinct: blog_page_files_aggregated_count
+    group: JSON
+    max: blog_page_files_aggregated_fields
+    min: blog_page_files_aggregated_fields
+    sum: blog_page_files_aggregated_fields
+    sumDistinct: blog_page_files_aggregated_fields
+}
+
+type blog_page_files_aggregated_count {
+    blog_page_id: Int
+    directus_files_id: Int
+    id: Int
+}
+
+type blog_page_files_aggregated_fields {
+    blog_page_id: Float
+    id: Float
+}
+
 type count_functions {
     count: Int
 }
@@ -254,7 +303,7 @@ type directus_users {
 }
 
 type empresa_junior_page {
-    hero_carousel(filter: empresa_junior_page_files_1_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files_1]
+    hero_carousel(filter: empresa_junior_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [empresa_junior_page_files]
     hero_carousel_func: count_functions
     hero_title: String
     id: ID
@@ -268,36 +317,6 @@ type empresa_junior_page_files {
     directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     empresa_junior_page_id(filter: empresa_junior_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): empresa_junior_page
     id: ID
-}
-
-type empresa_junior_page_files_1 {
-    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
-    empresa_junior_page_id(filter: empresa_junior_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): empresa_junior_page
-    id: ID
-}
-
-type empresa_junior_page_files_1_aggregated {
-    avg: empresa_junior_page_files_1_aggregated_fields
-    avgDistinct: empresa_junior_page_files_1_aggregated_fields
-    count: empresa_junior_page_files_1_aggregated_count
-    countAll: Int
-    countDistinct: empresa_junior_page_files_1_aggregated_count
-    group: JSON
-    max: empresa_junior_page_files_1_aggregated_fields
-    min: empresa_junior_page_files_1_aggregated_fields
-    sum: empresa_junior_page_files_1_aggregated_fields
-    sumDistinct: empresa_junior_page_files_1_aggregated_fields
-}
-
-type empresa_junior_page_files_1_aggregated_count {
-    directus_files_id: Int
-    empresa_junior_page_id: Int
-    id: Int
-}
-
-type empresa_junior_page_files_1_aggregated_fields {
-    empresa_junior_page_id: Float
-    id: Float
 }
 
 type empresa_junior_page_files_aggregated {
@@ -329,6 +348,8 @@ type game {
     description: String
     id: ID
     status: String!
+    students(filter: game_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [game_student]
+    students_func: count_functions
     title: String
     video_url: String
     year: Int
@@ -352,6 +373,7 @@ type game_aggregated_count {
     description: Int
     id: Int
     status: Int
+    students: Int
     title: Int
     video_url: Int
     year: Int
@@ -360,6 +382,37 @@ type game_aggregated_count {
 type game_aggregated_fields {
     id: Float
     year: Float
+}
+
+type game_student {
+    game_id(filter: game_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): game
+    id: ID
+    student_id(filter: student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): student
+}
+
+type game_student_aggregated {
+    avg: game_student_aggregated_fields
+    avgDistinct: game_student_aggregated_fields
+    count: game_student_aggregated_count
+    countAll: Int
+    countDistinct: game_student_aggregated_count
+    group: JSON
+    max: game_student_aggregated_fields
+    min: game_student_aggregated_fields
+    sum: game_student_aggregated_fields
+    sumDistinct: game_student_aggregated_fields
+}
+
+type game_student_aggregated_count {
+    game_id: Int
+    id: Int
+    student_id: Int
+}
+
+type game_student_aggregated_fields {
+    game_id: Float
+    id: Float
+    student_id: Float
 }
 
 type games_page {
@@ -478,6 +531,65 @@ type gecomp_page_professor_aggregated_fields {
     gecomp_page_id: Float
     id: Float
     professor_id: Float
+}
+
+type home_page {
+    hero_carousel(filter: home_page_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [home_page_files]
+    hero_carousel_func: count_functions
+    id: ID
+    secao_feature_1_description: String
+    secao_feature_1_link: String
+    secao_feature_1_title: String
+    secao_feature_2_description: String
+    secao_feature_2_link: String
+    secao_feature_2_title: String
+    secao_feature_3_description: String
+    secao_feature_3_link: String
+    secao_feature_3_title: String
+    secao_feature_display: Boolean
+    secao_games_display: Boolean
+    secao_games_subtitle: String
+    secao_games_title: String
+    secao_posts_display: Boolean
+    secao_posts_subtitle: String
+    secao_posts_title: String
+    secao_professores_display: Boolean
+    secao_professores_subtitle: String
+    secao_professores_title: String
+    seo_description: String
+    seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    seo_keywords: [String]
+    seo_title: String
+}
+
+type home_page_files {
+    directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    home_page_id(filter: home_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): home_page
+    id: ID
+}
+
+type home_page_files_aggregated {
+    avg: home_page_files_aggregated_fields
+    avgDistinct: home_page_files_aggregated_fields
+    count: home_page_files_aggregated_count
+    countAll: Int
+    countDistinct: home_page_files_aggregated_count
+    group: JSON
+    max: home_page_files_aggregated_fields
+    min: home_page_files_aggregated_fields
+    sum: home_page_files_aggregated_fields
+    sumDistinct: home_page_files_aggregated_fields
+}
+
+type home_page_files_aggregated_count {
+    directus_files_id: Int
+    home_page_id: Int
+    id: Int
+}
+
+type home_page_files_aggregated_fields {
+    home_page_id: Float
+    id: Float
 }
 
 type link {
@@ -840,6 +952,27 @@ input article_tags_filter {
     name: string_filter_operators
 }
 
+input blog_page_files_filter {
+    _and: [blog_page_files_filter]
+    _or: [blog_page_files_filter]
+    blog_page_id: blog_page_filter
+    directus_files_id: directus_files_filter
+    id: number_filter_operators
+}
+
+input blog_page_filter {
+    _and: [blog_page_filter]
+    _or: [blog_page_filter]
+    hero_carousel: blog_page_files_filter
+    hero_carousel_func: count_function_filter_operators
+    hero_title: string_filter_operators
+    id: number_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
+}
+
 input boolean_filter_operators {
     _eq: Boolean
     _neq: Boolean
@@ -944,14 +1077,6 @@ input directus_users_filter {
     token: hash_filter_operators
 }
 
-input empresa_junior_page_files_1_filter {
-    _and: [empresa_junior_page_files_1_filter]
-    _or: [empresa_junior_page_files_1_filter]
-    directus_files_id: directus_files_filter
-    empresa_junior_page_id: empresa_junior_page_filter
-    id: number_filter_operators
-}
-
 input empresa_junior_page_files_filter {
     _and: [empresa_junior_page_files_filter]
     _or: [empresa_junior_page_files_filter]
@@ -963,7 +1088,7 @@ input empresa_junior_page_files_filter {
 input empresa_junior_page_filter {
     _and: [empresa_junior_page_filter]
     _or: [empresa_junior_page_filter]
-    hero_carousel: empresa_junior_page_files_1_filter
+    hero_carousel: empresa_junior_page_files_filter
     hero_carousel_func: count_function_filter_operators
     hero_title: string_filter_operators
     id: number_filter_operators
@@ -980,9 +1105,19 @@ input game_filter {
     description: string_filter_operators
     id: number_filter_operators
     status: string_filter_operators
+    students: game_student_filter
+    students_func: count_function_filter_operators
     title: string_filter_operators
     video_url: string_filter_operators
     year: number_filter_operators
+}
+
+input game_student_filter {
+    _and: [game_student_filter]
+    _or: [game_student_filter]
+    game_id: game_filter
+    id: number_filter_operators
+    student_id: student_filter
 }
 
 input games_page_files_filter {
@@ -1045,6 +1180,45 @@ input hash_filter_operators {
     _nempty: Boolean
     _nnull: Boolean
     _null: Boolean
+}
+
+input home_page_files_filter {
+    _and: [home_page_files_filter]
+    _or: [home_page_files_filter]
+    directus_files_id: directus_files_filter
+    home_page_id: home_page_filter
+    id: number_filter_operators
+}
+
+input home_page_filter {
+    _and: [home_page_filter]
+    _or: [home_page_filter]
+    hero_carousel: home_page_files_filter
+    hero_carousel_func: count_function_filter_operators
+    id: number_filter_operators
+    secao_feature_1_description: string_filter_operators
+    secao_feature_1_link: string_filter_operators
+    secao_feature_1_title: string_filter_operators
+    secao_feature_2_description: string_filter_operators
+    secao_feature_2_link: string_filter_operators
+    secao_feature_2_title: string_filter_operators
+    secao_feature_3_description: string_filter_operators
+    secao_feature_3_link: string_filter_operators
+    secao_feature_3_title: string_filter_operators
+    secao_feature_display: boolean_filter_operators
+    secao_games_display: boolean_filter_operators
+    secao_games_subtitle: string_filter_operators
+    secao_games_title: string_filter_operators
+    secao_posts_display: boolean_filter_operators
+    secao_posts_subtitle: string_filter_operators
+    secao_posts_title: string_filter_operators
+    secao_professores_display: boolean_filter_operators
+    secao_professores_subtitle: string_filter_operators
+    secao_professores_title: string_filter_operators
+    seo_description: string_filter_operators
+    seo_image: directus_files_filter
+    seo_keywords: string_filter_operators
+    seo_title: string_filter_operators
 }
 
 input link_filter {

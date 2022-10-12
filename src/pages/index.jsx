@@ -5,19 +5,17 @@ import client from '@/apollo-client';
 import HeadSeo from '@/components/layout/HeadSeo';
 import { apiAsset } from '@/utils';
 import FeatureSection from '@/components/home/FeatureSection';
-import CourseSection from '@/components/home/CourseSection';
 import RecentPostsSection from '@/components/home/RecentPostsSection';
-import ProfessorsSection from '@/components/home/ProfessorsSection';
 import GameSection from '@/components/home/GameSection';
 import { sortByFullName } from '@/utils/user';
 
 export async function getStaticProps({}) {
   const query = gql`
       {
-          game_aggregated(groupBy: "year"){
+          game_aggregated(groupBy: "year") {
               group
           }
-          professors(filter: { institution: {_eq: "IFG"}, status: {_eq: "published"}}) {
+          professor(filter: {institution: {_eq: "IFG"}}) {
               id
               institution
               degree
@@ -33,7 +31,12 @@ export async function getStaticProps({}) {
                   }
               }
           }
-          recent_article: article (limit: 4, page: 1, sort: "-date_created", filter: {status: {_eq: "published"}}) {
+          recent_article: article(
+              limit: 4
+              page: 1
+              sort: "-date_created"
+              filter: {status: {_eq: "published"}}
+          ) {
               user_created {
                   first_name
                   last_name
@@ -43,7 +46,6 @@ export async function getStaticProps({}) {
               cover {
                   id
               }
-              slug
               description
               date_created
           }
@@ -74,6 +76,7 @@ export async function getStaticProps({}) {
               secao_feature_3_title
               secao_games_title
               secao_games_display
+              secao_games_subtitle
               hero_carousel {
                   directus_files_id {
                       id
@@ -85,11 +88,11 @@ export async function getStaticProps({}) {
       }
   `;
 
-  const { home_page, recent_article, professors, game_aggregated } = (await client.query({
+  const { home_page, recent_article, professor, game_aggregated } = (await client.query({
     query: query
   })).data;
 
-  const years = game_aggregated.map(item => new Date(item.group.year).getFullYear()).sort().reverse();
+  const years = game_aggregated.map(item => item.group.year).sort();
 
   const carousel = home_page.hero_carousel ? home_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
@@ -100,7 +103,7 @@ export async function getStaticProps({}) {
   return {
     props: {
       recent_article,
-      professors: sortByFullName(professors),
+      professors: sortByFullName(professor),
       games: years,
       page: {
         ...home_page,
@@ -171,7 +174,8 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
 
       {
         page.secao_games_display &&
-        <GameSection section={{ title: page.secao_games_title, subtitle: "Jogos desenvolvidos pelos nossos queridos calouros, durante as disciplinas de Construção de Algoritmos e Laboratório de Programação" }} games={games} className='mb-20' />
+        <GameSection section={{ title: page.secao_games_title ?? 'Section Title', subtitle: page.secao_games_subtitle }} games={games}
+                     className='mb-20' />
       }
     </>
   );

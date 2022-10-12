@@ -12,7 +12,7 @@ import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
 
 
 export default function Index({ article, available_tags: tags, recent_article: recentPosts }) {
-  const cover = !!article.cover ? [{ url: apiAsset(article.cover.id), alt: article.cover.title }] : null;
+  const cover = !!article?.cover ? [{ url: apiAsset(article.cover?.id), alt: article.cover?.title }] : null;
   const router = useRouter();
 
   function searchPosts({ tags = '', author = '', search = '' }) {

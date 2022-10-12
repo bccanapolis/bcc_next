@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
 
   const query = gql(dynamicBlog(page, limit, tags, author, search, true));
 
-  const { article, article_aggregated, blog_tag, blog_page, recent_article } = (await client.query({
+  const { article, article_aggregated, article_tags, blog_page, recent_article } = (await client.query({
     query, variables
   })).data;
 
@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
   const currentPage = page;
   const maxPages = Math.ceil(article_aggregated[0].count.id / limit);
 
-  let available_tags = blog_tag.map(({ name }) => name);
+  let available_tags = article_tags.map(({ name }) => name);
   let page_authors = onlyUniqueObject(article.map(({ user_created }) => user_created), 'id');
 
   if (currentPage > maxPages) {

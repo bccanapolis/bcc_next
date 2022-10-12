@@ -113,7 +113,7 @@ export default function GamesPage({ games, page, years }) {
                     <h5 className='mb-2 text-2xl font-bold tracking-tight text-neutral-900'>
                       {game.title}</h5>
                     <h6
-                      className='mb-2 tracking-tight text-neutral-500'>{game.authors}</h6>
+                      className='mb-2 tracking-tight text-neutral-500'>{game.authors.join(', ')}</h6>
                     <p className='font-normal text-neutral-700'>{game.description}</p>
                   </div>
                   {/*<div>*/}

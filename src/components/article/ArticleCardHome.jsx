@@ -31,7 +31,7 @@ export default function ArticleCardHome({ post, isNews }) {
           <p className='text-sm'>{format(new Date(post.date_created), 'dd MMM, yyyy')}</p>
         </div>
         <div>
-          <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}@${post.id}`}>
+          <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}.${post.id}`}>
             <a>
               <h5
                 className='font-bold tracking-tight hover:text-primary transition-colors duration-300'>{post.title}</h5>
