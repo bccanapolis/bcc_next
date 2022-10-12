@@ -6,18 +6,18 @@ export default function Service({ services })
   return(
     <Container >
       <h2 className='font-bold text-3xl mb-16'>Serviços Prestados</h2>
-      <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-x-28'>
+      <div className='grid grid-cols-1 space-y-12 lg:space-y-0 lg:grid-cols-3 gap-x-24 '>
         {
           services.map((service, index) => (
             <div key={index}>
-              <div className='relative h-96 w-96'>
-                <Image src={service.photo} layout='fill'/>
+              <div className='relative '>
+                <Image src={service.photo} width='359' height='359' layout='responsive'/>
               </div>
-              <div className='p-4'>
+              <div className='pl-4'>
                 <div>
                   <h5 className='mb-2 text-2xl font-bold tracking-tight text-neutral-900'>
                     {service.title}</h5>
-                  <p className='font-normal text-neutral-700 w-96'>{service.description}</p>
+                  <p className='font-normal text-neutral-700  break-normal'>{service.description}</p>
                 </div>
               </div>
             </div>
