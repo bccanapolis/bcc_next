@@ -67,7 +67,7 @@ function BlogPanelChild({ pageAuthors, recentPosts, tags, searchPosts, close, is
             {
               recentPosts.map((post) => (
                 <div key={`blog-panel-posts-${post.id}`} className='flex flex-row items-center gap-x-2'>
-                  <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}@${post.id}`}>
+                  <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}.${post.id}`}>
                     <a>
                       <div className='relative w-24 h-16'>
                         <Image
@@ -79,7 +79,7 @@ function BlogPanelChild({ pageAuthors, recentPosts, tags, searchPosts, close, is
                   </Link>
 
                   <div className='flex justify-between flex-col py-2'>
-                    <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}@${post.id}`}>
+                    <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}.${post.id}`}>
                       <a className='text-sm font-medium hover:text-primary transition-colors duration-300'>{post.title}
                       </a>
                     </Link>

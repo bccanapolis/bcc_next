@@ -10,7 +10,7 @@ export default function ArticleCardHome({ post, isNews }) {
   return (
     <article
       className={classNames('flex flex-col w-full h-full group ')}>
-      <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}@${post.id}`}>
+      <Link href={`${route}/${post.slug || slugify(post.title.toLowerCase())}.${post.id}`}>
         <a
           className={classNames('w-full h-48')}>
           <div className='w-full h-full relative'>
