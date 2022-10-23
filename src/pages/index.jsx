@@ -9,6 +9,7 @@ import CourseSection from '@/components/home/CourseSection';
 import RecentPostsSection from '@/components/home/RecentPostsSection';
 import ProfessorsSection from '@/components/home/ProfessorsSection';
 import GameSection from '@/components/home/GameSection';
+import CodeSection from '@/components/home/CodeSection';
 import { sortByFullName } from '@/utils/user';
 
 export async function getStaticProps({}) {
@@ -148,8 +149,10 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
               link: page.secao_feature_3_link
             }
           ]}
-          className='mb-20' />
+          />
       }
+
+      <CodeSection  className='mb-20'/>
       {
         page.secao_professores_display && <ProfessorsSection
           section={{
