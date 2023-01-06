@@ -13,7 +13,7 @@ import CodeBannerSection from '@/components/home/CodeBannerSection';
 export async function getStaticProps({}) {
   const query = gql`
       {
-          game_aggregated(groupBy: "year") {
+          game_aggregated(groupBy: "year", sort: "-year") {
               group
           }
           professor(filter: {institution: {_eq: "IFG"}}) {
@@ -93,7 +93,7 @@ export async function getStaticProps({}) {
     query: query
   })).data;
 
-  const years = game_aggregated.map(item => item.group.year).sort();
+  const years = game_aggregated.map(item => item.group.year);
 
   const carousel = home_page.hero_carousel ? home_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
@@ -123,7 +123,7 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
       <Banner fullscreen={true} navigation={false} imageLoading='eager'
               images={!!page.carousel.length ? page.carousel : null}>
         <div className='container'>
-          <div className='sm:-mt-20 sm:-ml-4 relative h-48 w-full sm:w-[360px]'
+          <div className='relative h-48 w-full sm:w-[360px]'
           >
             <Image
               src='/img/bcc_anapolis_logo.svg'
@@ -152,34 +152,38 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
               link: page.secao_feature_3_link
             }
           ]}
-          className='mb-20' />
+        />
       }
-      {
-        page.secao_posts_display && <RecentPostsSection
-          section={{
-            title: page.secao_posts_title,
-            subtitle: page.secao_posts_subtitle
-          }}
-          className='mb-20' posts={recentPosts} />
-      }
-      {/*{*/}
-      {/*  page.secao_professores_display && <ProfessorsSection*/}
-      {/*    section={{*/}
-      {/*      title: page.secao_professores_title,*/}
-      {/*      subtitle: page.secao_professores_subtitle*/}
-      {/*    }}*/}
-      {/*    className='mb-20 mt-20' professors={professors} />*/}
-      {/*}*/}
-      {/* <CourseSection className='mb-20' /> */}
+      <div className='space-y-20 my-20'>
 
-      <CodeTowerSection />
-      {
-        page.secao_games_display &&
-        <GameBannerYears
-          section={{ title: page.secao_games_title ?? 'Section Title', subtitle: page.secao_games_subtitle }}
-          games={games}
-          className='mb-20' />
-      }
+        {
+          page.secao_posts_display && <RecentPostsSection
+            section={{
+              title: page.secao_posts_title,
+              subtitle: page.secao_posts_subtitle
+            }}
+            posts={recentPosts} />
+        }
+        {/*{*/}
+        {/*  page.secao_professores_display && <ProfessorsSection*/}
+        {/*    section={{*/}
+        {/*      title: page.secao_professores_title,*/}
+        {/*      subtitle: page.secao_professores_subtitle*/}
+        {/*    }}*/}
+        {/*    className='mb-20 mt-20' professors={professors} />*/}
+        {/*}*/}
+        {/* <CourseSection className='mb-20' /> */}
+
+        <CodeBannerSection />
+        {
+          page.secao_games_display &&
+          <GameBannerYears
+            section={{ title: page.secao_games_title ?? 'Section Title', subtitle: page.secao_games_subtitle }}
+            games={games}
+          />
+        }
+      </div>
+
     </>
   );
 }
