@@ -1,14 +1,15 @@
-import { apiAsset, classNames } from '@/utils';
+import { apiAsset } from '@/utils';
 import { Autoplay, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { fullName } from '@/utils/user';
 import slugify from 'slugify';
+import Container from '@/components/layout/Container';
 
 export default function ProfessorsSection({ section, professors = [], className }) {
   return (
-    <div className={classNames('container', className)}>
+    <Container className={className}>
       <div className='space-y-2 mb-12'>
         <h5 className='text-4xl font-bold text-center'>{section.title || 'Section Title'}</h5>
         <p className='font-light text-center'>{section.subtitle || 'Section subtitle.'}</p>
@@ -56,6 +57,6 @@ export default function ProfessorsSection({ section, professors = [], className 
           ))
         }
       </Swiper>
-    </div>
+    </Container>
   );
 }

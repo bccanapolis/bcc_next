@@ -5,7 +5,7 @@ import client from '@/apollo-client';
 import Container from '@/components/layout/Container';
 import { apiAsset, stringBind } from '@/utils';
 import HeadSeo from '@/components/layout/HeadSeo';
-import GameSection from '@/components/home/GameSection';
+import GameBannerYears from '@/components/home/GameBannerYears';
 
 export async function getServerSideProps({ query }) {
   const gQuery = gql`
@@ -29,7 +29,7 @@ export async function getServerSideProps({ query }) {
                   }
               }
           }
-          game_aggregated(groupBy: "year"){
+          game_aggregated(groupBy: "year", sort:"-year"){
               group
           }
           game(filter: {year: {_eq: $year}}){
@@ -114,7 +114,10 @@ export default function GamesPage({ games, page, years }) {
                       {game.title}</h5>
                     <h6
                       className='mb-2 tracking-tight text-neutral-500'>{game.authors.join(', ')}</h6>
-                    <p className='font-normal text-neutral-700'>{game.description}</p>
+                    {
+                      game.description &&
+                      <p className='font-normal text-neutral-700'>{game.description}</p>
+                    }
                   </div>
                   {/*<div>*/}
                   {/*  <button*/}
@@ -130,8 +133,9 @@ export default function GamesPage({ games, page, years }) {
           }
         </div>
       </Container>
-      <GameSection section={{ title: 'Veja também os jogos dos outros anos:' }} games={years} className='mb-20 mt-20'
-                   classTitle='text-4xl font-bold' />
+      <GameBannerYears section={{ title: 'Veja também os jogos dos outros anos:' }} games={years}
+                       className='mb-20 mt-20'
+                       classTitle='text-4xl font-bold' />
     </>
   );
 }

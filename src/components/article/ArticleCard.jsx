@@ -4,6 +4,7 @@ import { apiAsset, classNames } from '@/utils';
 import { useRouter } from 'next/router';
 import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
 import { format } from 'date-fns';
+import slugify from 'slugify';
 
 export default function ArticleCard({ post, searchPosts }) {
   const router = useRouter();
@@ -32,7 +33,7 @@ export default function ArticleCard({ post, searchPosts }) {
           </ul>
 
         </div>
-        <Link href={`/blog/${post.slug}.${post.id}`}>
+        <Link href={`/blog/${slugify(post.title.toLowerCase())}.${post.id}`}>
           <a
             className={classNames('w-full h-64 lg:h-auto min-h-[18rem] lg:w-9/12')}>
             <div className='w-full h-full relative'>
@@ -49,7 +50,7 @@ export default function ArticleCard({ post, searchPosts }) {
         <div
           className={classNames('flex flex-col justify-between p-4 leading-normal w-full lg:w-9/12')}>
           <div>
-            <Link href={`/blog/${post.slug}.${post.id}`}>
+            <Link href={`/blog/${slugify(post.title.toLowerCase())}.${post.id}`}>
               <a>
                 <h5 className='mb-2 text-xl font-bold tracking-tight hover:text-primary transition-colors duration-300'>{post.title}</h5>
               </a>

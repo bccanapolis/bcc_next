@@ -702,6 +702,7 @@ type professores_page_files_aggregated_fields {
 }
 
 type project {
+    cover(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     description: String
     id: ID
     link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): link
@@ -727,6 +728,7 @@ type project_aggregated {
 }
 
 type project_aggregated_count {
+    cover: Int
     description: Int
     id: Int
     link: Int
@@ -1324,6 +1326,7 @@ input professores_page_filter {
 input project_filter {
     _and: [project_filter]
     _or: [project_filter]
+    cover: directus_files_filter
     description: string_filter_operators
     id: number_filter_operators
     link: link_filter

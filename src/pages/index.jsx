@@ -6,8 +6,9 @@ import HeadSeo from '@/components/layout/HeadSeo';
 import { apiAsset } from '@/utils';
 import FeatureSection from '@/components/home/FeatureSection';
 import RecentPostsSection from '@/components/home/RecentPostsSection';
-import GameSection from '@/components/home/GameSection';
+import GameBannerYears from '@/components/home/GameBannerYears';
 import { sortByFullName } from '@/utils/user';
+import CodeTowerSection from '@/components/home/CodeTowerSection';
 
 export async function getStaticProps({}) {
   const query = gql`
@@ -171,11 +172,13 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
       {/*}*/}
       {/* <CourseSection className='mb-20' /> */}
 
-
+      <CodeTowerSection />
       {
         page.secao_games_display &&
-        <GameSection section={{ title: page.secao_games_title ?? 'Section Title', subtitle: page.secao_games_subtitle }} games={games}
-                     className='mb-20' />
+        <GameBannerYears
+          section={{ title: page.secao_games_title ?? 'Section Title', subtitle: page.secao_games_subtitle }}
+          games={games}
+          className='mb-20' />
       }
     </>
   );

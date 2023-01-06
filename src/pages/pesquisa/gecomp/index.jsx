@@ -38,8 +38,8 @@ export default function index({ page }) {
                       <li key={member.user.lattes}
                           className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== page.members.length - 1 ? 'border-b border-text-neutral-300' : ''}`}>
                         <a href={urlLattes(member.user.lattes)} className='capitalize' target='_blank'
-                           rel='noopener noreferrer'>{member.degree}{' '}
-                          {fullName(member.user)} <span className='uppercase'>({member.institution})</span></a>
+                           rel='noopener noreferrer'>{member?.degree}{' '}
+                          {fullName(member.user)}</a>
                       </li>
                     )
                   }
@@ -53,7 +53,7 @@ export default function index({ page }) {
                 <ul
                   className='w-full text-sm font-medium text-neutral-900 rounded-lg list-none'>
                   {
-                    page.areas.map((area, index) => (
+                    page.areas.sort().map((area, index) => (
                       <li key={index}
                           className={`py-2 px-4 w-full ${index !== page.areas.length - 1 ? 'border-b border-text-neutral-300' : ''}`}>
                         {area}

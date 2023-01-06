@@ -3,51 +3,59 @@ import client from '@/apollo-client';
 import Container from '@/components/layout/Container';
 import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import slugify from 'slugify';
-import { apiAsset } from '@/utils';
+import { apiAsset, classNames } from '@/utils';
 import HeadSeo from '@/components/layout/HeadSeo';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export async function getStaticProps({}) {
   const query = gql`
-{
-  projetos_page {
-    hero_title
-    seo_title
-    seo_keywords
-    seo_description
-    seo_image {
-      id
-      width
-      height
-    }
-    hero_carousel {
-      directus_files_id {
-        id
-        description
-        tags
+      {
+          projetos_page {
+              hero_title
+              seo_title
+              seo_keywords
+              seo_description
+              seo_image {
+                  id
+                  width
+                  height
+              }
+              hero_carousel {
+                  directus_files_id {
+                      id
+                      description
+                      tags
+                  }
+              }
+          }
+          project(sort: "title", filter: {status: {_eq: "published"}}) {
+              title
+              link {
+                  label
+                  url
+              }
+              professors {
+                  professor_id {
+                      id
+                      user {
+                          first_name
+                          last_name
+                          lattes
+                      }
+                      degree
+                  }
+              }
+              description
+              id
+              cover {
+                  description
+                  id
+                  width
+                  height
+              }
+          }
       }
-    }
-  }
-  project(sort: "title") {
-    title
-    link {
-      label
-      url
-    }
-    professors {
-      professor_id {
-        id
-        user {
-          first_name
-          last_name
-          lattes
-        }
-        degree
-      }
-    }
-    description
-    id
-  }
-}
   `;
 
   const { project, projetos_page } = (await client.query({ query })).data;
@@ -82,6 +90,12 @@ export default function ProjectsPage({ projects, page }) {
     disabled: true
   }, { url: '/ensino/projetos', label: 'Projetos', disabled: true }];
 
+  const renderImg = (item, hidden, force) => (<div
+    className={classNames(force ? 'lg:hidden' : 'hidden ' + (hidden ? 'lg:hidden' : 'lg:block'), ' relative h-full min-h-[24rem]')}>
+    <Image src={apiAsset(item.cover.id)} alt={item.cover.description}
+           layout='fill' objectFit='cover' />
+  </div>);
+
   return (<>
       <HeadSeo title={page.seo_title} description={page.seo_description} openGraph={page.seo_image}
                keywords={page.seo_keywords} />
@@ -95,21 +109,34 @@ export default function ProjectsPage({ projects, page }) {
           <div className='prose prose-neutral' dangerouslySetInnerHTML={{ __html: page.content }} />
         </Container>
       }
-      <Container className='space-y-4'>
+      <Container className='space-y-16'>
         {projects.map((item, index) => (
-          <div id={slugify(item.title.toLowerCase())} key={index}>
-            <h4 className='text-xl font-semibold'>{item.title}</h4>
-            <div className='prose prose-neutral mt-2 mb-4' dangerouslySetInnerHTML={{ __html: item.description }} />
+          <div id={slugify(item.title.toLowerCase())} key={index}
+               className='grid lg:grid-cols-2 gap-8 border-b pb-16'>
             {
-              !!item.url &&
-              <span>
-              Link: <a href={item.url.url} rel='noreferrer'
-                       className='hover:text-primary hover:underline transition-colors duration-300'>{item.url.url}</a>
-            </span>
-
+              renderImg(item, index % 2 === 0)
             }
+            <div>
+              <h4 className='text-xl font-semibold'>{item.title}</h4>
+              <div className='prose prose-neutral mt-2 mb-4' dangerouslySetInnerHTML={{ __html: item.description }} />
+              {
+                !!item.url &&
+                <span>
+              Link: <Link href={item.url.url} rel='noreferrer'
+                          className='hover:text-primary hover:underline transition-colors duration-300'>{item.url.url}</Link>
+            </span>
+              }
+            </div>
+            {
+              renderImg(item, index % 2 !== 0)
+            }
+            {
+              renderImg(item, false, true)
+            }
+
           </div>))}
       </Container>
+      {/*<GameBannerYears />*/}
     </>
   );
 }
