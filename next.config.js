@@ -1,8 +1,20 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   images: {
     domains: ['api.bcc.anapolis.ifg.edu.br', 'bcc.anapolis.ifg.edu.br', 'source.unsplash.com']
   },
   reactStrictMode: true,
-  optimizeFonts: false
+  optimizeFonts: false,
+  experimental: {
+    outputStandalone: true
+  },
+  webpackDevMiddleware: config => {
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
+    }
+    return config
+  },
 };
+
+module.exports = nextConfig;
