@@ -8,6 +8,7 @@ import FeatureSection from '@/components/home/FeatureSection';
 import RecentPostsSection from '@/components/home/RecentPostsSection';
 import GameSection from '@/components/home/GameSection';
 import { sortByFullName } from '@/utils/user';
+import CodeBannerSection from '@/components/home/CodeBannerSection';
 
 export async function getStaticProps({}) {
   const query = gql`
