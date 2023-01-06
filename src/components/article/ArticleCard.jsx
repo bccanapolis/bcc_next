@@ -55,7 +55,7 @@ export default function ArticleCard({ post, searchPosts }) {
                 <h5 className='mb-2 text-xl font-bold tracking-tight hover:text-primary transition-colors duration-300'>{post.title}</h5>
               </a>
             </Link>
-            <p className='mb-3 text-sm text-neutral-700 font-light'>{post.description}</p>
+            <p className='mb-3 text-sm text-neutral-700 font-light truncate-4'>{post.description}</p>
           </div>
         </div>
       </div>
