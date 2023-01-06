@@ -22,7 +22,7 @@ export default function ArticleCard({ post, searchPosts }) {
           <ul className='flex flex-row lg:flex-col lg:justify-end w-full items-end gap-x-1 flex-wrap'>
             {
               !!post.tags &&
-              post.tags.map(({ blog_tag_id: item }) => (
+              post.tags.map(({ article_tags_id: item }) => (
                 <li key={`tag-post-${post.slug}-${item.name}`}>
                   <button onClick={() => searchPosts({ tags: item.name })}
                           className={classNames('text-xs bg-neutral-100 px-1 py-0.5 hover:text-neutral-100 hover:bg-primary/80 transition-colors duration-300', queryTag === item.name ? 'bg-primary/80 text-neutral-100' : 'text-neutral-700 ')}>{item.name}</button>
@@ -32,7 +32,7 @@ export default function ArticleCard({ post, searchPosts }) {
           </ul>
 
         </div>
-        <Link href={`/blog/${post.slug}@${post.id}`}>
+        <Link href={`/blog/${post.slug}.${post.id}`}>
           <a
             className={classNames('w-full h-64 lg:h-auto min-h-[18rem] lg:w-9/12')}>
             <div className='w-full h-full relative'>
@@ -49,7 +49,7 @@ export default function ArticleCard({ post, searchPosts }) {
         <div
           className={classNames('flex flex-col justify-between p-4 leading-normal w-full lg:w-9/12')}>
           <div>
-            <Link href={`/blog/${post.slug}@${post.id}`}>
+            <Link href={`/blog/${post.slug}.${post.id}`}>
               <a>
                 <h5 className='mb-2 text-xl font-bold tracking-tight hover:text-primary transition-colors duration-300'>{post.title}</h5>
               </a>

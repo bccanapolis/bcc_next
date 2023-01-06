@@ -37,9 +37,9 @@ export default function index({ page }) {
                     page.members.map((member, index) =>
                       <li key={member.user.lattes}
                           className={`py-2 px-4 w-full underline hover:text-primary transition-color duration-300 ${index !== page.members.length - 1 ? 'border-b border-text-neutral-300' : ''}`}>
-                        <a href={urlLattes(member.user.lattes)} target='_blank'
+                        <a href={urlLattes(member.user.lattes)} className='capitalize' target='_blank'
                            rel='noopener noreferrer'>{member.degree}{' '}
-                          {fullName(member.user)} ({member.institution})</a>
+                          {fullName(member.user)} <span className='uppercase'>({member.institution})</span></a>
                       </li>
                     )
                   }
@@ -76,8 +76,8 @@ export async function getStaticProps({}) {
           gecomp_page {
               areas
               content
-              members(filter: {professors_id: {gecomp: {_eq: true}}}) {
-                  professors_id {
+              members(filter: {professor_id: {gecomp: {_eq: true}}}) {
+                  professor_id {
                       user {
                           first_name
                           last_name
@@ -113,7 +113,7 @@ export async function getStaticProps({}) {
   const areas = gecomp_page.areas;
   const description = gecomp_page.content;
   const members = gecomp_page.members.map(item => ({
-    ...item.professors_id
+    ...item.professor_id,
   }));
 
   const carousel = gecomp_page.hero_carousel ? gecomp_page.hero_carousel.map(item => ({

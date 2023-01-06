@@ -154,7 +154,6 @@ export default function Home({ page, recent_article: recentPosts, professors, ga
           ]}
           className='mb-20' />
       }
-      <CodeBannerSection></CodeBannerSection>
       {
         page.secao_posts_display && <RecentPostsSection
           section={{

@@ -36,9 +36,9 @@ export default function IndexPage({ professor }) {
 
   professor.links = [
     {
-      url: urlLattes(professor.user.lattes),
+      url: urlLattes(professor.lattes),
       icon: <LattesSVG className='w-4 h-4 inline-block' />,
-      label: urlLattes(professor.user.lattes).replace(/(http:\/\/)|(https:\/\/)/, ''),
+      label: urlLattes(professor.lattes).replace(/(http:\/\/)|(https:\/\/)/, ''),
       external: true
     },
     {
@@ -131,15 +131,16 @@ export async function getStaticProps(context) {
 
   const query = gql`
       query ProfessorByLattes($lattes:String!){
-          professors(filter:{user:{lattes:{_eq:$lattes}}}) {
+          professor(filter:{lattes:{_eq:$lattes}}) {
               id
               institution
               degree
+              lattes
               user {
                   email
                   first_name
                   last_name
-                  lattes
+
                   avatar {
                       height
                       id
@@ -154,7 +155,7 @@ export async function getStaticProps(context) {
     lattes
   };
 
-  const { professors } = (await apolloClient.query({ query, variables })).data;
+  const { professor: professors } = (await apolloClient.query({ query, variables })).data;
 
   let professor = professors[0];
 
@@ -171,7 +172,7 @@ export async function getStaticProps(context) {
   //   })}`
   // );
 
-  const ifgproduz = await fetchProfessor(professor.user.lattes);
+  const ifgproduz = await fetchProfessor(professor.lattes);
 
   const producao_keywords = {
     formacao: 'Formação Acadêmica',
@@ -238,15 +239,16 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   const query = gql`
       {
-          professors(filter: {institution: {_eq: "IFG"}, status: {_eq: "published"}}) {
+          professor(filter: {institution: {_eq: "ifg"}}) {
               id
               institution
               degree
+              lattes
               user {
                   email
                   first_name
                   last_name
-                  lattes
+
                   avatar {
                       height
                       id
@@ -257,11 +259,11 @@ export async function getStaticPaths() {
       }
   `;
 
-  const { professors } = (await apolloClient.query({ query })).data;
+  const { professor } = (await apolloClient.query({ query })).data;
 
   // Get the paths we want to pre-render based on posts
-  const paths = professors.map(item => ({
-    params: { lattes: `${slugify(fullName(item.user).toLowerCase())}@${item.user.lattes}` }
+  const paths = professor.map(item => ({
+    params: { lattes: `${slugify(fullName(item.user).toLowerCase())}.${item.lattes}` }
   }));
 
   // We'll pre-render only these paths at build time.

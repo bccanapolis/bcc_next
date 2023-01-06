@@ -9,7 +9,7 @@ import GameSection from '@/components/home/GameSection';
 
 export async function getServerSideProps({ query }) {
   const gQuery = gql`
-      query GamePage($year: Float){
+      query GamePage($year: GraphQLStringOrFloat){
           games_page {
               content
               hero_title
@@ -32,12 +32,12 @@ export async function getServerSideProps({ query }) {
           game_aggregated(groupBy: "year"){
               group
           }
-          game(filter: {year_func: {year: {_eq: $year}}}){
+          game(filter: {year: {_eq: $year}}){
               id
               title
               video_url
               description
-              author
+              authors
               year
           }
       }
@@ -58,7 +58,7 @@ export async function getServerSideProps({ query }) {
     };
   });
 
-  const years = game_aggregated.map(item => new Date(item.group.year).getFullYear()).filter(item => item !== parseFloat(query.year)).sort().reverse();
+  const years = game_aggregated.map(item => item.group.year);
 
   const carousel = games_page.hero_carousel ? games_page.hero_carousel.map(item => ({
     url: apiAsset(item.directus_files_id.id),
@@ -100,7 +100,7 @@ export default function GamesPage({ games, page, years }) {
           {
             games.map((game, index) => (
               <div key={index}
-                             className='border border-text-neutral-300'>
+                   className='border border-text-neutral-300'>
                 <iframe src={`https://www.youtube.com/embed/${game.video_url}`}
                         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                         allowFullScreen
@@ -113,7 +113,7 @@ export default function GamesPage({ games, page, years }) {
                     <h5 className='mb-2 text-2xl font-bold tracking-tight text-neutral-900'>
                       {game.title}</h5>
                     <h6
-                      className='mb-2 tracking-tight text-neutral-500'>{game.author}</h6>
+                      className='mb-2 tracking-tight text-neutral-500'>{game.authors.join(', ')}</h6>
                     <p className='font-normal text-neutral-700'>{game.description}</p>
                   </div>
                   {/*<div>*/}
@@ -130,7 +130,8 @@ export default function GamesPage({ games, page, years }) {
           }
         </div>
       </Container>
-      <GameSection section={{ title: 'Veja também os jogos dos outros anos:' }} games={years} className='mb-20 mt-20' classTitle='text-4xl font-bold'/>
+      <GameSection section={{ title: 'Veja também os jogos dos outros anos:' }} games={years} className='mb-20 mt-20'
+                   classTitle='text-4xl font-bold' />
     </>
   );
 }

@@ -18,22 +18,25 @@ const navigation = [
     url: '',
     label: 'pessoas',
     dropdown: [
-      {
-        url: '/pessoas/alunos',
-        label: 'Alunos'
-      },
-      {
-        url: '/pessoas/egressos',
-        label: 'egressos'
-      },
+      // {
+      //   url: '/pessoas/alunos',
+      //   label: 'Alunos'
+      // },
+      // {
+      //   url: '/pessoas/egressos',
+      //   label: 'egressos'
+      // },
       {
         url: '/pessoas/professores',
         label: 'professores'
       },
-      {
-        url: '/pessoas/centro-academico',
-        label: 'Centro Acadêmico'
-      }
+      // {
+      //   url: '/pessoas/centro-academico',
+      //   label: 'Centro Acadêmico'
+      // },      {
+      //   url: '/pessoas/atletica',
+      //   label: 'Atlética'
+      // }
     ]
   },
   {
@@ -71,7 +74,7 @@ const navigation = [
         external: true,
       },
       {
-        url: 'http://cursos.ifg.edu.br/info/esp/e-iap/CP-ANAPOLI',
+        url: 'https://ia.ifg.edu.br/',
         label: 'Pós Graduação',
         external: true,
       }

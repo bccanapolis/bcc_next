@@ -12,7 +12,7 @@ import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
 
 
 export default function Index({ article, available_tags: tags, recent_article: recentPosts }) {
-  const cover = !!article.cover ? [{ url: apiAsset(article.cover.id), alt: article.cover.title }] : null;
+  const cover = !!article?.cover ? [{ url: apiAsset(article.cover?.id), alt: article.cover?.title }] : null;
   const router = useRouter();
 
   function searchPosts({ tags = '', author = '', search = '' }) {
@@ -64,7 +64,7 @@ export default function Index({ article, available_tags: tags, recent_article: r
             <ul className='inline-flex gap-x-1'>
               {
                 !!article.tags &&
-                article.tags.map(({ blog_tag_id: item }) => (
+                article.tags.map(({ article_tags_id: item }) => (
                   <li key={`tag-post-${article.slug}-${item.name}`}
                       className='text-sm text-neutral-700 px-1 py-0.5'>
                     {item.name}
@@ -94,11 +94,11 @@ export async function getServerSideProps(context) {
 
   const query = queryArticleByID;
 
-  const { article_by_id, recent_article, blog_tag } = (await client.query({
+  const { article_by_id, recent_article, article_tags } = (await client.query({
     query, variables
   })).data;
 
-  let available_tags = blog_tag.map(({ name }) => name);
+  let available_tags = article_tags.map(({ name }) => name);
 
   return {
     props: {

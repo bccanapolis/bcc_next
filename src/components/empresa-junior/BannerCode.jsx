@@ -1,62 +1,58 @@
 import Banner from '@/components/layout/Banner';
 import Image from 'next/image';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
+
 export default function BannerCode({ className }) {
-  const image = [{url:'/img/Entre_em_contato.png', alt:'foto dos integrandes da Code Tower'}]
+  const image = [{ url: '/img/Entre_em_contato.png', alt: 'foto dos integrandes da Code Tower' }];
   return (
     <Banner childPadding={false} className={className} images={image}>
       <div className='flex flex-col lg:flex-row gap-x-12'>
         <div className='w-full lg:w-6/12 p-0'>
           <div className='py-20 space-y-16'>
             <div>
-              <h1 className='text-neutral-100 text-6xl font-bold mb-8'>
+              <h1 className='text-neutral-100 text-4xl font-bold mb-8'>
                 Saiba mais sobre
                 a Code Tower!
               </h1>
               <p className='text-neutral-300 font-light '>
-                Entre no nosso site e redes sociais e aprenda mais sobre a <br/> Empresa Júnior que mais cresce no estado de goiás
+                Entre no nosso site e redes sociais e aprenda mais sobre a Empresa Júnior que mais cresce no
+                estado de Goiás.
               </p>
             </div>
-            <div className='grid gap-y-8'>
-              <div className='grid grid-cols-3 gap-x-7 w-fit'>
-                <a href='https://www.facebook.com/codetower.ej' target='_blank' rel="noreferrer" className='text-neutral-100 hover:text-primary transition-colors duration-300 w-fit'>
-                  <svg className='w-9 h-9' fill='currentColor' viewBox='0 0 34 34' aria-hidden='true'>
-                    <path fillRule='evenodd'
-                          d='M33.3431 0.703125H2.06313C1.31087 0.703125 0.703125 1.31087 0.703125 2.06313V33.3431C0.703125 34.0954 1.31087 34.7031 2.06313 34.7031H33.3431C34.0954 34.7031 34.7031 34.0954 34.7031 33.3431V2.06313C34.7031 1.31087 34.0954 0.703125 33.3431 0.703125ZM31.9831 31.9831H24.1589V21.5366H28.5789L29.2419 16.4069H24.1589V13.1301C24.1589 11.6426 24.5711 10.6311 26.7004 10.6311H29.4161V6.04113C28.9444 5.97738 27.3336 5.83713 25.4551 5.83713C21.5366 5.83713 18.8549 8.22987 18.8549 12.6201V16.4026H14.4264V21.5324H18.8591V31.9831H3.42313V3.42313H31.9831V31.9831Z'
-                          clipRule='evenodd' />
-                  </svg>
+            <div className='flex flex-col items-center lg:items-start'>
+              <div className='flex w-full justify-around lg:w-fit lg:space-x-8'>
+                <a href='https://www.facebook.com/codetower.ej' target='_blank' rel='noreferrer'
+                   className='text-neutral-100 hover:text-primary transition-colors duration-300 w-fit'>
+                  <FontAwesomeIcon icon={faFacebook} className='text-5xl lg:text-3xl' />
                 </a>
-                <a href='https://www.linkedin.com/company/code-tower-ej' target='_blank' rel="noreferrer" className='text-neutral-100 hover:text-primary transition-colors duration-300 w-fit'>
-                  <svg className='w-9 h-9' fill='currentColor' viewBox='0 0 34 34' aria-hidden='true'>
-                    <path fillRule='evenodd'
-                          d='M31.5968 0.703125H3.40322C1.9125 0.703125 0.703125 1.9125 0.703125 3.40322V31.5968C0.703125 33.0875 1.9125 34.2969 3.40322 34.2969H31.5968C33.0875 34.2969 34.2969 33.0875 34.2969 31.5968V3.40322C34.2969 1.9125 33.0875 0.703125 31.5968 0.703125ZM31.5968 31.6094C12.7927 31.6052 3.39062 31.601 3.39062 31.5968C3.39482 12.7927 3.39902 3.39062 3.40322 3.39062C22.2073 3.39482 31.6094 3.39902 31.6094 3.40322C31.6052 22.2073 31.601 31.6094 31.5968 31.6094ZM5.6834 13.2966H10.6679V29.3292H5.6834V13.2966ZM8.17773 11.1046C9.76924 11.1046 11.0668 9.81123 11.0668 8.21553C11.0668 7.83613 10.9921 7.46045 10.8469 7.10993C10.7017 6.75941 10.4889 6.44093 10.2206 6.17265C9.95234 5.90438 9.63385 5.69157 9.28333 5.54638C8.93281 5.40119 8.55713 5.32647 8.17773 5.32647C7.79834 5.32647 7.42266 5.40119 7.07214 5.54638C6.72162 5.69157 6.40313 5.90438 6.13486 6.17265C5.86658 6.44093 5.65378 6.75941 5.50859 7.10993C5.3634 7.46045 5.28867 7.83613 5.28867 8.21553C5.28447 9.81123 6.57783 11.1046 8.17773 11.1046ZM18.7724 21.3969C18.7724 19.3057 19.1713 17.2816 21.7622 17.2816C24.3153 17.2816 24.3531 19.671 24.3531 21.5312V29.3292H29.3334V20.536C29.3334 16.2192 28.4012 12.8977 23.3579 12.8977C20.935 12.8977 19.3099 14.2288 18.6422 15.4886H18.575V13.2966H13.7921V29.3292H18.7724V21.3969Z'
-                          clipRule='evenodd' />
-                  </svg>
+                <a href='https://www.linkedin.com/company/code-tower-ej' target='_blank' rel='noreferrer'
+                   className='text-neutral-100 hover:text-primary transition-colors duration-300 w-fit'>
+                  <FontAwesomeIcon icon={faLinkedin} className='text-5xl lg:text-3xl' />
                 </a>
-                <a href='@/components/empresa-junior/BannerCode' target='_blank' rel="noreferrer" className='text-neutral-100 hover:text-primary transition-colors duration-300 w-fit'>
-                  <svg className='w-9 h-9' fill='currentColor' viewBox='0 0 34 34' aria-hidden='true'>
-                    <path fillRule='evenodd'
-                          d='M10.2946 0.404978C12.1074 0.321524 12.6854 0.302979 17.3032 0.302979C21.921 0.302979 22.499 0.323069 24.3103 0.404978C26.1216 0.486888 27.3579 0.775888 28.4398 1.19471C29.5726 1.6228 30.6003 2.29198 31.4503 3.15743C32.3158 4.00589 32.9834 5.03207 33.41 6.16643C33.8303 7.24825 34.1178 8.48462 34.2012 10.2928C34.2847 12.1087 34.3032 12.6867 34.3032 17.303C34.3032 21.9208 34.2831 22.4988 34.2012 24.3116C34.1193 26.1198 33.8303 27.3562 33.41 28.438C32.9834 29.5725 32.3147 30.6004 31.4503 31.4501C30.6003 32.3155 29.5726 32.9832 28.4398 33.4097C27.3579 33.8301 26.1216 34.1175 24.3134 34.201C22.499 34.2844 21.921 34.303 17.3032 34.303C12.6854 34.303 12.1074 34.2829 10.2946 34.201C8.48641 34.1191 7.25004 33.8301 6.16822 33.4097C5.03374 32.9831 4.00585 32.3144 3.15613 31.4501C2.29126 30.6011 1.62198 29.5737 1.19495 28.4395C0.776132 27.3577 0.488677 26.1213 0.405223 24.3132C0.321768 22.4973 0.303223 21.9193 0.303223 17.303C0.303223 12.6852 0.323314 12.1072 0.405223 10.2959C0.487132 8.48461 0.776132 7.24825 1.19495 6.16643C1.62261 5.0322 2.29241 4.00483 3.15768 3.15589C4.00619 2.29121 5.03304 1.62194 6.16668 1.19471C7.2485 0.775888 8.48486 0.488433 10.293 0.404978H10.2946ZM24.1728 3.46498C22.38 3.38307 21.8422 3.36607 17.3032 3.36607C12.7642 3.36607 12.2264 3.38307 10.4337 3.46498C8.7754 3.54071 7.87595 3.81734 7.27631 4.05071C6.4835 4.3598 5.91631 4.72607 5.32131 5.32107C4.75729 5.86979 4.32323 6.53778 4.05095 7.27607C3.81759 7.87571 3.54095 8.77516 3.46522 10.4334C3.38331 12.2262 3.36631 12.764 3.36631 17.303C3.36631 21.842 3.38331 22.3798 3.46522 24.1725C3.54095 25.8308 3.81759 26.7303 4.05095 27.3299C4.32295 28.0671 4.75722 28.7363 5.32131 29.2849C5.86995 29.849 6.53913 30.2833 7.27631 30.5553C7.87595 30.7886 8.7754 31.0653 10.4337 31.141C12.2264 31.2229 12.7627 31.2399 17.3032 31.2399C21.8438 31.2399 22.38 31.2229 24.1728 31.141C25.831 31.0653 26.7305 30.7886 27.3301 30.5553C28.123 30.2462 28.6901 29.8799 29.2851 29.2849C29.8492 28.7363 30.2835 28.0671 30.5555 27.3299C30.7889 26.7303 31.0655 25.8308 31.1412 24.1725C31.2231 22.3798 31.2401 21.842 31.2401 17.303C31.2401 12.764 31.2231 12.2262 31.1412 10.4334C31.0655 8.77516 30.7889 7.87571 30.5555 7.27607C30.2464 6.48325 29.8801 5.91607 29.2851 5.32107C28.7364 4.75709 28.0684 4.32303 27.3301 4.05071C26.7305 3.81734 25.831 3.54071 24.1728 3.46498ZM15.1319 22.5436C16.3445 23.0484 17.6948 23.1165 18.9521 22.7364C20.2094 22.3562 21.2957 21.5513 22.0255 20.4592C22.7553 19.367 23.0833 18.0554 22.9535 16.7483C22.8236 15.4412 22.244 14.2198 21.3137 13.2925C20.7206 12.6998 20.0035 12.246 19.2139 11.9637C18.4244 11.6814 17.5821 11.5776 16.7476 11.6599C15.9132 11.7422 15.1074 12.0085 14.3882 12.4396C13.669 12.8707 13.0544 13.4559 12.5885 14.1531C12.1226 14.8503 11.8172 15.6421 11.694 16.4715C11.5709 17.3009 11.6332 18.1472 11.8764 18.9497C12.1197 19.7521 12.5378 20.4906 13.1007 21.1121C13.6636 21.7335 14.3573 22.2224 15.1319 22.5436ZM11.1245 11.1243C11.9359 10.3128 12.8992 9.66921 13.9593 9.23008C15.0195 8.79096 16.1557 8.56494 17.3032 8.56494C18.4507 8.56494 19.587 8.79095 20.6471 9.23008C21.7073 9.66921 22.6705 10.3128 23.4819 11.1243C24.2934 11.9357 24.937 12.8989 25.3761 13.9591C25.8152 15.0192 26.0413 16.1555 26.0413 17.303C26.0413 18.4505 25.8152 19.5867 25.3761 20.6469C24.937 21.707 24.2934 22.6703 23.4819 23.4817C21.8432 25.1204 19.6207 26.041 17.3032 26.041C14.9858 26.041 12.7632 25.1204 11.1245 23.4817C9.48579 21.843 8.56518 19.6205 8.56518 17.303C8.56518 14.9855 9.48579 12.763 11.1245 11.1243ZM27.9792 9.86625C28.1803 9.67658 28.3413 9.44849 28.4526 9.19548C28.5639 8.94248 28.6234 8.66971 28.6274 8.39332C28.6314 8.11694 28.58 7.84255 28.4761 7.58641C28.3721 7.33027 28.2179 7.09759 28.0224 6.90213C27.827 6.70667 27.5943 6.55242 27.3382 6.44851C27.082 6.34459 26.8076 6.29312 26.5312 6.29715C26.2549 6.30118 25.9821 6.36063 25.7291 6.47196C25.4761 6.5833 25.248 6.74427 25.0583 6.94534C24.6894 7.33639 24.4875 7.8558 24.4953 8.39332C24.5031 8.93085 24.7202 9.44415 25.1003 9.82428C25.4804 10.2044 25.9937 10.4214 26.5312 10.4293C27.0688 10.4371 27.5882 10.2351 27.9792 9.86625Z'
-                          clipRule='evenodd'/>
-                  </svg>
+                <a href='@/components/empresa-junior/BannerCode' target='_blank' rel='noreferrer'
+                   className='text-neutral-100 hover:text-primary transition-colors duration-300 w-fit'>
+                  <FontAwesomeIcon icon={faInstagram} className='text-5xl lg:text-3xl' />
                 </a>
               </div>
-              <div>
-                <a href='@/components/empresa-junior/BannerCode' className='text-neutral-100 hover:text-primary w-fit text-center text-2xl border hover:border-primary transition-colors duration-300 py-4 px-14' target='_blank' rel="noreferrer">
+              <div className='flex w-full'>
+                <a href='https://codetower.com.br'
+                   className='bg-neutral-100 mt-8 hover:bg-primary w-full lg:w-fit hover:text-neutral-100 text-center text-lg uppercase font-semibold transition-colors duration-300 py-3 px-8'
+                   target='_blank' rel='noreferrer'>
                   Acessar
                 </a>
               </div>
+
             </div>
           </div>
         </div>
-        <div className='w-full lg:w-6/12 bg-neutral-900/60 flex items-center justify-center py-20 px-10'>
-          <div className='flex w-full h-full justify-center'>
-            <div className='relative w-96 h-96'>
-              <Image src='/img/Code_Tower_logo2.png' layout='fill'/>
+        <div className='w-full lg:w-6/12 lg:bg-neutral-900/60 flex items-center justify-center py-20 px-10'>
+            <div className='relative aspect-square h-96'>
+              <Image src='/img/Code_Tower_logo2.png' layout='fill' />
             </div>
-
-          </div>
-
         </div>
       </div>
     </Banner>

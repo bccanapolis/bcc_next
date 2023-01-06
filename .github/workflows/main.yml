@@ -16,9 +16,9 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         script: |
-          cd /home/anapolis/bcc_site/bcc_next/ 
+          cd /home/devbaraus/bcc/bcc_next/ 
           git checkout main 
           git pull
-          docker-compose build
+          docker-compose build --no-cache
           docker-compose down
           docker-compose up -d
