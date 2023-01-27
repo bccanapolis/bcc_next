@@ -8,10 +8,11 @@ export default function GameBannerYears({ section = {}, games, className, classT
   const image = ['/img/game_background_4 1.png', '/img/game_background_2 1.png', '/img/game_background_1 1.png'];
 
   return (
-    <Container>
-      <div className='space-y-2 mb-12'>
-        <h6 className={classNames(classTitle ?? 'text-4xl font-bold text-center')}>{section.title}</h6>
-        <p className='font-light text-center'>{section.subtitle}</p>
+    <Container className={className}>
+      <div className={classNames((!!section.subtitle || !!section.title) && 'space-y-2 mb-12')}>
+        <h6
+          className={classNames(classTitle ?? 'text-4xl font-bold text-center', !section.title && 'hidden')}>{section.title}</h6>
+        <p className={classNames('font-light text-center', !section.subtitle && 'hidden')}>{section.subtitle}</p>
       </div>
       <div>
         <Swiper

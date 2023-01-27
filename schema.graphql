@@ -597,6 +597,7 @@ type home_page_files_aggregated_fields {
 }
 
 type link {
+    dadw(filter: project_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project]
     id: ID
     label: String
     url: String
@@ -711,6 +712,7 @@ type project {
     status: String!
     students(filter: project_student_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [project_student]
     students_func: count_functions
+    tags: [String]
     title: String
 }
 
@@ -735,6 +737,7 @@ type project_aggregated_count {
     professors: Int
     status: Int
     students: Int
+    tags: Int
     title: Int
 }
 
@@ -1271,6 +1274,7 @@ input home_page_filter {
 input link_filter {
     _and: [link_filter]
     _or: [link_filter]
+    dadw: project_filter
     id: number_filter_operators
     label: string_filter_operators
     url: string_filter_operators
@@ -1335,6 +1339,7 @@ input project_filter {
     status: string_filter_operators
     students: project_student_filter
     students_func: count_function_filter_operators
+    tags: string_filter_operators
     title: string_filter_operators
 }
 

@@ -64,7 +64,7 @@ export default function index({ page }) {
           className='text-5xl text-neutral-100 text-center uppercase font-semibold'>{page.hero_title || 'Hero Title'}</p>
       </BannerBreadcrumb>
       <Container className='space-y-4'>
-        <div className='prose prose-neutral' dangerouslySetInnerHTML={{ __html: poke.paragraphs(8) }} />
+        <div className='prose prose-neutral' dangerouslySetInnerHTML={{ __html: page.content }} />
       </Container>
     </>
   );

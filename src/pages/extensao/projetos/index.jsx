@@ -7,6 +7,7 @@ import { apiAsset, classNames } from '@/utils';
 import HeadSeo from '@/components/layout/HeadSeo';
 import Link from 'next/link';
 import Image from 'next/image';
+import GameBannerYears from '@/components/home/GameBannerYears';
 
 export async function getStaticProps({}) {
   const query = gql`
@@ -28,6 +29,35 @@ export async function getStaticProps({}) {
                       tags
                   }
               }
+          }
+          game: project(filter: {tags: {_contains: "game"}}) {
+              title
+              link {
+                  label
+                  url
+              }
+              professors {
+                  professor_id {
+                      id
+                      user {
+                          first_name
+                          last_name
+                          lattes
+                      }
+                      degree
+                  }
+              }
+              description
+              id
+              cover {
+                  description
+                  id
+                  width
+                  height
+              }
+          }
+          game_aggregated(groupBy: "year", sort:"-year"){
+              group
           }
           project(sort: "title", filter: {status: {_eq: "published"}}) {
               title
@@ -58,9 +88,17 @@ export async function getStaticProps({}) {
       }
   `;
 
-  const { project, projetos_page } = (await client.query({ query })).data;
+  const { project, projetos_page, game, game_aggregated } = (await client.query({ query })).data;
 
   const projects = project.map(item => ({
+    ...item, professors: item.professors.map(prof => ({
+      ...prof.professor_id
+    }))
+  }));
+
+  const years = game_aggregated.map(item => item.group.year);
+
+  const gameProject = game.map(item => ({
     ...item, professors: item.professors.map(prof => ({
       ...prof.professor_id
     }))
@@ -77,13 +115,15 @@ export async function getStaticProps({}) {
       page: {
         ...projetos_page,
         carousel
-      }
+      },
+      game: gameProject,
+      years
     },
     revalidate: 60 * 60
   };
 }
 
-export default function ProjectsPage({ projects, page }) {
+export default function ProjectsPage({ projects, page, game, years }) {
   const paths = [{ url: '/', label: 'home' }, {
     url: '/extensao',
     label: 'Extensão',
@@ -110,6 +150,32 @@ export default function ProjectsPage({ projects, page }) {
         </Container>
       }
       <Container className='space-y-16'>
+        {game.map((item, index) => (
+          <div id={slugify(item.title.toLowerCase())} key={index}
+               className='grid lg:grid-cols-2 gap-8 border-b'>
+            {
+              renderImg(item, false)
+            }
+            <div>
+              <h4 className='text-xl font-semibold'>{item.title}</h4>
+              <div className='prose prose-neutral mt-2 mb-4' dangerouslySetInnerHTML={{ __html: item.description }} />
+              {
+                !!item.link &&
+                <span>
+              Link: <Link href={item.link.url} rel='noreferrer'
+                          className='hover:text-primary hover:underline transition-colors duration-300'>{item.link.url}</Link>
+            </span>
+              }
+            </div>
+
+            {
+              renderImg(item, false, true)
+            }
+
+          </div>))}
+      </Container>
+      <GameBannerYears className='container py-0' games={years} />
+      <Container className='space-y-16'>
         {projects.map((item, index) => (
           <div id={slugify(item.title.toLowerCase())} key={index}
                className='grid lg:grid-cols-2 gap-8 border-b pb-16'>
@@ -120,10 +186,10 @@ export default function ProjectsPage({ projects, page }) {
               <h4 className='text-xl font-semibold'>{item.title}</h4>
               <div className='prose prose-neutral mt-2 mb-4' dangerouslySetInnerHTML={{ __html: item.description }} />
               {
-                !!item.url &&
+                !!item.link &&
                 <span>
-              Link: <Link href={item.url.url} rel='noreferrer'
-                          className='hover:text-primary hover:underline transition-colors duration-300'>{item.url.url}</Link>
+              Link: <Link href={item.link.url} rel='noreferrer'
+                          className='hover:text-primary hover:underline transition-colors duration-300'>{item.link.url}</Link>
             </span>
               }
             </div>
