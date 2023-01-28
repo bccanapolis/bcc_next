@@ -11,7 +11,9 @@ export default function GameBannerYears({
   classTitle,
 }) {
   const image = [
-    'https://api.bcc.anapolis.ifg.edu.br/assets/3ab0c2f9-7f5b-43c8-bd0c-a9a30b6fc651?width=1548&amp;height=1239',
+    '/img/game_background_4 1.png',
+    '/img/game_background_2 1.png',
+    '/img/game_background_1 1.png',
   ];
 
   return (
