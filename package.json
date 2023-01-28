@@ -35,7 +35,7 @@
     "remark-gfm": "^3.0.1",
     "remark-highlight.js": "^7.0.1",
     "sass": "^1.49.9",
-    "sharp": "^0.30.2",
+    "sharp": "^0.30.5",
     "slugify": "^1.6.5",
     "swiper": "^8.0.7"
   },
