@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 body {
   @apply font-poppins text-neutral-900;
 }
@@ -68,6 +70,15 @@ pre {
 .game-image {
   &:hover {
     background-size: 105%;
+  }
+}
+
+@for $i from 1 through 10 {
+  .truncate-#{$i} {
+    display: -webkit-box;
+    -webkit-line-clamp: #{$i};
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 

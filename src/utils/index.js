@@ -1,3 +1,5 @@
+import { createElement } from 'react';
+
 export function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
@@ -7,12 +9,19 @@ export function apiAsset(asset) {
 }
 
 export function stringBind(text = '', targetWord, replacingWord) {
-  return text.replace(new RegExp(`{{(( )*?${targetWord}( )*?)}}`, 'gi'), replacingWord);
+  return text.replace(
+    new RegExp(`{{(( )*?${targetWord}( )*?)}}`, 'gi'),
+    replacingWord
+  );
 }
 
 export function clearObject(obj) {
   for (let propName in obj) {
-    if (!obj[propName] || obj[propName] === null || obj[propName] === undefined) {
+    if (
+      !obj[propName] ||
+      obj[propName] === null ||
+      obj[propName] === undefined
+    ) {
       delete obj[propName];
     }
   }
@@ -21,6 +30,11 @@ export function clearObject(obj) {
 
 export function urlSlugID(url) {
   return url.split(/(\.)(?!.*\.)/);
+}
+
+export function stripHtml(html) {
+  var tmp = createElement('div', { innerHTML: html });
+  return tmp.textContent;
 }
 
 export function querySerialize(obj) {

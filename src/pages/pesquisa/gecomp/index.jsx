@@ -3,8 +3,9 @@ import Container from '@/components/layout/Container';
 import { gql } from '@apollo/client';
 import client from '@/apollo-client';
 import HeadSeo from '@/components/layout/HeadSeo';
-import { apiAsset } from '@/utils';
+import { apiAsset, classNames } from '@/utils';
 import { fullName, sortByFullName, urlLattes } from '@/utils/user';
+import { useState } from 'react';
 
 
 export default function index({ page }) {
@@ -13,6 +14,9 @@ export default function index({ page }) {
     label: 'gecomp',
     disabled: true
   }];
+
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
 
   return (
     <>
@@ -24,8 +28,18 @@ export default function index({ page }) {
       </BannerBreadcrumb>
       <Container>
         <div className='flex flex-wrap md:flex-nowrap gap-4'>
-          <div className='w-full md:w-8/12 prose prose-neutral'
-               dangerouslySetInnerHTML={{ __html: page.description }} />
+          <div className='w-full md:w-8/12 '
+          >
+            <div className={classNames('prose prose-neutral', !open1 && 'truncate-6')}
+                 dangerouslySetInnerHTML={{ __html: page.section1 }}>
+            </div>
+            <button onClick={() => setOpen1(!open1)}
+                    className='mx-auto block my-6 text-primary'>{open1 ? 'Leia menos' : 'Leia mais'}</button>
+            <div className={classNames('prose prose-neutral', !open2 && 'truncate-6')}
+                 dangerouslySetInnerHTML={{ __html: page.section2 }} />
+            <button onClick={() => setOpen2(!open2)}
+                    className='mx-auto block my-6 text-primary'>{open2 ? 'Leia menos' : 'Leia mais'}</button>
+          </div>
           <div className='w-full md:w-4/12 flex flex-col gap-4'>
             {
               !!page.members &&
@@ -95,6 +109,8 @@ export async function getStaticProps({}) {
               }
               hero_title
               seo_title
+              section1
+              section2
               seo_keywords
               seo_description
               seo_image {
@@ -113,7 +129,7 @@ export async function getStaticProps({}) {
   const areas = gecomp_page.areas;
   const description = gecomp_page.content;
   const members = gecomp_page.members.map(item => ({
-    ...item.professor_id,
+    ...item.professor_id
   }));
 
   const carousel = gecomp_page.hero_carousel ? gecomp_page.hero_carousel.map(item => ({

@@ -17,6 +17,7 @@ export async function getStaticProps({}) {
               seo_title
               seo_keywords
               seo_description
+              content
               seo_image {
                   id
                   width
