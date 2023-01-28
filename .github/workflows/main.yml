@@ -16,9 +16,9 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         script: |
-          cd /home/devbaraus/bcc/bcc_next/ 
-          git checkout main 
-          git pull
-          docker-compose build --no-cache
-          docker-compose down
-          docker-compose up -d
+          cd /home/devbaraus/bcc/bcc_next/  &&
+          git checkout main &&
+          git pull &&
+          docker-compose build --no-cache &&
+          docker-compose down &&
+          docker-compose up -d &&
