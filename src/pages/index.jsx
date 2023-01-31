@@ -201,7 +201,7 @@ export default function Home({
         section={{
           title: 'Projetos de Ensino',
           subtitle:
-            'Prepare-se para ser surpreendido! Os projetos são a prova de que nossos alunos são capazes de resolver problemas reais e criar soluções tecnológicas incríveis.',
+            'Nossos projetos de ensino convidam os alunos a resolver problemas reais e criar soluções tecnológicas incríveis.',
         }}
       />
       <div className="mt-20">

@@ -16,31 +16,6 @@ const navigation = [
   },
   {
     url: '',
-    label: 'pessoas',
-    dropdown: [
-      // {
-      //   url: '/pessoas/alunos',
-      //   label: 'Alunos'
-      // },
-      // {
-      //   url: '/pessoas/egressos',
-      //   label: 'egressos'
-      // },
-      {
-        url: '/pessoas/professores',
-        label: 'professores',
-      },
-      // {
-      //   url: '/pessoas/centro-academico',
-      //   label: 'Centro Acadêmico'
-      // },      {
-      //   url: '/pessoas/atletica',
-      //   label: 'Atlética'
-      // }
-    ],
-  },
-  {
-    url: '',
     label: 'pesquisa',
     dropdown: [
       {
@@ -61,15 +36,15 @@ const navigation = [
   },
   {
     url: '',
-    label: 'ações de ensino',
+    label: 'extensão',
     dropdown: [
+      // {
+      //   url: '/extensao/projetos',
+      //   label: 'Projetos'
+      // },
       {
-        url: '/acoes-ensino/projetos',
-        label: 'Projetos de Ensino',
-      },
-      {
-        url: '/blog',
-        label: 'Posts dos Alunos',
+        url: '/extensao/empresa-junior',
+        label: 'Empresa Junior',
       },
     ],
   },
@@ -95,16 +70,42 @@ const navigation = [
   },
   {
     url: '',
-    label: 'extensão',
+    label: 'ações de ensino',
+    dropdown: [
+      {
+        url: '/acoes-ensino/projetos',
+        label: 'Projetos de Ensino',
+      },
+      {
+        url: '/blog',
+        label: 'Posts dos Alunos',
+      },
+    ],
+  },
+
+  {
+    url: '',
+    label: 'pessoas',
     dropdown: [
       // {
-      //   url: '/extensao/projetos',
-      //   label: 'Projetos'
+      //   url: '/pessoas/alunos',
+      //   label: 'Alunos'
+      // },
+      // {
+      //   url: '/pessoas/egressos',
+      //   label: 'egressos'
       // },
       {
-        url: '/extensao/empresa-junior',
-        label: 'Empresa Junior',
+        url: '/pessoas/professores',
+        label: 'professores',
       },
+      // {
+      //   url: '/pessoas/centro-academico',
+      //   label: 'Centro Acadêmico'
+      // },      {
+      //   url: '/pessoas/atletica',
+      //   label: 'Atlética'
+      // }
     ],
   },
 ];

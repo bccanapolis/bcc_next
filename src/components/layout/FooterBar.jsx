@@ -2,6 +2,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function FooterBar({}) {
+  const linksUteis = [
+    {
+      label: 'Moodle',
+      href: 'https://moodle.ifg.edu.br',
+    },
+    {
+      label: 'Acadêmico Web',
+      href: 'https://academicoweb.ifg.edu.br',
+    },
+    {
+      label: 'IFG Anápolis',
+      href: 'https://www.ifg.edu.br/anapolis',
+    },
+  ];
+
   return (
     <>
       <footer className="bg-neutral-700">
@@ -52,25 +67,24 @@ export default function FooterBar({}) {
             <h2 className="mb-6 text-sm font-semibold text-neutral-100 uppercase">
               Links Úteis
             </h2>
-            <ul className="text-neutral-100">
-              <li className="mb-4">
-                <a
-                  href="http://cursos.ifg.edu.br/info/bach/bach-ciencia-da-computacao/CP-ANAPOLI"
-                  target="_blank"
-                  className="hover:underline"
-                >
-                  Graduação
-                </a>
-              </li>
-              <li className="mb-4">
-                <a
-                  href="https://ia.ifg.edu.br"
-                  target="_blank"
-                  className="hover:underline"
-                >
-                  Pós-Graduação
-                </a>
-              </li>
+            <ul className="text-neutral-100 space-y-4">
+              {linksUteis.map((item, index) => (
+                <li key={'links-uteis' + index}>
+                  {typeof item === 'string' ? (
+                    <a href={item} target="_blank" className="hover:underline">
+                      {item}
+                    </a>
+                  ) : (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      className="hover:underline"
+                    >
+                      {item.label}
+                    </a>
+                  )}
+                </li>
+              ))}
               {/*<li className='mb-4'>*/}
               {/*  <a href='#' className='hover:underline'>Facebook*/}
               {/*  </a></li>*/}
