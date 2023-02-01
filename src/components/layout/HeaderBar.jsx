@@ -62,7 +62,7 @@ const navigation = [
         external: true,
       },
       {
-        url: 'https://ia.ifg.edu.br/',
+        url: 'https://ia.ifg.edu.br/pos-graduacao',
         label: 'Pós Graduação',
         external: true,
       },
