@@ -99,10 +99,11 @@ const navigation = [
         url: '/pessoas/professores',
         label: 'professores',
       },
+      {
+        url: '/pessoas/centro-academico',
+        label: 'Centro Acadêmico',
+      },
       // {
-      //   url: '/pessoas/centro-academico',
-      //   label: 'Centro Acadêmico'
-      // },      {
       //   url: '/pessoas/atletica',
       //   label: 'Atlética'
       // }

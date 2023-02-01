@@ -196,7 +196,7 @@ export default function Home({
       )}
       <CodeBannerSection className="mt-20" />
       <ProjectsBanner
-        className="my-0"
+        className="bg-primary text-white py-16"
         // images={projetosCarousel}
         section={{
           title: 'Projetos de Ensino',
