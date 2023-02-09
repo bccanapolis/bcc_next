@@ -8,13 +8,13 @@ const defaultOptions = {
   },
   query: {
     fetchPolicy: 'no-cache',
-  }
+  },
 };
 
 const client = new ApolloClient({
-  uri: 'https://api.bcc.anapolis.ifg.edu.br/graphql',
+  uri: process.env.NEXT_PUBLIC_API_URL + '/graphql',
   cache: new InMemoryCache(),
-  defaultOptions
+  defaultOptions,
 });
 
 export default client;

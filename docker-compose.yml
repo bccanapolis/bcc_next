@@ -22,7 +22,7 @@ services:
     environment:
       VIRTUAL_HOST: bcc.anapolis.ifg.edu.br
       VIRTUAL_PORT: 8102
-      LETSENCRYPT_HOST: bcc.anapolis.ifg.edu.br
+      LETSENCRYPT_HOST: bcc.ifg.edu.br
 
 networks:
   front:

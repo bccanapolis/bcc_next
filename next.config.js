@@ -2,7 +2,7 @@
 const nextConfig = {
   images: {
     domains: [
-      'api.bcc.anapolis.ifg.edu.br',
+      'api.bcc.ifg.edu.br',
       'bcc.anapolis.ifg.edu.br',
       'source.unsplash.com',
     ],

@@ -4,7 +4,7 @@
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "https://api.bcc.anapolis.ifg.edu.br/graphql",
+        "url": "https://api.bcc.ifg.edu.br/graphql",
         "headers": {
           "user-agent": "JS GraphQL"
         },
