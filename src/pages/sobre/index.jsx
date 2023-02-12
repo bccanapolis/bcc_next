@@ -36,7 +36,7 @@ export default function ProjectsPage({ page }) {
     }];
 
   const renderImg = (item, hidden, force) => (<div
-    className={classNames(force ? 'lg:hidden' : 'hidden ' + (hidden ? 'lg:hidden' : 'lg:block'), ' relative h-full min-h-[24rem]')}>
+    className={classNames(force ? 'lg:hidden' : 'hidden ' + (hidden ? 'lg:hidden' : 'lg:block'), ' relative h-full min-h-[16rem]')}>
     <Image src={item.cover} alt={item.cover.description}
            layout='fill' objectFit='contain' />
   </div>);
@@ -51,11 +51,11 @@ export default function ProjectsPage({ page }) {
       <Container className='space-y-16'>
         {items.map((item, index) => (
           <div id={slugify(item.title.toLowerCase())} key={index}
-               className='grid lg:grid-cols-2 gap-8 border-b pb-16'>
+               className='grid lg:grid-cols-3 gap-8 border-b pb-16'>
             {
               renderImg(item, index % 2 === 0)
             }
-            <div>
+            <div className='col-span-2'>
               <h4 className='text-xl font-semibold'>{item.title}</h4>
               <div className='prose prose-neutral mt-2 mb-4' dangerouslySetInnerHTML={{ __html: item.description }} />
               {
