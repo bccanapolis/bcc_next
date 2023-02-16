@@ -209,14 +209,14 @@ export default function Home({
         />
       )}
       <GenericBanner
-        className='mt-16 mb-0 text-neutral-100 p-0'
+        className='mt-16 mb-0 p-0'
         section={{
           title: 'Estude Computação em uma instituição pública, federal e de qualdiade. Estude no IFG Campus Anápolis'
         }}
 
         images={[
           {
-            url: '/img/open_graph_full.png',
+            url: '/img/logo-fundo-branco-removebg-preview2.png',
             alt: 'IFG Câmpus Anápolis',
             tags: 'IFG Câmpus Anápolis'
           }]}
