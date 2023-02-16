@@ -47,7 +47,7 @@ export default function ArticleCardHome({ post, isNews }) {
             </a>
           </Link>
           <hr className="my-2" />
-          <p className="text-sm text-neutral-700 font-light">
+          <p className="text-sm text-neutral-700 font-light truncate-4">
             {post.description}
           </p>
         </div>

@@ -11,10 +11,19 @@ import CodeBannerSection from '@/components/home/CodeBannerSection';
 import ProjectsBanner from '@/components/home/ProjectsBanner';
 import Link from 'next/link';
 import GenericBanner from '@/components/GenericBanner';
+import RecentNews from '@/components/news/RecentNews';
 
 export async function getStaticProps({}) {
   const query = gql`
       {
+          news(limit: 4, page: 1, sort: "-published_at") {
+              id
+              title
+              cover
+              description
+              link
+              published_at
+          }
           projetos_page {
               content
               hero_carousel {
@@ -106,7 +115,8 @@ export async function getStaticProps({}) {
     recent_article,
     professor,
     game_aggregated,
-    projetos_page
+    projetos_page,
+    news
   } = (
     await client.query({
       query: query
@@ -138,6 +148,7 @@ export async function getStaticProps({}) {
       games: years,
       projetosCarousel,
       projetosPage: projetos_page,
+      news,
       page: {
         ...home_page,
         carousel
@@ -153,7 +164,8 @@ export default function Home({
                                professors,
                                games,
                                projetosCarousel,
-                               projetosPage
+                               projetosPage,
+                               news
                              }) {
   return (
     <>
@@ -199,12 +211,12 @@ export default function Home({
       <GenericBanner
         className='mt-16 mb-0 text-neutral-100 p-0'
         section={{
-          title: 'Estude Computação em uma instituição pública, federal e de qualdiade. Estude no IFG Campus Anápolis',
+          title: 'Estude Computação em uma instituição pública, federal e de qualdiade. Estude no IFG Campus Anápolis'
         }}
 
         images={[
           {
-            url: '/img/nota5.png',
+            url: '/img/open_graph_full.png',
             alt: 'IFG Câmpus Anápolis',
             tags: 'IFG Câmpus Anápolis'
           }]}
@@ -218,7 +230,7 @@ export default function Home({
           </Link>
         </div>
       </GenericBanner>
-      <CodeBannerSection className='mt-0'/>
+      <CodeBannerSection className='mt-0' />
 
       <ProjectsBanner
         className='bg-primary text-white py-16'
@@ -230,6 +242,14 @@ export default function Home({
         }}
       />
       <div className='mt-20'>
+        <RecentNews
+          section={{
+            title: 'Ultimas Notícias',
+          }}
+          posts={news}
+          className={'mb-20'}
+        />
+
         {page.secao_posts_display && (
           <RecentPostsSection
             section={{

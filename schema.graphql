@@ -46,6 +46,9 @@ type Query {
     link(filter: link_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [link!]!
     link_aggregated(filter: link_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [link_aggregated!]!
     link_by_id(id: ID!): link
+    news(filter: news_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [news!]!
+    news_aggregated(filter: news_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [news_aggregated!]!
+    news_by_id(id: ID!): news
     professor(filter: professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [professor!]!
     professor_aggregated(filter: professor_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [professor_aggregated!]!
     professor_by_id(id: ID!): professor
@@ -470,6 +473,8 @@ type gecomp_page {
     id: ID
     members(filter: gecomp_page_professor_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [gecomp_page_professor]
     members_func: count_functions
+    section1: String
+    section2: String
     seo_description: String
     seo_image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     seo_keywords: [String]
@@ -623,6 +628,42 @@ type link_aggregated_count {
 }
 
 type link_aggregated_fields {
+    id: Float
+}
+
+type news {
+    cover: String
+    description: String!
+    id: ID
+    link: String
+    published_at: Date
+    published_at_func: datetime_functions
+    title: String!
+}
+
+type news_aggregated {
+    avg: news_aggregated_fields
+    avgDistinct: news_aggregated_fields
+    count: news_aggregated_count
+    countAll: Int
+    countDistinct: news_aggregated_count
+    group: JSON
+    max: news_aggregated_fields
+    min: news_aggregated_fields
+    sum: news_aggregated_fields
+    sumDistinct: news_aggregated_fields
+}
+
+type news_aggregated_count {
+    cover: Int
+    description: Int
+    id: Int
+    link: Int
+    published_at: Int
+    title: Int
+}
+
+type news_aggregated_fields {
     id: Float
 }
 
@@ -809,6 +850,7 @@ type project_student_aggregated_fields {
 }
 
 type projetos_page {
+    content: String
     date_created: Date
     date_created_func: datetime_functions
     date_updated: Date
@@ -1211,6 +1253,8 @@ input gecomp_page_filter {
     id: number_filter_operators
     members: gecomp_page_professor_filter
     members_func: count_function_filter_operators
+    section1: string_filter_operators
+    section2: string_filter_operators
     seo_description: string_filter_operators
     seo_image: directus_files_filter
     seo_keywords: string_filter_operators
@@ -1278,6 +1322,18 @@ input link_filter {
     id: number_filter_operators
     label: string_filter_operators
     url: string_filter_operators
+}
+
+input news_filter {
+    _and: [news_filter]
+    _or: [news_filter]
+    cover: string_filter_operators
+    description: string_filter_operators
+    id: number_filter_operators
+    link: string_filter_operators
+    published_at: date_filter_operators
+    published_at_func: datetime_function_filter_operators
+    title: string_filter_operators
 }
 
 input number_filter_operators {
@@ -1370,6 +1426,7 @@ input projetos_page_files_filter {
 input projetos_page_filter {
     _and: [projetos_page_filter]
     _or: [projetos_page_filter]
+    content: string_filter_operators
     date_created: date_filter_operators
     date_created_func: datetime_function_filter_operators
     date_updated: date_filter_operators
