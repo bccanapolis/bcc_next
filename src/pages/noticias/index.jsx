@@ -4,12 +4,9 @@ import client from '@/apollo-client';
 import { clearObject } from '@/utils';
 import { gql } from '@apollo/client';
 import { useRouter } from 'next/router';
-import HeadSeo from '@/components/layout/HeadSeo';
 import { dynamicNews } from '@/graphql/query/noticias';
-import NewsCardHome from '@/components/news/NewsCardHome';
 import NewsCard from '@/components/news/NewsCard';
 import ArticlePagination from '@/components/article/ArticlePagination';
-import ArticlePanel from '@/components/article/ArticlePanel';
 import NewsPanel from '@/components/news/NewsPanel';
 
 export async function getServerSideProps(context) {
@@ -23,7 +20,7 @@ export async function getServerSideProps(context) {
 
   const query = gql(dynamicNews(page, limit, search));
 
-  const { recent_news, news, news_aggregated } = (await client.query({
+  const { recent_news, news, news_aggregated, featured_news } = (await client.query({
     query, variables
   })).data;
 
@@ -37,7 +34,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      news, recent_news, page: {
+      news, recent_news, featured_news, page: {
         page, limit, search, currentPage, maxPages
       }
     }
@@ -47,6 +44,7 @@ export async function getServerSideProps(context) {
 export default function Index({
                                 page,
                                 recent_news,
+                                featured_news,
                                 news
                               }) {
   const router = useRouter();
@@ -80,7 +78,7 @@ export default function Index({
     </BannerBreadcrumb>
     <Container className='flex flex-col-reverse lg:flex-row w-full gap-4 lg:gap-x-8'>
       <main className='w-full lg:w-8/12 2xl:w-9/12  space-y-8'>
-        {!!levelPosts[2].length ? <div className='gap-8 grid grid-cols-1'>
+        {!!levelPosts[2].length ? <div className='gap-8 grid grid-cols-1 md:grid-cols-2'>
             {levelPosts[2].map(post => (
               <NewsCard key={`article-${post.id}`} horizontal={true} post={post} searchPosts={searchPosts} />
             ))}
@@ -98,8 +96,8 @@ export default function Index({
           </>
         }
       </main>
-      <NewsPanel searchPosts={searchPosts} recentPosts={recent_news}
-                    className='w-full lg:w-4/12 2xl:w-3/12 ' />
+      <NewsPanel searchPosts={searchPosts} featuredNews={featured_news} recentPosts={recent_news}
+                 className='w-full lg:w-4/12 2xl:w-3/12 ' />
     </Container>
   </>);
 }

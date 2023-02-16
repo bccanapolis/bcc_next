@@ -10,7 +10,7 @@ let t = null;
 
 function PanelChild({
                       recentPosts,
-                      searchPosts,
+                      featuredNews,
                       close,
                       isNews
                     }) {
@@ -24,7 +24,54 @@ function PanelChild({
 
   return (
     <>
-      <div className='flex flex-col'>
+      <div className='flex flex-col gap-8'>
+        {
+          featuredNews.length ? (
+            <div className='space-y-2'>
+          <span className='inline-flex justify-center px-4 py-4 w-full bg-primary text-neutral-100 font-bold'>
+            Noticias Em Destaque
+          </span>
+              <div className='flex flex-col gap-y-4'>
+                {featuredNews.map((post) => (
+                  <div
+                    key={`blog-panel-posts-${post.id}`}
+                    className='flex flex-row items-center gap-x-2'
+                  >
+                    <Link
+                      href={post.link}
+                    >
+                      <a>
+                        <div className='relative w-24 h-16'>
+                          <img
+                            src={post.cover || '/img/open_graph_full.png'}
+                            className='object-cover hover:opacity-80 transition-opacity duration-300 w-full h-full'
+                          />
+                        </div>
+                      </a>
+                    </Link>
+
+                    <div className='flex justify-between flex-col py-2'>
+                      <Link
+                        href={post.link}
+                      >
+                        <a className='text-sm font-medium hover:text-primary transition-colors duration-300 truncate-3'>
+                          {post.title}
+                        </a>
+                      </Link>
+
+                      <p className='text-xs font-light'>
+                        {/*{format(new Date(post.date_created), 'dd MMM, yyyy')}*/}
+                      </p>
+
+
+                      {/*<span className='text-xs font-light'>{format(new Date(post.date_created), 'dd MMM yyyy')}</span>*/}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null
+        }
         <div className='space-y-2'>
           <span className='inline-flex justify-center px-4 py-4 w-full bg-primary text-neutral-100 font-bold'>
             Noticias Mais Recentes
@@ -52,7 +99,7 @@ function PanelChild({
                   <Link
                     href={post.link}
                   >
-                    <a className='text-sm font-medium hover:text-primary transition-colors duration-300'>
+                    <a className='text-sm font-medium hover:text-primary transition-colors duration-300 truncate-3'>
                       {post.title}
                     </a>
                   </Link>
@@ -75,8 +122,7 @@ function PanelChild({
 
 export default function NewsPanel({
                                     recentPosts,
-                                    pageAuthors = [],
-                                    tags = [],
+                                    featuredNews,
                                     searchPosts,
                                     className = '',
                                     isNews = false
@@ -160,9 +206,8 @@ export default function NewsPanel({
               <div
                 className='shadow-lg ring-1 ring-black ring-opacity-5 bg-neutral-100 divide-y-2 divide-neutral-50 p-4'>
                 <PanelChild
-                  pageAuthors={pageAuthors}
                   recentPosts={recentPosts}
-                  tags={tags}
+                  featuredNews={featuredNews}
                   searchPosts={searchPosts}
                   close={() => {
                   }}
@@ -176,9 +221,8 @@ export default function NewsPanel({
       <div className='hidden lg:block space-y-8'>
         <hr className='mx-8' />
         <PanelChild
-          pageAuthors={pageAuthors}
           recentPosts={recentPosts}
-          tags={tags}
+          featuredNews={featuredNews}
           searchPosts={searchPosts}
           close={() => {
           }}

@@ -6,7 +6,7 @@ export const dynamicNews = (page, limit, search = '') => {
       recent_news: {
         __aliasFor: 'news',
         __args: {
-          limit: 5,
+          limit: 6,
           page: 1,
           sort: '-published_at'
         },
@@ -17,7 +17,25 @@ export const dynamicNews = (page, limit, search = '') => {
         description: true,
         published_at: true
       },
-
+      featured_news: {
+        __aliasFor: 'news',
+        __args: {
+          limit: 6,
+          page: 1,
+          sort: '-published_at',
+          filter: {
+            featured: {
+              _eq: true
+            }
+          }
+        },
+        id: true,
+        title: true,
+        cover: true,
+        link: true,
+        description: true,
+        published_at: true
+      },
       news: {
         __args: {
           limit,
