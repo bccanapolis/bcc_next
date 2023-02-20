@@ -18,7 +18,7 @@ export default function ProjectsPage({ page }) {
   const items = [{
     title: 'Apresentação',
     description: 'Aberto em 2016, o Bacharelado em Ciência da Computação do IFG Campus Anápolis tem se tornado um espaço de oportunidades e muito aprendizado para quem gosta de computação. Com possibilidade de pleitear bolsas de estudo em pesquisas acadêmicas, projetos de extensão, assistência estudantil (alimentação, transporte e permanência), além de participar de projetos com empresas parcerias e com nossa Empresa Júnior, Code Tower.' +
-      'Para os interessados, veja o link para inscrição e vestibulares:',
+      'Para os interessados, veja o link para inscrição e vestibulares.',
     link: {
       label: 'Inscrição e Vestibulares',
       url: 'http://www.ifg.edu.br/estudenoifg'
@@ -26,7 +26,7 @@ export default function ProjectsPage({ page }) {
     cover: '/img/bcc.png'
   },
     {
-      title: 'Conceito nota 5 do MEC/INEP',
+      title: 'Conceito nota 5 do Inep/MEC',
       description: 'O curso de Ciência da Computação do IFG obteve a nota máxima em sua primeira avaliação para reconhecimento do curso, feita por técnicos do Instituto Nacional de Estudos e Pesquisas Educacionais (Inep/MEC). A nota 5 foi obtida após visita ao câmpus, nos dia 9 e 10 de dezembro de 2019. O curso obteve nota máxima em infra-estrutura e corpo docente!',
       cover: '/img/nota5.png'
     }, {
