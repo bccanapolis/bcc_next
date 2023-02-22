@@ -6,24 +6,23 @@ import NewsCardHome from '@/components/news/NewsCardHome';
 
 export default function RecentNews({ section, posts = [], className }) {
   return (
-    <div className="container">
-      <div className="space-y-2 mb-12">
-        <h5 className="text-4xl font-bold text-center">
+    <div className={classNames('container', className)}>
+      <div className='space-y-2 mb-12'>
+        <h5 className='text-4xl font-bold text-center'>
           {section.title || 'Section Title'}
         </h5>
         {/*<p className="font-light text-center">*/}
         {/*  {section.subtitle || 'Section subtitle.'}*/}
         {/*</p>*/}
       </div>
-      <Link href="/noticias">
-        <a className="text-sm hover:text-primary float-right mb-8">
-          Veja mais <ArrowRightIcon className="w-4 h-4 inline-block" />
+      <Link href='/noticias'>
+        <a className='text-sm hover:text-primary float-right mb-8'>
+          Veja mais <ArrowRightIcon className='w-4 h-4 inline-block' />
         </a>
       </Link>
       <div
         className={classNames(
-          'clear-both grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8',
-          className
+          'clear-both grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8'
         )}
       >
         {!!posts.length &&

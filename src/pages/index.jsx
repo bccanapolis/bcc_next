@@ -208,58 +208,63 @@ export default function Home({
           ]}
         />
       )}
-      <GenericBanner
-        className='mt-16 mb-0 p-0'
-        section={{
-          title: 'Estude Computação em uma instituição pública, federal e de qualdiade. Estude no IFG Campus Anápolis'
-        }}
 
-        images={[
-          {
-            url: '/img/logo-fundo-branco-removebg-preview2.png',
-            alt: 'IFG Câmpus Anápolis',
-            tags: 'IFG Câmpus Anápolis'
-          }]}
-      >
-        <div className='flex justify-center '>
-          <Link href='/sobre'>
-            <a
-              className='text-neutral-100 bg-primary py-2 px-4 hover:bg-primary hover:text-neutral-100  transition-colors duration-300'>
-              Saiba mais
-            </a>
-          </Link>
-        </div>
-      </GenericBanner>
-      <CodeBannerSection className='mt-0' />
-
-      <ProjectsBanner
-        className='bg-primary text-white py-16'
-        // images={projetosCarousel}
-        section={{
-          title: 'Projetos de Ensino',
-          subtitle:
-            'Nossos projetos de ensino convidam os alunos a resolver problemas reais e criar soluções tecnológicas incríveis.'
-        }}
-      />
       <div className='mt-20'>
-        <RecentNews
+        <GenericBanner
+          className='mb-0 p-0'
           section={{
-            title: 'Ultimas Notícias',
+            title: 'Estude Computação em uma instituição pública, federal e de qualdiade. Estude no IFG Campus Anápolis'
           }}
-          posts={news}
-          className={'mb-20'}
+
+          images={[
+            {
+              url: '/img/logo-fundo-branco-removebg-preview2.png',
+              alt: 'IFG Câmpus Anápolis',
+              tags: 'IFG Câmpus Anápolis'
+            }]}
+        >
+          <div className='flex justify-center '>
+            <Link href='/sobre'>
+              <a
+                className='text-neutral-100 bg-primary py-2 px-4 hover:bg-primary hover:text-neutral-100  transition-colors duration-300'>
+                Saiba mais
+              </a>
+            </Link>
+          </div>
+        </GenericBanner>
+
+        <CodeBannerSection className='mt-0' />
+
+        <ProjectsBanner
+          className='bg-primary text-white py-16'
+          // images={projetosCarousel}
+          section={{
+            title: 'Projetos de Ensino',
+            subtitle:
+              'Nossos projetos de ensino convidam os alunos a resolver problemas reais e criar soluções tecnológicas incríveis.'
+          }}
         />
 
-        {page.secao_posts_display && (
-          <RecentPostsSection
+        <div className='space-y-20 my-20'>
+          <RecentNews
             section={{
-              title: page.secao_posts_title,
-              subtitle: page.secao_posts_subtitle
+              title: 'Ultimas Notícias'
             }}
-            posts={recentPosts}
-            className={'mb-20'}
+            posts={news}
           />
-        )}
+
+          {page.secao_posts_display && (
+            <RecentPostsSection
+              section={{
+                title: page.secao_posts_title,
+                subtitle: page.secao_posts_subtitle
+              }}
+              posts={recentPosts}
+            />
+          )}
+        </div>
+
+
         {/*{*/}
         {/*  page.secao_professores_display && <ProfessorsSection*/}
         {/*    section={{*/}
