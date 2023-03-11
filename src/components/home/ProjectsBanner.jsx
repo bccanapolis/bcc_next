@@ -12,7 +12,7 @@ export default function ProjectsBanner({
     <div className={classNames(className)}>
       <GenericBanner
         section={section}
-        className={classNames(!!images.length && 'text-white')}
+        className={classNames(!!images.length && 'text-white', className)}
         images={images}
       >
         <div className="flex justify-center">

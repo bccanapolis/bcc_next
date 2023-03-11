@@ -12,18 +12,25 @@ export default function GenericBanner({
   classTitle,
   children,
   images = [],
+  imageOverlay = true,
 }) {
   const DynamicContainer = !!images.length ? Banner : Container;
 
   if (!!images.length) {
     DynamicContainer['defaultProps'] = {
-      className,
+      className: classNames(
+        'flex flex-col items-center justify-center',
+        className
+      ),
       images,
-      overlay: true,
+      overlay: imageOverlay,
     };
   } else {
     DynamicContainer['defaultProps'] = {
-      className: classNames('py-24', className),
+      className: classNames(
+        'flex flex-col items-center justify-center',
+        className
+      ),
     };
   }
 
