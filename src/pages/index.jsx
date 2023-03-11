@@ -235,6 +235,14 @@ export default function Home({
 
         <CodeBannerSection className='mt-0' />
 
+        <RecentNews
+          section={{
+            title: 'Ultimas Notícias'
+          }}
+          posts={news}
+          className={'my-20'}
+        />
+
         <ProjectsBanner
           className='bg-primary text-white py-16'
           // images={projetosCarousel}
@@ -245,14 +253,6 @@ export default function Home({
           }}
         />
 
-        <div className='space-y-20 my-20'>
-          <RecentNews
-            section={{
-              title: 'Ultimas Notícias'
-            }}
-            posts={news}
-          />
-
           {page.secao_posts_display && (
             <RecentPostsSection
               section={{
@@ -260,9 +260,9 @@ export default function Home({
                 subtitle: page.secao_posts_subtitle
               }}
               posts={recentPosts}
+              className='my-20'
             />
           )}
-        </div>
 
 
         {/*{*/}

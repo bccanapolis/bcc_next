@@ -5,7 +5,7 @@ import { ArrowRightIcon } from '@heroicons/react/outline';
 
 export default function RecentPostsSection({ section, posts = [], className }) {
   return (
-    <div className="container">
+    <div className={classNames('container', className)}>
       <div className="space-y-2 mb-12">
         <h5 className="text-4xl font-bold text-center">
           {section.title || 'Section Title'}
