@@ -7,16 +7,14 @@ export default function NewsCardHome({ post, className }) {
     <article
       className={classNames('flex flex-col w-full h-full group', className)}
     >
-      <Link href={post.link}>
-        <a className={classNames('w-full h-48')}>
-          <div className="w-full h-full relative">
-            <img
-              className="object-cover hover:opacity-80 transition-opacity duration-300 w-full h-full"
-              src={post.cover ?? '/img/open_graph_full.png'}
-              alt=""
-            />
-          </div>
-        </a>
+      <Link href={post.link} className={classNames('w-full h-48')}>
+        <div className="w-full h-full relative">
+          <img
+            className="object-cover hover:opacity-80 transition-opacity duration-300 w-full h-full"
+            src={post.cover ?? '/img/open_graph_full.png'}
+            alt=""
+          />
+        </div>
       </Link>
       <div className="p-2 mt-2 space-y-2">
         <div className="divide flex justify-between">
@@ -26,11 +24,9 @@ export default function NewsCardHome({ post, className }) {
         </div>
         <div>
           <Link href={post.link}>
-            <a>
-              <h5 className="font-bold tracking-tight hover:text-primary transition-colors duration-300">
-                {post.title}
-              </h5>
-            </a>
+            <h5 className="font-bold tracking-tight hover:text-primary transition-colors duration-300">
+              {post.title}
+            </h5>
           </Link>
           <hr className="my-2" />
           <div

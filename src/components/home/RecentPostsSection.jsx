@@ -14,10 +14,11 @@ export default function RecentPostsSection({ section, posts = [], className }) {
           {section.subtitle || 'Section subtitle.'}
         </p>
       </div>
-      <Link href="/blog">
-        <a className="text-sm hover:text-primary float-right mb-8">
-          Veja mais <ArrowRightIcon className="w-4 h-4 inline-block" />
-        </a>
+      <Link
+        href="/blog"
+        className="text-sm hover:text-primary float-right mb-8"
+      >
+        Veja mais <ArrowRightIcon className="w-4 h-4 inline-block" />
       </Link>
       <div
         className={classNames(

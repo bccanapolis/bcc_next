@@ -22,17 +22,15 @@ export default function FooterBar({}) {
       <footer className="bg-neutral-700">
         <div className="grid grid-cols-2 gap-8 py-8 md:grid-cols-4 container">
           <div className="space-y-8">
-            <Link href="/">
-              <a className="flex items-center h-10">
-                <Image
-                  alt="Logo de Ciencia da Computação"
-                  className="mr-4 h-10"
-                  src="/img/bcc_anapolis_logo.svg"
-                  layout="fixed"
-                  height="50px"
-                  width="200px"
-                />
-              </a>
+            <Link href="/" className="flex items-center h-10">
+              <Image
+                alt="Logo de Ciencia da Computação"
+                className="mr-4 h-10"
+                src="/img/bcc_anapolis_logo.svg"
+                layout="fixed"
+                height={50}
+                width={200}
+              />
             </Link>
             <a href="https://ifg.edu.br" className="flex items-center h-10">
               <Image
@@ -40,8 +38,8 @@ export default function FooterBar({}) {
                 className="mr-4 h-10"
                 src="/img/ifg_logo.svg"
                 layout="fixed"
-                height="50px"
-                width="200px"
+                height={50}
+                width={200}
               />
             </a>
           </div>

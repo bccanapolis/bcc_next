@@ -183,7 +183,7 @@ export default function Home({
       >
         <div className="container">
           <div className="relative h-48 w-full sm:w-[360px]">
-            <Image src="/img/bcc_anapolis_logo.svg" layout="fill" />
+            <Image src="/img/bcc_anapolis_logo.svg" alt="" layout="fill" />
           </div>
         </div>
       </Banner>
@@ -225,10 +225,11 @@ export default function Home({
           ]}
         >
           <div className="flex justify-center ">
-            <Link href="/sobre">
-              <a className="text-neutral-100 bg-primary py-2 px-4 hover:bg-primary hover:text-neutral-100  transition-colors duration-300">
-                Saiba mais
-              </a>
+            <Link
+              href="/sobre"
+              className="text-neutral-100 bg-primary py-2 px-4 hover:bg-primary hover:text-neutral-100  transition-colors duration-300"
+            >
+              Saiba mais
             </Link>
           </div>
         </GenericBanner>
@@ -250,15 +251,18 @@ export default function Home({
           imageOverlay={false}
         >
           <div className="flex justify-center ">
-            <Link href="/extensao/empresa-junior">
-              <a className="py-2 px-4 border mx-4 hover:text-primary hover:border-primary transition-colors duration-300">
-                Saiba Mais
-              </a>
+            <Link
+              href="/extensao/empresa-junior"
+              className="py-2 px-4 border mx-4 hover:text-primary hover:border-primary transition-colors duration-300"
+            >
+              Saiba Mais
             </Link>
-            <Link target="_blank" href="https://codetower.com.br/">
-              <a className="text-black bg-white border py-2 px-4 hover:bg-primary hover:text-neutral-100 hover:border-primary transition-colors duration-300">
-                Acesse o Site
-              </a>
+            <Link
+              target="_blank"
+              href="https://codetower.com.br/"
+              className="text-black bg-white border py-2 px-4 hover:bg-primary hover:text-neutral-100 hover:border-primary transition-colors duration-300"
+            >
+              Acesse o Site
             </Link>
           </div>
         </GenericBanner>

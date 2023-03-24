@@ -76,6 +76,7 @@ export default function IndexPage({ professor }) {
         <div className="lg:sticky flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-center items-center sm:items-start lg:items-center w-full sm:w-max lg:w-96 h-full top-16 gap-4 ">
           <div className="relative overflow-hidden rounded-full w-48 h-48 mx-auto">
             <Image
+              alt=""
               src={
                 professor.user.avatar
                   ? apiAsset(professor.user.avatar.id)

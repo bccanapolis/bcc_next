@@ -16,10 +16,11 @@ export default function ProjectsBanner({
         images={images}
       >
         <div className="flex justify-center">
-          <Link href="/acoes-ensino/projetos">
-            <a className="text-black bg-white border py-2 px-4 hover:bg-primary hover:text-neutral-100  transition-colors duration-300">
-              Ir aos projetos
-            </a>
+          <Link
+            href="/acoes-ensino/projetos"
+            className="text-black bg-white border py-2 px-4 hover:bg-primary hover:text-neutral-100  transition-colors duration-300"
+          >
+            Ir aos projetos
           </Link>
         </div>
       </GenericBanner>

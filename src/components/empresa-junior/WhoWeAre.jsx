@@ -26,6 +26,7 @@ export default function WhoWeAre({ className }) {
         </div>
         <div className="relative flex-none w-0  lg:w-2/4">
           <Image
+            alt=""
             src={'/img/Code_Tower_logo1.png'}
             className="self-center"
             width="584"

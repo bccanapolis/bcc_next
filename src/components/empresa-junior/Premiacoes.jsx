@@ -12,6 +12,7 @@ export default function Premiacoes({ premiacoes }) {
               <Image
                 src={service.photo}
                 width="359"
+                alt=""
                 height="359"
                 layout="responsive"
                 objectFit={'cover'}

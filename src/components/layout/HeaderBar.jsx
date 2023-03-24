@@ -164,18 +164,15 @@ function NavLinks({ closeParent }) {
                             <Link
                               key={item.label + index + item.url}
                               href={item.url}
+                              onClick={() => {
+                                close();
+                                closeParent();
+                              }}
+                              className="-m-2 p-2 flex items-start rounded-lg group"
                             >
-                              <a
-                                onClick={() => {
-                                  close();
-                                  closeParent();
-                                }}
-                                className="-m-2 p-2 flex items-start rounded-lg group"
-                              >
-                                <p className="text-sm font-medium text-neutral-100 group-hover:text-primary uppercase">
-                                  {item.label}
-                                </p>
-                              </a>
+                              <p className="text-sm font-medium text-neutral-100 group-hover:text-primary uppercase">
+                                {item.label}
+                              </p>
                             </Link>
                           )
                         )}
@@ -197,13 +194,13 @@ function NavLinks({ closeParent }) {
             {link.label}
           </a>
         ) : (
-          <Link key={link.label} href={link.url}>
-            <a
-              onClick={closeParent}
-              className="text-neutral-100 inline-flex items-center text-sm font-medium hover:text-primary focus:outline-none uppercase"
-            >
-              {link.label}
-            </a>
+          <Link
+            key={link.label}
+            href={link.url}
+            onClick={closeParent}
+            className="text-neutral-100 inline-flex items-center text-sm font-medium hover:text-primary focus:outline-none uppercase"
+          >
+            {link.label}
           </Link>
         )
       )}
@@ -223,26 +220,26 @@ export default function Example() {
             <div className="flex flex-row md:flex-col xl:flex-row justify-between items-center py-4 md:justify-start lg:space-x-10 xl:justify-between">
               <div className="flex justify-start gap-x-4">
                 <Link href="/">
-                  <a>
-                    <span className="sr-only">Ciência da Computação</span>
-                    <Image
-                      className="h-8 w-auto"
-                      src="/img/bcc_anapolis_logo.svg"
-                      width={200}
-                      height={45}
-                      layout="fixed"
-                      loading="eager"
-                    />
-                  </a>
+                  <span className="sr-only">Ciência da Computação</span>
+                  <Image
+                    className="h-8 w-auto"
+                    src="/img/bcc_anapolis_logo.svg"
+                    alt="BCC Anápolis"
+                    width={200}
+                    height={80}
+                    layout="fixed"
+                    loading="eager"
+                  />
                 </Link>
 
                 <a className="hidden md:inline-block" href="https://ifg.edu.br">
                   <span className="sr-only">Ciência da Computação</span>
                   <Image
+                    alt=""
                     className="h-8 w-auto"
                     src="/img/ifg_logo.svg"
                     width={160}
-                    height={40}
+                    height={60}
                     layout="fixed"
                     loading="eager"
                   />
@@ -278,10 +275,11 @@ export default function Example() {
                   <div className="flex items-center justify-between">
                     <div>
                       <Image
+                        alt=""
                         className="h-8 w-auto"
                         src="/img/bcc_logo.svg"
-                        width="200px"
-                        height="40px"
+                        width={200}
+                        height={40}
                         layout="fixed"
                         loading="eager"
                       />
@@ -304,6 +302,7 @@ export default function Example() {
                     <a href="https://ifg.edu.br">
                       <span className="sr-only">Ciência da Computação</span>
                       <Image
+                        alt=""
                         className="h-8 w-auto"
                         src="/img/ifg_logo.svg"
                         width={160}

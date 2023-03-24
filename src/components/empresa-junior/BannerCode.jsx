@@ -78,7 +78,7 @@ export default function BannerCode({ className }) {
         </div>
         <div className="w-full lg:w-6/12 lg:bg-neutral-900/60 flex items-center justify-center py-20 px-10">
           <div className="relative aspect-square h-96">
-            <Image src="/img/Code_Tower_logo2.png" layout="fill" />
+            <Image src="/img/Code_Tower_logo2.png" layout="fill" alt="" />
           </div>
         </div>
       </div>

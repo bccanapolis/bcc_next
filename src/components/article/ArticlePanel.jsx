@@ -50,6 +50,7 @@ function BlogPanelChild({
                   >
                     <div className="relative w-48 h-48 inline-block rounded-full mb-4">
                       <Image
+                        alt=""
                         src={
                           item.avatar
                             ? apiAsset(item.avatar.id)
@@ -88,15 +89,14 @@ function BlogPanelChild({
                     post.slug || slugify(post.title.toLowerCase())
                   }.${post.id}`}
                 >
-                  <a>
-                    <div className="relative w-24 h-16">
-                      <Image
-                        src={apiAsset(post.cover.id)}
-                        className="object-cover hover:opacity-80 transition-opacity duration-300"
-                        layout="fill"
-                      />
-                    </div>
-                  </a>
+                  <div className="relative w-24 h-16">
+                    <Image
+                      alt=""
+                      src={apiAsset(post.cover.id)}
+                      className="object-cover hover:opacity-80 transition-opacity duration-300"
+                      layout="fill"
+                    />
+                  </div>
                 </Link>
 
                 <div className="flex justify-between flex-col py-2">
@@ -104,10 +104,9 @@ function BlogPanelChild({
                     href={`${route}/${
                       post.slug || slugify(post.title.toLowerCase())
                     }.${post.id}`}
+                    className="text-sm font-medium hover:text-primary transition-colors duration-300"
                   >
-                    <a className="text-sm font-medium hover:text-primary transition-colors duration-300">
-                      {post.title}
-                    </a>
+                    {post.title}
                   </Link>
                   {isNews ? (
                     <p className="text-xs font-light">

@@ -43,15 +43,16 @@ function PanelChild({ recentPosts, featuredNews, close, isNews }) {
                   </Link>
 
                   <div className="flex justify-between flex-col py-2">
-                    <Link href={post.link}>
-                      <a className="text-sm font-medium hover:text-primary transition-colors duration-300 truncate-3">
-                        {post.title}
-                      </a>
+                    <Link
+                      href={post.link}
+                      className="text-sm font-medium hover:text-primary transition-colors duration-300 truncate-3"
+                    >
+                      {post.title}
                     </Link>
 
-                    <p className="text-xs font-light">
-                      {/*{format(new Date(post.date_created), 'dd MMM, yyyy')}*/}
-                    </p>
+                    {/*<p className="text-xs font-light">*/}
+                    {/*{format(new Date(post.date_created), 'dd MMM, yyyy')}*/}
+                    {/*</p>*/}
 
                     {/*<span className='text-xs font-light'>{format(new Date(post.date_created), 'dd MMM yyyy')}</span>*/}
                   </div>
@@ -71,21 +72,20 @@ function PanelChild({ recentPosts, featuredNews, close, isNews }) {
                 className="flex flex-row items-center gap-x-2"
               >
                 <Link href={post.link}>
-                  <a>
-                    <div className="relative w-24 h-16">
-                      <img
-                        src={post.cover || '/img/open_graph_full.png'}
-                        className="object-cover hover:opacity-80 transition-opacity duration-300 w-full h-full"
-                      />
-                    </div>
-                  </a>
+                  <div className="relative w-24 h-16">
+                    <img
+                      src={post.cover || '/img/open_graph_full.png'}
+                      className="object-cover hover:opacity-80 transition-opacity duration-300 w-full h-full"
+                    />
+                  </div>
                 </Link>
 
                 <div className="flex justify-between flex-col py-2">
-                  <Link href={post.link}>
-                    <a className="text-sm font-medium hover:text-primary transition-colors duration-300 truncate-3">
-                      {post.title}
-                    </a>
+                  <Link
+                    href={post.link}
+                    className="text-sm font-medium hover:text-primary transition-colors duration-300 truncate-3"
+                  >
+                    {post.title}
                   </Link>
 
                   <p className="text-xs font-light">

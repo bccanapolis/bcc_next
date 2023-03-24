@@ -7,25 +7,24 @@ services:
       - .env
     build: .
     networks:
-      - front
+      - default
   nginx:
     image: nginx:1.21.1
     container_name: bcc_front_nginx
     restart: unless-stopped
     volumes:
       - ./nginx:/etc/nginx/conf.d
+    ports:
+      - "8102:8102"
     depends_on:
       - nextjs
     networks:
-      - front
-      - nginx-proxy
+      - default
+      - nginx
     environment:
       VIRTUAL_HOST: bcc.ifg.edu.br
       VIRTUAL_PORT: 8102
       LETSENCRYPT_HOST: bcc.ifg.edu.br
-
 networks:
-  front:
-    driver: bridge
-  nginx-proxy:
+  nginx:
     external: true

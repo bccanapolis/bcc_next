@@ -48,10 +48,11 @@ export default function breadcrumb({ paths }) {
                               {item.label}
                             </span>
                           ) : (
-                            <Link href={item.url}>
-                              <a className="block py-2 px-4 text-sm text-neutral-700 hover:bg-neutral-100 cursor-pointer">
-                                {item.label}
-                              </a>
+                            <Link
+                              href={item.url}
+                              className="block py-2 px-4 text-sm text-neutral-700 hover:bg-neutral-100 cursor-pointer"
+                            >
+                              {item.label}
                             </Link>
                           )}
                         </li>
@@ -61,10 +62,11 @@ export default function breadcrumb({ paths }) {
                 </>
               ) : !link.disabled ? (
                 <>
-                  <Link href={link.url}>
-                    <a className="inline-flex items-center text-sm font-medium text-neutral-100 hover:text-primary uppercase">
-                      {link.label}
-                    </a>
+                  <Link
+                    href={link.url}
+                    className="inline-flex items-center text-sm font-medium text-neutral-100 hover:text-primary uppercase"
+                  >
+                    {link.label}
                   </Link>
                 </>
               ) : (

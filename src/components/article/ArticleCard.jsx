@@ -44,21 +44,20 @@ export default function ArticleCard({ post, searchPosts }) {
               ))}
           </ul>
         </div>
-        <Link href={`/blog/${slugify(post.title.toLowerCase())}.${post.id}`}>
-          <a
-            className={classNames(
-              'w-full h-64 lg:h-auto min-h-[18rem] lg:w-9/12'
-            )}
-          >
-            <div className="w-full h-full relative">
-              <Image
-                className="object-cover hover:opacity-80 transition-opacity duration-300"
-                src={apiAsset(post.cover.id)}
-                alt=""
-                layout="fill"
-              />
-            </div>
-          </a>
+        <Link
+          href={`/blog/${slugify(post.title.toLowerCase())}.${post.id}`}
+          className={classNames(
+            'w-full h-64 lg:h-auto min-h-[18rem] lg:w-9/12'
+          )}
+        >
+          <div className="w-full h-full relative">
+            <Image
+              className="object-cover hover:opacity-80 transition-opacity duration-300"
+              src={apiAsset(post.cover.id)}
+              alt=""
+              layout="fill"
+            />
+          </div>
         </Link>
       </div>
       <div className="flex justify-end">
@@ -71,11 +70,9 @@ export default function ArticleCard({ post, searchPosts }) {
             <Link
               href={`/blog/${slugify(post.title.toLowerCase())}.${post.id}`}
             >
-              <a>
-                <h5 className="mb-2 text-xl font-bold tracking-tight hover:text-primary transition-colors duration-300">
-                  {post.title}
-                </h5>
-              </a>
+              <h5 className="mb-2 text-xl font-bold tracking-tight hover:text-primary transition-colors duration-300">
+                {post.title}
+              </h5>
             </Link>
             <p className="mb-3 text-sm text-neutral-700 font-light truncate-4">
               {post.description}

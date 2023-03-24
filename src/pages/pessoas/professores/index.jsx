@@ -41,24 +41,24 @@ export default function index({ page, professors }) {
             href={`/pessoas/professores/${slugify(
               fullName(item.user).toLowerCase()
             )}.${item.lattes}`}
+            className="flex flex-col items-center group"
           >
-            <a className="flex flex-col items-center group">
-              <div className="relative overflow-hidden w-48 rounded-full h-48 mb-4">
-                <Image
-                  src={
-                    item.user.avatar
-                      ? apiAsset(item.user.avatar.id)
-                      : '/img/open_graph_squared.png'
-                  }
-                  className="object-cover rounded-full group-hover:scale-[105%] transition-transform duration-300"
-                  layout="fill"
-                />
-              </div>
-              <p className="text-center group-hover:text-primary transition-colors duration-300">
-                <span className="capitalize">{item?.degree}.</span>{' '}
-                {fullName(item.user)}
-              </p>
-            </a>
+            <div className="relative overflow-hidden w-48 rounded-full h-48 mb-4">
+              <Image
+                alt=""
+                src={
+                  item.user.avatar
+                    ? apiAsset(item.user.avatar.id)
+                    : '/img/open_graph_squared.png'
+                }
+                className="object-cover rounded-full group-hover:scale-[105%] transition-transform duration-300"
+                layout="fill"
+              />
+            </div>
+            <p className="text-center group-hover:text-primary transition-colors duration-300">
+              <span className="capitalize">{item?.degree}.</span>{' '}
+              {fullName(item.user)}
+            </p>
           </Link>
         ))}
       </Container>

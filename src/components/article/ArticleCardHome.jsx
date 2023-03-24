@@ -13,17 +13,16 @@ export default function ArticleCardHome({ post, isNews }) {
         href={`${route}/${post.slug || slugify(post.title.toLowerCase())}.${
           post.id
         }`}
+        className={classNames('w-full h-48')}
       >
-        <a className={classNames('w-full h-48')}>
-          <div className="w-full h-full relative">
-            <Image
-              className="object-cover hover:opacity-80 transition-opacity duration-300"
-              src={apiAsset(post.cover.id)}
-              alt=""
-              layout="fill"
-            />
-          </div>
-        </a>
+        <div className="w-full h-full relative">
+          <Image
+            className="object-cover hover:opacity-80 transition-opacity duration-300"
+            src={apiAsset(post.cover.id)}
+            alt=""
+            layout="fill"
+          />
+        </div>
       </Link>
       <div className="p-2 mt-2 space-y-2">
         <div className="divide flex justify-between">
@@ -40,11 +39,9 @@ export default function ArticleCardHome({ post, isNews }) {
               post.id
             }`}
           >
-            <a>
-              <h5 className="font-bold tracking-tight hover:text-primary transition-colors duration-300">
-                {post.title}
-              </h5>
-            </a>
+            <h5 className="font-bold tracking-tight hover:text-primary transition-colors duration-300">
+              {post.title}
+            </h5>
           </Link>
           <hr className="my-2" />
           <p className="text-sm text-neutral-700 font-light truncate-4">

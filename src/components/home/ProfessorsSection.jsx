@@ -54,23 +54,23 @@ export default function ProfessorsSection({
                 href={`/pessoas/professores/${slugify(
                   fullName(professor.user).toLowerCase()
                 )}@${professor.user.lattes}`}
+                className="flex flex-col items-center group"
               >
-                <a className="flex flex-col items-center group">
-                  <div className="relative w-48 h-48 overflow-hidden rounded-full mb-4">
-                    <Image
-                      src={
-                        professor.user.avatar
-                          ? apiAsset(professor.user.avatar.id)
-                          : '/img/open_graph_squared.png'
-                      }
-                      className="object-cover rounded-full group-hover:scale-[105%] transition-transform duration-300"
-                      layout="fill"
-                    />
-                  </div>
-                  <p className="text-center group-hover:text-primary transition-colors duration-300">
-                    {professor.degree} {fullName(professor.user)}
-                  </p>
-                </a>
+                <div className="relative w-48 h-48 overflow-hidden rounded-full mb-4">
+                  <Image
+                    alt=""
+                    src={
+                      professor.user.avatar
+                        ? apiAsset(professor.user.avatar.id)
+                        : '/img/open_graph_squared.png'
+                    }
+                    className="object-cover rounded-full group-hover:scale-[105%] transition-transform duration-300"
+                    layout="fill"
+                  />
+                </div>
+                <p className="text-center group-hover:text-primary transition-colors duration-300">
+                  {professor.degree} {fullName(professor.user)}
+                </p>
               </Link>
             </SwiperSlide>
           ))}

@@ -28,10 +28,11 @@ export default function Index({ query }) {
       >
         <div className="bg-neutral-700 h-32 px-16 py-4 flex justify-between">
           <div className="relative h-full w-80">
-            <Image src="/img/bcc_anapolis_logo.svg" layout="fill" />
+            <Image src="/img/bcc_anapolis_logo.svg" layout="fill" alt="" />
           </div>
           <div className="relative h-full w-80">
             <Image
+              alt=""
               className="h-8 w-auto"
               src="/img/ifg_logo.svg"
               layout="fill"
@@ -42,6 +43,7 @@ export default function Index({ query }) {
           <div className="flex flex w-full gap-16">
             <div className="relative overflow-hidden rounded-lg w-64 h-64">
               <Image
+                alt=""
                 src={
                   query.avatar
                     ? apiAsset(query.avatar)
