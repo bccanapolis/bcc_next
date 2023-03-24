@@ -28,16 +28,15 @@ function MyApp({ Component, pageProps }) {
     };
   }, [router.events]);
 
-  const getLayout = Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>);
+  const getLayout =
+    Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>);
 
   return (
     <>
       <Head>
         <title>{web.title}</title>
       </Head>
-      {
-        getLayout(<Component {...pageProps} />)
-      }
+      {getLayout(<Component {...pageProps} />)}
     </>
   );
 }

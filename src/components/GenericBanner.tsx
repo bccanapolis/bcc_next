@@ -1,7 +1,7 @@
 import { classNames } from '@/utils';
-import Container from '@/components/layout/Container';
 import * as React from 'react';
 import Banner from '@/components/layout/Banner';
+import Container from '@/components/layout/Container';
 
 export default function GenericBanner({
   section = {
@@ -14,28 +14,8 @@ export default function GenericBanner({
   images = [],
   imageOverlay = true,
 }) {
-  const DynamicContainer = !!images.length ? Banner : Container;
-
-  if (!!images.length) {
-    DynamicContainer['defaultProps'] = {
-      className: classNames(
-        'flex flex-col items-center justify-center',
-        className
-      ),
-      images,
-      overlay: imageOverlay,
-    };
-  } else {
-    DynamicContainer['defaultProps'] = {
-      className: classNames(
-        'flex flex-col items-center justify-center',
-        className
-      ),
-    };
-  }
-
-  return (
-    <DynamicContainer>
+  function header() {
+    return (
       <div
         className={classNames(
           (!!section.subtitle || !!section.title) && 'space-y-2 mb-12'
@@ -58,7 +38,38 @@ export default function GenericBanner({
           {section.subtitle}
         </p>
       </div>
+    );
+  }
+
+  if (!!images.length) {
+    return (
+      <Banner
+        className={classNames(
+          'flex flex-col items-center justify-center',
+          className
+        )}
+        images={images}
+        overlay={imageOverlay}
+        fullscreen={undefined}
+      >
+        <>
+          {header()}
+          {children}
+        </>
+      </Banner>
+    );
+  }
+
+  return (
+    <Container
+      id={section.title}
+      className={classNames(
+        'flex flex-col items-center justify-center',
+        className
+      )}
+    >
+      {header()}
       {children}
-    </DynamicContainer>
+    </Container>
   );
 }

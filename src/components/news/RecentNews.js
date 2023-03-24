@@ -1,23 +1,22 @@
 import { classNames } from '@/utils';
 import Link from 'next/link';
-import ArticleCardHome from '@/components/article/ArticleCardHome';
 import { ArrowRightIcon } from '@heroicons/react/outline';
 import NewsCardHome from '@/components/news/NewsCardHome';
 
 export default function RecentNews({ section, posts = [], className }) {
   return (
     <div className={classNames('container', className)}>
-      <div className='space-y-2 mb-12'>
-        <h5 className='text-4xl font-bold text-center'>
+      <div className="space-y-2 mb-12">
+        <h5 className="text-4xl font-bold text-center">
           {section.title || 'Section Title'}
         </h5>
         {/*<p className="font-light text-center">*/}
         {/*  {section.subtitle || 'Section subtitle.'}*/}
         {/*</p>*/}
       </div>
-      <Link href='/noticias'>
-        <a className='text-sm hover:text-primary float-right mb-8'>
-          Veja mais <ArrowRightIcon className='w-4 h-4 inline-block' />
+      <Link href="/noticias">
+        <a className="text-sm hover:text-primary float-right mb-8">
+          Veja mais <ArrowRightIcon className="w-4 h-4 inline-block" />
         </a>
       </Link>
       <div

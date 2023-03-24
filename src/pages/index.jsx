@@ -7,7 +7,6 @@ import { apiAsset } from '@/utils';
 import FeatureSection from '@/components/home/FeatureSection';
 import RecentPostsSection from '@/components/home/RecentPostsSection';
 import { sortByFullName } from '@/utils/user';
-import CodeBannerSection from '@/components/home/CodeBannerSection';
 import ProjectsBanner from '@/components/home/ProjectsBanner';
 import Link from 'next/link';
 import GenericBanner from '@/components/GenericBanner';

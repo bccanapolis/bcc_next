@@ -11,15 +11,7 @@ const nextConfig = {
     ]
   },
   reactStrictMode: true,
-  optimizeFonts: false,
-  output: 'standalone',
-  webpackDevMiddleware: (config) => {
-    config.watchOptions = {
-      poll: 1000,
-      aggregateTimeout: 300
-    };
-    return config;
-  }
+  optimizeFonts: false
 };
 
 module.exports = nextConfig;

@@ -25,28 +25,35 @@ export default function IndexPage({ professor }) {
     orientacao: 'Orientações',
     projeto_pesquisa: 'Projetos de Pesquisa',
     software: 'Softwares',
-    banca: 'Bancas'
+    banca: 'Bancas',
   };
 
-  const paths = [{ url: '/', label: 'home' }, { url: '', label: 'pessoas', disabled: true }, {
-    url: `/pessoas/professores`,
-    label: 'Professores',
-    disabled: false
-  }];
+  const paths = [
+    { url: '/', label: 'home' },
+    { url: '', label: 'pessoas', disabled: true },
+    {
+      url: `/pessoas/professores`,
+      label: 'Professores',
+      disabled: false,
+    },
+  ];
 
   professor.links = [
     {
       url: urlLattes(professor.lattes),
-      icon: <LattesSVG className='w-4 h-4 inline-block' />,
-      label: urlLattes(professor.lattes).replace(/(http:\/\/)|(https:\/\/)/, ''),
-      external: true
+      icon: <LattesSVG className="w-4 h-4 inline-block" />,
+      label: urlLattes(professor.lattes).replace(
+        /(http:\/\/)|(https:\/\/)/,
+        ''
+      ),
+      external: true,
     },
     {
       url: professor.user.email,
-      icon: <AtSymbolIcon className='w-4 h-4 inline-block' />,
+      icon: <AtSymbolIcon className="w-4 h-4 inline-block" />,
       label: professor.user.email,
-      copy: true
-    }
+      copy: true,
+    },
   ];
 
   function copyToClipboard(text) {
@@ -56,69 +63,81 @@ export default function IndexPage({ professor }) {
 
   return (
     <>
-      <HeadSeo title={`${professor.degree} ${fullName(professor.user)}`} description={professor.resumo} />
+      <HeadSeo
+        title={`${professor.degree} ${fullName(professor.user)}`}
+        description={professor.resumo}
+      />
       <BannerBreadcrumb paths={paths}>
-        <p
-          className='text-5xl text-neutral-100 text-center uppercase font-semibold'>{professor.degree}{' '}{fullName(professor.user) || 'Hero Title'}</p>
+        <p className="text-5xl text-neutral-100 text-center uppercase font-semibold">
+          {professor.degree} {fullName(professor.user) || 'Hero Title'}
+        </p>
       </BannerBreadcrumb>
-      <Container className='flex w-full flex-wrap lg:flex-nowrap gap-8'>
-        <div
-          className='lg:sticky flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-center items-center sm:items-start lg:items-center w-full sm:w-max lg:w-96 h-full top-16 gap-4 '>
-          <div className='relative overflow-hidden rounded-full w-48 h-48 mx-auto'>
+      <Container className="flex w-full flex-wrap lg:flex-nowrap gap-8">
+        <div className="lg:sticky flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-center items-center sm:items-start lg:items-center w-full sm:w-max lg:w-96 h-full top-16 gap-4 ">
+          <div className="relative overflow-hidden rounded-full w-48 h-48 mx-auto">
             <Image
-              src={professor.user.avatar ? apiAsset(professor.user.avatar.id) : '/img/open_graph_squared.png'}
-              className='object-cover lg:rounded-full group-hover:scale-[105%] transition-transform duration-300'
-              layout='fill' />
-          </div>
-          <div
-            className='flex flex-col justify-between items-center sm:items-start lg:items-center h-full gap-2 sm:py-4 lg-p-0'>
-            <p
-              className='lg:text-center sm:text-lg font-medium group-hover:text-primary transition-colors duration-300'>{fullName(professor.user)}</p>
-            <ul
-              className='space-y-2 flex flex-col items-center sm:items-start'>
-              {
-                professor.links.map((item) =>
-                  <li key={`professor-links-${item.url}`}>
-                    {
-                      item.external &&
-                      <a
-                        className='flex items-center text-sm font-light hover:text-primary transition-colors duration-300 gap-2 text-neutral-500 '
-                        href={item.url} target='_blank' rel='noreferrer'>
-                        {item.icon}{' '}{item.label}
-                      </a>
-                    }
-                    {
-                      item.copy &&
-                      <p
-                        className='flex items-center text-sm font-light hover:text-primary transition-colors duration-300 gap-2 text-neutral-500 hover:cursor-pointer'
-                        onClick={() => copyToClipboard(item.url)}>
-                        {item.icon}{' '}{item.label}
-                      </p>
-                    }
-                  </li>
-                )
+              src={
+                professor.user.avatar
+                  ? apiAsset(professor.user.avatar.id)
+                  : '/img/open_graph_squared.png'
               }
+              className="object-cover lg:rounded-full group-hover:scale-[105%] transition-transform duration-300"
+              layout="fill"
+            />
+          </div>
+          <div className="flex flex-col justify-between items-center sm:items-start lg:items-center h-full gap-2 sm:py-4 lg-p-0">
+            <p className="lg:text-center sm:text-lg font-medium group-hover:text-primary transition-colors duration-300">
+              {fullName(professor.user)}
+            </p>
+            <ul className="space-y-2 flex flex-col items-center sm:items-start">
+              {professor.links.map((item) => (
+                <li key={`professor-links-${item.url}`}>
+                  {item.external && (
+                    <a
+                      className="flex items-center text-sm font-light hover:text-primary transition-colors duration-300 gap-2 text-neutral-500 "
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {item.icon} {item.label}
+                    </a>
+                  )}
+                  {item.copy && (
+                    <p
+                      className="flex items-center text-sm font-light hover:text-primary transition-colors duration-300 gap-2 text-neutral-500 hover:cursor-pointer"
+                      onClick={() => copyToClipboard(item.url)}
+                    >
+                      {item.icon} {item.label}
+                    </p>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
-        <div className='space-y-8 w-full'>
-          {
-            Object.keys(producao_keywords).map((key, index) =>
-              <ProfessorProducaoTimeline
-                key={`professor-producao-${key}`}
-                defaultOpen={index === 0}
-                id={key}
-                title={producao_keywords[key]}
-                producao={professor[key]}
-              />
-            )
-          }
+        <div className="space-y-8 w-full">
+          {Object.keys(producao_keywords).map((key, index) => (
+            <ProfessorProducaoTimeline
+              key={`professor-producao-${key}`}
+              defaultOpen={index === 0}
+              id={key}
+              title={producao_keywords[key]}
+              producao={professor[key]}
+            />
+          ))}
         </div>
       </Container>
       <Container>
-        <p className='text-center text-sm text-neutral-500'>Dados colhidos da platorma{' '}
-          <a className='underline hover:text-primary transition-colors duration-300'
-             href='https://ifgproduz.ifg.edu.br/' target='_blank' rel='noreferrer'>IFG Produz</a>
+        <p className="text-center text-sm text-neutral-500">
+          Dados colhidos da platorma{' '}
+          <a
+            className="underline hover:text-primary transition-colors duration-300"
+            href="https://ifgproduz.ifg.edu.br/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            IFG Produz
+          </a>
         </p>
       </Container>
     </>
@@ -126,36 +145,37 @@ export default function IndexPage({ professor }) {
 }
 
 export async function getStaticProps(context) {
-
   const [slug, , lattes] = urlSlugID(context.params.lattes);
 
   const query = gql`
-      query ProfessorByLattes($lattes:String!){
-          professor(filter:{lattes:{_eq:$lattes}}) {
-              id
-              institution
-              degree
-              lattes
-              user {
-                  email
-                  first_name
-                  last_name
+    query ProfessorByLattes($lattes: String!) {
+      professor(filter: { lattes: { _eq: $lattes } }) {
+        id
+        institution
+        degree
+        lattes
+        user {
+          email
+          first_name
+          last_name
 
-                  avatar {
-                      height
-                      id
-                      width
-                  }
-              }
+          avatar {
+            height
+            id
+            width
           }
+        }
       }
+    }
   `;
 
   const variables = {
-    lattes
+    lattes,
   };
 
-  const { professor: professors } = (await apolloClient.query({ query, variables })).data;
+  const { professor: professors } = (
+    await apolloClient.query({ query, variables })
+  ).data;
 
   let professor = professors[0];
 
@@ -184,16 +204,20 @@ export async function getStaticProps(context) {
     projeto_pesquisa: 'Projeto de Pesquisa',
     resumo_trabalhos: 'Resumo de Trabalhos',
     software: 'Software',
-    trabalho_evento: 'Trabalho em Evento'
+    trabalho_evento: 'Trabalho em Evento',
   };
 
   for (let item of ifgproduz['Sobre']) {
-    if (Object.values(producao_keywords).includes(item['natureza_da_producao'])) {
-      let key = Object.keys(producao_keywords).find(key => producao_keywords[key] === item['natureza_da_producao']);
+    if (
+      Object.values(producao_keywords).includes(item['natureza_da_producao'])
+    ) {
+      let key = Object.keys(producao_keywords).find(
+        (key) => producao_keywords[key] === item['natureza_da_producao']
+      );
       if (!(key in professor)) {
         professor = {
           ...professor,
-          [key]: []
+          [key]: [],
         };
       }
       professor[key].push(item);
@@ -201,8 +225,7 @@ export async function getStaticProps(context) {
   }
 
   for (let item of Object.keys(producao_keywords)) {
-    if (item === 'formacao')
-      continue;
+    if (item === 'formacao') continue;
     if (item === 'banca' && !!professor[item])
       professor[item] = sortByField(professor[item], 'ano', true);
     if (item === 'artigos' && !!professor[item])
@@ -212,7 +235,11 @@ export async function getStaticProps(context) {
     if (item === 'orientacao' && !!professor[item])
       professor[item] = sortByField(professor[item], 'ano_orientacao', true);
     if (item === 'producacao_tecnica' && !!professor[item])
-      professor[item] = sortByField(professor[item], 'ano_producao_tecnica', true);
+      professor[item] = sortByField(
+        professor[item],
+        'ano_producao_tecnica',
+        true
+      );
     if (item === 'projeto_pesquisa' && !!professor[item])
       professor[item] = sortByField(professor[item], 'data_inicio', true);
     if (item === 'resumo_trabalhos' && !!professor[item])
@@ -227,43 +254,44 @@ export async function getStaticProps(context) {
 
   // fs.writeFileSync(`./${slugify(professor.user.first_name.toLowerCase())}.json`, JSON.stringify(ifgproduz));
 
-
   return {
     props: {
-      professor
+      professor,
     },
-    revalidate: 60 * 60 * 24
+    revalidate: 60 * 60 * 24,
   };
 }
 
 export async function getStaticPaths() {
   const query = gql`
-      {
-          professor(filter: {institution: {_eq: "ifg"}}) {
-              id
-              institution
-              degree
-              lattes
-              user {
-                  email
-                  first_name
-                  last_name
+    {
+      professor(filter: { institution: { _eq: "ifg" } }) {
+        id
+        institution
+        degree
+        lattes
+        user {
+          email
+          first_name
+          last_name
 
-                  avatar {
-                      height
-                      id
-                      width
-                  }
-              }
+          avatar {
+            height
+            id
+            width
           }
+        }
       }
+    }
   `;
 
   const { professor } = (await apolloClient.query({ query })).data;
 
   // Get the paths we want to pre-render based on posts
-  const paths = professor.map(item => ({
-    params: { lattes: `${slugify(fullName(item.user).toLowerCase())}.${item.lattes}` }
+  const paths = professor.map((item) => ({
+    params: {
+      lattes: `${slugify(fullName(item.user).toLowerCase())}.${item.lattes}`,
+    },
   }));
 
   // We'll pre-render only these paths at build time.

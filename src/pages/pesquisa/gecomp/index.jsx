@@ -37,11 +37,16 @@ export default function index({ page }) {
       <Container>
         <div className="flex flex-wrap md:flex-nowrap gap-4">
           <div className="w-full md:w-8/12 ">
-            <iframe width="100%" height="420" src="https://www.youtube.com/embed/pbObyQ4Ql_I"
-                    title="YouTube video player" frameBorder="0"
-                    className='mb-8'
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen></iframe>
+            <iframe
+              width="100%"
+              height="420"
+              src="https://www.youtube.com/embed/pbObyQ4Ql_I"
+              title="YouTube video player"
+              frameBorder="0"
+              className="mb-8"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
 
             <div
               className={classNames(

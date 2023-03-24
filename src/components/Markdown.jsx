@@ -13,9 +13,17 @@ export default function Markdown({ children, className }) {
     <ReactMarkdown
       className={className}
       remarkPlugins={[remarkGfm, remarkEmoji, remarkHighlight, remarkMath]}
-      rehypePlugins={[rehypeRaw, rehypeSlug, rehypeAutolinkHeadings, [rehypeKatex, {
-        css: 'https://cdn.jsdelivr.net/npm/katex@0.15.0/dist/katex.min.css'
-      }]]}
+      rehypePlugins={[
+        rehypeRaw,
+        rehypeSlug,
+        rehypeAutolinkHeadings,
+        [
+          rehypeKatex,
+          {
+            css: 'https://cdn.jsdelivr.net/npm/katex@0.15.0/dist/katex.min.css',
+          },
+        ],
+      ]}
     >
       {children}
     </ReactMarkdown>
