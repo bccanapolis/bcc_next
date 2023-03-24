@@ -126,8 +126,6 @@ export const dynamicBlog = (page, limit, tags = '', author = '', search = '', in
     };
   }
 
-  console.log(jsonToGraphQLQuery(query))
-
   return jsonToGraphQLQuery(query);
 };
 

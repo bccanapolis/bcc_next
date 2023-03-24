@@ -3,13 +3,20 @@
 @tailwind utilities;
 
 
-
 body {
   @apply font-poppins text-neutral-900;
 }
 
 hr {
   @apply border-neutral-100;
+}
+
+*[aria-hidden="true"] {
+  display: none;
+}
+
+.math.math-inline {
+  @apply text-2xl;
 }
 
 .prose {

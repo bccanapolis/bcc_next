@@ -178,6 +178,7 @@ export default function Home({
       <Banner
         fullscreen={true}
         navigation={false}
+        overlay={true}
         imageLoading="eager"
         images={!!page.carousel.length ? page.carousel : null}
       >
