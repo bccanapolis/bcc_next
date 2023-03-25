@@ -1,10 +1,10 @@
 import { classNames } from '@/utils';
-import { SearchIcon, XIcon } from '@heroicons/react/solid';
+import { SearchIcon, XIcon } from '@heroicons/react/24/solid';
 import { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Popover, Transition } from '@headlessui/react';
-import { MenuIcon } from '@heroicons/react/outline';
+import { MenuIcon } from '@heroicons/react/24/outline';
 
 let t = null;
 

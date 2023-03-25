@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import HeadSeo from '@/components/layout/HeadSeo';
 import ArticlePanel from '@/components/article/ArticlePanel';
-import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
+import { CalendarIcon, UserIcon } from '@heroicons/react/24/outline';
 
 export default function Index({
   article,

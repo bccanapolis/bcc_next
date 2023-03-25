@@ -1,5 +1,5 @@
 import { apiAsset, classNames } from '@/utils';
-import { SearchIcon, XIcon } from '@heroicons/react/solid';
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
@@ -7,7 +7,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Popover, Transition } from '@headlessui/react';
-import { MenuIcon } from '@heroicons/react/outline';
+import { Bars4Icon } from '@heroicons/react/24/outline';
 import { format } from 'date-fns';
 import slugify from 'slugify';
 
@@ -205,7 +205,7 @@ export default function ArticlePanel({
               />
               <div className="flex absolute inset-y-0 right-0 items-center pr-5">
                 {!!searchString ? (
-                  <XIcon
+                  <XMarkIcon
                     onClick={() => {
                       setSearchString('');
                       handleSearch('', 0);
@@ -213,7 +213,7 @@ export default function ArticlePanel({
                     className="w-6 h-6 text-neutral-100 pointer-cursor"
                   />
                 ) : (
-                  <SearchIcon className="w-6 h-6 text-neutral-100" />
+                  <MagnifyingGlassIcon className="w-6 h-6 text-neutral-100" />
                 )}
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function ArticlePanel({
           <div className="-mr-2 -my-2 lg:hidden">
             <Popover.Button className="bg-neutral-100 p-2 inline-flex items-center justify-center text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
               <span className="sr-only">Open menu</span>
-              <MenuIcon className="h-6 w-6" aria-hidden="true" />
+              <Bars4Icon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
           </div>
         </div>

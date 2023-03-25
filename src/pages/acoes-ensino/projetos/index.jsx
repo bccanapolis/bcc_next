@@ -8,7 +8,7 @@ import HeadSeo from '@/components/layout/HeadSeo';
 import Link from 'next/link';
 import Image from 'next/image';
 import GameBannerYears from '@/components/home/GameBannerYears';
-import { ExternalLinkIcon } from '@heroicons/react/outline';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 export async function getStaticProps({}) {
   const query = gql`
@@ -233,7 +233,7 @@ export default function ProjectsPage({ projects, page, game, years }) {
                     rel="noreferrer"
                     className="hover:text-white hover:bg-primary  transition-colors duration-300 border-primary border-2 px-2 py-1 align-middle"
                   >
-                    <ExternalLinkIcon className="w-5 inline-block mr-2" />
+                    <ArrowTopRightOnSquareIcon className="w-5 inline-block mr-2" />
                     {item.link.label}
                   </a>
                 </span>

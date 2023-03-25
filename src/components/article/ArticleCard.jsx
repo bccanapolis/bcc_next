@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { apiAsset, classNames } from '@/utils';
 import { useRouter } from 'next/router';
-import { CalendarIcon, UserIcon } from '@heroicons/react/outline';
+import { CalendarIcon, UserIcon } from '@heroicons/react/24/outline';
 import { format } from 'date-fns';
 import slugify from 'slugify';
 

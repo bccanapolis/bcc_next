@@ -5,7 +5,7 @@ import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import apolloClient from '@/apollo-client';
 import slugify from 'slugify';
 import ProfessorProducaoTimeline from '@/components/professores/ProfessorProducaoTimeline';
-import { AtSymbolIcon, ClipboardCopyIcon } from '@heroicons/react/solid';
+import { AtSymbolIcon, ClipboardCopyIcon } from '@heroicons/react/24/solid';
 import LattesSVG from '@/components/atoms/LattesSVG';
 import Container from '@/components/layout/Container';
 import HeadSeo from '@/components/layout/HeadSeo';

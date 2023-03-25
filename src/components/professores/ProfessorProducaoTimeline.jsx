@@ -1,7 +1,7 @@
-import { DocumentTextIcon } from '@heroicons/react/outline';
+import { DocumentTextIcon } from '@heroicons/react/24/outline';
 import { cloneElement } from 'react';
 import { Disclosure, Transition } from '@headlessui/react';
-import { ChevronUpIcon } from '@heroicons/react/solid';
+import { ChevronUpIcon } from '@heroicons/react/24/solid';
 
 export default function ProfessorProducaoTimeline({
   id,

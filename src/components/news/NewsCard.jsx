@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { classNames } from '@/utils';
 import { useRouter } from 'next/router';
-import { CalendarIcon } from '@heroicons/react/outline';
+import { CalendarIcon } from '@heroicons/react/24/outline';
 import { format, parseISO } from 'date-fns';
 
 export default function NewsCard({ post, searchPosts }) {

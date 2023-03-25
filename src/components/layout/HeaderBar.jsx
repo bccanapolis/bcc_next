@@ -2,12 +2,15 @@
 
 import { Fragment, useEffect } from 'react';
 import { Popover, Transition } from '@headlessui/react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import { ChevronDownIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { classNames } from '@/utils';
 import { useRouter } from 'next/router';
+import {
+  Bars4Icon,
+  ChevronDownIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/solid';
 
 const navigation = [
   {
@@ -99,10 +102,10 @@ const navigation = [
         url: '/pessoas/professores',
         label: 'professores',
       },
-      {
-        url: '/pessoas/centro-academico',
-        label: 'Centro Acadêmico',
-      },
+      // {
+      //   url: '/pessoas/centro-academico',
+      //   label: 'Centro Acadêmico',
+      // },
       // {
       //   url: '/pessoas/atletica',
       //   label: 'Atlética'
@@ -248,7 +251,7 @@ export default function Example() {
               <div className="-mr-2 -my-2 md:hidden">
                 <Popover.Button className="bg-neutral-700 rounded-md p-2 inline-flex items-center justify-center text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none">
                   <span className="sr-only">Open menu</span>
-                  <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                  <Bars4Icon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
               </div>
               <Popover.Group as="nav" className="hidden md:flex space-x-8">
@@ -287,7 +290,7 @@ export default function Example() {
                     <div className="-mr-2">
                       <Popover.Button className="bg-neutral-700 rounded-md p-2 inline-flex items-center justify-center text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 focus:outline-none">
                         <span className="sr-only">Close menu</span>
-                        <XIcon className="h-6 w-6" aria-hidden="true" />
+                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>
                     </div>
                   </div>

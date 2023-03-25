@@ -1,7 +1,7 @@
 import { classNames } from '@/utils';
 import Link from 'next/link';
 import ArticleCardHome from '@/components/article/ArticleCardHome';
-import { ArrowRightIcon } from '@heroicons/react/outline';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 export default function RecentPostsSection({ section, posts = [], className }) {
   return (

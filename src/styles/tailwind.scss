@@ -11,12 +11,17 @@ hr {
   @apply border-neutral-100;
 }
 
-*[aria-hidden="true"] {
+.math > * [aria-hidden="true"] {
   display: none;
 }
 
+
 .math.math-inline {
   @apply text-2xl;
+}
+
+p:has(.math.math-inline) {
+  @apply block w-full overflow-x-auto;
 }
 
 .prose {

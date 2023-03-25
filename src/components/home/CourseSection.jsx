@@ -1,5 +1,5 @@
 import Banner from '@/components/layout/Banner';
-import { BeakerIcon, BookOpenIcon } from '@heroicons/react/outline';
+import { BeakerIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 import BrazilSVG from '@/components/atoms/BrazilSVG';
 
 export default function CourseSection({ className }) {

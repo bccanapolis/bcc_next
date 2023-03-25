@@ -1,10 +1,6 @@
 import Banner from '@/components/layout/Banner';
 import Image from 'next/image';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 export default function BannerCode({ className }) {
   const image = [
@@ -35,10 +31,7 @@ export default function BannerCode({ className }) {
                   rel="noreferrer"
                   className="text-neutral-100 hover:text-primary transition-colors duration-300 w-fit"
                 >
-                  <FontAwesomeIcon
-                    icon={faFacebook}
-                    className="text-5xl lg:text-3xl"
-                  />
+                  <FaFacebook className="text-5xl lg:text-3xl" />
                 </a>
                 <a
                   href="https://www.linkedin.com/company/code-tower-ej"
@@ -46,10 +39,7 @@ export default function BannerCode({ className }) {
                   rel="noreferrer"
                   className="text-neutral-100 hover:text-primary transition-colors duration-300 w-fit"
                 >
-                  <FontAwesomeIcon
-                    icon={faLinkedin}
-                    className="text-5xl lg:text-3xl"
-                  />
+                  <FaLinkedin className="text-5xl lg:text-3xl" />
                 </a>
                 <a
                   href="@/components/empresa-junior/BannerCode"
@@ -57,10 +47,7 @@ export default function BannerCode({ className }) {
                   rel="noreferrer"
                   className="text-neutral-100 hover:text-primary transition-colors duration-300 w-fit"
                 >
-                  <FontAwesomeIcon
-                    icon={faInstagram}
-                    className="text-5xl lg:text-3xl"
-                  />
+                  <FaInstagram className="text-5xl lg:text-3xl" />
                 </a>
               </div>
               <div className="flex w-full">

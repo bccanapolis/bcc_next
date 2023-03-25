@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { apiAsset } from '@/utils';
 import LattesSVG from '@/components/atoms/LattesSVG';
-import { AtSymbolIcon } from '@heroicons/react/solid';
+import { AtSymbolIcon } from '@heroicons/react/24/solid';
 
 function getFontSize(length) {
   if (length > 32) {
