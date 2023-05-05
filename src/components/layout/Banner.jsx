@@ -14,6 +14,10 @@ export default function Banner({
   imageLoading = 'lazy',
 }) {
   const img = images || [
+    { url: '/img/carousel/DSC_0070.webp', alt: 'Grupo da Computação 2023' },
+    { url: '/img/carousel/DSC_0093.webp', alt: 'Grupo da Computação 2023' },
+    { url: '/img/carousel/DSC_0128.webp', alt: 'Grupo da Computação 2023' },
+    { url: '/img/carousel/DSC_0160.webp', alt: 'Grupo da Computação 2023' },
     { url: '/img/EK9o3S2WoAArZMf.webp', alt: 'Coleta de Lixo Eletrônico 2019' },
   ];
 
