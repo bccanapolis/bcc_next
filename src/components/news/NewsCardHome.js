@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { classNames } from '@/utils';
 import { format, parseISO } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 export default function NewsCardHome({ post, className }) {
   return (
@@ -19,7 +20,9 @@ export default function NewsCardHome({ post, className }) {
       <div className="p-2 mt-2 space-y-2">
         <div className="divide flex justify-between">
           <p className="text-sm">
-            {format(parseISO(post.published_at), 'dd MMM, yyyy')}
+            {format(parseISO(post.published_at), 'dd MMM, yyyy', {
+              locale: ptBR,
+            })}
           </p>
         </div>
         <div>

@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import HeadSeo from '@/components/layout/HeadSeo';
 import ArticlePanel from '@/components/article/ArticlePanel';
 import { CalendarIcon, UserIcon } from '@heroicons/react/24/outline';
+import { ptBR } from 'date-fns/locale';
 
 export default function Index({
   article,
@@ -68,7 +69,9 @@ export default function Index({
                 </p>
                 <p className="flex font-light items-center gap-x-2 text-sm">
                   <CalendarIcon className="w-4 h-4 inline" /> Postado em{' '}
-                  {format(new Date(article.date_created), 'dd MMM, yyyy')}
+                  {format(new Date(article.date_created), 'dd MMM, yyyy', {
+                    locale: ptBR,
+                  })}
                 </p>
               </div>
             </div>

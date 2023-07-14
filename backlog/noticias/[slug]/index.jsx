@@ -9,6 +9,7 @@ import HeadSeo from '@/components/layout/HeadSeo';
 import ArticlePanel from '@/components/article/ArticlePanel';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { gql } from '@apollo/client';
+import { ptBR } from 'date-fns/locale';
 
 export async function getServerSideProps(context) {
   const [slug, , id] = context.params.slug.split(/(@)(?!.*@)/);
@@ -126,7 +127,9 @@ export default function Index({ news, recent_news: recentPosts }) {
               <div className="inline-block text-left">
                 <p className="flex font-light items-center gap-x-2 text-sm">
                   <CalendarIcon className="w-4 h-4 inline" /> Postado em{' '}
-                  {format(new Date(news.date_created), 'dd MMM, yyyy')}
+                  {format(new Date(news.date_created), 'dd MMM, yyyy', {
+                    locale: ptBR,
+                  })}
                 </p>
               </div>
             </div>

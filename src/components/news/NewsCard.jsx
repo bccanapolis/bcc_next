@@ -3,6 +3,7 @@ import { classNames } from '@/utils';
 import { useRouter } from 'next/router';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { format, parseISO } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 export default function NewsCard({ post, searchPosts }) {
   const router = useRouter();
@@ -31,7 +32,9 @@ export default function NewsCard({ post, searchPosts }) {
         {post.description}
       </p>
       <time className="flex lg:text-right text-sm font-light lg:justify-end flex-row-reverse lg:flex-row items-center gap-x-2 mt-auto">
-        {format(parseISO(post.published_at), 'dd MMM, yyyy')}
+        {format(parseISO(post.published_at), 'dd MMM, yyyy', {
+          locale: ptBR,
+        })}
         <CalendarIcon className="w-4 h-4 inline" />
       </time>
     </article>

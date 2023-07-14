@@ -161,7 +161,7 @@ export default function ProjectsPage({ projects, page, game, years }) {
   return (
     <>
       <HeadSeo
-        title={page.seo_title}
+        title={page.seo_title || 'Projetos de Ensino'}
         description={page.seo_description}
         openGraph={page.seo_image}
         keywords={page.seo_keywords}

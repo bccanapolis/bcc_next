@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { apiAsset, classNames } from '@/utils';
 import { format } from 'date-fns';
 import slugify from 'slugify';
+import { ptBR } from 'date-fns/locale';
 
 export default function ArticleCardHome({ post, isNews }) {
   const route = isNews ? '/noticias' : '/blog';
@@ -30,7 +31,9 @@ export default function ArticleCardHome({ post, isNews }) {
             <p className="text-sm">{`${post.user_created.first_name} ${post.user_created.last_name}`}</p>
           )}
           <p className="text-sm">
-            {format(new Date(post.date_created), 'dd MMM, yyyy')}
+            {format(new Date(post.date_created), 'dd MMM, yyyy', {
+              locale: ptBR,
+            })}
           </p>
         </div>
         <div>

@@ -10,6 +10,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { Bars4Icon } from '@heroicons/react/24/outline';
 import { format } from 'date-fns';
 import slugify from 'slugify';
+import { ptBR } from 'date-fns/locale';
 
 let t = null;
 
@@ -110,7 +111,9 @@ function BlogPanelChild({
                   </Link>
                   {isNews ? (
                     <p className="text-xs font-light">
-                      {format(new Date(post.date_created), 'dd MMM, yyyy')}
+                      {format(new Date(post.date_created), 'dd MMM, yyyy', {
+                        locale: ptBR,
+                      })}
                     </p>
                   ) : (
                     <p className="text-xs font-light">{`${post.user_created.first_name} ${post.user_created.last_name}`}</p>

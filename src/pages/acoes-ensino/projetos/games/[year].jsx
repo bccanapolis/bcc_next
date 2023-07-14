@@ -93,7 +93,7 @@ export default function GamesPage({ games, page, years }) {
   return (
     <>
       <HeadSeo
-        title={page.seo_title}
+        title={page.seo_title || page.hero_title || `Games ${year}`}
         description={page.seo_description}
         openGraph={page.seo_image}
         keywords={page.seo_keywords}

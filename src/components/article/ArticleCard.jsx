@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { CalendarIcon, UserIcon } from '@heroicons/react/24/outline';
 import { format } from 'date-fns';
 import slugify from 'slugify';
+import { ptBR } from 'date-fns/locale';
 
 export default function ArticleCard({ post, searchPosts }) {
   const router = useRouter();
@@ -20,7 +21,9 @@ export default function ArticleCard({ post, searchPosts }) {
               <UserIcon className="w-4 h-4 inline" />
             </p>
             <p className="flex lg:text-right text-sm font-light lg:justify-end flex-row-reverse lg:flex-row items-center gap-x-2">
-              {format(new Date(post.date_created), 'dd MMM, yyyy')}
+              {format(new Date(post.date_created), 'dd MMM, yyyy', {
+                locale: ptBR,
+              })}
               <CalendarIcon className="w-4 h-4 inline" />
             </p>
           </div>
