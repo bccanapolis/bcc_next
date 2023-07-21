@@ -5,13 +5,13 @@ import BannerBreadcrumb from '@/components/BannerBreadcrumb';
 import apolloClient from '@/apollo-client';
 import slugify from 'slugify';
 import ProfessorProducaoTimeline from '@/components/professores/ProfessorProducaoTimeline';
-import { AtSymbolIcon, ClipboardCopyIcon } from '@heroicons/react/24/solid';
+import { AtSymbolIcon, ClipboardIcon } from '@heroicons/react/24/solid';
 import LattesSVG from '@/components/atoms/LattesSVG';
 import Container from '@/components/layout/Container';
 import HeadSeo from '@/components/layout/HeadSeo';
 import Image from 'next/image';
 import { fetchProfessor } from '@/lib/lattes';
-import { defaultToast } from '@/hooks/toast';
+import { useToast } from '@/hooks/toast';
 
 export default function IndexPage({ professor }) {
   const producao_keywords = {
@@ -57,8 +57,14 @@ export default function IndexPage({ professor }) {
   ];
 
   function copyToClipboard(text) {
+    // if (!navigator.clipboard)
+    //   return defaultToast(
+    //     'Não foi possível copiar o email',
+    //     <ClipboardCopyIcon />
+    //   );
+    //
     navigator.clipboard.writeText(text);
-    defaultToast('Email copiado!', <ClipboardCopyIcon />);
+    useToast('Email copiado!', <ClipboardIcon />);
   }
 
   return (

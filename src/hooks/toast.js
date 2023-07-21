@@ -1,10 +1,9 @@
 import { toast } from 'react-hot-toast';
-import { XIcon } from '@heroicons/react/24/outline';
 import { classNames } from '@/utils';
-import { FireIcon } from '@heroicons/react/24/solid';
+import { FireIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { cloneElement } from 'react';
 
-export const defaultToast = (message, icon) => {
+export const useToast = (message, icon) => {
   toast.custom((t) => (
     <div
       id="toast-default"
@@ -34,7 +33,7 @@ export const defaultToast = (message, icon) => {
         aria-label="Close"
       >
         <span className="sr-only">Close</span>
-        <XIcon className="w-5 h-5" />
+        <XMarkIcon className="w-5 h-5" />
       </button>
     </div>
   ));
