@@ -11,7 +11,7 @@ import Container from '@/components/layout/Container';
 import HeadSeo from '@/components/layout/HeadSeo';
 import Image from 'next/image';
 import { fetchProfessor } from '@/lib/lattes';
-import { useToast } from '@/hooks/toast';
+import { useToast } from '@/hooks/useToast';
 
 export default function IndexPage({ professor }) {
   const producao_keywords = {
