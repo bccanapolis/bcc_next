@@ -214,7 +214,7 @@ export default function Home({
           className="h-96"
           section={{
             title:
-              'Estude Computação em uma instituição pública, federal e de qualdiade. Estude no IFG Campus Anápolis',
+              'Estude Computação em uma instituição pública, federal e de qualidade. Estude no IFG Campus Anápolis',
           }}
           images={[
             {
