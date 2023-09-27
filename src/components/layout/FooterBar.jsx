@@ -175,9 +175,8 @@ export default function FooterBar({}) {
             {/*target='_blank' rel='noreferrer'>NextJS</a> */} por{' '}
             <a
               className="underline hover:text-primary transition-colors duration-300"
-              href="https://baraus.dev"
+              href="https://www.baraus.dev"
               target="_blank"
-              rel="noreferrer"
             >
               baraus.dev
             </a>
