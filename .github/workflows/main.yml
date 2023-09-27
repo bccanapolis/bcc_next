@@ -19,6 +19,6 @@ jobs:
           cd /home/devbaraus/bcc/bcc_next/  &&
           git checkout main &&
           git pull &&
-          docker-compose build &&
-          docker-compose down &&
-          docker-compose up -d 
+          docker compose build &&
+          docker compose down &&
+          docker compose up -d 
