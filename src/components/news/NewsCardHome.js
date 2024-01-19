@@ -24,6 +24,14 @@ export default function NewsCardHome({ post, className }) {
               locale: ptBR,
             })}
           </p>
+
+          {
+            post.featured && (
+              <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-primary rounded-full">
+                  Destaque
+                </span>
+            )
+          }
         </div>
         <div>
           <Link href={post.link}>

@@ -15,13 +15,14 @@ import RecentNews from '@/components/news/RecentNews';
 export async function getStaticProps({}) {
   const query = gql`
     {
-      news(limit: 4, page: 1, sort: "-published_at") {
-        id
-        title
-        cover
-        description
-        link
-        published_at
+      news(limit: 4, page: 1, sort: "-featured,-published_at") {
+          id
+          title
+          cover
+          description
+          link
+          featured
+          published_at
       }
       projetos_page {
         content

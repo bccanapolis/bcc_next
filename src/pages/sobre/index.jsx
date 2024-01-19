@@ -19,8 +19,8 @@ export default function ProjectsPage({ page }) {
     {
       title: 'Apresentação',
       description:
-        'Aberto em 2016, o Bacharelado em Ciência da Computação do IFG Campus Anápolis tem se tornado um espaço de oportunidades e muito aprendizado para quem gosta de computação. Com possibilidade de pleitear bolsas de estudo em pesquisas acadêmicas, projetos de extensão, assistência estudantil (alimentação, transporte e permanência), além de participar de projetos com empresas parcerias e com nossa Empresa Júnior, Code Tower.' +
-        'Para os interessados, veja o link para inscrição e vestibulares.',
+       [ 'Aberto em 2016, o Bacharelado em Ciência da Computação do IFG Campus Anápolis tem se tornado um espaço de oportunidades e muito aprendizado para quem gosta de computação. Com possibilidade de pleitear bolsas de estudo em pesquisas acadêmicas, projetos de extensão, assistência estudantil (alimentação, transporte e permanência), além de participar de projetos com empresas parcerias e com nossa Empresa Júnior, Code Tower.',
+        'Para os interessados, veja o link para inscrição e vestibulares.',],
       link: {
         label: 'Inscrição e Vestibulares',
         url: 'http://www.ifg.edu.br/estudenoifg',
@@ -28,15 +28,15 @@ export default function ProjectsPage({ page }) {
       cover: '/img/bcc.png',
     },
     {
-      title: 'Conceito nota 5 do Inep/MEC',
+      title: 'Ciência da Computação recebe nota 5 em avaliação final do MEC',
       description:
-        'O curso de Ciência da Computação do IFG obteve a nota máxima em sua primeira avaliação para reconhecimento do curso, feita por técnicos do Instituto Nacional de Estudos e Pesquisas Educacionais (Inep/MEC). A nota 5 foi obtida após visita ao câmpus, nos dia 9 e 10 de dezembro de 2019. O curso obteve nota máxima em infra-estrutura e corpo docente!',
+       [ 'O curso de Ciência da Computação do IFG Anápolis está entre os 13 melhores do Brasil da área de Computação, conforme índices divulgados pelo Ministério da Educação (MEC) em 2023 no CPC (Conceito Preliminar de Curso). O bacharelado ofertado pelo câmpus recebeu o conceito máximo do MEC, nota 5, e por isso ficou classificado como o melhor curso de Computação do Centro-Oeste. O curso também é o único de Goiás a receber o conceito 5.','O CPC é um indicador de qualidade definitivo utilizado no Sistema Nacional de Avaliação da Educação Superior (Sinaes) no Brasil. Ele é calculado pelo MEC e tem como objetivo avaliar a qualidade dos cursos de graduação das instituições de ensino superior do país. O CPC é mensurado a partir de diferentes componentes e indicadores, levando em consideração aspectos como desempenho dos estudantes, infraestrutura, corpo docente e outros fatores relevantes para a qualidade do curso.'],
       cover: '/img/nota5.png',
     },
     {
       title: 'BCC entre os melhores do Estado.',
       description:
-        'O curso de Ciência da Computação do IFG Anápolis recebeu o conceito 4 no Exame Nacional de Desempenho dos Estudantes (Enade), destacando-se entre os melhores cursos da área no Estado de Goiás. Esse conceito já foi obtido na primeira participação dos seus alunos concluintes. Segundo o coordenador do curso na ocasião da prova, professor Sérgio Canuto, “esse conceito 4 no Enade confirma a qualidade do ensino que o IFG provê não só a Anápolis, mas a todo o Estado, uma vez que o curso vem, cada vez mais, atraindo alunos e alunas de diversos municípios goianos e de todo o País”.',
+        ['O curso de Ciência da Computação do IFG Anápolis recebeu o conceito 4 no Exame Nacional de Desempenho dos Estudantes (Enade), destacando-se entre os melhores cursos da área no Estado de Goiás. Esse conceito já foi obtido na primeira participação dos seus alunos concluintes. Segundo o coordenador do curso na ocasião da prova, professor Sérgio Canuto, “esse conceito 4 no Enade confirma a qualidade do ensino que o IFG provê não só a Anápolis, mas a todo o Estado, uma vez que o curso vem, cada vez mais, atraindo alunos e alunas de diversos municípios goianos e de todo o País”.'],
       cover: '/img/enade.png',
     },
   ];
@@ -77,9 +77,12 @@ export default function ProjectsPage({ page }) {
             <div className="col-span-2">
               <h4 className="text-xl font-semibold">{item.title}</h4>
               <div
-                className="prose prose-neutral mt-2 mb-4"
-                dangerouslySetInnerHTML={{ __html: item.description }}
-              />
+                className="prose prose-neutral mt-4 mb-4"
+              >
+                {item.description.map((desc, index) => (
+                  <p key={index}>{desc}</p>
+                ))}
+              </div>
               {!!item.link && (
                 <span>
                   Link:{' '}

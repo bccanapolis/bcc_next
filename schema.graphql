@@ -1,4 +1,4 @@
-# This file was generated based on ".graphqlconfig". Do not edit manually.
+# This file was generated. Do not edit manually.
 
 schema {
     query: Query
@@ -634,8 +634,9 @@ type link_aggregated_fields {
 type news {
     cover: String
     description: String!
+    featured: Boolean
     id: ID
-    link: String
+    link: String!
     published_at: Date
     published_at_func: datetime_functions
     title: String!
@@ -657,6 +658,7 @@ type news_aggregated {
 type news_aggregated_count {
     cover: Int
     description: Int
+    featured: Int
     id: Int
     link: Int
     published_at: Int
@@ -1329,6 +1331,7 @@ input news_filter {
     _or: [news_filter]
     cover: string_filter_operators
     description: string_filter_operators
+    featured: boolean_filter_operators
     id: number_filter_operators
     link: string_filter_operators
     published_at: date_filter_operators

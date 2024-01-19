@@ -18,6 +18,10 @@ const navigation = [
     label: 'Home',
   },
   {
+    url: '/sobre',
+    label: 'Sobre',
+  },
+  {
     url: '',
     label: 'pesquisa',
     dropdown: [
