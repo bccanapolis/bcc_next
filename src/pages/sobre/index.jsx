@@ -102,6 +102,7 @@ export default function ProjectsPage({ page }) {
                     <Link
                       href={item.link.url}
                       rel='noreferrer'
+                      target='_blank'
                       className='hover:text-primary underline transition-colors duration-300'
                     >
                       <h4 className='text-xl font-semibold'>{item.title}</h4>
