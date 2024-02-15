@@ -19,7 +19,7 @@ export default function ProjectsPage({ page }) {
     {
       title: 'Apresentação',
       description:
-       [ 'AAberto em 2016, o Bacharelado em Ciência da Computação do IFG Campus Anápolis tem se tornado um espaço frutífero de oportunidades e muito aprendizado para os interessados em computação. Em nosso curso, o estudante terá a possibilidade de pleitear bolsas de estudo em pesquisas acadêmicas, projetos de extensão, assistência estudantil (alimentação, transporte e permanência), além de participar de projetos com empresas parceiras e com nossa Empresa Júnior, a Code Tower.',
+       [ 'Aberto em 2016, o Bacharelado em Ciência da Computação do IFG Campus Anápolis tem se tornado um espaço frutífero de oportunidades e muito aprendizado para os interessados em computação. Em nosso curso, o estudante terá a possibilidade de pleitear bolsas de estudo em pesquisas acadêmicas, projetos de extensão, assistência estudantil (alimentação, transporte e permanência), além de participar de projetos com empresas parceiras e com nossa Empresa Júnior, a Code Tower.',
         'Abaixo apresentamos um histórico dos índices de avaliação do nosso curso realizado pelo MEC.'],
       link: {
         label: 'Veja o link para inscrição e vestibulares',
